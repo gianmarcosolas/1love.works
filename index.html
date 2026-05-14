@@ -9,36 +9,25 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --ink: #0f0f0d;
-      --parchment: #f5f2ea;
-      --cream: #ede9df;
-      --gold: #b8860b;
-      --muted: #6b6860;
-      --rule: rgba(15,15,13,0.12);
-      --serif: 'EB Garamond', Georgia, serif;
-      --mono: 'DM Mono', monospace;
+      --ink: #0f0f0d; --parchment: #f5f2ea; --cream: #ede9df;
+      --gold: #b8860b; --muted: #6b6860; --rule: rgba(15,15,13,0.12);
+      --serif: 'EB Garamond', Georgia, serif; --mono: 'DM Mono', monospace;
     }
-
     body { font-family: var(--serif); background: var(--parchment); color: var(--ink); line-height: 1.75; font-size: 18px; }
 
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      border-bottom: 1px solid var(--rule);
-      background: rgba(245,242,234,0.94); backdrop-filter: blur(8px);
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 14px 48px;
-    }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(245,242,234,0.94); backdrop-filter: blur(8px); display: flex; justify-content: space-between; align-items: center; padding: 14px 48px; }
     .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; font-weight: 500; }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
     .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--ink); }
 
-    .hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 120px 48px 80px;
-      max-width: 900px; margin: 0 auto;
-    }
+    .lang-switcher { display: flex; border: 1px solid var(--rule); overflow: hidden; }
+    .lang-btn { font-family: var(--mono); font-size: 10px; padding: 5px 9px; border: none; background: transparent; color: var(--muted); cursor: pointer; border-right: 1px solid var(--rule); transition: all 0.15s; }
+    .lang-btn:last-child { border-right: none; }
+    .lang-btn.active { background: var(--ink); color: var(--parchment); }
+    .lang-btn:hover:not(.active) { background: var(--cream); }
+
+    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 120px 48px 80px; max-width: 900px; margin: 0 auto; }
     .hero-overline { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 28px; }
     .hero h1 { font-size: clamp(38px, 6vw, 72px); font-weight: 400; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 32px; }
     .hero h1 em { font-style: italic; color: var(--gold); }
@@ -51,11 +40,7 @@
     .btn-outline { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 28px; background: transparent; color: var(--ink); border: 1px solid rgba(15,15,13,0.3); cursor: pointer; text-decoration: none; transition: background 0.2s; }
     .btn-outline:hover { background: var(--cream); }
 
-    .products {
-      max-width: 900px; margin: 0 auto;
-      padding: 0 48px 80px;
-      border-top: 1px solid var(--rule);
-    }
+    .products { max-width: 900px; margin: 0 auto; padding: 0 48px 80px; border-top: 1px solid var(--rule); }
     .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px; background: var(--rule); }
     .product-card { background: var(--parchment); padding: 36px 28px; }
     .product-step { font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
@@ -76,7 +61,8 @@
 
     @media (max-width: 720px) {
       nav { padding: 12px 20px; }
-      .nav-links { display: none; }
+      .nav-links { gap: 12px; }
+      .nav-links li.hide-mobile { display: none; }
       .hero { padding: 100px 24px 60px; }
       .products { padding: 0 24px 60px; }
       .products-grid { grid-template-columns: 1fr; }
@@ -89,24 +75,30 @@
 <nav>
   <a class="nav-logo" href="/">1love.works</a>
   <ul class="nav-links">
-    <li><a href="/methodology">Methodology</a></li>
-    <li><a href="https://eulawscanner.eu" target="_blank">EU Scanner</a></li>
-    <li><a href="https://corporate-scanner.com" target="_blank">Corporate Scanner</a></li>
-    <li><a href="https://eulawscanner.eu/about" target="_blank">About</a></li>
-    <li><a href="mailto:gmsolas@sustainab-law.eu">Contact</a></li>
+    <li class="hide-mobile"><a href="/methodology" data-i18n="nav_methodology">Methodology</a></li>
+    <li class="hide-mobile"><a href="https://eulawscanner.eu" target="_blank">EU Scanner</a></li>
+    <li class="hide-mobile"><a href="https://corporate-scanner.com" target="_blank">Corporate Scanner</a></li>
+    <li class="hide-mobile"><a href="https://eulawscanner.eu/about" target="_blank" data-i18n="nav_about">About</a></li>
+    <li class="hide-mobile"><a href="mailto:gmsolas@sustainab-law.eu" data-i18n="nav_contact">Contact</a></li>
+    <li>
+      <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('it')">IT</button>
+        <button class="lang-btn" onclick="setLang('fr')">FR</button>
+        <button class="lang-btn" onclick="setLang('es')">ES</button>
+      </div>
+    </li>
   </ul>
 </nav>
 
 <div class="hero">
-  <p class="hero-overline">The Legal System Meter · Tradition → Innovation</p>
+  <p class="hero-overline" data-i18n="overline">The Legal System Meter · Tradition → Innovation</p>
   <p class="hero-equation">E = MC² &nbsp;→&nbsp; Λ = C² &nbsp;→&nbsp; Λ = E / M &nbsp;<span style="font-size:13px; opacity:0.5;">(JLMI 2/25)</span></p>
-  <h1>Measuring human law<br/>like a <em>law of nature.</em><br/>Optimising legal systems<br/>like engines. Growing them<br/>like <em>flowers.</em></h1>
-  <p class="hero-sub">
-    A scientific framework to measure, codify and optimise legal systems (Λ) with mathematical physics — turning liabilities and legal risks into sustainable investments. Engineering conditions for "perpetual motion" of legal systems.
-  </p>
+  <h1 data-i18n="h1">Measuring human law<br/>like a <em>law of nature.</em><br/>Optimising legal systems<br/>like engines. Growing them<br/>like <em>flowers.</em></h1>
+  <p class="hero-sub" data-i18n="sub">A scientific framework to measure, codify and optimise legal systems (Λ) with mathematical physics — turning liabilities and legal risks into sustainable investments. Engineering conditions for "perpetual motion" of legal systems.</p>
   <div class="hero-cta">
-    <a href="/methodology" class="btn-primary">Read the methodology →</a>
-    <a href="https://calendly.com/gmsolas-sustainab-law/legal-consultation-public-entity" target="_blank" class="btn-outline">Book consultation</a>
+    <a href="/methodology" class="btn-primary" data-i18n="cta_method">Read the methodology →</a>
+    <a href="https://calendly.com/gmsolas-sustainab-law/legal-consultation-public-entity" target="_blank" class="btn-outline" data-i18n="cta_book">Book consultation</a>
   </div>
 </div>
 
@@ -114,27 +106,27 @@
   <div class="products-grid">
 
     <div class="product-card">
-      <div class="product-step"><span class="step-num">I</span> Public instrument</div>
-      <span class="product-tag active">Live</span>
+      <div class="product-step"><span class="step-num">I</span> <span data-i18n="p1_label">Public instrument</span></div>
+      <span class="product-tag active" data-i18n="p1_tag">Live</span>
       <h3>EU Law<br/><em>Scanner</em></h3>
-      <p>Free compliance measurement of EU law obligations for any act or entity. Three free scans. Full report. No account required.</p>
+      <p data-i18n="p1_desc">Free compliance measurement of EU law obligations for any act or entity. Three free scans. Full report. No account required.</p>
       <a href="https://eulawscanner.eu" target="_blank" class="product-link">eulawscanner.eu →</a>
     </div>
 
     <div class="product-card">
-      <div class="product-step"><span class="step-num">II</span> Enterprise instrument</div>
-      <span class="product-tag">In development</span>
+      <div class="product-step"><span class="step-num">II</span> <span data-i18n="p2_label">Enterprise instrument</span></div>
+      <span class="product-tag" data-i18n="p2_tag">In development</span>
       <h3>Corporate<br/><em>Scanner</em></h3>
-      <p>Self-hosted deployment for institutions. IT engineers run the scanner on internal servers. In-house counsel advises on results. Full methodological sovereignty.</p>
+      <p data-i18n="p2_desc">Self-hosted deployment for institutions. IT engineers run the scanner on internal servers. In-house counsel advises on results. Full methodological sovereignty.</p>
       <a href="https://corporate-scanner.com" target="_blank" class="product-link">corporate-scanner.com →</a>
     </div>
 
     <div class="product-card">
-      <div class="product-step"><span class="step-num">III</span> Full-system service</div>
-      <span class="product-tag">By mandate</span>
-      <h3>Codification<br/><em>of Legal Systems</em></h3>
-      <p>Measuring, mapping and optimising an entire legal system — city, municipality, state. Legal-physics methodology. UN SDGs as benchmark.</p>
-      <a href="mailto:gmsolas@sustainab-law.eu" class="product-link">Inquire →</a>
+      <div class="product-step"><span class="step-num">III</span> <span data-i18n="p3_label">Full-system service</span></div>
+      <span class="product-tag" data-i18n="p3_tag">By mandate</span>
+      <h3 data-i18n="p3_title">Codification<br/><em>of Legal Systems</em></h3>
+      <p data-i18n="p3_desc">Measuring, mapping and optimising an entire legal system — city, municipality, state. Legal-physics methodology. UN SDGs as benchmark.</p>
+      <a href="mailto:gmsolas@sustainab-law.eu" class="product-link" data-i18n="p3_link">Inquire →</a>
     </div>
 
   </div>
@@ -142,9 +134,9 @@
 
 <footer>
   <div class="footer-left">
-    <strong>1love.works</strong> · © 2019–2026 Avv. Dr. Gian Marco Solas · All rights reserved<br/>
+    <strong>1love.works</strong> · © 2019–2026 Avv. Dr. Gian Marco Solas · <span data-i18n="footer_rights">All rights reserved</span><br/>
     Sustainab-Law · Cagliari, Sardinia — Amsterdam, Netherlands<br/>
-    <em style="font-size:10px; color: rgba(107,104,96,0.7);">Proprietary instruments. Methodology: public scientific contribution. · De Lege et Amore.</em>
+    <em style="font-size:10px; color: rgba(107,104,96,0.7);" data-i18n="footer_note">Proprietary instruments. Methodology: public scientific contribution. · De Lege et Amore.</em>
   </div>
   <div class="footer-right">
     <a href="https://eulawscanner.eu" target="_blank">EU Law Scanner</a>
@@ -153,6 +145,118 @@
     <a href="https://doi.org/10.13135/2785-7867/12266" target="_blank">JLMI</a>
   </div>
 </footer>
+
+<script>
+const T = {
+  en: {
+    nav_methodology: 'Methodology',
+    nav_about: 'About',
+    nav_contact: 'Contact',
+    overline: 'The Legal System Meter · Tradition → Innovation',
+    h1: 'Measuring human law<br/>like a <em>law of nature.</em><br/>Optimising legal systems<br/>like engines. Growing them<br/>like <em>flowers.</em>',
+    sub: 'A scientific framework to measure, codify and optimise legal systems (Λ) with mathematical physics — turning liabilities and legal risks into sustainable investments. Engineering conditions for "perpetual motion" of legal systems.',
+    cta_method: 'Read the methodology →',
+    cta_book: 'Book consultation',
+    p1_label: 'Public instrument',
+    p1_tag: 'Live',
+    p1_desc: 'Free compliance measurement of EU law obligations for any act or entity. Three free scans. Full report. No account required.',
+    p2_label: 'Enterprise instrument',
+    p2_tag: 'In development',
+    p2_desc: 'Self-hosted deployment for institutions. IT engineers run the scanner on internal servers. In-house counsel advises on results. Full methodological sovereignty.',
+    p3_label: 'Full-system service',
+    p3_tag: 'By mandate',
+    p3_title: 'Codification<br/><em>of Legal Systems</em>',
+    p3_desc: 'Measuring, mapping and optimising an entire legal system — city, municipality, state. Legal-physics methodology. UN SDGs as benchmark.',
+    p3_link: 'Inquire →',
+    footer_rights: 'All rights reserved',
+    footer_note: 'Proprietary instruments. Methodology: public scientific contribution. · De Lege et Amore.',
+  },
+  it: {
+    nav_methodology: 'Metodologia',
+    nav_about: 'Chi sono',
+    nav_contact: 'Contatto',
+    overline: 'Il Metro dei Sistemi Giuridici · Tradizione → Innovazione',
+    h1: 'Misurare il diritto umano<br/>come una <em>legge della natura.</em><br/>Ottimizzare i sistemi giuridici<br/>come motori. Farli crescere<br/>come <em>fiori.</em>',
+    sub: 'Un framework scientifico per misurare, codificare e ottimizzare i sistemi giuridici (Λ) con la fisica matematica — trasformando passività e rischi legali in investimenti sostenibili. Creare le condizioni per il "moto perpetuo" dei sistemi giuridici.',
+    cta_method: 'Leggi la metodologia →',
+    cta_book: 'Prenota consulenza',
+    p1_label: 'Strumento pubblico',
+    p1_tag: 'Attivo',
+    p1_desc: 'Misurazione gratuita della conformità alle normative UE per qualsiasi atto o entità. Tre scansioni gratuite. Report completo. Nessun account richiesto.',
+    p2_label: 'Strumento enterprise',
+    p2_tag: 'In sviluppo',
+    p2_desc: 'Deployment self-hosted per istituzioni. Gli ingegneri IT gestiscono lo scanner su server interni. I legali interni analizzano i risultati. Piena sovranità metodologica.',
+    p3_label: 'Servizio sistema completo',
+    p3_tag: 'Su mandato',
+    p3_title: 'Codificazione<br/><em>dei Sistemi Giuridici</em>',
+    p3_desc: 'Misurazione, mappatura e ottimizzazione di un intero sistema giuridico — città, comune, stato. Metodologia legal-fisica. UN SDGs come benchmark.',
+    p3_link: 'Richiedi informazioni →',
+    footer_rights: 'Tutti i diritti riservati',
+    footer_note: 'Strumenti proprietari. Metodologia: contributo scientifico pubblico. · De Lege et Amore.',
+  },
+  fr: {
+    nav_methodology: 'Méthodologie',
+    nav_about: 'À propos',
+    nav_contact: 'Contact',
+    overline: 'Le Mètre des Systèmes Juridiques · Tradition → Innovation',
+    h1: 'Mesurer le droit humain<br/>comme une <em>loi de la nature.</em><br/>Optimiser les systèmes juridiques<br/>comme des moteurs. Les faire croître<br/>comme des <em>fleurs.</em>',
+    sub: 'Un cadre scientifique pour mesurer, codifier et optimiser les systèmes juridiques (Λ) avec la physique mathématique — transformant les passifs et les risques juridiques en investissements durables. Créer les conditions d\'un "mouvement perpétuel" des systèmes juridiques.',
+    cta_method: 'Lire la méthodologie →',
+    cta_book: 'Réserver une consultation',
+    p1_label: 'Instrument public',
+    p1_tag: 'En ligne',
+    p1_desc: 'Mesure gratuite de la conformité aux obligations du droit UE pour tout acte ou entité. Trois analyses gratuites. Rapport complet. Aucun compte requis.',
+    p2_label: 'Instrument entreprise',
+    p2_tag: 'En développement',
+    p2_desc: 'Déploiement auto-hébergé pour les institutions. Les ingénieurs IT gèrent le scanner sur des serveurs internes. Les juristes internes analysent les résultats. Pleine souveraineté méthodologique.',
+    p3_label: 'Service système complet',
+    p3_tag: 'Sur mandat',
+    p3_title: 'Codification<br/><em>des Systèmes Juridiques</em>',
+    p3_desc: 'Mesurer, cartographier et optimiser un système juridique entier — ville, commune, état. Méthodologie legal-physique. ODD de l\'ONU comme référence.',
+    p3_link: 'Demander →',
+    footer_rights: 'Tous droits réservés',
+    footer_note: 'Instruments propriétaires. Méthodologie : contribution scientifique publique. · De Lege et Amore.',
+  },
+  es: {
+    nav_methodology: 'Metodología',
+    nav_about: 'Acerca de',
+    nav_contact: 'Contacto',
+    overline: 'El Metro de los Sistemas Jurídicos · Tradición → Innovación',
+    h1: 'Medir el derecho humano<br/>como una <em>ley de la naturaleza.</em><br/>Optimizar los sistemas jurídicos<br/>como motores. Hacerlos crecer<br/>como <em>flores.</em>',
+    sub: 'Un marco científico para medir, codificar y optimizar los sistemas jurídicos (Λ) con física matemática — transformando pasivos y riesgos legales en inversiones sostenibles. Crear las condiciones para el "movimiento perpetuo" de los sistemas jurídicos.',
+    cta_method: 'Leer la metodología →',
+    cta_book: 'Reservar consulta',
+    p1_label: 'Instrumento público',
+    p1_tag: 'En vivo',
+    p1_desc: 'Medición gratuita del cumplimiento de las obligaciones del derecho UE para cualquier acto o entidad. Tres análisis gratuitos. Informe completo. Sin cuenta requerida.',
+    p2_label: 'Instrumento empresarial',
+    p2_tag: 'En desarrollo',
+    p2_desc: 'Despliegue auto-alojado para instituciones. Los ingenieros de TI gestionan el escáner en servidores internos. Los asesores jurídicos internos analizan los resultados. Plena soberanía metodológica.',
+    p3_label: 'Servicio sistema completo',
+    p3_tag: 'Por mandato',
+    p3_title: 'Codificación<br/><em>de Sistemas Jurídicos</em>',
+    p3_desc: 'Medir, mapear y optimizar un sistema jurídico completo — ciudad, municipio, estado. Metodología legal-física. ODS de la ONU como referencia.',
+    p3_link: 'Consultar →',
+    footer_rights: 'Todos los derechos reservados',
+    footer_note: 'Instrumentos propietarios. Metodología: contribución científica pública. · De Lege et Amore.',
+  }
+};
+
+let currentLang = localStorage.getItem('1lw_lang') || 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('1lw_lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (T[lang] && T[lang][key]) el.innerHTML = T[lang][key];
+  });
+  document.documentElement.lang = lang;
+}
+
+setLang(currentLang);
+</script>
 
 </body>
 </html>
