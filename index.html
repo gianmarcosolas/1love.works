@@ -146,6 +146,25 @@
       </div>
     </div>
 
+    <!-- EU-27 value strip -->
+    <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--rule); margin-bottom: 0;">
+      <div style="background: rgba(184,134,11,0.05); border: 1px solid rgba(184,134,11,0.15); padding: 14px 20px;">
+        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 6px;">EU-27 unexpressed value</div>
+        <div style="font-family: var(--mono); font-size: 22px; font-weight: 500; color: var(--gold);">€5.2T</div>
+        <div style="font-family: var(--mono); font-size: 9px; color: var(--muted); margin-top: 3px;">Approximate · to be confirmed empirically · JLMI 2/25</div>
+      </div>
+      <div style="background: var(--parchment); padding: 14px 20px;">
+        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 6px;">Identified so far</div>
+        <div style="font-family: var(--mono); font-size: 22px; font-weight: 500; color: var(--green);" id="lp-identified">€—</div>
+        <div style="font-family: var(--mono); font-size: 9px; color: var(--muted); margin-top: 3px;">Grows with every scan</div>
+      </div>
+      <div style="background: var(--parchment); padding: 14px 20px;">
+        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 6px;">% of EU-27 identified</div>
+        <div style="font-family: var(--mono); font-size: 22px; font-weight: 500; color: var(--green);" id="lp-pct">—%</div>
+        <div style="font-family: var(--mono); font-size: 9px; color: var(--muted); margin-top: 3px;">Every scan moves the needle</div>
+      </div>
+    </div>
+
     <!-- Cartesian graph -->
     <div style="background: rgba(15,15,13,0.97); padding: 24px 24px 16px; margin-bottom: 0;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
@@ -528,6 +547,15 @@ fetch('https://eulawscanner.eu/api/stats')
     if (s.total_entropy) document.getElementById('lp-entropy').textContent = s.total_entropy.toLocaleString();
     if (s.pnc_in_circulation !== undefined) document.getElementById('lp-pnc').textContent = s.pnc_in_circulation.toLocaleString();
     if (s.implied_pnc_value) document.getElementById('lp-value').textContent = '€' + s.implied_pnc_value.toLocaleString();
+    // EU-27 metrics
+    const EU27_TOTAL = 5200000000000;
+    const identifiedValue = (s.total_entropy || 0) * 1000000;
+    const pctIdentified = ((identifiedValue / EU27_TOTAL) * 100).toFixed(6);
+    const identifiedFormatted = identifiedValue >= 1000000000 ? '€' + (identifiedValue/1000000000).toFixed(2) + 'B' : identifiedValue >= 1000000 ? '€' + (identifiedValue/1000000).toFixed(1) + 'M' : '€' + identifiedValue.toLocaleString();
+    const idEl = document.getElementById('lp-identified');
+    const pctEl = document.getElementById('lp-pct');
+    if (idEl) idEl.textContent = identifiedFormatted;
+    if (pctEl) pctEl.textContent = pctIdentified + '%';
     drawLPChart(s);
   })
   .catch(() => { drawLPChart(null); });
