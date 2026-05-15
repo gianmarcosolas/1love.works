@@ -3,69 +3,159 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1love.works — The Legal System Meter</title>
+  <title>Methodology & About — 1love.works</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --ink: #0f0f0d; --parchment: #f5f2ea; --cream: #ede9df;
-      --gold: #b8860b; --muted: #6b6860; --rule: rgba(15,15,13,0.12);
-      --serif: 'EB Garamond', Georgia, serif; --mono: 'DM Mono', monospace;
+      --ink: #0f0f0d;
+      --parchment: #f5f2ea;
+      --cream: #ede9df;
+      --gold: #b8860b;
+      --blue: #1a4e8a;
+      --green: #2d6a2d;
+      --red: #8b0000;
+      --muted: #6b6860;
+      --rule: rgba(15,15,13,0.12);
+      --serif: 'EB Garamond', Georgia, serif;
+      --mono: 'DM Mono', monospace;
     }
-    body { font-family: var(--serif); background: var(--parchment); color: var(--ink); line-height: 1.75; font-size: 18px; }
+    body { font-family: var(--serif); background: var(--parchment); color: var(--ink); line-height: 1.75; font-size: 17px; }
 
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(245,242,234,0.94); backdrop-filter: blur(8px); display: flex; justify-content: space-between; align-items: center; padding: 14px 48px; }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      border-bottom: 1px solid var(--rule);
+      background: rgba(245,242,234,0.96); backdrop-filter: blur(8px);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 48px;
+    }
     .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; font-weight: 500; }
-    .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--ink); }
 
-    .lang-switcher { display: flex; border: 1px solid var(--rule); overflow: hidden; }
-    .lang-btn { font-family: var(--mono); font-size: 10px; padding: 5px 9px; border: none; background: transparent; color: var(--muted); cursor: pointer; border-right: 1px solid var(--rule); transition: all 0.15s; }
-    .lang-btn:last-child { border-right: none; }
-    .lang-btn.active { background: var(--ink); color: var(--parchment); }
-    .lang-btn:hover:not(.active) { background: var(--cream); }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 56px 48px 80px; }
 
-    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 120px 48px 80px; max-width: 900px; margin: 0 auto; }
-    .hero-overline { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 28px; }
-    .hero h1 { font-size: clamp(38px, 6vw, 72px); font-weight: 400; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 32px; }
-    .hero h1 em { font-style: italic; color: var(--gold); }
-    .hero-equation { font-family: var(--mono); font-size: 22px; font-weight: 500; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 28px; padding: 16px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
-    .hero-sub { font-size: 19px; color: var(--muted); max-width: 600px; line-height: 1.8; margin-bottom: 48px; }
-    .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+    /* Header */
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--rule); }
+    .page-overline { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 16px; }
+    .page-header h1 { font-size: 36px; font-weight: 400; line-height: 1.15; margin-bottom: 16px; }
+    .page-header h1 em { font-style: italic; color: var(--gold); }
+    .page-header p { font-size: 16px; color: var(--muted); line-height: 1.85; max-width: 680px; margin-bottom: 20px; }
+    .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+    .tag { font-family: var(--mono); font-size: 10px; padding: 4px 12px; background: rgba(184,134,11,0.07); color: var(--gold); border: 1px solid rgba(184,134,11,0.25); border-radius: 20px; }
+    .ip-notice { padding: 16px 20px; background: rgba(26,78,138,0.04); border: 1px solid rgba(26,78,138,0.15); border-left: 3px solid var(--blue); }
+    .ip-label { font-family: var(--mono); font-size: 9px; color: var(--blue); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 8px; }
+    .ip-notice p { font-size: 13px; color: #3a3a36; line-height: 1.8; }
+    .ip-notice a { color: var(--blue); }
 
-    .btn-primary { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 28px; background: var(--ink); color: var(--parchment); border: none; cursor: pointer; text-decoration: none; transition: opacity 0.2s; }
-    .btn-primary:hover { opacity: 0.82; }
-    .btn-outline { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 28px; background: transparent; color: var(--ink); border: 1px solid rgba(15,15,13,0.3); cursor: pointer; text-decoration: none; transition: background 0.2s; }
-    .btn-outline:hover { background: var(--cream); }
+    /* Sections */
+    .section { margin-bottom: 56px; }
+    .section-head { font-family: var(--mono); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .section-head::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
 
-    .products { max-width: 900px; margin: 0 auto; padding: 0 48px 80px; border-top: 1px solid var(--rule); }
-    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px; background: var(--rule); }
-    .product-card { background: var(--parchment); padding: 36px 28px; }
-    .product-step { font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
-    .step-num { width: 18px; height: 18px; border: 1px solid rgba(15,15,13,0.25); display: inline-flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 500; }
-    .product-card h3 { font-size: 21px; font-weight: 400; margin-bottom: 14px; line-height: 1.25; }
-    .product-card h3 em { font-style: italic; color: var(--gold); }
-    .product-card p { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 24px; }
-    .product-tag { display: inline-block; font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 9px; background: var(--cream); color: var(--muted); border: 1px solid var(--rule); margin-bottom: 16px; }
-    .product-tag.active { background: rgba(184,134,11,0.08); color: var(--gold); border-color: rgba(184,134,11,0.3); }
-    .product-link { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(15,15,13,0.25); padding-bottom: 2px; transition: border-color 0.2s; }
-    .product-link:hover { border-color: var(--gold); color: var(--gold); }
+    /* Accordion */
+    .accordion-item { margin-bottom: 8px; }
+    .accordion-trigger {
+      width: 100%; background: white; border: 1px solid var(--rule); padding: 14px 18px;
+      cursor: pointer; display: flex; align-items: center; gap: 16px;
+      text-align: left; font-family: var(--serif); transition: border-color 0.2s;
+    }
+    .accordion-trigger:hover { border-color: rgba(15,15,13,0.25); }
+    .accordion-trigger.open { border-bottom-color: transparent; }
+    .acc-symbol { width: 44px; height: 44px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-style: italic; flex-shrink: 0; }
+    .acc-eq { width: 36px; height: 20px; border-radius: 3px; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 9px; font-weight: 700; flex-shrink: 0; }
+    .acc-title { flex: 1; }
+    .acc-title-main { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+    .acc-title-sub { font-family: var(--mono); font-size: 11px; }
+    .acc-arrow { font-size: 12px; color: var(--muted); transition: transform 0.2s; flex-shrink: 0; }
+    .accordion-trigger.open .acc-arrow { transform: rotate(180deg); }
+    .accordion-body {
+      display: none; background: rgba(245,242,234,0.6);
+      border: 1px solid var(--rule); border-top: none;
+      padding: 16px 18px;
+    }
+    .accordion-body.open { display: block; }
+    .acc-body-text { font-size: 14px; color: #3a3a36; line-height: 1.85; margin-bottom: 12px; }
+    .acc-origin { border-left: 2px solid rgba(15,15,13,0.15); padding-left: 12px; margin-bottom: 12px; }
+    .acc-origin-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 4px; }
+    .acc-origin-text { font-size: 13px; color: var(--muted); line-height: 1.7; }
+    .acc-formula-box { padding: 8px 12px; border-radius: 4px; }
+    .acc-formula-main { font-family: var(--mono); font-size: 12px; font-weight: 500; margin-bottom: 3px; }
+    .acc-formula-label { font-family: var(--mono); font-size: 10px; color: var(--muted); }
+    .acc-analogy { font-size: 13px; color: var(--muted); line-height: 1.7; font-style: italic; }
 
-    footer { border-top: 2px solid var(--ink); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-    .footer-left { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.05em; line-height: 1.7; }
+    /* Status badges */
+    .status { font-family: var(--mono); font-size: 8px; padding: 2px 8px; border-radius: 10px; white-space: nowrap; flex-shrink: 0; }
+    .status-established { background: rgba(45,106,45,0.1); color: var(--green); border: 1px solid rgba(45,106,45,0.25); }
+    .status-strong { background: rgba(26,78,138,0.1); color: var(--blue); border: 1px solid rgba(26,78,138,0.25); }
+    .status-hypothesis { background: rgba(184,134,11,0.1); color: var(--gold); border: 1px solid rgba(184,134,11,0.25); }
+    .status-open { background: rgba(107,104,96,0.1); color: var(--muted); border: 1px solid rgba(107,104,96,0.25); }
+
+    /* Research item */
+    .research-section { margin-bottom: 24px; }
+    .research-section-title { font-family: var(--mono); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .research-section-title::before { content: ''; display: inline-block; width: 2px; height: 12px; border-radius: 1px; }
+
+    /* Grid */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .card { background: white; border: 1px solid var(--rule); border-radius: 6px; padding: 16px 18px; }
+    .card-title { font-size: 13px; font-weight: 500; margin-bottom: 8px; }
+    .card-text { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+    /* Summary table */
+    .summary-table { background: white; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+    .summary-row { display: flex; align-items: center; gap: 16px; padding: 10px 16px; border-bottom: 1px solid rgba(15,15,13,0.06); }
+    .summary-row:last-child { border-bottom: none; }
+    .summary-q { font-size: 13px; color: #3a3a36; }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 48px; align-items: start; }
+    .about-text p { font-size: 15px; color: #3a3a36; line-height: 1.85; margin-bottom: 14px; }
+    .about-text a { color: var(--blue); }
+    .pub-list { list-style: none; margin-top: 8px; }
+    .pub-item { font-size: 13px; color: var(--muted); line-height: 1.7; padding: 8px 0 8px 12px; border-left: 2px solid rgba(26,78,138,0.2); margin-bottom: 6px; }
+    .pub-item strong { color: #3a3a36; }
+    .pub-item .journal { font-family: var(--mono); font-size: 10px; color: var(--blue); }
+    .cred-list { list-style: none; }
+    .cred-item { font-family: var(--mono); font-size: 11px; color: var(--muted); padding: 8px 10px; background: white; border: 1px solid var(--rule); border-radius: 4px; margin-bottom: 6px; display: flex; justify-content: space-between; gap: 8px; }
+    .cred-label { color: var(--muted); }
+    .cred-value { color: var(--ink); text-align: right; }
+    .exec-ed { margin-top: 16px; padding: 12px; background: white; border: 1px solid var(--rule); border-radius: 4px; }
+    .exec-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 8px; }
+    .exec-item { font-size: 12px; color: #3a3a36; line-height: 1.6; margin-bottom: 5px; }
+    .exec-school { font-family: var(--mono); font-size: 10px; color: var(--muted); }
+
+    /* Collaboration box */
+    .collab-box { padding: 20px 24px; background: white; border: 1px solid var(--rule); border-radius: 6px; }
+    .collab-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 8px; }
+    .collab-box p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 12px; }
+    .btn { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 10px 20px; display: inline-block; text-decoration: none; transition: opacity 0.2s; }
+    .btn-dark { background: var(--ink); color: var(--parchment); }
+    .btn-dark:hover { opacity: 0.82; }
+    .btn-outline-blue { background: rgba(26,78,138,0.04); color: var(--blue); border: 1px solid rgba(26,78,138,0.3); }
+    .btn-outline-blue:hover { background: rgba(26,78,138,0.08); }
+
+    /* Note */
+    .note { border: 1px solid var(--rule); border-radius: 6px; padding: 20px 24px; background: white; }
+    .note-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue); margin-bottom: 10px; }
+    .note p { font-size: 13px; color: var(--muted); line-height: 1.8; margin-bottom: 8px; }
+    .note p:last-child { margin-bottom: 0; }
+    .note a { color: var(--blue); }
+
+    footer { border-top: 2px solid var(--ink); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-left { font-family: var(--mono); font-size: 11px; color: var(--muted); line-height: 1.7; }
     .footer-right { font-family: var(--mono); font-size: 10px; display: flex; gap: 24px; }
     .footer-right a { color: var(--muted); text-decoration: none; }
     .footer-right a:hover { color: var(--ink); }
 
     @media (max-width: 720px) {
       nav { padding: 12px 20px; }
-      .nav-links { gap: 12px; }
-      .nav-links li.hide-mobile { display: none; }
-      .hero { padding: 100px 24px 60px; }
-      .products { padding: 0 24px 60px; }
-      .products-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 16px; }
+      .wrap { padding: 40px 24px 60px; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
       footer { flex-direction: column; padding: 24px 20px; }
     }
   </style>
@@ -75,200 +165,443 @@
 <nav>
   <a class="nav-logo" href="/">1love.works</a>
   <ul class="nav-links">
-    <li class="hide-mobile"><a href="/methodology" data-i18n="nav_methodology">Methodology</a></li>
-    <li class="hide-mobile"><a href="/codification" data-i18n="nav_codification">Codification</a></li>
-    <li class="hide-mobile"><a href="https://eulawscanner.eu" target="_blank">EU Scanner</a></li>
-    <li class="hide-mobile"><a href="https://corporate-scanner.com" target="_blank">Corporate Scanner</a></li>
-    <li class="hide-mobile"><a href="https://eulawscanner.eu/about" target="_blank" data-i18n="nav_about">About</a></li>
-    <li class="hide-mobile"><a href="mailto:gmsolas@sustainab-law.eu" data-i18n="nav_contact">Contact</a></li>
-    <li>
-      <div class="lang-switcher">
-        <button class="lang-btn active" onclick="setLang('en')">EN</button>
-        <button class="lang-btn" onclick="setLang('it')">IT</button>
-        <button class="lang-btn" onclick="setLang('fr')">FR</button>
-        <button class="lang-btn" onclick="setLang('es')">ES</button>
-      </div>
-    </li>
+    <li><a href="/methodology">Methodology</a></li>
+    <li><a href="/codification">Codification</a></li>
+    <li><a href="https://eulawscanner.eu" target="_blank">Scanner</a></li>
+    <li><a href="mailto:gmsolas@sustainab-law.eu">Contact</a></li>
   </ul>
 </nav>
 
-<div class="hero">
-  <p class="hero-overline" data-i18n="overline">The Legal System Meter · Tradition → Innovation</p>
-  <p class="hero-equation">E = MC² &nbsp;→&nbsp; Λ = C² &nbsp;→&nbsp; Λ = E / M &nbsp;<span style="font-size:13px; opacity:0.5;">(JLMI 2/25)</span></p>
-  <h1 data-i18n="h1">Measuring human law<br/>like a <em>law of nature.</em><br/>Optimising legal systems<br/>like engines. Growing them<br/>like <em>flowers.</em></h1>
-  <p class="hero-sub" data-i18n="sub">A technological framework to measure, codify and optimise legal systems. Engineering legal processes for "perpetual motion" and competitiveness of European legal systems (and beyond).</p>
-  <div class="hero-cta">
-    <a href="/methodology" class="btn-primary" data-i18n="cta_method">Read the methodology →</a>
-    <a href="https://calendly.com/gmsolas-sustainab-law/legal-consultation-public-entity" target="_blank" class="btn-outline" data-i18n="cta_book">Book consultation</a>
+<div class="wrap">
+
+  <!-- Header -->
+  <div class="page-header">
+    <p class="page-overline">1love.works · Theory of Interrelation</p>
+    <h1>The Problem &<br/><em>Methodology to solve it</em></h1>
+    <p>Bureaucracy. Legal weight. Entropy. The invisible tax on everything. €5.2 trillion of unexpressed economic value trapped in EU-27 legal systems. The legal-physics framework is the first scientific instrument designed to measure it — and the first step toward reducing it.</p>
+    <div class="tags">
+      <span class="tag">Physics-reviewed pre-print</span>
+      <span class="tag">Based on JLMI 1/25 (Scopus indexed)</span>
+      <span class="tag">Empirical dataset in construction</span>
+      <span class="tag">Collaboration open</span>
+    </div>
+    <div class="ip-notice">
+      <div class="ip-label">© Intellectual Property</div>
+      <p>The legal-physics framework documented on this page is the original work of <strong>Avv. Dr. Gian Marco Solas</strong> (Italian/EU qualified lawyer, PhD Maastricht/Cagliari, LLM College of Europe). Published in <a href="https://doi.org/10.13135/2785-7867/12266" target="_blank">JLMI 1/25</a>, <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank">Law is Love, SSRN</a>, and <a href="https://www.cambridge.org/core/books/third-party-funding" target="_blank">Cambridge University Press (2019)</a>. All formulas, variables, and their application are © 2019–2026. The methodology is a public scientific contribution — citable and teachable. The instruments are proprietary.</p>
+    </div>
   </div>
-</div>
 
-<div class="products">
-  <!-- Problem statement -->
-  <div style="border-bottom: 1px solid var(--rule); padding: 40px 0 40px; margin-bottom: 0;">
-    <p style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px;">The problem</p>
-    <p style="font-size: 22px; font-weight: 400; line-height: 1.3; color: var(--ink); margin-bottom: 16px;">Bureaucracy. Legal weight. Entropy.<br/><em style="font-style:italic; color: var(--gold);">The invisible tax on everything.</em></p>
-    <p style="font-size: 16px; color: var(--muted); line-height: 1.85; max-width: 720px; margin-bottom: 16px;">Every regulation that produces no value. Every permit that takes two years. Every housing project blocked by overlapping jurisdictions. Every renewable energy installation waiting for grid connection. Every local producer crushed by administrative weight designed for industrial scale. This is not inefficiency. It is entropy — energy that could be life, trapped in legal weight.</p>
-    <p style="font-family: var(--mono); font-size: 13px; color: var(--gold);">Conservative estimate of unexpressed value trapped in EU-27 legal systems: <strong>€5.2 trillion</strong> <span style="opacity:0.6;">(JLMI 2/25)</span></p>
-  </div>
+  <!-- The Problem -->
+  <div class="section" style="margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid var(--rule);">
+    <div class="section-head" style="color: var(--red);">I · The Problem — Bureaucracy. Legal weight. Entropy.</div>
 
-  <div class="products-grid">
+    <div style="font-family: var(--mono); font-size: 38px; font-weight: 500; color: var(--gold); margin-bottom: 8px; line-height: 1.1;">€5.2 trillion</div>
+    <div style="font-family: var(--mono); font-size: 12px; color: var(--muted); margin-bottom: 24px;">Conservative estimate of unexpressed economic value trapped in EU-27 legal systems by regulatory weight and entropy · JLMI 2/25</div>
 
-    <div class="product-card">
-      <div class="product-step"><span class="step-num">I</span> <span data-i18n="p1_label">Public instrument</span></div>
-      <span class="product-tag active" data-i18n="p1_tag">Live</span>
-      <h3>EU Law<br/><em>Scanner</em></h3>
-      <p data-i18n="p1_desc">Compliance measurement of EU law obligations for any act or entity. Three free scans. Full report. No account required. Aims to measure and potentially solve the legal weight, entropy and bureaucracy problem by scanning any EU legal document.</p>
-      <a href="https://eulawscanner.eu" target="_blank" class="product-link">eulawscanner.eu →</a>
+    <p style="font-size: 16px; color: #3a3a36; line-height: 1.85; margin-bottom: 16px;">Not because Europe lacks resources. Because its legal systems accumulated faster than they could be measured, codified, or optimised. The invisible tax on everything — paid by everyone, seen by almost no one, and until now, never measured.</p>
+
+    <p style="font-size: 16px; color: #3a3a36; line-height: 1.85; margin-bottom: 16px;">Human law is like a net — it catches mass in free fall, prevents conflicts from becoming existential, saves human life from crashing into chaos. Without law, human civilisation would have disappeared into destruction much earlier. <strong>The net is necessary. It has always been there.</strong></p>
+
+    <p style="font-size: 16px; color: #3a3a36; line-height: 1.85; margin-bottom: 16px;">But when too many nets become entangled with each other and are placed on the ground — overlapping jurisdictions, stacked regulations, redundant obligations accumulated over decades — they no longer save life. They prevent it from emerging. Like flowers and grass that cannot grow through a tangle of nets laid across the soil.</p>
+
+    <div style="border-left: 4px solid var(--gold); padding: 16px 24px; margin: 24px 0; background: var(--cream);">
+      <p style="font-size: 17px; font-style: italic; color: var(--ink); line-height: 1.7; margin: 0;">"Human law is like a net that can be used to save a mass in free fall — but that once entangled to many other nets and placed on the ground would not let life, like flowers or grass, emerge." — <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank" style="color: var(--gold);">Law is Love</a></p>
     </div>
 
-    <div class="product-card">
-      <div class="product-step"><span class="step-num">II</span> <span data-i18n="p2_label">Enterprise instrument</span></div>
-      <span class="product-tag" data-i18n="p2_tag">In development</span>
-      <h3>Corporate<br/><em>Scanner</em></h3>
-      <p data-i18n="p2_desc">Compliance measurement for any listed company. One free random scan. Aims to measure and potentially solve the legal weight, entropy and bureaucracy problem in corporations.</p>
-      <a href="https://corporate-scanner.com" target="_blank" class="product-link">corporate-scanner.com →</a>
+    <p style="font-size: 16px; color: #3a3a36; line-height: 1.85; margin-bottom: 16px;">This is legal weight. Not the law. What the law becomes when it accumulates faster than it can be maintained. The difference between legal weight and ordinary inefficiency is that legal weight is <strong>measurable</strong>. It has a formula. It has a unit. It has a value — the value of everything it is preventing from existing.</p>
+
+    <p style="font-size: 16px; color: #3a3a36; line-height: 1.85; margin-bottom: 24px;">The social market economy and the internal market — the most ambitious legal-economic project in modern history — is still unfinished. The reason it is unfinished is entropy. The goal of the legal-physics framework is to finish the project. Not by adding more regulation. By measuring what exists, reducing what is redundant, converting what is entropic.</p>
+
+    <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: var(--rule);">
+      <div style="background: var(--parchment); padding: 20px;">
+        <div style="font-size: 22px; margin-bottom: 8px;">🏠</div>
+        <div style="font-size: 15px; font-weight: 500; margin-bottom: 8px; color: var(--ink);">Housing crisis</div>
+        <div style="font-size: 13px; color: var(--muted); line-height: 1.7;">Regulatory weight trapping land, stalling permits, blocking supply. Europe has the land. Legal entropy prevents building.</div>
+      </div>
+      <div style="background: var(--parchment); padding: 20px;">
+        <div style="font-size: 22px; margin-bottom: 8px;">⚡</div>
+        <div style="font-size: 15px; font-weight: 500; margin-bottom: 8px; color: var(--ink);">Energy crisis</div>
+        <div style="font-size: 13px; color: var(--muted); line-height: 1.7;">Renewable projects wait years for permits. The energy transition is not blocked by physics — it is blocked by legal weight.</div>
+      </div>
+      <div style="background: var(--parchment); padding: 20px;">
+        <div style="font-size: 22px; margin-bottom: 8px;">🌾</div>
+        <div style="font-size: 15px; font-weight: 500; margin-bottom: 8px; color: var(--ink);">Local value chain</div>
+        <div style="font-size: 13px; color: var(--muted); line-height: 1.7;">Food, agriculture, SMEs, labour, crafts — crushed by administrative weight designed for industrial scale applied to human-scale activity.</div>
+      </div>
     </div>
 
-    <div class="product-card">
-      <div class="product-step"><span class="step-num">III</span> <span data-i18n="p3_label">Full-system service</span></div>
-      <span class="product-tag" data-i18n="p3_tag">By mandate</span>
-      <h3 data-i18n="p3_title">Codification<br/><em>of Legal Systems</em></h3>
-      <p data-i18n="p3_desc">Measuring, mapping and optimising an entire legal system — city, municipality, state. Legal-physics methodology. UN SDGs as benchmark. Aims to measure and potentially solve the legal weight, entropy and bureaucracy problem in defined legal systems.</p>
-      <a href="/codification" class="product-link" data-i18n="p3_link">Explore →</a>
-    </div>
-
+    <p style="font-size: 14px; color: var(--muted); line-height: 1.8; margin-top: 20px; font-family: var(--mono);">You cannot reduce what you cannot measure. The reason legal weight has never been systematically reduced is not political will — it is the absence of a scientific instrument capable of quantifying it. Until now.</p>
   </div>
+
+  <!-- Variables -->
+  <div class="section">
+    <div class="section-head" style="color: var(--blue);">Variables</div>
+
+    <!-- λ -->
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)">
+        <div class="acc-symbol" style="background: rgba(26,78,138,0.08); border: 1px solid rgba(26,78,138,0.2); color: var(--blue);">λ</div>
+        <div class="acc-title">
+          <div class="acc-title-main">Lambda — The Legal Factor</div>
+          <div class="acc-title-sub" style="color: var(--blue);">λX = EX/MX</div>
+        </div>
+        <span class="acc-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <p class="acc-body-text">The fundamental legal constant. Its mathematical genealogy begins with Shavell's standard model (Cambridge University Press, 2019), where λ is the legal risk probabilistic factor — the probability of success of a legal claim, used to determine the rational investment threshold c &lt; λ(R). Extended for TPF investment valuation (empirically validated in the European truck cartel, +/- €300M pending settlement), then generalised to entire legal systems as λX = EX/MX in JLMI 2025. The probabilistic nature of λ is preserved throughout: λX measures the probability that a legal system is expressing its full potential value.</p>
+        <div class="acc-origin">
+          <div class="acc-origin-label">Origin</div>
+          <p class="acc-origin-text">Derived from the Greek letter used to denote wavelength (λ) and the cosmological constant (Λ) in Einstein's field equations. The hypothesis proposes these are not merely analogous but unified — human law as a missing variable in physics equations.</p>
+        </div>
+        <div class="acc-formula-box" style="background: rgba(26,78,138,0.05); border: 1px solid rgba(26,78,138,0.15);">
+          <div class="acc-formula-main" style="color: var(--blue);">λX = EX/MX</div>
+          <div class="acc-formula-label">Expressed potential over total mass — generalisation to legal systems [JLMI 2025]</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PC -->
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)">
+        <div class="acc-symbol" style="background: rgba(45,106,45,0.08); border: 1px solid rgba(45,106,45,0.2); color: var(--green); font-size: 14px;">PC</div>
+        <div class="acc-title">
+          <div class="acc-title-main">Client / Market Pressure</div>
+          <div class="acc-title-sub" style="color: var(--green);">PC = λCF</div>
+        </div>
+        <span class="acc-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <p class="acc-body-text">The force exerted on a legal actor by a client, investor, or market participant. Triggers legal work cycles. In any legal system, PC manifests as demand for rights enforcement, market pressure for compliance, or litigation by affected parties.</p>
+        <div class="acc-origin">
+          <div class="acc-origin-label">Origin</div>
+          <p class="acc-origin-text">From fluid mechanics and thermodynamics: pressure as vector force applied to a container. Here the container is the legal system, and the fluid is legal-economic activity.</p>
+        </div>
+        <div class="acc-formula-box" style="background: rgba(45,106,45,0.05); border: 1px solid rgba(45,106,45,0.15);">
+          <div class="acc-formula-main" style="color: var(--green);">PC = λCF</div>
+          <div class="acc-formula-label">Client pressure equals legal service times fee [Eq. 4]</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- F -->
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)">
+        <div class="acc-symbol" style="background: rgba(184,134,11,0.08); border: 1px solid rgba(184,134,11,0.2); color: var(--gold);">F</div>
+        <div class="acc-title">
+          <div class="acc-title-main">Fee — Legal Energy</div>
+          <div class="acc-title-sub" style="color: var(--gold);">PC = λCF</div>
+        </div>
+        <span class="acc-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <p class="acc-body-text">The energy input that enables legal work to begin. The fee is not merely payment — it is the physical energy that removes friction and converts pressure into productive legal work. Without F, no work cycle starts. Applied to regulation: compliance costs are legal friction — the energy actors must expend simply to be permitted to operate, before any productive work begins.</p>
+        <div class="acc-origin">
+          <div class="acc-origin-label">Origin</div>
+          <p class="acc-origin-text">From Joule's 1845 paper On the Mechanical Equivalent of Heat. F links monetary policy to entropy — money as the universal energy carrier in legal-economic systems.</p>
+        </div>
+        <div class="acc-formula-box" style="background: rgba(184,134,11,0.05); border: 1px solid rgba(184,134,11,0.15);">
+          <div class="acc-formula-main" style="color: var(--gold);">PC = λCF</div>
+          <div class="acc-formula-label">Fee as energy enabling the legal work cycle [Eq. 4]</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- W -->
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)">
+        <div class="acc-symbol" style="background: rgba(139,0,0,0.08); border: 1px solid rgba(139,0,0,0.2); color: var(--red);">W</div>
+        <div class="acc-title">
+          <div class="acc-title-main">Legal Microstates — W = f(λ)</div>
+          <div class="acc-title-sub" style="color: var(--red);">S = k · log W(λ)</div>
+        </div>
+        <span class="acc-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <p class="acc-body-text">The number of unresolved legal states in a system — undisclosed liabilities, opacity, unexpressed asset value, regulatory ambiguity, governance failures. Critically: W is a function of λ — the applicable law determines which states are unresolved. The higher W(λ), the greater the disorder, the higher the entropy. This is a genuine mathematical extension of Boltzmann's W to legal systems, not a metaphor.</p>
+        <div class="acc-origin">
+          <div class="acc-origin-label">Origin</div>
+          <p class="acc-origin-text">Extends Boltzmann's W (number of physical microstates) to legal systems. The λ-dependence of W is the framework's original contribution: legal microstates are not absolute but relative to the applicable law.</p>
+        </div>
+        <div class="acc-formula-box" style="background: rgba(139,0,0,0.05); border: 1px solid rgba(139,0,0,0.15);">
+          <div class="acc-formula-main" style="color: var(--red);">W = f(λ) → S = k · log W(λ)</div>
+          <div class="acc-formula-label">Legal microstates as function of λ → Boltzmann entropy [Eq. 8]</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- π -->
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)">
+        <div class="acc-symbol" style="background: rgba(184,134,11,0.08); border: 1px solid rgba(184,134,11,0.2); color: var(--gold);">π</div>
+        <div class="acc-title">
+          <div class="acc-title-main">Sustainable Return</div>
+          <div class="acc-title-sub" style="color: var(--gold);">π = λ(R − C)</div>
+        </div>
+        <span class="acc-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <p class="acc-body-text">Expected profit from a sustainable investment. π is amplified or destroyed by the legal factor λ — good governance, low legal weight, and SDG alignment increase net return; entropy and inertia reduce it. The formula makes governance mathematically inseparable from return.</p>
+        <div class="acc-origin">
+          <div class="acc-origin-label">Origin</div>
+          <p class="acc-origin-text">Adapted from third-party funding investment models and generalised to any legal investment. Empirically validated in the European truck cartel collective redress initiative.</p>
+        </div>
+        <div class="acc-formula-box" style="background: rgba(184,134,11,0.05); border: 1px solid rgba(184,134,11,0.15);">
+          <div class="acc-formula-main" style="color: var(--gold);">π = λ(R − C)</div>
+          <div class="acc-formula-label">Sustainable investment return formula [Eq. 6]</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formulas -->
+  <div class="section">
+    <div class="section-head" style="color: var(--green);">Formulas</div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)">
+        <div class="acc-eq" style="background: rgba(26,78,138,0.08); border: 1px solid rgba(26,78,138,0.2); color: var(--blue);">[1]</div>
+        <div class="acc-title">
+          <div class="acc-title-sub" style="color: var(--blue); font-size: 12px;">λx = (λx1 + λx2 + λx3 + ...)</div>
+          <div style="font-size: 12px; color: var(--muted); margin-top: 2px;">Legal System Composition</div>
+        </div>
+        <span class="acc-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <p class="acc-body-text">Any legal system X — a city, company, jurisdiction — is the sum of all its constituent legal acts, contracts, and norms. This makes legal systems mathematically tractable and universally comparable.</p>
+        <div class="acc-origin"><div class="acc-origin-label">Physics analogy</div><p class="acc-analogy">Like a vector sum in physics: the total legal force on a body is the sum of all individual legal forces acting upon it.</p></div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)">
+        <div class="acc-eq" style="background: rgba(45,106,45,0.08); border: 1px solid rgba(45,106,45,0.2); color: var(--green);">[2]</div>
+        <div class="acc-title">
+          <div class="acc-title-sub" style="color: var(--green); font-size: 12px;">λx = (λx + λP + λR + λS + λI)</div>
+          <div style="font-size: 12px; color: var(--muted); margin-top: 2px;">Legal Hierarchy</div>
+        </div>
+        <span class="acc-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <p class="acc-body-text">A local legal system X is embedded within and subject to Provincial (P), Regional (R), State (S), and International (I) law. The full legal weight bearing on any entity is the sum across all jurisdictional layers — from municipal bylaws to international treaties.</p>
+        <div class="acc-origin"><div class="acc-origin-label">Physics analogy</div><p class="acc-analogy">Analogous to nested coordinate systems in general relativity: each frame of reference is subject to the curvature imposed by the larger frame.</p></div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)">
+        <div class="acc-eq" style="background: rgba(45,106,45,0.08); border: 1px solid rgba(45,106,45,0.2); color: var(--green);">[3]</div>
+        <div class="acc-title">
+          <div class="acc-title-sub" style="color: var(--green); font-size: 12px;">MAλ = FXλ</div>
+          <div style="font-size: 12px; color: var(--muted); margin-top: 2px;">Newton's Second Law Applied to Law</div>
+        </div>
+        <span class="acc-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <p class="acc-body-text">Both the mass in acceleration (MAλ) and the force (FXλ) are bound by applicable law λ. The car does not stop because of physics alone — it stops because λ (municipal traffic law) acts on both the mass (driver+car system) and the force (legal obligation to stop). Without λ, there is no legal event, only a physical one.</p>
+        <div class="acc-origin"><div class="acc-origin-label">Physics analogy</div><p class="acc-analogy">Newton's F=MA: the red light is a legal force vector that decelerates the mass 'driver+car'. CCTV provides the objective measurement of the spatio-temporal legal event.</p></div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)">
+        <div class="acc-eq" style="background: rgba(184,134,11,0.08); border: 1px solid rgba(184,134,11,0.2); color: var(--gold);">[5]</div>
+        <div class="acc-title">
+          <div class="acc-title-sub" style="color: var(--gold); font-size: 12px;">λ = C²</div>
+          <div style="font-size: 12px; color: var(--muted); margin-top: 2px;">Law as Light</div>
+        </div>
+        <span class="acc-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <p class="acc-body-text">Applicable law (λ) is proposed as the physical equivalent of the speed of light squared (C²) in Einstein's E=MC². Like light, law has both particle properties (specific legal acts, binding decisions) and wave properties (general principles, jurisprudential influence spreading across systems). Law is the beacon of science — what we can, cannot, and must do in any legal frame of reference.</p>
+        <div class="acc-origin"><div class="acc-origin-label">Physics analogy</div><p class="acc-analogy">Einstein's wave-particle duality of light: 'We have two contradictory pictures of reality; separately neither fully explains the phenomena of light, but together they do.' The same applies to law as both specific act and general principle.</p></div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)">
+        <div class="acc-eq" style="background: rgba(139,0,0,0.08); border: 1px solid rgba(139,0,0,0.2); color: var(--red);">[7]</div>
+        <div class="acc-title">
+          <div class="acc-title-sub" style="color: var(--red); font-size: 12px;">W = MG(λ) ≈ Λ</div>
+          <div style="font-size: 12px; color: var(--muted); margin-top: 2px;">Legal Weight & Gravitational Curvature</div>
+        </div>
+        <span class="acc-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <p class="acc-body-text">Legal weight equals mass multiplied by a λ-dependent gravitational function G(λ). This is formally analogous to Einstein's cosmological constant Λ: excessive legal weight acts as a brake on the expansion of the civilisation progress spiral. When W is optimal, the legal universe expands sustainably — the Fibonacci spiral of civilisation progress.</p>
+        <div class="acc-origin"><div class="acc-origin-label">Physics analogy</div><p class="acc-analogy">Einstein's cosmological constant Λ was introduced to prevent universal expansion. Legal weight W = MG(λ) plays the same role in civilisation space-time: at the right level it provides structure; in excess it prevents the expansion of human potential.</p></div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)">
+        <div class="acc-eq" style="background: rgba(139,0,0,0.08); border: 1px solid rgba(139,0,0,0.2); color: var(--red);">[8]</div>
+        <div class="acc-title">
+          <div class="acc-title-sub" style="color: var(--red); font-size: 12px;">S = k · log W(λ)</div>
+          <div style="font-size: 12px; color: var(--muted); margin-top: 2px;">Boltzmann Entropy Extended to Legal Systems</div>
+        </div>
+        <span class="acc-arrow">▾</span>
+      </button>
+      <div class="accordion-body">
+        <p class="acc-body-text">Entropy of a legal system equals the Boltzmann constant (k) multiplied by the logarithm of the number of unresolved legal states W(λ) — where W is itself a function of the applicable law λ. The same set of facts produces different entropy in different legal systems. W counts all sources of legal disorder: opacity, undisclosed liabilities, governance failures, regulatory ambiguity, unexpressed asset value.</p>
+        <div class="acc-origin"><div class="acc-origin-label">Physics analogy</div><p class="acc-analogy">Boltzmann 1877: S = k log W. In thermodynamics, W counts physical microstates. In legal systems, W(λ) counts unresolved legal states relative to the applicable law — introducing the λ-dependence as the framework's original contribution.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Classical vs Quantum -->
+  <div class="section">
+    <div class="section-head" style="color: var(--gold);">Classical vs Quantum — What Is Currently Instrumented</div>
+    <div class="grid-2">
+      <div class="card" style="border-color: rgba(45,106,45,0.25);">
+        <div class="card-title" style="color: var(--green); font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;">✓ Currently instrumented</div>
+        <div class="card-text">
+          Classical physics applied to legal systems:<br/>
+          · Newton (MAλ=FXλ) — legal force and acceleration<br/>
+          · Carnot — motive power, work cycles, useful effect<br/>
+          · Joule (PC/PS=λCF) — fee as legal energy / friction<br/>
+          · Einstein (λ=C², W=MG(λ)) — law as light, legal weight<br/>
+          · Boltzmann (S=k·logW(λ)) — entropy of legal microstates
+        </div>
+      </div>
+      <div class="card" style="border-color: rgba(184,134,11,0.25);">
+        <div class="card-title" style="color: var(--gold); font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;">◎ Theoretically developed — pending instrumentation</div>
+        <div class="card-text">
+          Quantum mechanics — in the framework, not yet in the scanner:<br/>
+          · <strong>Entanglement</strong> — individuals cannot be described independently of their legal system<br/>
+          · <strong>Quantum jump</strong> — legal codification transitions<br/>
+          · <strong>Superposition</strong> — law as particle and wave<br/>
+          · <strong>Planck threshold</strong> — minimum legal activation energy
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Research Programme Summary -->
+  <div class="section">
+    <div class="section-head" style="color: var(--blue);">Research Programme — Summary</div>
+    <div class="summary-table">
+      <div class="summary-row"><span class="status status-established">ESTABLISHED</span><span class="summary-q">Shavell c &lt; λ(R) extension for TPF</span></div>
+      <div class="summary-row"><span class="status status-established">ESTABLISHED</span><span class="summary-q">λX = EX/MX for legal systems</span></div>
+      <div class="summary-row"><span class="status status-established">ESTABLISHED</span><span class="summary-q">Human inertia vs rational actor</span></div>
+      <div class="summary-row"><span class="status status-strong">STRONG HYPOTHESIS</span><span class="summary-q">BCM rule + attention economy</span></div>
+      <div class="summary-row"><span class="status status-strong">STRONG HYPOTHESIS</span><span class="summary-q">Network analysis + Art.101(3) conversion</span></div>
+      <div class="summary-row"><span class="status status-hypothesis">HYPOTHESIS</span><span class="summary-q">De Broglie unification</span></div>
+      <div class="summary-row"><span class="status status-hypothesis">HYPOTHESIS</span><span class="summary-q">Λ = π/φ cosmological constant</span></div>
+      <div class="summary-row"><span class="status status-hypothesis">HYPOTHESIS</span><span class="summary-q">Three-way λ unification (Shavell / De Broglie / Einstein)</span></div>
+      <div class="summary-row"><span class="status status-hypothesis">HYPOTHESIS</span><span class="summary-q">Gödel rotating universe + legal cycles</span></div>
+      <div class="summary-row"><span class="status status-hypothesis">HYPOTHESIS</span><span class="summary-q">Dirac light cone + legal causality</span></div>
+      <div class="summary-row"><span class="status status-hypothesis">HYPOTHESIS</span><span class="summary-q">Planckian threshold in legal systems</span></div>
+      <div class="summary-row"><span class="status status-hypothesis">HYPOTHESIS</span><span class="summary-q">Einstein elevator + Fibonacci pair</span></div>
+      <div class="summary-row"><span class="status status-hypothesis">HYPOTHESIS</span><span class="summary-q">Shannon entropy + λX equivalence</span></div>
+      <div class="summary-row"><span class="status status-hypothesis">HYPOTHESIS</span><span class="summary-q">Maxwell's Demon → Maxwell's Angel</span></div>
+      <div class="summary-row"><span class="status status-hypothesis">HYPOTHESIS</span><span class="summary-q">Eddington arrow of time + legal progress</span></div>
+      <div class="summary-row"><span class="status status-hypothesis">HYPOTHESIS</span><span class="summary-q">Brownian motion + lawyer agents</span></div>
+      <div class="summary-row"><span class="status status-open">OPEN QUESTION</span><span class="summary-q">Legal weight + corporate structure / IPO</span></div>
+      <div class="summary-row"><span class="status status-open">OPEN QUESTION</span><span class="summary-q">Embodied skill preservation</span></div>
+    </div>
+  </div>
+
+  <!-- Theoretical Foundation -->
+  <div class="section">
+    <div class="section-head" style="color: var(--blue);">Theoretical Foundation</div>
+    <div class="collab-box">
+      <p>The framework builds on three published contributions. The <strong>Shavell standard model</strong> (Cambridge University Press, 2019) — the established rational claim condition c &lt; λ(R), where λ is the legal risk probabilistic factor — was extended for third-party funding investment valuation and empirically validated in the European truck cartel collective redress initiative (+/- €300M pending settlement).</p>
+      <p>This was generalised to entire legal systems in <strong>JLMI 2025</strong>: λX = EX/MX measures the ratio of expressed potential to total legal mass in any system, using UN SDGs as universal benchmark. Empirically tested in Masainas, Sardinia (270 comuni, €21.65B net unexpressed value identified).</p>
+      <p>The framework was not built by a physicist. It was built by a lawyer who studied physics and identified a missing variable. Finding out whether that variable belongs in the equations is the work of those who built the equations.</p>
+      <div style="margin-top: 16px; padding: 14px 18px; background: rgba(184,134,11,0.05); border: 1px solid rgba(184,134,11,0.2);">
+        <div class="collab-label">Get involved</div>
+        <p style="font-size: 13px; margin-bottom: 12px;">Researchers interested in collaborating — accessing the empirical dataset, co-authoring on the pre-print, or testing the framework — are welcome to reach out.</p>
+        <a href="mailto:gmsolas@sustainab-law.eu?subject=Scientific Collaboration — Theory of Interrelation&body=Research area:%0AInstitution:%0AProposed contribution:" class="btn btn-outline-blue">✉ gmsolas@sustainab-law.eu</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Publications -->
+  <div class="section">
+    <div class="section-head" style="color: var(--green);">Publications</div>
+    <ul class="pub-list">
+      <li class="pub-item"><strong>Law is Love</strong> · <span class="journal">SSRN 5694423 · 2025 · physics-reviewed pre-print</span><br/><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank" style="color: var(--blue); font-family: var(--mono); font-size: 10px;">ssrn.com →</a></li>
+      <li class="pub-item"><strong>Interrelation of Human Laws and Laws of Nature? Codification of Sustainable Legal Systems</strong> · <span class="journal">Journal of Law, Market & Innovation (JLMI) · Scopus · University of Turin · 1/25</span><br/><a href="https://doi.org/10.13135/2785-7867/12266" target="_blank" style="color: var(--blue); font-family: var(--mono); font-size: 10px;">doi.org →</a></li>
+      <li class="pub-item"><strong>Competition, Due Process and Sustainability</strong> · <span class="journal">Global Competition Litigation Review · Thomson Reuters · 1/26</span></li>
+      <li class="pub-item"><strong>Third Party Funding, New Technologies and Interdisciplinary Methodology in Global Competition Litigation</strong> · <span class="journal">Global Competition Litigation Review · Thomson Reuters · 1/25</span></li>
+      <li class="pub-item"><strong>Third Party Funding — Law, Economics & Policy</strong> · <span class="journal">Cambridge University Press · 2019</span><br/><a href="https://www.cambridge.org/core/books/third-party-funding" target="_blank" style="color: var(--blue); font-family: var(--mono); font-size: 10px;">cambridge.org →</a></li>
+      <li class="pub-item"><strong>Third Party Funding & Sustainability</strong> · <span class="journal">Research Handbook on Investment Law and Sustainable Development · 2025</span></li>
+      <li class="pub-item"><strong>Third Party Funding in the EU — Regulatory challenges</strong> · <span class="journal">Theoretical Inquiries about the Law · 2/25</span></li>
+    </ul>
+  </div>
+
+  <!-- About -->
+  <div class="section">
+    <div class="section-head" style="color: var(--ink);">About — Avv. Dr. Gian Marco Solas</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Italian and EU qualified lawyer. Founder of Sustainab-Law and inventor of the 1love.works algorithm and related legal technology — phenography, phenocurrency, and fractal cross-pollination — for the codification of sustainable legal systems.</p>
+        <p>15+ years of experience in global litigation funds, national and international law firms, and at the European Commission. Leading Expert at the BRICS Competition Law & Policy Centre (Higher School of Economics, Moscow). Counsel at <strong>Omni Bridgeway</strong> (Amsterdam), consultant at <strong>Woodsford Litigation Funding</strong> (London).</p>
+        <p>The author's competence is in the legal and economic foundations: litigation funding, competition law, GDPR, EU regulatory frameworks, and the λX codification methodology. The physics, mathematics and neuroscience validation is explicitly the work of the scientific community.</p>
+        <div style="margin-top: 24px; padding: 16px 20px; background: var(--cream); border: 1px solid var(--rule);">
+          <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 12px;">Strategic Mandate</div>
+          <p style="font-size: 15px; line-height: 1.75; margin-bottom: 16px;">For complex cases requiring legal remediation, conversion of liabilities into sustainable investments, collective redress, or litigation finance — direct mandate with the author of the legal-physics methodology.</p>
+          <a href="https://calendly.com/gmsolas-sustainab-law/legal-consultation-public-entity" target="_blank" class="btn btn-dark">Book consultation →</a>
+        </div>
+      </div>
+      <div>
+        <ul class="cred-list">
+          <li class="cred-item"><span class="cred-label">Qualification</span><span class="cred-value">Italian & EU Lawyer</span></li>
+          <li class="cred-item"><span class="cred-label">PhD</span><span class="cred-value">Maastricht (Economic Analysis of Law) · Cagliari (Comparative Law)</span></li>
+          <li class="cred-item"><span class="cred-label">LLM</span><span class="cred-value">College of Europe, EU Competition Law</span></li>
+          <li class="cred-item"><span class="cred-label">Visiting Fellow</span><span class="cred-value">Fordham Law School (US antitrust) · NYU (litigation finance)</span></li>
+          <li class="cred-item"><span class="cred-label">Award</span><span class="cred-value">Premio Cossiga — best thesis & grades, University of Cagliari</span></li>
+          <li class="cred-item"><span class="cred-label">CUP 2019</span><span class="cred-value">Third Party Funding</span></li>
+          <li class="cred-item"><span class="cred-label">JLMI 1/25</span><span class="cred-value">Theory of Interrelation</span></li>
+          <li class="cred-item"><span class="cred-label">SSRN 5694423</span><span class="cred-value">Law is Love</span></li>
+          <li class="cred-item"><span class="cred-label">Contact</span><span class="cred-value"><a href="mailto:gmsolas@sustainab-law.eu" style="color: var(--blue);">gmsolas@sustainab-law.eu</a></span></li>
+        </ul>
+        <div class="exec-ed">
+          <div class="exec-label">Executive Education</div>
+          <div class="exec-item">Entrepreneurship<br/><span class="exec-school">Harvard Business School · 2021</span></div>
+          <div class="exec-item">Blockchain Technology<br/><span class="exec-school">INSEAD · 2022</span></div>
+          <div class="exec-item">Private Equity & Venture Capital<br/><span class="exec-school">Università Bocconi · 2022</span></div>
+          <div class="exec-item">Sustainable Investments<br/><span class="exec-school">NN Investment Partners · 2021</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reproducibility Note -->
+  <div class="note">
+    <div class="note-label">Note on reproducibility</div>
+    <p>The scanner is designed as a scientific instrument — the same document should produce consistent scores. The current beta version uses LLM-based scoring which introduces variance. Score calibration is in active development. Every scan contributes to the empirical dataset.</p>
+    <p>© 2019–2026 Avv. Dr. Gian Marco Solas · <a href="https://doi.org/10.13135/2785-7867/12266" target="_blank">JLMI 1/25</a> · <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank">SSRN 5694423</a> · <a href="/">1love.works</a> · All rights reserved.</p>
+  </div>
+
 </div>
 
 <footer>
   <div class="footer-left">
-    <strong>1love.works</strong> · © 2019–2026 Avv. Dr. Gian Marco Solas · <span data-i18n="footer_rights">All rights reserved</span><br/>
-    Sustainab-Law · Cagliari, Sardinia — Amsterdam, Netherlands<br/>
-    <em style="font-size:10px; color: rgba(107,104,96,0.7);" data-i18n="footer_note">Proprietary instruments. Methodology: public scientific contribution. · De Lege et Amore.</em>
+    <strong>1love.works</strong> · © 2019–2026 Avv. Dr. Gian Marco Solas · All rights reserved<br/>
+    <em style="font-size:10px;">Proprietary instruments. Methodology: public scientific contribution. · De Lege et Amore.</em>
   </div>
   <div class="footer-right">
-    <a href="https://eulawscanner.eu" target="_blank">EU Law Scanner</a>
-    <a href="https://corporate-scanner.com" target="_blank">Corporate Scanner</a>
-    <a href="https://ssrn.com/abstract=5694423" target="_blank">SSRN</a>
+    <a href="/">Home</a>
+    <a href="/codification">Codification</a>
+    <a href="https://eulawscanner.eu" target="_blank">EU Scanner</a>
+    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank">SSRN</a>
     <a href="https://doi.org/10.13135/2785-7867/12266" target="_blank">JLMI</a>
   </div>
 </footer>
 
 <script>
-const T = {
-  en: {
-    nav_methodology: 'Methodology',
-    nav_codification: 'Codification',
-    nav_about: 'About',
-    nav_contact: 'Contact',
-    overline: 'The Legal System Meter · Tradition → Innovation',
-    h1: 'Measuring human law<br/>like a <em>law of nature.</em><br/>Optimising legal systems<br/>like engines. Growing them<br/>like <em>flowers.</em>',
-    sub: 'A technological framework to measure, codify and optimise legal systems. Engineering legal processes for "perpetual motion" and competitiveness of European legal systems (and beyond).',
-    cta_method: 'Read the methodology →',
-    cta_book: 'Book consultation',
-    p1_label: 'Public instrument',
-    p1_tag: 'Live',
-    p1_desc: 'Compliance measurement of EU law obligations for any act or entity. Three free scans. Full report. No account required. <strong>Aims to measure and potentially solve the legal weight, entropy and bureaucracy problem by scanning any EU legal document.</strong>',
-    p2_label: 'Enterprise instrument',
-    p2_tag: 'In development',
-    p2_desc: 'Compliance measurement for any listed company. One free random scan. <strong>Aims to measure and potentially solve the legal weight, entropy and bureaucracy problem in corporations.</strong>',
-    p3_label: 'Full-system service',
-    p3_tag: 'By mandate',
-    p3_title: 'Codification<br/><em>of Legal Systems</em>',
-    p3_desc: 'Measuring, mapping and optimising an entire legal system — city, municipality, state. Legal-physics methodology. UN SDGs as benchmark. <strong>Aims to measure and potentially solve the legal weight, entropy and bureaucracy problem in defined legal systems.</strong>',
-    p3_link: 'Inquire →',
-    footer_rights: 'All rights reserved',
-    footer_note: 'Proprietary instruments. Methodology: public scientific contribution. · De Lege et Amore.',
-  },
-  it: {
-    nav_methodology: 'Metodologia',
-    nav_codification: 'Codificazione',
-    nav_about: 'Chi sono',
-    nav_contact: 'Contatto',
-    overline: 'Il Metro dei Sistemi Giuridici · Tradizione → Innovazione',
-    h1: 'Misurare il diritto umano<br/>come una <em>legge della natura.</em><br/>Ottimizzare i sistemi giuridici<br/>come motori. Farli crescere<br/>come <em>fiori.</em>',
-    sub: 'Un framework tecnologico per misurare, codificare e ottimizzare i sistemi giuridici. Ingegnerizzare i processi giuridici per il "moto perpetuo" e la competitività dei sistemi giuridici europei (e oltre).',
-    cta_method: 'Leggi la metodologia →',
-    cta_book: 'Prenota consulenza',
-    p1_label: 'Strumento pubblico',
-    p1_tag: 'Attivo',
-    p1_desc: 'Misura e potenzialmente risolve il peso normativo, l\'entropia e la burocrazia scansionando qualsiasi documento giuridico UE. Gratuito. Nessun account richiesto. Tre scansioni gratuite. <strong>Mira a misurare e potenzialmente risolvere il problema del peso normativo, dell&#39;entropia e della burocrazia scansionando qualsiasi documento giuridico UE.</strong>',
-    p2_label: 'Strumento enterprise',
-    p2_tag: 'In sviluppo',
-    p2_desc: 'Misura e potenzialmente risolve il peso normativo, l\'entropia e la burocrazia scansionando qualsiasi documento aziendale. Self-hosted. Piena sovranità metodologica. <strong>Mira a misurare e potenzialmente risolvere il problema del peso normativo, dell&#39;entropia e della burocrazia nelle aziende.</strong>',
-    p3_label: 'Servizio sistema completo',
-    p3_tag: 'Su mandato',
-    p3_title: 'Codificazione<br/><em>dei Sistemi Giuridici</em>',
-    p3_desc: 'Misura e potenzialmente risolve il peso normativo, l\'entropia e la burocrazia nei sistemi giuridici reali — sbloccando il loro potenziale in tre settori: 🏠 Abitativo · ⚡ Energia · 🌾 Filiera locale. <strong>Mira a misurare e potenzialmente risolvere il problema del peso normativo nei sistemi giuridici reali.</strong>',
-    p3_link: 'Scopri lo strumento →',
-    footer_rights: 'Tutti i diritti riservati',
-    footer_note: 'Strumenti proprietari. Metodologia: contributo scientifico pubblico. · De Lege et Amore.',
-  },
-  fr: {
-    nav_methodology: 'Méthodologie',
-    nav_codification: 'Codification',
-    nav_about: 'À propos',
-    nav_contact: 'Contact',
-    overline: 'Le Mètre des Systèmes Juridiques · Tradition → Innovation',
-    h1: 'Mesurer le droit humain<br/>comme une <em>loi de la nature.</em><br/>Optimiser les systèmes juridiques<br/>comme des moteurs. Les faire croître<br/>comme des <em>fleurs.</em>',
-    sub: 'Un cadre technologique pour mesurer, codifier et optimiser les systèmes juridiques. Ingénierie des processus juridiques pour un "mouvement perpétuel" et la compétitivité des systèmes juridiques européens (et au-delà).',
-    cta_method: 'Lire la méthodologie →',
-    cta_book: 'Réserver une consultation',
-    p1_label: 'Instrument public',
-    p1_tag: 'En ligne',
-    p1_desc: 'Mesure et résout potentiellement le poids réglementaire, l\'entropie et la bureaucratie en analysant tout document juridique UE. Gratuit. Sans compte. Trois analyses gratuites. <strong>Vise à mesurer et potentiellement résoudre le problème du poids réglementaire, de l&#39;entropie et de la bureaucratie en analysant tout document juridique UE.</strong>',
-    p2_label: 'Instrument entreprise',
-    p2_tag: 'En développement',
-    p2_desc: 'Mesure et résout potentiellement le poids réglementaire, l\'entropie et la bureaucratie en analysant tout dossier d\'entreprise. Auto-hébergé. Pleine souveraineté méthodologique. <strong>Vise à mesurer et potentiellement résoudre le problème du poids réglementaire, de l&#39;entropie et de la bureaucratie dans les entreprises.</strong>',
-    p3_label: 'Service système complet',
-    p3_tag: 'Sur mandat',
-    p3_title: 'Codification<br/><em>des Systèmes Juridiques</em>',
-    p3_desc: 'Mesure et résout potentiellement le poids réglementaire, l\'entropie et la bureaucratie dans les systèmes juridiques réels — libérant leur potentiel dans trois secteurs: 🏠 Logement · ⚡ Énergie · 🌾 Filière locale. <strong>Vise à mesurer et potentiellement résoudre le problème du poids réglementaire dans les systèmes juridiques réels.</strong>',
-    p3_link: 'Découvrir l\'instrument →',
-    footer_rights: 'Tous droits réservés',
-    footer_note: 'Instruments propriétaires. Méthodologie : contribution scientifique publique. · De Lege et Amore.',
-  },
-  es: {
-    nav_methodology: 'Metodología',
-    nav_codification: 'Codificación',
-    nav_about: 'Acerca de',
-    nav_contact: 'Contacto',
-    overline: 'El Metro de los Sistemas Jurídicos · Tradición → Innovación',
-    h1: 'Medir el derecho humano<br/>como una <em>ley de la naturaleza.</em><br/>Optimizar los sistemas jurídicos<br/>como motores. Hacerlos crecer<br/>como <em>flores.</em>',
-    sub: 'Un marco tecnológico para medir, codificar y optimizar los sistemas jurídicos. Ingeniería de procesos jurídicos para el "movimiento perpetuo" y la competitividad de los sistemas jurídicos europeos (y más allá).',
-    cta_method: 'Leer la metodología →',
-    cta_book: 'Reservar consulta',
-    p1_label: 'Instrumento público',
-    p1_tag: 'En vivo',
-    p1_desc: 'Mide y potencialmente resuelve el peso normativo, la entropía y la burocracia analizando cualquier documento jurídico UE. Gratuito. Sin cuenta. Tres análisis gratuitos. <strong>Tiene como objetivo medir y potencialmente resolver el problema del peso normativo, la entropía y la burocracia analizando cualquier documento jurídico UE.</strong>',
-    p2_label: 'Instrumento empresarial',
-    p2_tag: 'En desarrollo',
-    p2_desc: 'Mide y potencialmente resuelve el peso normativo, la entropía y la burocracia analizando cualquier expediente corporativo. Auto-alojado. Plena soberanía metodológica. <strong>Tiene como objetivo medir y potencialmente resolver el problema del peso normativo, la entropía y la burocracia en las empresas.</strong>',
-    p3_label: 'Servicio sistema completo',
-    p3_tag: 'Por mandato',
-    p3_title: 'Codificación<br/><em>de Sistemas Jurídicos</em>',
-    p3_desc: 'Mide y potencialmente resuelve el peso normativo, la entropía y la burocracia en sistemas jurídicos reales — liberando su potencial en tres sectores: 🏠 Vivienda · ⚡ Energía · 🌾 Cadena de valor local. <strong>Tiene como objetivo medir y potencialmente resolver el problema del peso normativo en los sistemas jurídicos reales.</strong>',
-    p3_link: 'Descubrir el instrumento →',
-    footer_rights: 'Todos los derechos reservados',
-    footer_note: 'Instrumentos propietarios. Metodología: contribución científica pública. · De Lege et Amore.',
+function toggle(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  // close all
+  document.querySelectorAll('.accordion-body.open').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.accordion-trigger.open').forEach(b => b.classList.remove('open'));
+  if (!isOpen) {
+    body.classList.add('open');
+    btn.classList.add('open');
   }
-};
-
-let currentLang = localStorage.getItem('1lw_lang') || 'en';
-
-function setLang(lang) {
-  currentLang = lang;
-  localStorage.setItem('1lw_lang', lang);
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (T[lang] && T[lang][key]) el.innerHTML = T[lang][key];
-  });
-  document.documentElement.lang = lang;
 }
-
-setLang(currentLang);
 </script>
 
 </body>
