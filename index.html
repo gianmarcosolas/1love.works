@@ -188,10 +188,10 @@
 <div class="products">
   <!-- Problem statement -->
   <div style="border-bottom: 1px solid var(--rule); padding: 40px 0 40px; margin-bottom: 0;">
-    <p style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px;">The problem</p>
-    <p style="font-size: 22px; font-weight: 400; line-height: 1.3; color: var(--ink); margin-bottom: 16px;">Bureaucracy. Legal weight. Entropy.<br/><em style="font-style:italic; color: var(--gold);">The invisible tax on everything.</em></p>
-    <p style="font-size: 16px; color: var(--muted); line-height: 1.85; max-width: 720px; margin-bottom: 16px;">Every regulation that produces no value. Every permit that takes two years. Every housing project blocked by overlapping jurisdictions. Every renewable energy installation waiting for grid connection. Every local producer crushed by administrative weight designed for industrial scale. This is not inefficiency. It is entropy — energy that could be life, trapped in legal weight.</p>
-    <p style="font-family: var(--mono); font-size: 13px; color: var(--gold);">Conservative estimate of unexpressed value trapped in EU-27 legal systems: <strong>€5.2 trillion</strong> <span style="opacity:0.6;">(JLMI 2/25)</span></p>
+    <p style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px;" data-i18n="problem_title">The problem</p>
+    <p data-i18n="problem_h" style="font-size: 22px; font-weight: 400; line-height: 1.3; color: var(--ink); margin-bottom: 16px;">Bureaucracy. Legal weight. Entropy. The invisible tax on everything.</p>
+    <p style="font-size: 16px; color: var(--muted); line-height: 1.85; max-width: 720px; margin-bottom: 16px;" data-i18n="problem_body">Every regulation that produces no value. Every permit that takes two years. Every housing project blocked by overlapping jurisdictions. Every renewable energy installation waiting for grid connection. Every local producer crushed by administrative weight designed for industrial scale. This is not inefficiency. It is entropy — energy that could be life, trapped in legal weight.</p>
+    <p data-i18n="problem_stat" style="font-family: var(--mono); font-size: 13px; color: var(--gold);">Conservative estimate of unexpressed value trapped in EU-27 legal systems: <strong>€5.2 trillion</strong> <span style="opacity:0.6;">(JLMI 2/25)</span></p>
   </div>
 
   <div class="products-grid">
@@ -271,6 +271,10 @@ const T = {
     metric_identified_note: 'Grows with every scan',
     metric_pct: '% of EU-27 identified',
     metric_pct_note: 'Every scan moves the needle',
+    problem_title: 'The problem',
+    problem_h: 'Bureaucracy. Legal weight. Entropy. The invisible tax on everything.',
+    problem_body: 'Every regulation that produces no value. Every permit that takes two years. Every housing project blocked by overlapping jurisdictions. Every renewable energy installation waiting for grid connection. Every local producer crushed by administrative weight designed for industrial scale. This is not inefficiency. It is entropy — energy that could be life, trapped in legal weight.',
+    problem_stat: 'Conservative estimate of unexpressed value trapped in EU-27 legal systems: <strong>€5.2 trillion</strong> <span style="opacity:0.6;">(JLMI 2/25)</span>',
     footer_note: 'Proprietary instruments. Methodology: public scientific contribution. · De Lege et Amore.',
   },
   it: {
@@ -305,6 +309,10 @@ const T = {
     metric_identified_note: 'Cresce ad ogni scansione',
     metric_pct: '% dell\'UE-27 identificato',
     metric_pct_note: 'Ogni scansione sposta l\'ago',
+    problem_title: 'Il problema',
+    problem_h: 'Burocrazia. Peso normativo. Entropia. La tassa invisibile su tutto.',
+    problem_body: 'Ogni norma che non produce valore. Ogni permesso che richiede due anni. Ogni progetto abitativo bloccato da giurisdizioni sovrapposte. Ogni impianto di energia rinnovabile in attesa di connessione alla rete. Ogni produttore locale schiacciato da un peso amministrativo pensato per la scala industriale. Non è inefficienza. È entropia — energia che potrebbe essere vita, intrappolata nel peso giuridico.',
+    problem_stat: 'Stima conservativa del valore non espresso nei sistemi giuridici UE-27: <strong>5,2 trilioni di €</strong> <span style="opacity:0.6;">(JLMI 2/25)</span>',
     footer_note: 'Strumenti proprietari. Metodologia: contributo scientifico pubblico. · De Lege et Amore.',
   },
   fr: {
@@ -339,6 +347,10 @@ const T = {
     metric_identified_note: 'Augmente à chaque analyse',
     metric_pct: '% de l\'UE-27 identifié',
     metric_pct_note: 'Chaque analyse fait avancer l\'aiguille',
+    problem_title: 'Le problème',
+    problem_h: 'Bureaucratie. Poids juridique. Entropie. La taxe invisible sur tout.',
+    problem_body: 'Chaque réglementation qui ne produit aucune valeur. Chaque permis qui prend deux ans. Chaque projet de logement bloqué par des juridictions qui se chevauchent. Chaque installation d\'énergie renouvelable en attente de connexion au réseau. Chaque producteur local écrasé par un poids administratif conçu pour l\'échelle industrielle. Ce n\'est pas de l\'inefficacité. C\'est de l\'entropie — de l\'énergie qui pourrait être vie, piégée dans le poids juridique.',
+    problem_stat: 'Estimation conservative de la valeur non exprimée dans les systèmes juridiques de l\'UE-27 : <strong>5,2 billions d\'€</strong> <span style="opacity:0.6;">(JLMI 2/25)</span>',
     footer_note: 'Instruments propriétaires. Méthodologie : contribution scientifique publique. · De Lege et Amore.',
   },
   es: {
@@ -373,6 +385,10 @@ const T = {
     metric_identified_note: 'Crece con cada análisis',
     metric_pct: '% de la UE-27 identificado',
     metric_pct_note: 'Cada análisis mueve la aguja',
+    problem_title: 'El problema',
+    problem_h: 'Burocracia. Peso jurídico. Entropía. El impuesto invisible sobre todo.',
+    problem_body: 'Cada regulación que no produce valor. Cada permiso que tarda dos años. Cada proyecto de vivienda bloqueado por jurisdicciones superpuestas. Cada instalación de energía renovable esperando conexión a la red. Cada productor local aplastado por un peso administrativo diseñado para escala industrial. Esto no es ineficiencia. Es entropía — energía que podría ser vida, atrapada en el peso jurídico.',
+    problem_stat: 'Estimación conservadora del valor no expresado atrapado en los sistemas jurídicos de la UE-27: <strong>5,2 billones de €</strong> <span style="opacity:0.6;">(JLMI 2/25)</span>',
     footer_note: 'Instrumentos propietarios. Metodología: contribución científica pública. · De Lege et Amore.',
   }
 };
