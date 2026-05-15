@@ -1,9 +1,33 @@
 {
   "cleanUrls": true,
-  "rewrites": [
+  "routes": [
     {
-      "source": "/eulawmeter/:path*",
-      "destination": "https://eulawscanner.vercel.app/:path*"
+      "src": "/eulawmeter/(.*)",
+      "dest": "https://eulawscanner.vercel.app/$1"
+    },
+    {
+      "src": "/pricing",
+      "dest": "/pricing/index.html"
+    },
+    {
+      "src": "/pnc",
+      "dest": "/pnc/index.html"
+    },
+    {
+      "src": "/criticisms",
+      "dest": "/criticisms/index.html"
+    },
+    {
+      "src": "/dashboard",
+      "dest": "/dashboard/index.html"
+    },
+    {
+      "src": "/methodology",
+      "dest": "/methodology/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
     }
   ]
 }
