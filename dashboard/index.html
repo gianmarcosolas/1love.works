@@ -151,6 +151,25 @@
     </div>
   </div>
 
+  <!-- EU-27 value strip -->
+  <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(245,242,234,0.08); margin-bottom: 1px;">
+    <div style="background: rgba(184,134,11,0.04); border: 1px solid rgba(184,134,11,0.15); padding: 16px 20px;">
+      <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(245,242,234,0.35); margin-bottom: 8px;">EU-27 unexpressed value</div>
+      <div style="font-family: var(--mono); font-size: 22px; font-weight: 500; color: var(--gold);">€5.2T</div>
+      <div style="font-family: var(--mono); font-size: 9px; color: rgba(245,242,234,0.25); margin-top: 4px;">Approximate · to be confirmed empirically · JLMI 2/25</div>
+    </div>
+    <div style="background: rgba(245,242,234,0.03); border: 1px solid rgba(245,242,234,0.06); padding: 16px 20px;">
+      <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(245,242,234,0.35); margin-bottom: 8px;">Identified so far</div>
+      <div style="font-family: var(--mono); font-size: 22px; font-weight: 500; color: #4ade80;" id="m-identified">€—</div>
+      <div style="font-family: var(--mono); font-size: 9px; color: rgba(245,242,234,0.25); margin-top: 4px;">Grows with every scan across the network</div>
+    </div>
+    <div style="background: rgba(245,242,234,0.03); border: 1px solid rgba(245,242,234,0.06); padding: 16px 20px;">
+      <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(245,242,234,0.35); margin-bottom: 8px;">% of EU-27 identified</div>
+      <div style="font-family: var(--mono); font-size: 22px; font-weight: 500; color: #4ade80;" id="m-pct">—%</div>
+      <div style="font-family: var(--mono); font-size: 9px; color: rgba(245,242,234,0.25); margin-top: 4px;">Every scan moves the needle</div>
+    </div>
+  </div>
+
   <!-- Chart -->
   <div class="chart-wrap">
     <div class="chart-header">
@@ -496,6 +515,21 @@ function animateCounters() {
     animateNumber('m-entropy', stats.total_entropy, '', 1400);
     animateNumber('m-pnc', stats.pnc_in_circulation, '', 1000);
     animateNumber('m-value', stats.implied_pnc_value, '€', 1600);
+
+    // EU-27 metrics
+    const EU27_TOTAL = 5200000000000; // €5.2T
+    const identifiedValue = stats.total_entropy * 1000000; // €1M per entropy unit
+    const pctIdentified = ((identifiedValue / EU27_TOTAL) * 100).toFixed(6);
+    const identifiedFormatted = identifiedValue >= 1000000000
+      ? '€' + (identifiedValue / 1000000000).toFixed(2) + 'B'
+      : identifiedValue >= 1000000
+      ? '€' + (identifiedValue / 1000000).toFixed(1) + 'M'
+      : '€' + identifiedValue.toLocaleString();
+
+    const identifiedEl = document.getElementById('m-identified');
+    const pctEl = document.getElementById('m-pct');
+    if (identifiedEl) identifiedEl.textContent = identifiedFormatted;
+    if (pctEl) pctEl.textContent = pctIdentified + '%';
 
     // Update chart with real data if we have time series
     if (stats.time_series && stats.time_series.length > 1) {
