@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why PNC — 1love.works</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #0f0f0d; --parchment: #f5f2ea; --cream: #ede9df;
+      --gold: #b8860b; --blue: #1a4e8a; --green: #2d6a2d;
+      --muted: #6b6860; --rule: rgba(15,15,13,0.12);
+      --serif: 'EB Garamond', Georgia, serif; --mono: 'DM Mono', monospace;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--serif); background: var(--parchment); color: var(--ink); line-height: 1.75; font-size: 18px; }
+
+    nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(245,242,234,0.96); backdrop-filter: blur(8px); display: flex; justify-content: space-between; align-items: center; padding: 14px 48px; }
+    .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; font-weight: 500; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* Hero */
+    .hero { max-width: 760px; margin: 0 auto; padding: 80px 48px 60px; border-bottom: 1px solid var(--rule); }
+    .hero-overline { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; }
+    .hero h1 { font-size: clamp(42px, 6vw, 72px); font-weight: 400; line-height: 1.1; margin-bottom: 28px; }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero-equation { font-family: var(--mono); font-size: 16px; color: var(--gold); letter-spacing: 0.08em; padding: 16px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 28px; }
+    .hero-intro { font-size: 20px; color: #3a3a36; line-height: 1.85; }
+    .hero-intro em { font-style: italic; color: var(--ink); }
+
+    /* Sections */
+    .section { max-width: 760px; margin: 0 auto; padding: 64px 48px; border-bottom: 1px solid var(--rule); }
+    .section-num { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+    .section-num::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+    .section h2 { font-size: clamp(28px, 4vw, 46px); font-weight: 400; line-height: 1.15; margin-bottom: 24px; }
+    .section h2 em { font-style: italic; color: var(--gold); }
+    .section p { font-size: 18px; color: #3a3a36; line-height: 1.9; margin-bottom: 20px; }
+    .section p:last-child { margin-bottom: 0; }
+    .section p strong { color: var(--ink); font-weight: 500; }
+    .section p em { font-style: italic; }
+
+    /* Pull quote */
+    .pull-quote { border-left: 4px solid var(--gold); padding: 20px 28px; margin: 32px 0; background: var(--cream); }
+    .pull-quote p { font-size: 20px; font-style: italic; color: var(--ink); line-height: 1.7; margin: 0; }
+
+    /* Dashboard */
+    .dashboard { background: var(--ink); color: var(--parchment); padding: 40px 48px; margin: 40px 0; }
+    .dashboard-title { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(245,242,234,0.5); margin-bottom: 24px; }
+    .dashboard-note { font-family: var(--mono); font-size: 11px; color: rgba(245,242,234,0.4); margin-top: 20px; font-style: italic; }
+    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(245,242,234,0.1); margin-bottom: 2px; }
+    .metrics-bottom { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: rgba(245,242,234,0.1); }
+    .metric { background: var(--ink); padding: 20px 20px; }
+    .metric-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(245,242,234,0.4); margin-bottom: 8px; }
+    .metric-value { font-family: var(--mono); font-size: 24px; font-weight: 500; color: var(--gold); margin-bottom: 4px; }
+    .metric-value.live { color: #4ade80; }
+    .metric-desc { font-size: 12px; color: rgba(245,242,234,0.5); line-height: 1.5; }
+    .metric.highlight { background: rgba(184,134,11,0.08); border: 1px solid rgba(184,134,11,0.2); }
+    .metric.highlight .metric-value { font-size: 32px; }
+
+    /* Inheritance */
+    .inheritance { background: var(--cream); border: 1px solid var(--rule); padding: 36px 40px; margin: 32px 0; }
+    .inheritance-title { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 20px; }
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .timeline-item { display: grid; grid-template-columns: 100px 1fr; gap: 24px; padding: 16px 0; border-top: 1px solid var(--rule); align-items: start; }
+    .timeline-item:last-child { border-bottom: 1px solid var(--rule); }
+    .timeline-year { font-family: var(--mono); font-size: 12px; color: var(--gold); font-weight: 500; padding-top: 2px; }
+    .timeline-text { font-size: 15px; color: #3a3a36; line-height: 1.75; }
+    .timeline-text strong { color: var(--ink); }
+
+    /* No trading */
+    .no-trading { padding: 28px 32px; border: 1px solid var(--rule); margin: 32px 0; display: flex; gap: 24px; align-items: start; }
+    .no-trading-icon { font-size: 28px; flex-shrink: 0; }
+    .no-trading-title { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 8px; }
+    .no-trading p { font-size: 15px; color: #3a3a36; line-height: 1.8; margin: 0; }
+
+    /* CTA */
+    .cta-section { max-width: 760px; margin: 0 auto; padding: 64px 48px 80px; text-align: center; }
+    .cta-section h2 { font-size: 38px; font-weight: 400; line-height: 1.2; margin-bottom: 16px; }
+    .cta-section h2 em { font-style: italic; color: var(--gold); }
+    .cta-section p { font-size: 17px; color: var(--muted); line-height: 1.8; margin-bottom: 32px; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 28px; text-decoration: none; display: inline-block; transition: opacity 0.2s; }
+    .btn-dark { background: var(--ink); color: var(--parchment); }
+    .btn-dark:hover { opacity: 0.82; }
+    .btn-outline { background: transparent; color: var(--ink); border: 1px solid rgba(15,15,13,0.3); }
+    .btn-outline:hover { background: var(--cream); }
+
+    footer { border-top: 2px solid var(--ink); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-left { font-family: var(--mono); font-size: 11px; color: var(--muted); line-height: 1.7; }
+    .footer-right { font-family: var(--mono); font-size: 10px; display: flex; gap: 24px; }
+    .footer-right a { color: var(--muted); text-decoration: none; }
+    .footer-right a:hover { color: var(--ink); }
+
+    @media (max-width: 720px) {
+      nav { padding: 12px 20px; }
+      .hero, .section, .cta-section { padding-left: 24px; padding-right: 24px; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+      .metrics-bottom { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 70px 1fr; }
+      footer { flex-direction: column; padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">1love.works</a>
+  <ul class="nav-links">
+    <li><a href="/methodology">Methodology</a></li>
+    <li><a href="/pricing">Access & PNC</a></li>
+    <li><a href="https://eulawscanner.eu" target="_blank">EU Scanner</a></li>
+    <li><a href="mailto:gmsolas@sustainab-law.eu">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <p class="hero-overline">1love.works · PNC — Perpetual Node Certificate</p>
+  <h1>A stake in <em>optimal Europe.</em><br/>For you.<br/>And your children.</h1>
+  <p class="hero-equation">PNC = f(ΔS) &nbsp;·&nbsp; ΔS = S₁ − S₂ &nbsp;·&nbsp; S = k · log W(λ) &nbsp;·&nbsp; 1 PNC = €99 founding price</p>
+  <p class="hero-intro">PNC is not a token you trade. It is a perpetual stake in the only scientific instrument designed to measure and reduce European legal entropy created by regulatory weight — defined as a protocol in <strong>phenography©</strong>, the legal-physics technology for the codification of sustainable legal systems. Held for life, inherited by your family, and — if financial institutions accept — available as collateral without ever being sold.</p>
+</div>
+
+<!-- 1. Bureaucracy vs Nature -->
+<div class="section">
+  <p class="section-num">I · The problem everyone feels</p>
+  <h2>People hate bureaucracy.<br/>People love <em>nature.</em></h2>
+  <p>Nobody wakes up wanting to fill in forms. Nobody loves a regulation that produces nothing, a liability that sits unresolved for decades, an asset trapped in legal weight that could be investment, employment, life. Everyone has felt the friction of a legal system accumulating faster than it can resolve — entropy made bureaucratic.</p>
+  <p>Nature doesn't work like this. A forest doesn't accumulate dead wood indefinitely — it converts it. A river doesn't stop — it finds the path of least resistance. An ecosystem doesn't produce waste — it cycles everything back into energy. Nature tends toward optimum — because it was designed to. The laws of physics are the design. Thermodynamics, gravity, the golden ratio, the Fibonacci spiral — these are not accidents. They are the mathematical expression of a universe built to convert entropy into life, waste into growth, chaos into equilibrium.</p>
+  <p><strong>Human law is also a law of nature.</strong> It has always been present in the equations of thermodynamics, general relativity, and quantum mechanics — we simply never measured it as one. The legal-physics framework is the first instrument that does.</p>
+  <div class="pull-quote">
+    <p>"Every redundant regulation, every unresolved liability, every abandoned asset is entropy: energy that could be life, trapped in legal weight. PNC is the proof that somewhere, in some legal system, that entropy became flow."</p>
+  </div>
+</div>
+
+<!-- 2. The collective goal -->
+<div class="section">
+  <p class="section-num">II · The collective goal</p>
+  <h2>Europe at <em>optimum.</em><br/>The social market economy<br/>as it was designed to be.</h2>
+  <p>The European Union was built on a radical idea: that competition and solidarity are not opposites. That efficiency and justice can coexist. That a market economy can have a social dimension. The social market economy is the most ambitious political project in human history — and it is still unfinished.</p>
+  <p>The reason it is unfinished is entropy. Regulatory accumulation. Legal systems that grew faster than they could be measured, codified, or optimised. Institutions that generate friction rather than value. Cities carrying liabilities that were never identified, assets that were never measured, potential that was never unlocked.</p>
+  <p><strong>The goal of the legal-physics framework is to finish the project.</strong> Not by adding more regulation. By measuring what exists, reducing what is redundant, converting what is entropic. The reward is not personal wealth. It is Europe — its cities, its institutions, its legal systems — functioning at their full potential.</p>
+  <div class="pull-quote">
+    <p>"The cathedral takes generations. The first stone matters. PNC holders are not investors. They are founding nodes of the measurement — architects of the optimum."</p>
+  </div>
+</div>
+
+<!-- 3. The personal stake -->
+<div class="section">
+  <p class="section-num">III · The personal stake</p>
+  <h2>First-mover in the largest<br/>untapped market<br/>in the <em>world.</em></h2>
+  <p>€21.65 billion of unexpressed economic value was identified in 270 comuni in Sardinia alone — a single region of a single member state, measured with an early version of the instrument. Multiply that across the EU: 27 member states, 90,000 municipalities, hundreds of thousands of institutions, millions of legal acts accumulated over decades.</p>
+  <p>The market for legal entropy reduction does not yet exist. We are building the instrument that will create it. The institutions, lawyers, investors, and municipalities that are already nodes in the measurement network when that market matures are positioned to benefit from it — not because PNC promises a financial return, but because <strong>being a founding node in the only instrument designed to measure European legal entropy is a first-mover advantage that compounds over time.</strong></p>
+  <p>Like owning land near a railway before the railway is built. The land doesn't change. The network changes everything.</p>
+
+  <!-- Dashboard -->
+  <div class="dashboard">
+    <div class="dashboard-title">⬡ PNC Network — Implied Value Dashboard (live when Phase 2 launches)</div>
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-label">Legal systems measured</div>
+        <div class="metric-value live">—</div>
+        <div class="metric-desc">Entities that have commissioned at least one scan</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Total entropy measured (ΣS)</div>
+        <div class="metric-value live">—</div>
+        <div class="metric-desc">Cumulative legal entropy identified across all scans</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Total entropy reduced (ΣΔS)</div>
+        <div class="metric-value live">—</div>
+        <div class="metric-desc">Verified entropy reduction across all legal systems</div>
+      </div>
+    </div>
+    <div class="metrics-bottom">
+      <div class="metric">
+        <div class="metric-label">Estimated value unlocked</div>
+        <div class="metric-value live">—</div>
+        <div class="metric-desc">Based on λX = EX/MX applied to measured entropy reduction</div>
+      </div>
+      <div class="metric highlight">
+        <div class="metric-label">⬡ Implied PNC value</div>
+        <div class="metric-value">€99</div>
+        <div class="metric-desc">Founding price · will update automatically as ΣΔS and unlocked value grow · not a market price · not tradeable</div>
+      </div>
+    </div>
+    <p class="dashboard-note">Dashboard goes live with Phase 2 (entropy delta measurement). Founding holders see their implied value grow as the network does real work in real legal systems. No trading. No speculation. Mathematics.</p>
+  </div>
+</div>
+
+<!-- 4. What the money does -->
+<div class="section">
+  <p class="section-num">IV · What the money does</p>
+  <h2>IT architecture everyone owns.<br/>Legal claims <em>everyone</em><br/>benefits from.</h2>
+  <p>Service fees fund two things — both public and personal simultaneously.</p>
+  <p><strong>First: the IT infrastructure.</strong> Blockchain, scanner, AI simulation layer — built as open architecture that everyone owns as a node. Not a private platform. Not a closed system. Public infrastructure for the measurement of legal entropy, like the internet for information or GPS for navigation. The methodology is published. The measurement is transparent. The blockchain is open. Every node is a co-owner.</p>
+  <p><strong>Second: legal claims.</strong> The instrument identifies unexpressed value — liabilities, frozen assets, regulatory anomalies — in real legal systems. The capital raised funds the legal mechanisms to unlock that value: third-party funded claims, collective redress actions, codification mandates. Recoveries flow back to the territories and institutions where the entropy was measured. Not to a private fund. To the legal system itself.</p>
+  <div class="pull-quote">
+    <p>"You are not giving money away. You are funding the conversion of entropy you can measure into value you can recover. PNC is your proof of contribution to that conversion — held in perpetuity, inherited by your family, worth more as Europe moves toward optimum."</p>
+  </div>
+  <div class="no-trading">
+    <div class="no-trading-icon">⬡</div>
+    <div>
+      <div class="no-trading-title">No trading — by design</div>
+      <p>PNC cannot be traded on exchanges. This is not a limitation — it is the architecture. Trading disconnects the certificate from its meaning. A PNC traded for profit is no longer a proof of entropy reduction — it is a speculation on someone else's legal work. The value of PNC grows as the network does real work. You hold it. You pass it on. That is the point.</p>
+    </div>
+  </div>
+
+  <div class="no-trading" style="margin-top: 16px;">
+    <div class="no-trading-icon">📐</div>
+    <div>
+      <div class="no-trading-title">PNC in phenography — protocol reference</div>
+      <p>PNC is not invented for this network. It is a protocol defined in <strong>phenography©</strong> — the legal-physics methodology for the codification of sustainable legal systems, published by Avv. Dr. Gian Marco Solas. Phenography defines PNC as the unit of measurement of legal entropy reduction: the mathematical certificate that a legal system has moved measurably toward optimum. Every PNC in existence is a phenographic record — a node in the map of legal systems moving toward equilibrium. The protocol is proprietary. The certificates are yours.</p>
+    </div>
+  </div>
+
+  <div class="no-trading" style="margin-top: 16px;">
+    <div class="no-trading-icon">🏦</div>
+    <div>
+      <div class="no-trading-title">Borrowing against PNC</div>
+      <p>PNC cannot be traded — but it can be used as collateral. If a financial institution recognises the implied value of a PNC holding, the holder may borrow against it without selling. This preserves the generational stake — the family inheritance remains intact — while providing liquidity when needed. Like borrowing against land, art, or a shareholding. No exchange required. No entropy reduction certificate lost. The stake in optimal Europe stays in the family. The institution that extends credit against PNC becomes, in turn, a node in the network — positioned early in the market for legal entropy reduction.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 5. Fractal cross-pollination -->
+<div class="section">
+  <p class="section-num">V · The network intelligence</p>
+  <h2>Measuring one system<br/><em>improves all systems.</em><br/>Fractal cross-pollination©.</h2>
+  <p>Every scan and every empirical legal measurement adds intelligence to the network — not just for the entity being measured, but for every other node in the system. This is <strong>fractal cross-pollination©</strong>: the principle that measurement in one legal system generates actionable intelligence for every comparable system in the network.</p>
+  <p>The logic is simple. If a village of 1,000 people has two hairdressers and functions at optimum, and a comparable village of 1,000 people has only one hairdresser — the network identifies the gap. Not as an opinion. As a measurement. The λ score of the second village reflects unexpressed economic potential in the personal care sector. The instrument suggests the market. The village can act.</p>
+  <p>Scale this to European legal systems. If a municipality in Sardinia has resolved its regulatory entropy around renewable energy permits and achieved optimum in that sector, every comparable municipality in the EU benefits from that measurement. The network knows what optimum looks like. It can show every other node the distance still to travel — and the path.</p>
+
+  <div class="pull-quote">
+    <p>"The measurement of one system is not a private discovery. It is a contribution to the intelligence of the whole network. Every node makes every other node smarter. This is fractal cross-pollination© — and it is why the network becomes exponentially more valuable as it grows."</p>
+  </div>
+
+  <p>This is also why PNC compounds in value over time without trading. Each new node that joins the network increases the cross-pollination intelligence available to all existing nodes. The founding nodes — those who entered at €99/PNC — benefit from every subsequent measurement in every legal system that joins the network. Their stake appreciates not because of speculation, but because <strong>the network is doing real scientific work that makes their node more valuable.</strong></p>
+
+  <div class="no-trading" style="margin-top: 24px; border-color: rgba(184,134,11,0.3); background: rgba(184,134,11,0.03);">
+    <div class="no-trading-icon">🌿</div>
+    <div>
+      <div class="no-trading-title" style="color: var(--gold);">Fractal cross-pollination© — the three innovations</div>
+      <p>Together, <strong>phenography©</strong> (the measurement methodology), <strong>phenocurrency©</strong> (the value quantification), and <strong>fractal cross-pollination©</strong> (the network intelligence protocol) form the three proprietary pillars of the legal-physics technology. Each is defined, authored, and published by Avv. Dr. Gian Marco Solas. Each is a public scientific contribution — citable and teachable. The instruments built upon them are proprietary. PNC is the certificate that connects all three.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 6. Generational stake -->
+<div class="section">
+  <p class="section-num">VI · The generational stake</p>
+  <h2>Hold it.<br/>Pass it on.<br/>Your family inherits <em>optimal Europe.</em></h2>
+  <p>Every generation asks: what do I leave my children? Usually the answer is money, property, a name. These are valuable. But they are also fragile — money inflates, property decays, names fade. What endures is a stake in something larger than oneself.</p>
+  <p>PNC is designed to be held in perpetuity and inherited. Like land, like a family seat, like a founding membership in an institution that outlasts its founders. The blockchain makes it permanent — no intermediary, no exchange, no counterparty risk. When you hold PNC, you hold a verifiable proof that you were part of the effort that moved European legal systems toward equilibrium.</p>
+  <p><strong>Your children inherit that proof.</strong> And they inherit it in a Europe that is — measurably, mathematically — more just, more functional, more optimised than the one you were born into. That is the compound interest of legal entropy reduction. Not quarterly. Generational.</p>
+
+  <div class="inheritance">
+    <div class="inheritance-title">⬡ A generational arc — illustrative</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">2025–26</div>
+        <div class="timeline-text"><strong>You acquire PNC</strong> as part of a scan or codification service. The network is in its founding phase. Implied value: €99/PNC. You are a founding node.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2027–30</div>
+        <div class="timeline-text"><strong>Phase 2 launches.</strong> Entropy delta measurement goes live. Blockchain recording active. The dashboard shows real ΔS across hundreds of legal systems. Implied PNC value begins to reflect unlocked value.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2030–40</div>
+        <div class="timeline-text"><strong>Legal claims mature.</strong> First major recoveries from third-party funded entropy reduction claims. Municipalities that commissioned codifications see investment flowing in. The network grows. Founding nodes are named.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2040+</div>
+        <div class="timeline-text"><strong>Your children inherit your PNC.</strong> The network has measured legal entropy across the EU. The social market economy is measurably more optimised. Their PNC is a proof of your generation's contribution to that — held on-chain, permanent, theirs.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">Perpetuity</div>
+        <div class="timeline-text"><strong>The machine approaches equilibrium.</strong> PNC supply bounded by total measurable entropy — which is finite. As entropy approaches zero, the machine approaches perpetual motion. The cathedral is complete. The first stone still matters.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Municipality model -->
+<div class="section">
+  <p class="section-num">VII · For municipalities</p>
+  <h2>The mayor who gave citizens<br/>a stake in their own <em>optimum.</em></h2>
+  <p>A municipality commissions a full legal system codification. The instrument measures the entropy of every regulation, every land classification, every administrative act in the territory. It identifies unexpressed value — frozen assets, missing markets, regulatory weight that is costing the community money it never knew it had. It produces a remediation roadmap. It issues PNC.</p>
+  <p>But the PNC does not stay with the municipality. <strong>It is distributed to the citizens.</strong> Each resident receives a fractional stake in the optimisation of their own territory — a mathematical proof that their municipality began its journey toward optimum, and that they are a node in that journey.</p>
+
+  <div style="background: var(--cream); border: 1px solid var(--rule); padding: 28px 32px; margin: 32px 0;">
+    <div style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 20px;">⬡ Example — Municipality of 1,400 citizens · €139,000 mandate · 1,404 PNC issued</div>
+    <div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 2px; background: var(--rule);">
+      <div style="background: white; padding: 16px 18px;">
+        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 8px;">Each citizen</div>
+        <div style="font-family: var(--mono); font-size: 22px; color: var(--gold); margin-bottom: 6px;">0.5 PNC</div>
+        <div style="font-size: 13px; color: var(--muted); line-height: 1.6;">The largest individual stake — because citizens bore the most entropy. They lived with the broken system. They deserve the largest stake in its repair.</div>
+      </div>
+      <div style="background: white; padding: 16px 18px;">
+        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 8px;">Local associations & businesses</div>
+        <div style="font-family: var(--mono); font-size: 22px; color: var(--gold); margin-bottom: 6px;">0.3 PNC each</div>
+        <div style="font-size: 13px; color: var(--muted); line-height: 1.6;">Active economic actors who operated under entropy. Their stake reflects their exposure to regulatory weight and their role in reducing it.</div>
+      </div>
+      <div style="background: white; padding: 16px 18px;">
+        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 8px;">Municipal council</div>
+        <div style="font-family: var(--mono); font-size: 22px; color: var(--gold); margin-bottom: 6px;">0.1 PNC each</div>
+        <div style="font-size: 13px; color: var(--muted); line-height: 1.6;">The governance layer. Their reward is the better-governed municipality and the political credit. Their PNC stake is proportionally smaller.</div>
+      </div>
+      <div style="background: white; padding: 16px 18px;">
+        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 8px;">Mayor / mandate signatory</div>
+        <div style="font-family: var(--mono); font-size: 22px; color: var(--gold); margin-bottom: 6px;">0.1 PNC</div>
+        <div style="font-size: 13px; color: var(--muted); line-height: 1.6;">The person who committed to the optimum. Their reward is the mandate itself — the legacy of a better territory. Equal to the council, not above it.</div>
+      </div>
+      <div style="background: white; padding: 16px 18px;">
+        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 8px;">Municipality reserve (20%)</div>
+        <div style="font-family: var(--mono); font-size: 22px; color: var(--gold); margin-bottom: 6px;">~280 PNC</div>
+        <div style="font-size: 13px; color: var(--muted); line-height: 1.6;">Held for future distribution as successive codification cycles reduce entropy further. The reserve grows the civic stake over time.</div>
+      </div>
+      <div style="background: rgba(184,134,11,0.05); border: 1px solid rgba(184,134,11,0.2); padding: 16px 18px;">
+        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 8px;">Phenography© protocol fee</div>
+        <div style="font-family: var(--mono); font-size: 22px; color: var(--gold); margin-bottom: 6px;">1 PNC/cycle</div>
+        <div style="font-size: 13px; color: var(--muted); line-height: 1.6;">Issued to the framework author per codification cycle. The protocol is proprietary. The measurement is public. The fee is mathematical.</div>
+      </div>
+    </div>
+    <div style="margin-top: 16px; padding: 14px 16px; background: white; border: 1px solid rgba(184,134,11,0.2);">
+      <div style="font-family: var(--mono); font-size: 10px; color: var(--gold); margin-bottom: 6px;">The principle</div>
+      <p style="font-size: 14px; color: #3a3a36; line-height: 1.75; margin: 0;">Distribution is <strong>inversely proportional to institutional power</strong> and <strong>directly proportional to exposure to entropy</strong>. The more you suffered the broken system, the larger your stake in its repair. The less power you had to change it, the more PNC you receive when it changes.</p>
+    </div>
+  </div>
+
+  <p>The child born today in this municipality receives 0.5 PNC — not as a gift, but as a mathematical record that their territory began its journey toward optimum the year they were born. Over their lifetime, as the municipality completes successive codification cycles, they accumulate more. By age 40 they might hold 2–3 PNC. They pass them to their children, who were born into a measurably better legal system — and hold the proof on-chain, permanently, theirs.</p>
+
+  <div class="pull-quote">
+    <p>"A mayor who distributes PNC to citizens is not making a promise. They are issuing a mathematical certificate: your territory is being measured, optimised, and you are a node in that process. Not a beneficiary. A founder."</p>
+  </div>
+
+  <p>This scales across the EU. A village of 1,000 issues 100 PNC to citizens. A city of 100,000 issues 10,000. A region of 1,000,000 issues 100,000 — a genuine mass civic stake in the optimisation of a legal system. <strong>Fractal cross-pollination©</strong> means that each municipality's measurement makes every comparable municipality smarter. The network of civic nodes compounds in intelligence and value as it grows.</p>
+</div>
+<div class="cta-section">
+  <h2>Be a founding node.<br/>Hold your stake in <em>optimal Europe.</em></h2>
+  <p>1 PNC = €99 founding price. Issued for free with every service package. Not tradeable. Defined as a protocol in phenography© — the legal-physics methodology for codification of sustainable legal systems. A perpetual mathematical proof that you were part of the measurement. Holdable in perpetuity, inheritable by your family, and — if financial institutions accept — usable as collateral without being sold. A stake in something that works like a forest.</p>
+  <div class="cta-buttons">
+    <a href="/pricing" class="btn btn-dark">See access packages →</a>
+    <a href="https://calendly.com/gmsolas-sustainab-law/legal-consultation-public-entity" target="_blank" class="btn btn-outline">Book consultation</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-left">
+    <strong>1love.works</strong> · © 2019–2026 Avv. Dr. Gian Marco Solas · All rights reserved<br/>
+    <em style="font-size:10px;">PNC is not a financial instrument. Not tradeable. Issued as part of service delivery only. · De Lege et Amore.</em>
+  </div>
+  <div class="footer-right">
+    <a href="/">Home</a>
+    <a href="/methodology">Methodology</a>
+    <a href="/pricing">Access & PNC</a>
+    <a href="https://eulawscanner.eu" target="_blank">EU Scanner</a>
+  </div>
+</footer>
+
+</body>
+</html>
