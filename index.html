@@ -104,13 +104,21 @@
 </div>
 
 <div class="products">
+  <!-- Problem statement -->
+  <div style="border-bottom: 1px solid var(--rule); padding: 40px 0 40px; margin-bottom: 0;">
+    <p style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px;">The problem</p>
+    <p style="font-size: 22px; font-weight: 400; line-height: 1.3; color: var(--ink); margin-bottom: 16px;">Bureaucracy. Legal weight. Entropy.<br/><em style="font-style:italic; color: var(--gold);">The invisible tax on everything.</em></p>
+    <p style="font-size: 16px; color: var(--muted); line-height: 1.85; max-width: 720px; margin-bottom: 16px;">Every regulation that produces no value. Every permit that takes two years. Every housing project blocked by overlapping jurisdictions. Every renewable energy installation waiting for grid connection. Every local producer crushed by administrative weight designed for industrial scale. This is not inefficiency. It is entropy — energy that could be life, trapped in legal weight.</p>
+    <p style="font-family: var(--mono); font-size: 13px; color: var(--gold);">Conservative estimate of unexpressed value trapped in EU-27 legal systems: <strong>€5.2 trillion</strong> <span style="opacity:0.6;">(JLMI 2/25)</span></p>
+  </div>
+
   <div class="products-grid">
 
     <div class="product-card">
       <div class="product-step"><span class="step-num">I</span> <span data-i18n="p1_label">Public instrument</span></div>
       <span class="product-tag active" data-i18n="p1_tag">Live</span>
       <h3>EU Law<br/><em>Scanner</em></h3>
-      <p data-i18n="p1_desc">Free compliance measurement of EU law obligations for any act or entity. Three free scans. Full report. No account required.</p>
+      <p data-i18n="p1_desc">Compliance measurement of EU law obligations for any act or entity. Three free scans. Full report. No account required. Aims to measure and potentially solve the legal weight, entropy and bureaucracy problem by scanning any EU legal document.</p>
       <a href="https://eulawscanner.eu" target="_blank" class="product-link">eulawscanner.eu →</a>
     </div>
 
@@ -118,7 +126,7 @@
       <div class="product-step"><span class="step-num">II</span> <span data-i18n="p2_label">Enterprise instrument</span></div>
       <span class="product-tag" data-i18n="p2_tag">In development</span>
       <h3>Corporate<br/><em>Scanner</em></h3>
-      <p data-i18n="p2_desc">Self-hosted deployment for institutions. IT engineers run the scanner on internal servers. In-house counsel advises on results. Full methodological sovereignty.</p>
+      <p data-i18n="p2_desc">Compliance measurement for any listed company. One free random scan. Aims to measure and potentially solve the legal weight, entropy and bureaucracy problem in corporations.</p>
       <a href="https://corporate-scanner.com" target="_blank" class="product-link">corporate-scanner.com →</a>
     </div>
 
@@ -126,8 +134,8 @@
       <div class="product-step"><span class="step-num">III</span> <span data-i18n="p3_label">Full-system service</span></div>
       <span class="product-tag" data-i18n="p3_tag">By mandate</span>
       <h3 data-i18n="p3_title">Codification<br/><em>of Legal Systems</em></h3>
-      <p data-i18n="p3_desc">Measuring, mapping and optimising an entire legal system — city, municipality, state. Legal-physics methodology. UN SDGs as benchmark.</p>
-      <a href="mailto:gmsolas@sustainab-law.eu" class="product-link" data-i18n="p3_link">Inquire →</a>
+      <p data-i18n="p3_desc">Measuring, mapping and optimising an entire legal system — city, municipality, state. Legal-physics methodology. UN SDGs as benchmark. Aims to measure and potentially solve the legal weight, entropy and bureaucracy problem in defined legal systems.</p>
+      <a href="/codification" class="product-link" data-i18n="p3_link">Explore →</a>
     </div>
 
   </div>
@@ -185,15 +193,15 @@ const T = {
     cta_book: 'Prenota consulenza',
     p1_label: 'Strumento pubblico',
     p1_tag: 'Attivo',
-    p1_desc: 'Misurazione gratuita della conformità alle normative UE per qualsiasi atto o entità. Tre scansioni gratuite. Report completo. Nessun account richiesto.',
+    p1_desc: 'Misura e potenzialmente risolve il peso normativo, l\'entropia e la burocrazia scansionando qualsiasi documento giuridico UE. Gratuito. Nessun account richiesto. Tre scansioni gratuite.',
     p2_label: 'Strumento enterprise',
     p2_tag: 'In sviluppo',
-    p2_desc: 'Deployment self-hosted per istituzioni. Gli ingegneri IT gestiscono lo scanner su server interni. I legali interni analizzano i risultati. Piena sovranità metodologica.',
+    p2_desc: 'Misura e potenzialmente risolve il peso normativo, l\'entropia e la burocrazia scansionando qualsiasi documento aziendale. Self-hosted. Piena sovranità metodologica.',
     p3_label: 'Servizio sistema completo',
     p3_tag: 'Su mandato',
     p3_title: 'Codificazione<br/><em>dei Sistemi Giuridici</em>',
-    p3_desc: 'Misurazione, mappatura e ottimizzazione di un intero sistema giuridico — città, comune, stato. Metodologia legal-fisica. UN SDGs come benchmark.',
-    p3_link: 'Richiedi informazioni →',
+    p3_desc: 'Misura e potenzialmente risolve il peso normativo, l\'entropia e la burocrazia nei sistemi giuridici reali — sbloccando il loro potenziale in tre settori: 🏠 Abitativo · ⚡ Energia · 🌾 Filiera locale.',
+    p3_link: 'Scopri lo strumento →',
     footer_rights: 'Tutti i diritti riservati',
     footer_note: 'Strumenti proprietari. Metodologia: contributo scientifico pubblico. · De Lege et Amore.',
   },
@@ -209,15 +217,15 @@ const T = {
     cta_book: 'Réserver une consultation',
     p1_label: 'Instrument public',
     p1_tag: 'En ligne',
-    p1_desc: 'Mesure gratuite de la conformité aux obligations du droit UE pour tout acte ou entité. Trois analyses gratuites. Rapport complet. Aucun compte requis.',
+    p1_desc: 'Mesure et résout potentiellement le poids réglementaire, l\'entropie et la bureaucratie en analysant tout document juridique UE. Gratuit. Sans compte. Trois analyses gratuites.',
     p2_label: 'Instrument entreprise',
     p2_tag: 'En développement',
-    p2_desc: 'Déploiement auto-hébergé pour les institutions. Les ingénieurs IT gèrent le scanner sur des serveurs internes. Les juristes internes analysent les résultats. Pleine souveraineté méthodologique.',
+    p2_desc: 'Mesure et résout potentiellement le poids réglementaire, l\'entropie et la bureaucratie en analysant tout dossier d\'entreprise. Auto-hébergé. Pleine souveraineté méthodologique.',
     p3_label: 'Service système complet',
     p3_tag: 'Sur mandat',
     p3_title: 'Codification<br/><em>des Systèmes Juridiques</em>',
-    p3_desc: 'Mesurer, cartographier et optimiser un système juridique entier — ville, commune, état. Méthodologie legal-physique. ODD de l\'ONU comme référence.',
-    p3_link: 'Demander →',
+    p3_desc: 'Mesure et résout potentiellement le poids réglementaire, l\'entropie et la bureaucratie dans les systèmes juridiques réels — libérant leur potentiel dans trois secteurs: 🏠 Logement · ⚡ Énergie · 🌾 Filière locale.',
+    p3_link: 'Découvrir l\'instrument →',
     footer_rights: 'Tous droits réservés',
     footer_note: 'Instruments propriétaires. Méthodologie : contribution scientifique publique. · De Lege et Amore.',
   },
@@ -233,15 +241,15 @@ const T = {
     cta_book: 'Reservar consulta',
     p1_label: 'Instrumento público',
     p1_tag: 'En vivo',
-    p1_desc: 'Medición gratuita del cumplimiento de las obligaciones del derecho UE para cualquier acto o entidad. Tres análisis gratuitos. Informe completo. Sin cuenta requerida.',
+    p1_desc: 'Mide y potencialmente resuelve el peso normativo, la entropía y la burocracia analizando cualquier documento jurídico UE. Gratuito. Sin cuenta. Tres análisis gratuitos.',
     p2_label: 'Instrumento empresarial',
     p2_tag: 'En desarrollo',
-    p2_desc: 'Despliegue auto-alojado para instituciones. Los ingenieros de TI gestionan el escáner en servidores internos. Los asesores jurídicos internos analizan los resultados. Plena soberanía metodológica.',
+    p2_desc: 'Mide y potencialmente resuelve el peso normativo, la entropía y la burocracia analizando cualquier expediente corporativo. Auto-alojado. Plena soberanía metodológica.',
     p3_label: 'Servicio sistema completo',
     p3_tag: 'Por mandato',
     p3_title: 'Codificación<br/><em>de Sistemas Jurídicos</em>',
-    p3_desc: 'Medir, mapear y optimizar un sistema jurídico completo — ciudad, municipio, estado. Metodología legal-física. ODS de la ONU como referencia.',
-    p3_link: 'Consultar →',
+    p3_desc: 'Mide y potencialmente resuelve el peso normativo, la entropía y la burocracia en sistemas jurídicos reales — liberando su potencial en tres sectores: 🏠 Vivienda · ⚡ Energía · 🌾 Cadena de valor local.',
+    p3_link: 'Descubrir el instrumento →',
     footer_rights: 'Todos los derechos reservados',
     footer_note: 'Instrumentos propietarios. Metodología: contribución científica pública. · De Lege et Amore.',
   }
