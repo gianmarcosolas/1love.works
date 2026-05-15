@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/eulawmeter/:path*",
+      "destination": "https://eulawscanner.vercel.app/:path*"
+    }
+  ]
+}
