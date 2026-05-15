@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PNC Dashboard — 1love.works</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #0f0f0d; --parchment: #f5f2ea; --cream: #ede9df;
+      --gold: #b8860b; --gold-light: #d4a843; --gold-dim: rgba(184,134,11,0.15);
+      --green: #2d6a2d; --muted: #6b6860; --rule: rgba(15,15,13,0.12);
+      --serif: 'EB Garamond', Georgia, serif; --mono: 'DM Mono', monospace;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--serif); background: var(--ink); color: var(--parchment); line-height: 1.75; font-size: 17px; min-height: 100vh; }
+
+    nav { border-bottom: 1px solid rgba(245,242,234,0.1); background: rgba(15,15,13,0.95); backdrop-filter: blur(8px); display: flex; justify-content: space-between; align-items: center; padding: 14px 48px; position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--parchment); text-decoration: none; font-weight: 500; }
+    .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+    .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,242,234,0.5); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--parchment); }
+    .live-dot { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10px; color: #4ade80; letter-spacing: 0.1em; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 48px 48px 80px; }
+
+    /* Header */
+    .dash-header { margin-bottom: 40px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px; }
+    .dash-title-block {}
+    .dash-overline { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,242,234,0.4); margin-bottom: 10px; }
+    .dash-title { font-size: 32px; font-weight: 400; line-height: 1.2; }
+    .dash-title em { font-style: italic; color: var(--gold); }
+    .dash-equation { font-family: var(--mono); font-size: 13px; color: var(--gold-light); margin-top: 8px; opacity: 0.8; }
+    .phase-badge { font-family: var(--mono); font-size: 10px; padding: 6px 14px; border: 1px solid rgba(245,242,234,0.15); color: rgba(245,242,234,0.5); letter-spacing: 0.1em; text-transform: uppercase; }
+
+    /* Metrics strip */
+    .metrics-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: rgba(245,242,234,0.08); margin-bottom: 1px; }
+    .metric { background: rgba(245,242,234,0.03); padding: 20px 20px; border: 1px solid rgba(245,242,234,0.06); }
+    .metric.highlight { background: rgba(184,134,11,0.08); border-color: rgba(184,134,11,0.2); }
+    .metric-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(245,242,234,0.35); margin-bottom: 10px; }
+    .metric-value { font-family: var(--mono); font-size: 26px; font-weight: 500; color: var(--parchment); line-height: 1; margin-bottom: 4px; transition: all 0.5s; }
+    .metric-value.gold { color: var(--gold); }
+    .metric-value.green { color: #4ade80; }
+    .metric-desc { font-size: 12px; color: rgba(245,242,234,0.35); line-height: 1.5; }
+
+    /* Chart area */
+    .chart-wrap { background: rgba(245,242,234,0.02); border: 1px solid rgba(245,242,234,0.08); padding: 32px; margin-bottom: 1px; position: relative; }
+    .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+    .chart-title { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(245,242,234,0.4); }
+    .chart-legend { display: flex; gap: 20px; }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10px; color: rgba(245,242,234,0.4); }
+    .legend-line { width: 20px; height: 2px; }
+    canvas { display: block; width: 100%; }
+
+    /* Annotations */
+    .annotations { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(245,242,234,0.08); margin-bottom: 40px; }
+    .annotation { background: rgba(245,242,234,0.03); padding: 20px; border: 1px solid rgba(245,242,234,0.06); }
+    .ann-phase { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 8px; }
+    .ann-title { font-size: 16px; font-weight: 400; margin-bottom: 6px; }
+    .ann-desc { font-size: 13px; color: rgba(245,242,234,0.5); line-height: 1.65; }
+
+    /* Principle */
+    .principle { padding: 32px 36px; border: 1px solid rgba(184,134,11,0.2); background: rgba(184,134,11,0.04); margin-bottom: 40px; }
+    .principle-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 16px; }
+    .principle p { font-size: 18px; color: rgba(245,242,234,0.85); line-height: 1.85; margin-bottom: 12px; }
+    .principle p:last-child { margin-bottom: 0; }
+    .principle strong { color: var(--parchment); }
+    .principle em { font-style: italic; color: var(--gold); }
+
+    /* No trade */
+    .no-trade-bar { display: flex; align-items: center; gap: 20px; padding: 16px 24px; border: 1px solid rgba(245,242,234,0.08); margin-bottom: 40px; }
+    .no-trade-bar p { font-family: var(--mono); font-size: 12px; color: rgba(245,242,234,0.4); letter-spacing: 0.04em; line-height: 1.6; }
+    .no-trade-bar strong { color: rgba(245,242,234,0.7); }
+
+    /* CTA */
+    .cta-row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 26px; text-decoration: none; display: inline-block; transition: opacity 0.2s; }
+    .btn-gold { background: var(--gold); color: white; }
+    .btn-gold:hover { opacity: 0.88; }
+    .btn-outline { background: transparent; color: var(--parchment); border: 1px solid rgba(245,242,234,0.25); }
+    .btn-outline:hover { background: rgba(245,242,234,0.05); }
+
+    footer { border-top: 1px solid rgba(245,242,234,0.08); padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-left { font-family: var(--mono); font-size: 11px; color: rgba(245,242,234,0.3); line-height: 1.7; }
+    .footer-right { font-family: var(--mono); font-size: 10px; display: flex; gap: 24px; }
+    .footer-right a { color: rgba(245,242,234,0.3); text-decoration: none; }
+    .footer-right a:hover { color: rgba(245,242,234,0.7); }
+
+    @media (max-width: 780px) {
+      nav { padding: 12px 20px; }
+      .wrap { padding: 32px 20px 60px; }
+      .metrics-strip { grid-template-columns: 1fr 1fr; }
+      .annotations { grid-template-columns: 1fr; }
+      footer { flex-direction: column; padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">1love.works</a>
+  <ul class="nav-links">
+    <li><a href="/methodology">Methodology</a></li>
+    <li><a href="/pnc">Why PNC</a></li>
+    <li><a href="/pricing">Access</a></li>
+    <li><span class="live-dot"><span class="dot"></span>LIVE</span></li>
+  </ul>
+</nav>
+
+<div class="wrap">
+
+  <div class="dash-header">
+    <div class="dash-title-block">
+      <p class="dash-overline">⬡ PNC Network · Entropy Dashboard</p>
+      <h1 class="dash-title">The more entropy measured,<br/>the higher the <em>value of every PNC.</em></h1>
+      <p class="dash-equation">Implied PNC value = Σ(unlocked value) / Σ(PNC in circulation) · S = k · log W(λ)</p>
+    </div>
+    <div class="phase-badge">Phase 1 · Founding</div>
+  </div>
+
+  <!-- Metrics -->
+  <div class="metrics-strip">
+    <div class="metric">
+      <div class="metric-label">Documents scanned</div>
+      <div class="metric-value green" id="m-scans">—</div>
+      <div class="metric-desc">Legal acts, contracts, regulations measured</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Legal systems mapped</div>
+      <div class="metric-value" id="m-systems">—</div>
+      <div class="metric-desc">Entities with at least one scan</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Total entropy identified (ΣS)</div>
+      <div class="metric-value gold" id="m-entropy">—</div>
+      <div class="metric-desc">Cumulative legal entropy across all scans</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">PNC in circulation</div>
+      <div class="metric-value" id="m-pnc">—</div>
+      <div class="metric-desc">Founding certificates issued to date</div>
+    </div>
+    <div class="metric highlight">
+      <div class="metric-label">⬡ Implied PNC value</div>
+      <div class="metric-value gold" id="m-value">€99</div>
+      <div class="metric-desc">Founding price · updates as network grows · not a market price</div>
+    </div>
+  </div>
+
+  <!-- Chart -->
+  <div class="chart-wrap">
+    <div class="chart-header">
+      <span class="chart-title">Entropy identified (ΣS) vs Implied PNC value — Cartesian projection</span>
+      <div class="chart-legend">
+        <div class="legend-item"><div class="legend-line" style="background: var(--gold);"></div>Implied PNC value</div>
+        <div class="legend-item"><div class="legend-line" style="background: rgba(74,222,128,0.7);"></div>Entropy identified (ΣS)</div>
+        <div class="legend-item"><div class="legend-line" style="background: rgba(245,242,234,0.15); border-top: 1px dashed rgba(245,242,234,0.2);"></div>Projected (Fibonacci)</div>
+      </div>
+    </div>
+    <canvas id="entropyChart" height="380"></canvas>
+  </div>
+
+  <!-- Phase annotations -->
+  <div class="annotations">
+    <div class="annotation">
+      <div class="ann-phase">Phase 1 · Now · Founding</div>
+      <div class="ann-title">The flat section</div>
+      <div class="ann-desc">Network in founding phase. Few scans. PNC implied value close to €99. Every founding holder is acquiring at the floor — before fractal cross-pollination© accelerates the curve.</div>
+    </div>
+    <div class="annotation">
+      <div class="ann-phase">Phase 2 · 2026–28 · Acceleration</div>
+      <div class="ann-title">The bend</div>
+      <div class="ann-desc">Fractal cross-pollination© activates. Each new scan generates disproportionate intelligence for all existing nodes. Entropy delta measurement goes live. Blockchain recording active. The curve bends upward.</div>
+    </div>
+    <div class="annotation">
+      <div class="ann-phase">Phase 3 · Beyond · Equilibrium</div>
+      <div class="ann-title">The asymptote</div>
+      <div class="ann-desc">As total measurable entropy in EU legal systems approaches zero, the curve flattens. The machine approaches perpetual motion. PNC value reaches its natural ceiling — bounded by physics, not speculation.</div>
+    </div>
+  </div>
+
+  <!-- Principle -->
+  <div class="principle">
+    <div class="principle-label">The mathematical principle — no speculation needed</div>
+    <p>Every document scanned adds to the total entropy identified by the network. Every entropy reduction adds to the total value unlocked across all legal systems. The implied PNC value is the ratio of these two — <strong>a measurement, not a market price.</strong></p>
+    <p>Founding holders benefit from every scan performed by anyone in the network. Their PNC was issued when the network was small. Every new scan — every new legal system mapped, every new entropy reduction verified — makes their stake worth more. <em>Not because of trading. Because of mathematics.</em></p>
+    <p>The curve follows a Fibonacci spiral — organic, bounded, tending toward optimum. Not exponential speculation. Not arbitrary inflation. <strong>The same pattern that governs the growth of a shell, a flower, a galaxy.</strong> Legal systems, measured correctly, grow the same way.</p>
+  </div>
+
+  <!-- No trade bar -->
+  <div class="no-trade-bar">
+    <div style="font-size: 20px; flex-shrink: 0;">⬡</div>
+    <p><strong>No trading. No exchange. No speculation.</strong> PNC cannot be traded. Its value is not set by a market — it is calculated by the instrument that measures entropy. You hold it. You pass it to your children. The curve rises as Europe moves toward optimum. That is the only mechanism. That is the point.</p>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-row">
+    <a href="/pricing" class="btn btn-gold">Get access + PNC →</a>
+    <a href="/pnc" class="btn btn-outline">Read why PNC</a>
+    <a href="https://calendly.com/gmsolas-sustainab-law/legal-consultation-public-entity" target="_blank" class="btn btn-outline">Book consultation</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-left">
+    <strong>1love.works</strong> · © 2019–2026 Avv. Dr. Gian Marco Solas · All rights reserved<br/>
+    <em style="font-size:10px;">PNC is not a financial instrument. Implied value is a mathematical calculation, not a market price. Not tradeable. · De Lege et Amore.</em>
+  </div>
+  <div class="footer-right">
+    <a href="/">Home</a>
+    <a href="/pnc">Why PNC</a>
+    <a href="/pricing">Access</a>
+    <a href="https://eulawscanner.eu" target="_blank">EU Scanner</a>
+  </div>
+</footer>
+
+<script>
+// ── Simulated data (Phase 1 — founding) ──────────────────────────────────────
+// In production these come from the API / blockchain
+const FOUNDING_PRICE = 99;
+const TOTAL_EU_ENTROPY = 100000; // arbitrary units — total measurable entropy in EU legal systems
+
+// Fibonacci growth projection
+function fibonacci(n) {
+  let a = 0, b = 1;
+  for (let i = 0; i < n; i++) { [a, b] = [b, a + b]; }
+  return b;
+}
+
+// Generate projected curve — Fibonacci-paced growth
+function generateProjection(points) {
+  const data = [];
+  for (let i = 0; i < points; i++) {
+    const t = i / points;
+    // Sigmoid * Fibonacci envelope — starts flat, accelerates, then asymptotes
+    const sigmoid = 1 / (1 + Math.exp(-8 * (t - 0.35)));
+    const fibFactor = Math.log(fibonacci(Math.floor(t * 15) + 2) + 1) / Math.log(fibonacci(17));
+    const entropyPct = sigmoid * fibFactor * 0.85;
+    const unlockedValue = entropyPct * TOTAL_EU_ENTROPY * 1000; // €
+    const pncInCirculation = Math.max(1, Math.floor(t * 50000));
+    const impliedValue = Math.max(FOUNDING_PRICE, unlockedValue / pncInCirculation);
+    data.push({
+      t,
+      entropy: entropyPct * TOTAL_EU_ENTROPY,
+      impliedValue: Math.min(impliedValue, 150000),
+      projected: i > 8
+    });
+  }
+  return data;
+}
+
+const projectionData = generateProjection(60);
+const foundingData = projectionData.slice(0, 9); // first 9 points = current founding phase
+
+// ── Canvas chart ─────────────────────────────────────────────────────────────
+const canvas = document.getElementById('entropyChart');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.parentElement.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = 380 * dpr;
+  canvas.style.width = rect.width + 'px';
+  canvas.style.height = '380px';
+  ctx.scale(dpr, dpr);
+  draw();
+}
+
+function draw() {
+  const W = canvas.offsetWidth;
+  const H = 380;
+  const PAD = { top: 20, right: 60, bottom: 50, left: 70 };
+  const cW = W - PAD.left - PAD.right;
+  const cH = H - PAD.top - PAD.bottom;
+
+  ctx.clearRect(0, 0, W, H);
+
+  // Background
+  ctx.fillStyle = 'rgba(245,242,234,0.01)';
+  ctx.fillRect(0, 0, W, H);
+
+  // Grid lines
+  ctx.strokeStyle = 'rgba(245,242,234,0.06)';
+  ctx.lineWidth = 1;
+  for (let i = 0; i <= 5; i++) {
+    const y = PAD.top + (cH / 5) * i;
+    ctx.beginPath(); ctx.moveTo(PAD.left, y); ctx.lineTo(PAD.left + cW, y); ctx.stroke();
+  }
+  for (let i = 0; i <= 6; i++) {
+    const x = PAD.left + (cW / 6) * i;
+    ctx.beginPath(); ctx.moveTo(x, PAD.top); ctx.lineTo(x, PAD.top + cH); ctx.stroke();
+  }
+
+  // Axes
+  ctx.strokeStyle = 'rgba(245,242,234,0.25)';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(PAD.left, PAD.top);
+  ctx.lineTo(PAD.left, PAD.top + cH);
+  ctx.lineTo(PAD.left + cW, PAD.top + cH);
+  ctx.stroke();
+
+  // Axis labels
+  ctx.fillStyle = 'rgba(245,242,234,0.3)';
+  ctx.font = '10px DM Mono, monospace';
+  ctx.textAlign = 'center';
+
+  // X axis labels
+  const xLabels = ['Now', 'Phase 2', 'Phase 3', 'Equilibrium →'];
+  [0, 0.33, 0.66, 1].forEach((t, i) => {
+    const x = PAD.left + t * cW;
+    ctx.fillText(xLabels[i], x, PAD.top + cH + 20);
+  });
+
+  // Y axis label (rotated)
+  ctx.save();
+  ctx.translate(14, PAD.top + cH / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.textAlign = 'center';
+  ctx.fillStyle = 'rgba(184,134,11,0.6)';
+  ctx.fillText('Implied PNC value (€)', 0, 0);
+  ctx.restore();
+
+  // Y values
+  ctx.textAlign = 'right';
+  ctx.fillStyle = 'rgba(245,242,234,0.25)';
+  const maxVal = 150000;
+  [0, 0.25, 0.5, 0.75, 1].forEach((t, i) => {
+    const y = PAD.top + cH - t * cH;
+    const val = t * maxVal;
+    const label = val >= 1000 ? '€' + (val/1000).toFixed(0) + 'k' : '€' + val.toFixed(0);
+    ctx.fillText(label, PAD.left - 8, y + 4);
+  });
+
+  // Entropy area (green, subtle)
+  const maxEntropy = TOTAL_EU_ENTROPY;
+  ctx.beginPath();
+  projectionData.forEach((d, i) => {
+    const x = PAD.left + d.t * cW;
+    const y = PAD.top + cH - (d.entropy / maxEntropy) * cH * 0.6;
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  });
+  ctx.lineTo(PAD.left + cW, PAD.top + cH);
+  ctx.lineTo(PAD.left, PAD.top + cH);
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(74,222,128,0.05)';
+  ctx.fill();
+
+  // Entropy line
+  ctx.beginPath();
+  ctx.strokeStyle = 'rgba(74,222,128,0.5)';
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([]);
+  projectionData.forEach((d, i) => {
+    const x = PAD.left + d.t * cW;
+    const y = PAD.top + cH - (d.entropy / maxEntropy) * cH * 0.6;
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+
+  // Projected PNC value — dashed
+  ctx.beginPath();
+  ctx.strokeStyle = 'rgba(184,134,11,0.25)';
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([4, 4]);
+  projectionData.forEach((d, i) => {
+    if (i < 8) return;
+    const x = PAD.left + d.t * cW;
+    const y = PAD.top + cH - (d.impliedValue / maxVal) * cH;
+    if (i === 8) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Actual PNC value — real data or founding flat line
+  const realData = window.realTimeSeries;
+  if (realData && realData.length > 1) {
+    // Draw real implied PNC value line
+    ctx.beginPath();
+    ctx.strokeStyle = '#b8860b';
+    ctx.lineWidth = 2.5;
+    ctx.setLineDash([]);
+    realData.forEach((d, i) => {
+      const x = PAD.left + (i / (realData.length - 1)) * cW * 0.15; // real data in first 15%
+      const y = PAD.top + cH - (d.implied_pnc_value / maxVal) * cH;
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+  } else {
+    // Founding phase — flat at €99
+    ctx.beginPath();
+    ctx.strokeStyle = '#b8860b';
+    ctx.lineWidth = 2.5;
+    foundingData.forEach((d, i) => {
+      const x = PAD.left + d.t * cW;
+      const y = PAD.top + cH - (FOUNDING_PRICE / maxVal) * cH;
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+  }
+
+  // Founding price label
+  const foundingY = PAD.top + cH - (FOUNDING_PRICE / maxVal) * cH;
+  ctx.fillStyle = 'rgba(184,134,11,0.9)';
+  ctx.font = '10px DM Mono, monospace';
+  ctx.textAlign = 'left';
+  ctx.fillText('€99 founding price', PAD.left + 8, foundingY - 8);
+
+  // Phase 1 region highlight
+  const phase1X = PAD.left + foundingData[foundingData.length-1].t * cW;
+  ctx.fillStyle = 'rgba(184,134,11,0.04)';
+  ctx.fillRect(PAD.left, PAD.top, phase1X - PAD.left, cH);
+  ctx.strokeStyle = 'rgba(184,134,11,0.15)';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([3,3]);
+  ctx.beginPath();
+  ctx.moveTo(phase1X, PAD.top);
+  ctx.lineTo(phase1X, PAD.top + cH);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Phase label
+  ctx.fillStyle = 'rgba(184,134,11,0.5)';
+  ctx.font = '9px DM Mono, monospace';
+  ctx.textAlign = 'center';
+  ctx.fillText('YOU ARE HERE', PAD.left + (phase1X - PAD.left) / 2, PAD.top + 14);
+
+  // Asymptote line
+  ctx.strokeStyle = 'rgba(245,242,234,0.08)';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([2,6]);
+  const asymY = PAD.top + cH - (140000 / maxVal) * cH;
+  ctx.beginPath();
+  ctx.moveTo(PAD.left, asymY);
+  ctx.lineTo(PAD.left + cW, asymY);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = 'rgba(245,242,234,0.2)';
+  ctx.font = '9px DM Mono, monospace';
+  ctx.textAlign = 'right';
+  ctx.fillText('asymptote — perpetual motion', PAD.left + cW - 4, asymY - 6);
+
+  // Current point dot
+  const curX = PAD.left + foundingData[foundingData.length-1].t * cW;
+  const curY = PAD.top + cH - (FOUNDING_PRICE / maxVal) * cH;
+  ctx.beginPath();
+  ctx.arc(curX, curY, 5, 0, Math.PI * 2);
+  ctx.fillStyle = '#b8860b';
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(curX, curY, 9, 0, Math.PI * 2);
+  ctx.strokeStyle = 'rgba(184,134,11,0.3)';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+}
+
+// ── Live data from eulawscanner.eu/api/stats ─────────────────────────────────
+const STATS_URL = 'https://eulawscanner.eu/api/stats';
+
+async function fetchStats() {
+  try {
+    const res = await fetch(STATS_URL);
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+
+function animateCounters() {
+  fetchStats().then(stats => {
+    if (!stats) {
+      // Fallback — show founding phase placeholders
+      document.getElementById('m-scans').textContent = '—';
+      document.getElementById('m-systems').textContent = '—';
+      document.getElementById('m-entropy').textContent = '—';
+      document.getElementById('m-pnc').textContent = '—';
+      document.getElementById('m-value').textContent = '€99';
+      return;
+    }
+
+    // Animate numbers counting up
+    animateNumber('m-scans', stats.total_scans, '', 1200);
+    animateNumber('m-systems', stats.total_scans, '', 1200); // unique entities approximated
+    animateNumber('m-entropy', stats.total_entropy, '', 1400);
+    animateNumber('m-pnc', stats.pnc_in_circulation, '', 1000);
+    animateNumber('m-value', stats.implied_pnc_value, '€', 1600);
+
+    // Update chart with real data if we have time series
+    if (stats.time_series && stats.time_series.length > 1) {
+      updateChartWithRealData(stats);
+    }
+  });
+
+  // Refresh every 60 seconds
+  setTimeout(animateCounters, 60000);
+}
+
+function animateNumber(id, target, prefix, duration) {
+  const el = document.getElementById(id);
+  if (!el || target === 0) { el.textContent = prefix + (target || '0'); return; }
+  const start = Date.now();
+  const tick = () => {
+    const progress = Math.min((Date.now() - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    const current = Math.round(ease * target);
+    el.textContent = prefix + current.toLocaleString();
+    if (progress < 1) requestAnimationFrame(tick);
+  };
+  tick();
+}
+
+function updateChartWithRealData(stats) {
+  // Store real data globally so draw() can use it
+  window.realTimeSeries = stats.time_series;
+  window.realImpliedPNC = stats.implied_pnc_value;
+  draw();
+}
+
+window.addEventListener('resize', resize);
+resize();
+animateCounters();
+
+// Subtle animation — redraw with slight shimmer on the current point
+let frame = 0;
+function animate() {
+  frame++;
+  if (frame % 60 === 0) draw(); // redraw every ~2s for live feel
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+
+</body>
+</html>
