@@ -97,7 +97,7 @@
 <div class="hero">
   <p class="hero-overline" data-i18n="overline">LAW IS LOVE — Experimental proposal</p>
   <p class="hero-equation">E = MC² &nbsp;→&nbsp; Λ = C² &nbsp;→&nbsp; Λ = E / M &nbsp;<span style="font-size:13px; opacity:0.5;">(JLMI 2/25)</span></p>
-  <h1 data-i18n="h1">Measuring human law like a <em>law of nature.</em><br/>Optimising legal systems like engines.<br/>Growing them like <em>flowers.</em></h1>
+  <h1>Measuring human law like a <em>law of nature.</em><br/>Optimising legal systems like engines.<br/>Growing them like <em>flowers.</em></h1>
   <p class="hero-sub" data-i18n="sub">A technological framework to measure entropy in, codify and optimise legal systems. Engineering legal processes for "perpetual motion" and competitiveness of European legal systems (and more).</p>
 
 </div>
@@ -200,22 +200,18 @@
 const T = {
   en: {
     overline: 'LAW IS LOVE — Experimental proposal',
-    h1: 'Measuring human law like a <em>law of nature.</em><br/>Optimising legal systems like engines.<br/>Growing them like <em>flowers.</em>',
     sub: 'A technological framework to measure entropy in, codify and optimise legal systems. Engineering legal processes for "perpetual motion" and competitiveness of European legal systems (and more).',
   },
   it: {
     overline: 'LEGGE È AMORE — Proposta sperimentale',
-    h1: 'Measuring human law like a <em>law of nature.</em><br/>Optimising legal systems like engines.<br/>Growing them like <em>flowers.</em>',
     sub: 'Un framework tecnologico per misurare l\'entropia, codificare e ottimizzare i sistemi giuridici. Ingegnerizzare i processi giuridici per il "moto perpetuo" e la competitività dei sistemi giuridici europei (e non solo).',
   },
   fr: {
     overline: 'LA LOI EST AMOUR — Proposition expérimentale',
-    h1: 'Mesurer le droit humain comme une <em>loi de la nature.</em><br/>Optimiser les systèmes juridiques comme des moteurs.<br/>Les faire croître comme des <em>fleurs.</em>',
     sub: 'Un cadre technologique pour mesurer l\'entropie, codifier et optimiser les systèmes juridiques. Ingénierie des processus juridiques pour le "mouvement perpétuel" et la compétitivité des systèmes juridiques européens (et plus).',
   },
   es: {
     overline: 'LA LEY ES AMOR — Propuesta experimental',
-    h1: 'Medir el derecho humano como una <em>ley de la naturaleza.</em><br/>Optimizar los sistemas jurídicos como motores.<br/>Hacerlos crecer como <em>flores.</em>',
     sub: 'Un marco tecnológico para medir la entropía, codificar y optimizar los sistemas jurídicos. Ingeniería de procesos jurídicos para el "movimiento perpetuo" y la competitividad de los sistemas jurídicos europeos (y más).',
   }
 };
@@ -237,6 +233,7 @@ setLang(currentLang);
 </script>
 
 <script>
+const FOUNDING_PRICE = 99;
 const TOTAL_EU_ENTROPY = 100000;
 
 function fibonacci(n) {
