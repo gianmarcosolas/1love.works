@@ -22,7 +22,6 @@
     .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
     .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--ink); }
-    @media (max-width: 720px) { .hide-mobile { display: none; } nav { padding: 12px 20px; } }
 
     .wrap { max-width: 860px; margin: 0 auto; padding: 64px 48px 80px; }
 
@@ -110,6 +109,8 @@
     .footer-right a:hover { color: var(--ink); }
 
     @media (max-width: 720px) {
+      .hide-mobile { display: none; }
+      nav { padding: 12px 20px; }
       .wrap { padding: 40px 20px 60px; }
       .evidence { grid-template-columns: 1fr; }
       .offer-grid { grid-template-columns: 1fr; }
@@ -129,6 +130,7 @@
     <li class="hide-mobile"><a href="/codification">Codification</a></li>
     <li class="hide-mobile"><a href="/methodology">Methodology</a></li>
     <li class="hide-mobile"><a href="/pnc">Why PNC</a></li>
+    <li class="hide-mobile"><a href="/participate">Participate</a></li>
     <li class="hide-mobile"><a href="/criticisms">Criticisms</a></li>
     <li class="hide-mobile"><a href="https://calendly.com/gmsolas-sustainab-law/legal-consultation-public-entity" target="_blank">Consultation</a></li>
   </ul>
