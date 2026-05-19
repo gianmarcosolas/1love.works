@@ -152,6 +152,7 @@
 
     @media (max-width: 720px) {
       nav { padding: 12px 20px; }
+      .hide-mobile { display: none; }
       .nav-links { gap: 16px; }
       .wrap { padding: 40px 24px 60px; }
       .grid-2 { grid-template-columns: 1fr; }
@@ -165,11 +166,14 @@
 <nav>
   <a class="nav-logo" href="/">1love.works</a>
   <ul class="nav-links">
-    <li><a href="/methodology">Methodology</a></li>
-    <li><a href="/criticisms">Criticisms</a></li>
-    <li><a href="/codification">Codification</a></li>
-    <li><a href="https://eulawscanner.eu" target="_blank">Scanner</a></li>
-    <li><a href="mailto:gmsolas@sustainab-law.eu">Contact</a></li>
+    <li class="hide-mobile"><a href="https://eulawscanner.eu" target="_blank">EU Law Meter ↗</a></li>
+    <li class="hide-mobile"><a href="https://corporate-scanner.com" target="_blank">Corporate Meter ↗</a></li>
+    <li class="hide-mobile"><a href="/codification">Codification</a></li>
+    <li class="hide-mobile"><a href="/methodology">Methodology</a></li>
+    <li class="hide-mobile"><a href="/pnc">Why PNC</a></li>
+    <li class="hide-mobile"><a href="/pricing">Access</a></li>
+    <li class="hide-mobile"><a href="/criticisms">Criticisms</a></li>
+    <li class="hide-mobile"><a href="mailto:gmsolas@sustainab-law.eu">Contact</a></li>
   </ul>
 </nav>
 
@@ -606,7 +610,6 @@
 function toggle(btn) {
   const body = btn.nextElementSibling;
   const isOpen = body.classList.contains('open');
-  // close all
   document.querySelectorAll('.accordion-body.open').forEach(b => b.classList.remove('open'));
   document.querySelectorAll('.accordion-trigger.open').forEach(b => b.classList.remove('open'));
   if (!isOpen) {
