@@ -106,19 +106,19 @@
 
     <div style="display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--rule); margin-bottom: 1px;">
       <div style="background: var(--parchment); padding: 16px 20px;">
-        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 6px;">Documents scanned</div>
+        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 6px;" data-i18n="metric_scans">Documents scanned</div>
         <div style="font-family: var(--mono); font-size: 26px; font-weight: 500; color: var(--ink);" id="lp-scans">—</div>
       </div>
       <div style="background: var(--parchment); padding: 16px 20px;">
-        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 6px;">Total entropy (ΣS)</div>
+        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 6px;" data-i18n="metric_entropy">Total entropy (ΣS)</div>
         <div style="font-family: var(--mono); font-size: 26px; font-weight: 500; color: #8b0000;" id="lp-entropy">—</div>
       </div>
       <div style="background: var(--parchment); padding: 16px 20px;">
-        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 6px;">⬡ PNC in circulation</div>
+        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 6px;" data-i18n="metric_pnc">⬡ PNC in circulation</div>
         <div style="font-family: var(--mono); font-size: 26px; font-weight: 500; color: var(--ink);" id="lp-pnc">—</div>
       </div>
       <div style="background: var(--cream); padding: 16px 20px; border: 1px solid rgba(184,134,11,0.2);">
-        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 6px;">⬡ Implied PNC value</div>
+        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 6px;" data-i18n="metric_value">⬡ Implied PNC value</div>
         <div style="font-family: var(--mono); font-size: 26px; font-weight: 500; color: var(--gold);" id="lp-value">€99</div>
       </div>
     </div>
@@ -126,12 +126,12 @@
     <!-- Cartesian graph -->
     <div style="background: rgba(15,15,13,0.97); padding: 24px 24px 16px; margin-bottom: 0;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-        <div style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(245,242,234,0.4);">Entropy / Legal Weight Identified (ΣS) vs Implied PNC Value</div>
-        <div style="font-family: var(--mono); font-size: 9px; color: rgba(184,134,11,0.6); letter-spacing: 0.12em; margin-top: 3px;">EU Legal Systems' Value</div>
+        <div style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(245,242,234,0.4);" data-i18n="chart_label">Entropy / Legal Weight Identified (ΣS) vs Implied PNC Value</div>
+        <div style="font-family: var(--mono); font-size: 9px; color: rgba(184,134,11,0.6); letter-spacing: 0.12em; margin-top: 3px;" data-i18n="chart_sub">EU Legal Systems' Value</div>
         <div style="display: flex; gap: 16px;">
-          <div style="display: flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 9px; color: rgba(245,242,234,0.35);"><div style="width:16px;height:2px;background:#b8860b;"></div>Implied PNC value</div>
-          <div style="display: flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 9px; color: rgba(245,242,234,0.35);"><div style="width:16px;height:2px;background:rgba(74,222,128,0.6);"></div>Entropy (ΣS)</div>
-          <div style="display: flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 9px; color: rgba(245,242,234,0.35);"><div style="width:16px;height:1px;border-top:1px dashed rgba(184,134,11,0.3);"></div>Projected</div>
+          <div style="display: flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 9px; color: rgba(245,242,234,0.35);"><div style="width:16px;height:2px;background:#b8860b;"></div><span data-i18n="legend_pnc">Implied PNC value</span></div>
+          <div style="display: flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 9px; color: rgba(245,242,234,0.35);"><div style="width:16px;height:2px;background:rgba(74,222,128,0.6);"></div><span data-i18n="legend_entropy">Entropy (ΣS)</span></div>
+          <div style="display: flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 9px; color: rgba(245,242,234,0.35);"><div style="width:16px;height:1px;border-top:1px dashed rgba(184,134,11,0.3);"></div><span data-i18n="legend_projected">Projected</span></div>
         </div>
       </div>
       <canvas id="lp-chart" style="display:block;width:100%;height:280px;"></canvas>
@@ -144,38 +144,37 @@
   </div>
 
 <div class="products">
-  <!-- Problem statement -->
   <div style="border-bottom: 1px solid var(--rule); padding: 40px 0 40px; margin-bottom: 0;">
-    <p style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px;">The problem</p>
-    <p style="font-size: 22px; font-weight: 400; line-height: 1.3; color: var(--ink); margin-bottom: 16px;">Bureaucracy. Legal weight. Entropy. The invisible tax on everything.</p>
-    <p style="font-size: 16px; color: var(--muted); line-height: 1.85; max-width: 720px; margin-bottom: 16px;">Every regulation that produces no value. Every permit that takes two years. Every housing project blocked by overlapping jurisdictions. Every renewable energy installation waiting for grid connection. Every local producer crushed by administrative weight designed for industrial scale. This is not inefficiency. It is entropy — energy that could be life, trapped in legal weight.</p>
-    <p style="font-family: var(--mono); font-size: 13px; color: var(--gold);">Conservative estimate of unexpressed value trapped in EU-27 legal systems: <strong>€5.2 trillion</strong> <span style="opacity:0.6;">(JLMI 2/25)</span></p>
+    <p style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px;" data-i18n="problem_title">The problem</p>
+    <p style="font-size: 22px; font-weight: 400; line-height: 1.3; color: var(--ink); margin-bottom: 16px;" data-i18n="problem_h">Bureaucracy. Legal weight. Entropy. The invisible tax on everything.</p>
+    <p style="font-size: 16px; color: var(--muted); line-height: 1.85; max-width: 720px; margin-bottom: 16px;" data-i18n="problem_body">Every regulation that produces no value. Every permit that takes two years. Every housing project blocked by overlapping jurisdictions. Every renewable energy installation waiting for grid connection. Every local producer crushed by administrative weight designed for industrial scale. This is not inefficiency. It is entropy — energy that could be life, trapped in legal weight.</p>
+    <p style="font-family: var(--mono); font-size: 13px; color: var(--gold);" data-i18n="problem_stat">Conservative estimate of unexpressed value trapped in EU-27 legal systems: <strong>€5.2 trillion</strong> <span style="opacity:0.6;">(JLMI 2/25)</span></p>
   </div>
 
   <div class="products-grid">
 
     <div class="product-card">
-      <div class="product-step"><span class="step-num">I</span> <span>Public instrument</span></div>
-      <span class="product-tag active">Live</span>
+      <div class="product-step"><span class="step-num">I</span> <span data-i18n="p1_label">Public instrument</span></div>
+      <span class="product-tag active" data-i18n="p1_tag">Live</span>
       <h3>EU Law<br/><em>Meter</em></h3>
-      <p>Compliance measurement of EU law obligations for any act or entity. Three free scans. Full report. No account required. Aims to measure and potentially solve the legal weight, entropy and bureaucracy problem by scanning any EU legal document.</p>
+      <p data-i18n="p1_desc">Compliance measurement of EU law obligations for any act or entity. Three free scans. Full report. No account required. Aims to measure and potentially solve the legal weight, entropy and bureaucracy problem by scanning any EU legal document.</p>
       <a href="https://eulawscanner.eu" target="_blank" class="product-link">eulawscanner.eu →</a>
     </div>
 
     <div class="product-card">
-      <div class="product-step"><span class="step-num">II</span> <span>Enterprise instrument</span></div>
-      <span class="product-tag">In development</span>
+      <div class="product-step"><span class="step-num">II</span> <span data-i18n="p2_label">Enterprise instrument</span></div>
+      <span class="product-tag" data-i18n="p2_tag">In development</span>
       <h3>Corporate<br/><em>Meter</em></h3>
-      <p>Compliance measurement for any listed company. One free random scan. Aims to measure and potentially solve the legal weight, entropy and bureaucracy problem in corporations.</p>
+      <p data-i18n="p2_desc">Compliance measurement for any listed company. One free random scan. Aims to measure and potentially solve the legal weight, entropy and bureaucracy problem in corporations.</p>
       <a href="https://corporate-scanner.com" target="_blank" class="product-link">corporate-scanner.com →</a>
     </div>
 
     <div class="product-card">
-      <div class="product-step"><span class="step-num">III</span> <span>Full-system service</span></div>
-      <span class="product-tag">By mandate</span>
-      <h3>Codification<br/><em>of Legal Systems</em></h3>
-      <p>Measuring, mapping and optimising an entire legal system — city, municipality, state. Legal-physics methodology. UN SDGs as benchmark. Aims to measure and potentially solve the legal weight, entropy and bureaucracy problem in defined legal systems.</p>
-      <a href="/codification" class="product-link">Explore →</a>
+      <div class="product-step"><span class="step-num">III</span> <span data-i18n="p3_label">Full-system service</span></div>
+      <span class="product-tag" data-i18n="p3_tag">By mandate</span>
+      <h3 data-i18n="p3_title">Codification<br/><em>of Legal Systems</em></h3>
+      <p data-i18n="p3_desc">Measuring, mapping and optimising an entire legal system — city, municipality, state. Legal-physics methodology. UN SDGs as benchmark. Aims to measure and potentially solve the legal weight, entropy and bureaucracy problem in defined legal systems.</p>
+      <a href="/codification" class="product-link" data-i18n="p3_link">Explore →</a>
     </div>
 
   </div>
@@ -200,18 +199,102 @@ const T = {
   en: {
     overline: 'LAW IS LOVE — Experimental proposal',
     sub: 'A technological framework to measure legal weight and entropy in, codify and optimise legal systems. Engineering legal processes for "perpetual motion" and competitiveness of European legal systems (and more).',
+    metric_scans: 'Documents scanned',
+    metric_entropy: 'Total legal weight / entropy (ΣS)',
+    metric_pnc: '⬡ PNC in circulation',
+    metric_value: '⬡ Implied PNC value',
+    chart_label: 'Entropy / Legal Weight Identified (ΣS) vs Implied PNC Value',
+    chart_sub: 'EU Legal Systems\' Value',
+    legend_pnc: 'Implied PNC value',
+    legend_entropy: 'Entropy (ΣS)',
+    legend_projected: 'Projected',
+    problem_title: 'The problem',
+    problem_h: 'Bureaucracy. Legal weight. Entropy. The invisible tax on everything.',
+    problem_body: 'Every regulation that produces no value. Every permit that takes two years. Every housing project blocked by overlapping jurisdictions. Every renewable energy installation waiting for grid connection. Every local producer crushed by administrative weight designed for industrial scale. This is not inefficiency. It is entropy — energy that could be life, trapped in legal weight.',
+    problem_stat: 'Conservative estimate of unexpressed value trapped in EU-27 legal systems: <strong>€5.2 trillion</strong> <span style="opacity:0.6;">(JLMI 2/25)</span>',
+    p1_label: 'Public instrument', p1_tag: 'Live',
+    p1_desc: 'Compliance measurement of EU law obligations for any act or entity. Three free scans. Full report. No account required. Aims to measure and potentially solve the legal weight, entropy and bureaucracy problem by scanning any EU legal document.',
+    p2_label: 'Enterprise instrument', p2_tag: 'In development',
+    p2_desc: 'Compliance measurement for any listed company. One free random scan. Aims to measure and potentially solve the legal weight, entropy and bureaucracy problem in corporations.',
+    p3_label: 'Full-system service', p3_tag: 'By mandate',
+    p3_title: 'Codification<br/><em>of Legal Systems</em>',
+    p3_desc: 'Measuring, mapping and optimising an entire legal system — city, municipality, state. Legal-physics methodology. UN SDGs as benchmark. Aims to measure and potentially solve the legal weight, entropy and bureaucracy problem in defined legal systems.',
+    p3_link: 'Explore →',
   },
   it: {
     overline: 'LEGGE È AMORE — Proposta sperimentale',
-    sub: 'Un framework tecnologico per misurare l\'entropia, codificare e ottimizzare i sistemi giuridici. Ingegnerizzare i processi giuridici per il "moto perpetuo" e la competitività dei sistemi giuridici europei (e non solo).',
+    sub: 'Un framework tecnologico per misurare il peso normativo e l\'entropia, codificare e ottimizzare i sistemi giuridici. Ingegnerizzare i processi giuridici per il "moto perpetuo" e la competitività dei sistemi giuridici europei (e non solo).',
+    metric_scans: 'Documenti analizzati',
+    metric_entropy: 'Peso normativo / entropia totale (ΣS)',
+    metric_pnc: '⬡ PNC in circolazione',
+    metric_value: '⬡ Valore implicito PNC',
+    chart_label: 'Entropia / Peso normativo identificato (ΣS) vs Valore implicito PNC',
+    chart_sub: 'Valore dei sistemi giuridici UE',
+    legend_pnc: 'Valore implicito PNC',
+    legend_entropy: 'Entropia (ΣS)',
+    legend_projected: 'Proiettato',
+    problem_title: 'Il problema',
+    problem_h: 'Burocrazia. Peso normativo. Entropia. La tassa invisibile su tutto.',
+    problem_body: 'Ogni norma che non produce valore. Ogni permesso che richiede due anni. Ogni progetto abitativo bloccato da giurisdizioni sovrapposte. Ogni impianto di energia rinnovabile in attesa di connessione alla rete. Ogni produttore locale schiacciato da un peso amministrativo pensato per la scala industriale. Non è inefficienza. È entropia — energia che potrebbe essere vita, intrappolata nel peso giuridico.',
+    problem_stat: 'Stima conservativa del valore non espresso nei sistemi giuridici UE-27: <strong>5,2 trilioni di €</strong> <span style="opacity:0.6;">(JLMI 2/25)</span>',
+    p1_label: 'Strumento pubblico', p1_tag: 'Attivo',
+    p1_desc: 'Misurazione della conformità agli obblighi del diritto UE per qualsiasi atto o entità. Tre scansioni gratuite. Report completo. Nessun account richiesto. Mira a misurare e potenzialmente risolvere il problema del peso normativo, dell\'entropia e della burocrazia.',
+    p2_label: 'Strumento enterprise', p2_tag: 'In sviluppo',
+    p2_desc: 'Misurazione della conformità per qualsiasi società quotata. Una scansione casuale gratuita. Mira a misurare e potenzialmente risolvere il problema del peso normativo e dell\'entropia nelle aziende.',
+    p3_label: 'Servizio sistema completo', p3_tag: 'Su mandato',
+    p3_title: 'Codificazione<br/><em>dei Sistemi Giuridici</em>',
+    p3_desc: 'Misurazione, mappatura e ottimizzazione di un intero sistema giuridico — città, comune, stato. Metodologia di fisica giuridica. SDG ONU come benchmark.',
+    p3_link: 'Scopri →',
   },
   fr: {
     overline: 'LA LOI EST AMOUR — Proposition expérimentale',
-    sub: 'Un cadre technologique pour mesurer l\'entropie, codifier et optimiser les systèmes juridiques. Ingénierie des processus juridiques pour le "mouvement perpétuel" et la compétitivité des systèmes juridiques européens (et plus).',
+    sub: 'Un cadre technologique pour mesurer le poids juridique et l\'entropie, codifier et optimiser les systèmes juridiques. Ingénierie des processus juridiques pour le "mouvement perpétuel" et la compétitivité des systèmes juridiques européens (et plus).',
+    metric_scans: 'Documents analysés',
+    metric_entropy: 'Poids juridique / entropie totale (ΣS)',
+    metric_pnc: '⬡ PNC en circulation',
+    metric_value: '⬡ Valeur implicite PNC',
+    chart_label: 'Entropie / Poids juridique identifié (ΣS) vs Valeur implicite PNC',
+    chart_sub: 'Valeur des systèmes juridiques UE',
+    legend_pnc: 'Valeur implicite PNC',
+    legend_entropy: 'Entropie (ΣS)',
+    legend_projected: 'Projeté',
+    problem_title: 'Le problème',
+    problem_h: 'Bureaucratie. Poids juridique. Entropie. La taxe invisible sur tout.',
+    problem_body: 'Chaque réglementation qui ne produit aucune valeur. Chaque permis qui prend deux ans. Chaque projet de logement bloqué par des juridictions qui se chevauchent. Chaque installation d\'énergie renouvelable en attente de connexion au réseau. Chaque producteur local écrasé par un poids administratif conçu pour l\'échelle industrielle. Ce n\'est pas de l\'inefficacité. C\'est de l\'entropie.',
+    problem_stat: 'Estimation conservative de la valeur non exprimée dans les systèmes juridiques de l\'UE-27 : <strong>5,2 billions d\'€</strong> <span style="opacity:0.6;">(JLMI 2/25)</span>',
+    p1_label: 'Instrument public', p1_tag: 'En ligne',
+    p1_desc: 'Mesure de conformité des obligations de droit UE pour tout acte ou entité. Trois analyses gratuites. Rapport complet. Aucun compte requis.',
+    p2_label: 'Instrument entreprise', p2_tag: 'En développement',
+    p2_desc: 'Mesure de conformité pour toute société cotée. Une analyse aléatoire gratuite.',
+    p3_label: 'Service système complet', p3_tag: 'Sur mandat',
+    p3_title: 'Codification<br/><em>des Systèmes Juridiques</em>',
+    p3_desc: 'Mesure, cartographie et optimisation d\'un système juridique entier — ville, municipalité, état. Méthodologie de physique juridique. ODD de l\'ONU comme référence.',
+    p3_link: 'Découvrir →',
   },
   es: {
     overline: 'LA LEY ES AMOR — Propuesta experimental',
-    sub: 'Un marco tecnológico para medir la entropía, codificar y optimizar los sistemas jurídicos. Ingeniería de procesos jurídicos para el "movimiento perpetuo" y la competitividad de los sistemas jurídicos europeos (y más).',
+    sub: 'Un marco tecnológico para medir el peso jurídico y la entropía, codificar y optimizar los sistemas jurídicos. Ingeniería de procesos jurídicos para el "movimiento perpetuo" y la competitividad de los sistemas jurídicos europeos (y más).',
+    metric_scans: 'Documentos analizados',
+    metric_entropy: 'Peso jurídico / entropía total (ΣS)',
+    metric_pnc: '⬡ PNC en circulación',
+    metric_value: '⬡ Valor implícito PNC',
+    chart_label: 'Entropía / Peso jurídico identificado (ΣS) vs Valor implícito PNC',
+    chart_sub: 'Valor de los sistemas jurídicos UE',
+    legend_pnc: 'Valor implícito PNC',
+    legend_entropy: 'Entropía (ΣS)',
+    legend_projected: 'Proyectado',
+    problem_title: 'El problema',
+    problem_h: 'Burocracia. Peso jurídico. Entropía. El impuesto invisible sobre todo.',
+    problem_body: 'Cada regulación que no produce valor. Cada permiso que tarda dos años. Cada proyecto de vivienda bloqueado por jurisdicciones superpuestas. Cada instalación de energía renovable esperando conexión a la red. Cada productor local aplastado por un peso administrativo diseñado para la escala industrial. Esto no es ineficiencia. Es entropía.',
+    problem_stat: 'Estimación conservadora del valor no expresado en los sistemas jurídicos de la UE-27: <strong>5,2 billones de €</strong> <span style="opacity:0.6;">(JLMI 2/25)</span>',
+    p1_label: 'Instrumento público', p1_tag: 'En vivo',
+    p1_desc: 'Medición de cumplimiento de obligaciones de derecho UE para cualquier acto o entidad. Tres análisis gratuitos. Informe completo. Sin cuenta requerida.',
+    p2_label: 'Instrumento empresarial', p2_tag: 'En desarrollo',
+    p2_desc: 'Medición de cumplimiento para cualquier empresa cotizada. Un análisis aleatorio gratuito.',
+    p3_label: 'Servicio sistema completo', p3_tag: 'Por mandato',
+    p3_title: 'Codificación<br/><em>de Sistemas Jurídicos</em>',
+    p3_desc: 'Medición, mapeo y optimización de un sistema jurídico completo — ciudad, municipio, estado. Metodología de física jurídica. ODS de la ONU como referencia.',
+    p3_link: 'Explorar →',
   }
 };
 
