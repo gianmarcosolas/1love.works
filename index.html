@@ -127,25 +127,6 @@
       </div>
     </div>
 
-    <!-- EU-27 value strip -->
-    <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--rule); margin-bottom: 0;">
-      <div style="background: rgba(184,134,11,0.05); border: 1px solid rgba(184,134,11,0.15); padding: 14px 20px;">
-        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 6px;" data-i18n="metric_eu27">EU-27 unexpressed value</div>
-        <div style="font-family: var(--mono); font-size: 22px; font-weight: 500; color: var(--gold);">€5.2T</div>
-        <div style="font-family: var(--mono); font-size: 9px; color: var(--muted); margin-top: 3px;" data-i18n="metric_eu27_note">Approximate · to be confirmed empirically · JLMI 2/25</div>
-      </div>
-      <div style="background: var(--parchment); padding: 14px 20px;">
-        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 6px;" data-i18n="metric_identified">Identified so far</div>
-        <div style="font-family: var(--mono); font-size: 22px; font-weight: 500; color: var(--green);" id="lp-identified">€—</div>
-        <div style="font-family: var(--mono); font-size: 9px; color: var(--muted); margin-top: 3px;" data-i18n="metric_identified_note">Grows with every scan</div>
-      </div>
-      <div style="background: var(--parchment); padding: 14px 20px;">
-        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 6px;" data-i18n="metric_pct">% of EU-27 identified</div>
-        <div style="font-family: var(--mono); font-size: 22px; font-weight: 500; color: var(--green);" id="lp-pct">—%</div>
-        <div style="font-family: var(--mono); font-size: 9px; color: var(--muted); margin-top: 3px;" data-i18n="metric_pct_note">Every scan moves the needle</div>
-      </div>
-    </div>
-
     <!-- Cartesian graph -->
     <div style="background: rgba(15,15,13,0.97); padding: 24px 24px 16px; margin-bottom: 0;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
@@ -223,8 +204,6 @@ const T = {
   en: {
     nav_methodology: 'Methodology',
     nav_codification: 'Codification',
-    nav_pricing: 'Tarifs',
-    nav_pnc: 'PNC',
     nav_pricing: 'Pricing',
     nav_pnc: 'PNC',
     nav_about: 'About',
@@ -244,23 +223,15 @@ const T = {
     p3_tag: 'By mandate',
     p3_title: 'Codification<br/><em>of Legal Systems</em>',
     p3_desc: 'Measuring, mapping and optimising an entire legal system — city, municipality, state. Legal-physics methodology. UN SDGs as benchmark. <strong>Aims to measure and potentially solve the legal weight, entropy and bureaucracy problem in defined legal systems.</strong>',
-    p3_link: 'Inquire →',
+    p3_link: 'Explore →',
     footer_rights: 'All rights reserved',
     metric_scans: 'Documents scanned',
-    metric_entropy: 'Total entropy identified (ΣS)',
     metric_pnc: '⬡ PNC in circulation',
     metric_value: '⬡ Implied PNC value',
-    metric_eu27: 'EU-27 unexpressed value',
-    metric_eu27_note: 'Approximate · to be confirmed empirically · JLMI 2/25',
-    metric_identified: 'Identified so far',
-    metric_identified_note: 'Grows with every scan',
-    metric_pct: '% of EU-27 identified',
-    metric_pct_note: 'Every scan moves the needle',
     problem_title: 'The problem',
     problem_h: 'Bureaucracy. Legal weight. Entropy. The invisible tax on everything.',
     problem_body: 'Every regulation that produces no value. Every permit that takes two years. Every housing project blocked by overlapping jurisdictions. Every renewable energy installation waiting for grid connection. Every local producer crushed by administrative weight designed for industrial scale. This is not inefficiency. It is entropy — energy that could be life, trapped in legal weight.',
     problem_stat: 'Conservative estimate of unexpressed value trapped in EU-27 legal systems: <strong>€5.2 trillion</strong> <span style="opacity:0.6;">(JLMI 2/25)</span>',
-    disclaimer: 'This instrument is in early stage development. Scores are indicative and based on LLM-assisted analysis. We are actively calibrating with empirical measurements. Every scan contributes to the dataset.',
     footer_note: 'Proprietary instruments. Methodology: public scientific contribution. · De Lege et Amore.',
   },
   it: {
@@ -277,70 +248,56 @@ const T = {
     cta_book: 'Prenota consulenza',
     p1_label: 'Strumento pubblico',
     p1_tag: 'Attivo',
-    p1_desc: 'Misura e potenzialmente risolve il peso normativo, l\'entropia e la burocrazia scansionando qualsiasi documento giuridico UE. Gratuito. Nessun account richiesto. Tre scansioni gratuite. <strong>Mira a misurare e potenzialmente risolvere il problema del peso normativo, dell&#39;entropia e della burocrazia scansionando qualsiasi documento giuridico UE.</strong>',
+    p1_desc: 'Misura e potenzialmente risolve il peso normativo, l\'entropia e la burocrazia scansionando qualsiasi documento giuridico UE. Gratuito. Nessun account richiesto. Tre scansioni gratuite.',
     p2_label: 'Strumento enterprise',
     p2_tag: 'In sviluppo',
-    p2_desc: 'Misura e potenzialmente risolve il peso normativo, l\'entropia e la burocrazia scansionando qualsiasi documento aziendale. Self-hosted. Piena sovranità metodologica. <strong>Mira a misurare e potenzialmente risolvere il problema del peso normativo, dell&#39;entropia e della burocrazia nelle aziende.</strong>',
+    p2_desc: 'Misura e potenzialmente risolve il peso normativo, l\'entropia e la burocrazia nelle aziende. Una scansione casuale gratuita.',
     p3_label: 'Servizio sistema completo',
     p3_tag: 'Su mandato',
     p3_title: 'Codificazione<br/><em>dei Sistemi Giuridici</em>',
-    p3_desc: 'Misura e potenzialmente risolve il peso normativo, l\'entropia e la burocrazia nei sistemi giuridici reali — sbloccando il loro potenziale in tre settori: 🏠 Abitativo · ⚡ Energia · 🌾 Filiera locale. <strong>Mira a misurare e potenzialmente risolvere il problema del peso normativo nei sistemi giuridici reali.</strong>',
-    p3_link: 'Scopri lo strumento →',
+    p3_desc: 'Misura e potenzialmente risolve il peso normativo, l\'entropia e la burocrazia nei sistemi giuridici reali — città, comuni, stati.',
+    p3_link: 'Scopri →',
     footer_rights: 'Tutti i diritti riservati',
     metric_scans: 'Documenti analizzati',
-    metric_entropy: 'Entropia totale identificata (ΣS)',
     metric_pnc: '⬡ PNC in circolazione',
     metric_value: '⬡ Valore implicito PNC',
-    metric_eu27: 'Valore non espresso UE-27',
-    metric_eu27_note: 'Approssimativo · da confermare empiricamente · JLMI 2/25',
-    metric_identified: 'Identificato finora',
-    metric_identified_note: 'Cresce ad ogni scansione',
-    metric_pct: '% dell\'UE-27 identificato',
-    metric_pct_note: 'Ogni scansione sposta l\'ago',
     problem_title: 'Il problema',
     problem_h: 'Burocrazia. Peso normativo. Entropia. La tassa invisibile su tutto.',
     problem_body: 'Ogni norma che non produce valore. Ogni permesso che richiede due anni. Ogni progetto abitativo bloccato da giurisdizioni sovrapposte. Ogni impianto di energia rinnovabile in attesa di connessione alla rete. Ogni produttore locale schiacciato da un peso amministrativo pensato per la scala industriale. Non è inefficienza. È entropia — energia che potrebbe essere vita, intrappolata nel peso giuridico.',
     problem_stat: 'Stima conservativa del valore non espresso nei sistemi giuridici UE-27: <strong>5,2 trilioni di €</strong> <span style="opacity:0.6;">(JLMI 2/25)</span>',
-    disclaimer: 'Questo strumento è in fase di sviluppo iniziale. I punteggi sono indicativi e basati su analisi assistita da LLM. Stiamo calibrando attivamente con misurazioni empiriche. Ogni scansione contribuisce al dataset.',
     footer_note: 'Strumenti proprietari. Metodologia: contributo scientifico pubblico. · De Lege et Amore.',
   },
   fr: {
     nav_methodology: 'Méthodologie',
     nav_codification: 'Codification',
+    nav_pricing: 'Tarifs',
+    nav_pnc: 'PNC',
     nav_about: 'À propos',
     nav_contact: 'Contact',
     overline: 'Le Mètre des Systèmes Juridiques · Tradition → Innovation',
     h1: 'Mesurer le droit humain<br/>comme une <em>loi de la nature.</em><br/>Optimiser les systèmes juridiques<br/>comme des moteurs. Les faire croître<br/>comme des <em>fleurs.</em>',
-    sub: 'Un cadre technologique pour mesurer, codifier et optimiser les systèmes juridiques. Ingénierie des processus juridiques pour un "mouvement perpétuel" et la compétitivité des systèmes juridiques européens (et au-delà).',
+    sub: 'Un cadre technologique pour mesurer, codifier et optimiser les systèmes juridiques.',
     cta_method: 'Lire la méthodologie →',
     cta_book: 'Réserver une consultation',
     p1_label: 'Instrument public',
     p1_tag: 'En ligne',
-    p1_desc: 'Mesure et résout potentiellement le poids réglementaire, l\'entropie et la bureaucratie en analysant tout document juridique UE. Gratuit. Sans compte. Trois analyses gratuites. <strong>Vise à mesurer et potentiellement résoudre le problème du poids réglementaire, de l&#39;entropie et de la bureaucratie en analysant tout document juridique UE.</strong>',
+    p1_desc: 'Mesure de conformité des obligations de droit UE. Trois analyses gratuites. Aucun compte requis.',
     p2_label: 'Instrument entreprise',
     p2_tag: 'En développement',
-    p2_desc: 'Mesure et résout potentiellement le poids réglementaire, l\'entropie et la bureaucratie en analysant tout dossier d\'entreprise. Auto-hébergé. Pleine souveraineté méthodologique. <strong>Vise à mesurer et potentiellement résoudre le problème du poids réglementaire, de l&#39;entropie et de la bureaucratie dans les entreprises.</strong>',
+    p2_desc: 'Mesure de conformité pour toute société cotée. Une analyse aléatoire gratuite.',
     p3_label: 'Service système complet',
     p3_tag: 'Sur mandat',
     p3_title: 'Codification<br/><em>des Systèmes Juridiques</em>',
-    p3_desc: 'Mesure et résout potentiellement le poids réglementaire, l\'entropie et la bureaucratie dans les systèmes juridiques réels — libérant leur potentiel dans trois secteurs: 🏠 Logement · ⚡ Énergie · 🌾 Filière locale. <strong>Vise à mesurer et potentiellement résoudre le problème du poids réglementaire dans les systèmes juridiques réels.</strong>',
-    p3_link: 'Découvrir l\'instrument →',
+    p3_desc: 'Mesure, cartographie et optimisation d\'un système juridique entier — ville, municipalité, état.',
+    p3_link: 'Découvrir →',
     footer_rights: 'Tous droits réservés',
     metric_scans: 'Documents analysés',
-    metric_entropy: 'Entropie totale identifiée (ΣS)',
     metric_pnc: '⬡ PNC en circulation',
     metric_value: '⬡ Valeur implicite PNC',
-    metric_eu27: 'Valeur non exprimée UE-27',
-    metric_eu27_note: 'Approximatif · à confirmer empiriquement · JLMI 2/25',
-    metric_identified: 'Identifié jusqu\'ici',
-    metric_identified_note: 'Augmente à chaque analyse',
-    metric_pct: '% de l\'UE-27 identifié',
-    metric_pct_note: 'Chaque analyse fait avancer l\'aiguille',
     problem_title: 'Le problème',
     problem_h: 'Bureaucratie. Poids juridique. Entropie. La taxe invisible sur tout.',
-    problem_body: 'Chaque réglementation qui ne produit aucune valeur. Chaque permis qui prend deux ans. Chaque projet de logement bloqué par des juridictions qui se chevauchent. Chaque installation d\'énergie renouvelable en attente de connexion au réseau. Chaque producteur local écrasé par un poids administratif conçu pour l\'échelle industrielle. Ce n\'est pas de l\'inefficacité. C\'est de l\'entropie — de l\'énergie qui pourrait être vie, piégée dans le poids juridique.',
+    problem_body: 'Chaque réglementation qui ne produit aucune valeur. Chaque permis qui prend deux ans. Chaque projet de logement bloqué par des juridictions qui se chevauchent. Ce n\'est pas de l\'inefficacité. C\'est de l\'entropie.',
     problem_stat: 'Estimation conservative de la valeur non exprimée dans les systèmes juridiques de l\'UE-27 : <strong>5,2 billions d\'€</strong> <span style="opacity:0.6;">(JLMI 2/25)</span>',
-    disclaimer: 'Cet instrument est en phase de développement précoce. Les scores sont indicatifs et basés sur une analyse assistée par LLM. Nous calibrons activement avec des mesures empiriques. Chaque analyse contribue au jeu de données.',
     footer_note: 'Instruments propriétaires. Méthodologie : contribution scientifique publique. · De Lege et Amore.',
   },
   es: {
@@ -352,36 +309,28 @@ const T = {
     nav_contact: 'Contacto',
     overline: 'El Metro de los Sistemas Jurídicos · Tradición → Innovación',
     h1: 'Medir el derecho humano<br/>como una <em>ley de la naturaleza.</em><br/>Optimizar los sistemas jurídicos<br/>como motores. Hacerlos crecer<br/>como <em>flores.</em>',
-    sub: 'Un marco tecnológico para medir, codificar y optimizar los sistemas jurídicos. Ingeniería de procesos jurídicos para el "movimiento perpetuo" y la competitividad de los sistemas jurídicos europeos (y más allá).',
+    sub: 'Un marco tecnológico para medir, codificar y optimizar los sistemas jurídicos.',
     cta_method: 'Leer la metodología →',
     cta_book: 'Reservar consulta',
     p1_label: 'Instrumento público',
     p1_tag: 'En vivo',
-    p1_desc: 'Mide y potencialmente resuelve el peso normativo, la entropía y la burocracia analizando cualquier documento jurídico UE. Gratuito. Sin cuenta. Tres análisis gratuitos. <strong>Tiene como objetivo medir y potencialmente resolver el problema del peso normativo, la entropía y la burocracia analizando cualquier documento jurídico UE.</strong>',
+    p1_desc: 'Medición de cumplimiento de obligaciones de derecho UE. Tres análisis gratuitos. Sin cuenta requerida.',
     p2_label: 'Instrumento empresarial',
     p2_tag: 'En desarrollo',
-    p2_desc: 'Mide y potencialmente resuelve el peso normativo, la entropía y la burocracia analizando cualquier expediente corporativo. Auto-alojado. Plena soberanía metodológica. <strong>Tiene como objetivo medir y potencialmente resolver el problema del peso normativo, la entropía y la burocracia en las empresas.</strong>',
+    p2_desc: 'Medición de cumplimiento para cualquier empresa cotizada. Un análisis aleatorio gratuito.',
     p3_label: 'Servicio sistema completo',
     p3_tag: 'Por mandato',
     p3_title: 'Codificación<br/><em>de Sistemas Jurídicos</em>',
-    p3_desc: 'Mide y potencialmente resuelve el peso normativo, la entropía y la burocracia en sistemas jurídicos reales — liberando su potencial en tres sectores: 🏠 Vivienda · ⚡ Energía · 🌾 Cadena de valor local. <strong>Tiene como objetivo medir y potencialmente resolver el problema del peso normativo en los sistemas jurídicos reales.</strong>',
-    p3_link: 'Descubrir el instrumento →',
+    p3_desc: 'Medición, mapeo y optimización de un sistema jurídico completo — ciudad, municipio, estado.',
+    p3_link: 'Explorar →',
     footer_rights: 'Todos los derechos reservados',
     metric_scans: 'Documentos analizados',
-    metric_entropy: 'Entropía total identificada (ΣS)',
     metric_pnc: '⬡ PNC en circulación',
     metric_value: '⬡ Valor implícito PNC',
-    metric_eu27: 'Valor no expresado UE-27',
-    metric_eu27_note: 'Aproximado · a confirmar empíricamente · JLMI 2/25',
-    metric_identified: 'Identificado hasta ahora',
-    metric_identified_note: 'Crece con cada análisis',
-    metric_pct: '% de la UE-27 identificado',
-    metric_pct_note: 'Cada análisis mueve la aguja',
     problem_title: 'El problema',
     problem_h: 'Burocracia. Peso jurídico. Entropía. El impuesto invisible sobre todo.',
-    problem_body: 'Cada regulación que no produce valor. Cada permiso que tarda dos años. Cada proyecto de vivienda bloqueado por jurisdicciones superpuestas. Cada instalación de energía renovable esperando conexión a la red. Cada productor local aplastado por un peso administrativo diseñado para escala industrial. Esto no es ineficiencia. Es entropía — energía que podría ser vida, atrapada en el peso jurídico.',
-    problem_stat: 'Estimación conservadora del valor no expresado atrapado en los sistemas jurídicos de la UE-27: <strong>5,2 billones de €</strong> <span style="opacity:0.6;">(JLMI 2/25)</span>',
-    disclaimer: 'Este instrumento está en fase de desarrollo temprano. Las puntuaciones son indicativas y se basan en análisis asistido por LLM. Estamos calibrando activamente con mediciones empíricas. Cada análisis contribuye al conjunto de datos.',
+    problem_body: 'Cada regulación que no produce valor. Cada permiso que tarda dos años. Cada proyecto de vivienda bloqueado por jurisdicciones superpuestas. Esto no es ineficiencia. Es entropía.',
+    problem_stat: 'Estimación conservadora del valor no expresado en los sistemas jurídicos de la UE-27: <strong>5,2 billones de €</strong> <span style="opacity:0.6;">(JLMI 2/25)</span>',
     footer_note: 'Instrumentos propietarios. Metodología: contribución científica pública. · De Lege et Amore.',
   }
 };
@@ -474,7 +423,7 @@ function drawLPChart(realStats) {
 
   // Y axis labels
   ctx.fillStyle = 'rgba(245,242,234,0.25)';
-  ctx.font = `${9 * dpr / dpr}px DM Mono, monospace`;
+  ctx.font = '9px DM Mono, monospace';
   ctx.textAlign = 'right';
   [0, 0.25, 0.5, 0.75, 1].forEach(t => {
     const y = PAD.top + cH - t * cH;
@@ -589,7 +538,7 @@ function drawLPChart(realStats) {
   ctx.strokeStyle = 'rgba(184,134,11,0.3)'; ctx.lineWidth = 2; ctx.stroke();
 }
 
-// Fetch stats and update everything
+// Fetch stats and update
 fetch('https://eulawscanner.eu/api/stats')
   .then(r => r.json())
   .then(s => {
@@ -597,15 +546,6 @@ fetch('https://eulawscanner.eu/api/stats')
     if (s.total_entropy) document.getElementById('lp-entropy').textContent = s.total_entropy.toLocaleString();
     if (s.pnc_in_circulation !== undefined) document.getElementById('lp-pnc').textContent = s.pnc_in_circulation.toLocaleString();
     if (s.implied_pnc_value) document.getElementById('lp-value').textContent = '€' + s.implied_pnc_value.toLocaleString();
-    // EU-27 metrics
-    const EU27_TOTAL = 5200000000000;
-    const identifiedValue = (s.total_entropy || 0) * 1000000;
-    const pctIdentified = ((identifiedValue / EU27_TOTAL) * 100).toFixed(6);
-    const identifiedFormatted = identifiedValue >= 1000000000 ? '€' + (identifiedValue/1000000000).toFixed(2) + 'B' : identifiedValue >= 1000000 ? '€' + (identifiedValue/1000000).toFixed(1) + 'M' : '€' + identifiedValue.toLocaleString();
-    const idEl = document.getElementById('lp-identified');
-    const pctEl = document.getElementById('lp-pct');
-    if (idEl) idEl.textContent = identifiedFormatted;
-    if (pctEl) pctEl.textContent = pctIdentified + '%';
     drawLPChart(s);
   })
   .catch(() => { drawLPChart(null); });
