@@ -409,16 +409,20 @@ function drawLPChart(realStats) {
   ctx.strokeStyle = 'rgba(184,134,11,0.3)'; ctx.lineWidth = 2; ctx.stroke();
 }
 
-fetch('https://eulawscanner.eu/api/stats')
-  .then(r => r.json())
-  .then(s => {
-    if (s.total_scans) document.getElementById('lp-scans').textContent = s.total_scans.toLocaleString();
-    if (s.total_entropy) document.getElementById('lp-entropy').textContent = s.total_entropy.toLocaleString();
-    if (s.pnc_in_circulation !== undefined) document.getElementById('lp-pnc').textContent = s.pnc_in_circulation.toLocaleString();
-    if (s.implied_pnc_value) document.getElementById('lp-value').textContent = '€' + s.implied_pnc_value.toLocaleString();
-    drawLPChart(s);
-  })
-  .catch(() => { drawLPChart(null); });
+window.addEventListener('load', () => {
+  requestAnimationFrame(() => {
+    fetch('https://eulawscanner.eu/api/stats')
+      .then(r => r.json())
+      .then(s => {
+        if (s.total_scans) document.getElementById('lp-scans').textContent = s.total_scans.toLocaleString();
+        if (s.total_entropy) document.getElementById('lp-entropy').textContent = s.total_entropy.toLocaleString();
+        if (s.pnc_in_circulation !== undefined) document.getElementById('lp-pnc').textContent = s.pnc_in_circulation.toLocaleString();
+        if (s.implied_pnc_value) document.getElementById('lp-value').textContent = '€' + s.implied_pnc_value.toLocaleString();
+        drawLPChart(s);
+      })
+      .catch(() => { drawLPChart(null); });
+  });
+});
 
 window.addEventListener('resize', () => drawLPChart(null));
 </script>
