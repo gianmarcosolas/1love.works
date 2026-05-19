@@ -83,14 +83,22 @@
     <li class="hide-mobile"><a href="/participate">Participate</a></li>
     <li class="hide-mobile"><a href="/criticisms">Criticisms</a></li>
     <li class="hide-mobile"><a href="https://calendly.com/gmsolas-sustainab-law/legal-consultation-public-entity" target="_blank">Consultation</a></li>
+    <li>
+      <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('it')">IT</button>
+        <button class="lang-btn" onclick="setLang('fr')">FR</button>
+        <button class="lang-btn" onclick="setLang('es')">ES</button>
+      </div>
+    </li>
   </ul>
 </nav>
 
 <div class="hero">
-  <p class="hero-overline">LAW IS LOVE — Experimental proposal</p>
+  <p class="hero-overline" data-i18n="overline">LAW IS LOVE — Experimental proposal</p>
   <p class="hero-equation">E = MC² &nbsp;→&nbsp; Λ = C² &nbsp;→&nbsp; Λ = E / M &nbsp;<span style="font-size:13px; opacity:0.5;">(JLMI 2/25)</span></p>
-  <h1>Measuring human law like a <em>law of nature.</em><br/>Optimising legal systems like engines.<br/>Growing them like <em>flowers.</em></h1>
-  <p class="hero-sub">A technological framework to measure entropy in, codify and optimise legal systems. Engineering legal processes for "perpetual motion" and competitiveness of European legal systems (and more).</p>
+  <h1 data-i18n="h1">Measuring human law like a <em>law of nature.</em><br/>Optimising legal systems like engines.<br/>Growing them like <em>flowers.</em></h1>
+  <p class="hero-sub" data-i18n="sub">A technological framework to measure entropy in, codify and optimise legal systems. Engineering legal processes for "perpetual motion" and competitiveness of European legal systems (and more).</p>
 
 </div>
 
@@ -189,7 +197,46 @@
 </footer>
 
 <script>
-const FOUNDING_PRICE = 99;
+const T = {
+  en: {
+    overline: 'LAW IS LOVE — Experimental proposal',
+    h1: 'Measuring human law like a <em>law of nature.</em><br/>Optimising legal systems like engines.<br/>Growing them like <em>flowers.</em>',
+    sub: 'A technological framework to measure entropy in, codify and optimise legal systems. Engineering legal processes for "perpetual motion" and competitiveness of European legal systems (and more).',
+  },
+  it: {
+    overline: 'LEGGE È AMORE — Proposta sperimentale',
+    h1: 'Misurare il diritto umano come una <em>legge della natura.</em><br/>Ottimizzare i sistemi giuridici come motori.<br/>Farli crescere come <em>fiori.</em>',
+    sub: 'Un framework tecnologico per misurare l\'entropia, codificare e ottimizzare i sistemi giuridici. Ingegnerizzare i processi giuridici per il "moto perpetuo" e la competitività dei sistemi giuridici europei (e non solo).',
+  },
+  fr: {
+    overline: 'LA LOI EST AMOUR — Proposition expérimentale',
+    h1: 'Mesurer le droit humain comme une <em>loi de la nature.</em><br/>Optimiser les systèmes juridiques comme des moteurs.<br/>Les faire croître comme des <em>fleurs.</em>',
+    sub: 'Un cadre technologique pour mesurer l\'entropie, codifier et optimiser les systèmes juridiques. Ingénierie des processus juridiques pour le "mouvement perpétuel" et la compétitivité des systèmes juridiques européens (et plus).',
+  },
+  es: {
+    overline: 'LA LEY ES AMOR — Propuesta experimental',
+    h1: 'Medir el derecho humano como una <em>ley de la naturaleza.</em><br/>Optimizar los sistemas jurídicos como motores.<br/>Hacerlos crecer como <em>flores.</em>',
+    sub: 'Un marco tecnológico para medir la entropía, codificar y optimizar los sistemas jurídicos. Ingeniería de procesos jurídicos para el "movimiento perpetuo" y la competitividad de los sistemas jurídicos europeos (y más).',
+  }
+};
+
+let currentLang = localStorage.getItem('1lw_lang') || 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('1lw_lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (T[lang] && T[lang][key]) el.innerHTML = T[lang][key];
+  });
+  document.documentElement.lang = lang;
+}
+
+setLang(currentLang);
+</script>
+
+<script>
 const TOTAL_EU_ENTROPY = 100000;
 
 function fibonacci(n) {
