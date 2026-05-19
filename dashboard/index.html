@@ -22,9 +22,7 @@
     .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
     .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,242,234,0.5); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--parchment); }
-    .live-dot { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10px; color: #4ade80; letter-spacing: 0.1em; }
-    .dot { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    @media (max-width: 780px) { .hide-mobile { display: none; } }
 
     .wrap { max-width: 1100px; margin: 0 auto; padding: 48px 48px 80px; }
 
@@ -104,10 +102,14 @@
 <nav>
   <a class="nav-logo" href="/">1love.works</a>
   <ul class="nav-links">
-    <li><a href="/methodology">Methodology</a></li>
-    <li><a href="/pnc">Why PNC</a></li>
-    <li><a href="/pricing">Access</a></li>
-    <li><span class="live-dot"><span class="dot"></span>LIVE</span></li>
+    <li class="hide-mobile"><a href="https://eulawscanner.eu" target="_blank">EU Law Meter ↗</a></li>
+    <li class="hide-mobile"><a href="https://corporate-scanner.com" target="_blank">Corporate Meter ↗</a></li>
+    <li class="hide-mobile"><a href="/codification">Codification</a></li>
+    <li class="hide-mobile"><a href="/methodology">Methodology</a></li>
+    <li class="hide-mobile"><a href="/pnc">Why PNC</a></li>
+    <li class="hide-mobile"><a href="/pricing">Access</a></li>
+    <li class="hide-mobile"><a href="/criticisms">Criticisms</a></li>
+    <li class="hide-mobile"><a href="mailto:gmsolas@sustainab-law.eu">Contact</a></li>
   </ul>
 </nav>
 
@@ -147,26 +149,7 @@
     <div class="metric highlight">
       <div class="metric-label">⬡ Implied PNC value</div>
       <div class="metric-value gold" id="m-value">€99</div>
-      <div class="metric-desc">Founding price · updates as network grows · not a market price</div>
-    </div>
-  </div>
-
-  <!-- EU-27 value strip -->
-  <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(245,242,234,0.08); margin-bottom: 1px;">
-    <div style="background: rgba(184,134,11,0.04); border: 1px solid rgba(184,134,11,0.15); padding: 16px 20px;">
-      <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(245,242,234,0.35); margin-bottom: 8px;">EU-27 unexpressed value</div>
-      <div style="font-family: var(--mono); font-size: 22px; font-weight: 500; color: var(--gold);">€5.2T</div>
-      <div style="font-family: var(--mono); font-size: 9px; color: rgba(245,242,234,0.25); margin-top: 4px;">Approximate · to be confirmed empirically · JLMI 2/25</div>
-    </div>
-    <div style="background: rgba(245,242,234,0.03); border: 1px solid rgba(245,242,234,0.06); padding: 16px 20px;">
-      <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(245,242,234,0.35); margin-bottom: 8px;">Identified so far</div>
-      <div style="font-family: var(--mono); font-size: 22px; font-weight: 500; color: #4ade80;" id="m-identified">€—</div>
-      <div style="font-family: var(--mono); font-size: 9px; color: rgba(245,242,234,0.25); margin-top: 4px;">Grows with every scan across the network</div>
-    </div>
-    <div style="background: rgba(245,242,234,0.03); border: 1px solid rgba(245,242,234,0.06); padding: 16px 20px;">
-      <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(245,242,234,0.35); margin-bottom: 8px;">% of EU-27 identified</div>
-      <div style="font-family: var(--mono); font-size: 22px; font-weight: 500; color: #4ade80;" id="m-pct">—%</div>
-      <div style="font-family: var(--mono); font-size: 9px; color: rgba(245,242,234,0.25); margin-top: 4px;">Every scan moves the needle</div>
+      <div class="metric-desc">Mathematical calculation · updates as network grows · not a market price</div>
     </div>
   </div>
 
@@ -189,10 +172,10 @@
     <div class="annotation">
       <div class="ann-phase">Phase 1 · Now · Founding</div>
       <div class="ann-title">The flat section</div>
-      <div class="ann-desc">Network in founding phase. Few scans. PNC implied value close to €99. Every founding holder is acquiring at the floor — before fractal cross-pollination© accelerates the curve.</div>
+      <div class="ann-desc">Network in founding phase. Few scans. PNC implied value close to €99. Issued to founding members through consultation — before fractal cross-pollination© accelerates the curve.</div>
     </div>
     <div class="annotation">
-      <div class="ann-phase">Phase 2 · 2026–28 · Acceleration</div>
+      <div class="ann-phase">Phase 2 · 2026–27 · Acceleration</div>
       <div class="ann-title">The bend</div>
       <div class="ann-desc">Fractal cross-pollination© activates. Each new scan generates disproportionate intelligence for all existing nodes. Entropy delta measurement goes live. Blockchain recording active. The curve bends upward.</div>
     </div>
@@ -219,9 +202,8 @@
 
   <!-- CTA -->
   <div class="cta-row">
-    <a href="/pricing" class="btn btn-gold">Get access + PNC →</a>
+    <a href="https://calendly.com/gmsolas-sustainab-law/legal-consultation-public-entity" target="_blank" class="btn btn-gold">Book consultation →</a>
     <a href="/pnc" class="btn btn-outline">Read why PNC</a>
-    <a href="https://calendly.com/gmsolas-sustainab-law/legal-consultation-public-entity" target="_blank" class="btn btn-outline">Book consultation</a>
   </div>
 
 </div>
@@ -234,50 +216,38 @@
   <div class="footer-right">
     <a href="/">Home</a>
     <a href="/pnc">Why PNC</a>
-    <a href="/pricing">Access</a>
     <a href="https://eulawscanner.eu" target="_blank">EU Scanner</a>
   </div>
 </footer>
 
 <script>
-// ── Simulated data (Phase 1 — founding) ──────────────────────────────────────
-// In production these come from the API / blockchain
 const FOUNDING_PRICE = 99;
-const TOTAL_EU_ENTROPY = 100000; // arbitrary units — total measurable entropy in EU legal systems
+const TOTAL_EU_ENTROPY = 100000;
 
-// Fibonacci growth projection
 function fibonacci(n) {
   let a = 0, b = 1;
   for (let i = 0; i < n; i++) { [a, b] = [b, a + b]; }
   return b;
 }
 
-// Generate projected curve — Fibonacci-paced growth
 function generateProjection(points) {
   const data = [];
   for (let i = 0; i < points; i++) {
     const t = i / points;
-    // Sigmoid * Fibonacci envelope — starts flat, accelerates, then asymptotes
     const sigmoid = 1 / (1 + Math.exp(-8 * (t - 0.35)));
     const fibFactor = Math.log(fibonacci(Math.floor(t * 15) + 2) + 1) / Math.log(fibonacci(17));
     const entropyPct = sigmoid * fibFactor * 0.85;
-    const unlockedValue = entropyPct * TOTAL_EU_ENTROPY * 1000; // €
+    const unlockedValue = entropyPct * TOTAL_EU_ENTROPY * 1000;
     const pncInCirculation = Math.max(1, Math.floor(t * 50000));
     const impliedValue = Math.max(FOUNDING_PRICE, unlockedValue / pncInCirculation);
-    data.push({
-      t,
-      entropy: entropyPct * TOTAL_EU_ENTROPY,
-      impliedValue: Math.min(impliedValue, 150000),
-      projected: i > 8
-    });
+    data.push({ t, entropy: entropyPct * TOTAL_EU_ENTROPY, impliedValue: Math.min(impliedValue, 150000), projected: i > 8 });
   }
   return data;
 }
 
 const projectionData = generateProjection(60);
-const foundingData = projectionData.slice(0, 9); // first 9 points = current founding phase
+const foundingData = projectionData.slice(0, 9);
 
-// ── Canvas chart ─────────────────────────────────────────────────────────────
 const canvas = document.getElementById('entropyChart');
 const ctx = canvas.getContext('2d');
 
@@ -300,12 +270,9 @@ function draw() {
   const cH = H - PAD.top - PAD.bottom;
 
   ctx.clearRect(0, 0, W, H);
-
-  // Background
   ctx.fillStyle = 'rgba(245,242,234,0.01)';
   ctx.fillRect(0, 0, W, H);
 
-  // Grid lines
   ctx.strokeStyle = 'rgba(245,242,234,0.06)';
   ctx.lineWidth = 1;
   for (let i = 0; i <= 5; i++) {
@@ -317,7 +284,6 @@ function draw() {
     ctx.beginPath(); ctx.moveTo(x, PAD.top); ctx.lineTo(x, PAD.top + cH); ctx.stroke();
   }
 
-  // Axes
   ctx.strokeStyle = 'rgba(245,242,234,0.25)';
   ctx.lineWidth = 1.5;
   ctx.beginPath();
@@ -326,19 +292,14 @@ function draw() {
   ctx.lineTo(PAD.left + cW, PAD.top + cH);
   ctx.stroke();
 
-  // Axis labels
   ctx.fillStyle = 'rgba(245,242,234,0.3)';
   ctx.font = '10px DM Mono, monospace';
   ctx.textAlign = 'center';
-
-  // X axis labels
   const xLabels = ['Now', 'Phase 2', 'Phase 3', 'Equilibrium →'];
   [0, 0.33, 0.66, 1].forEach((t, i) => {
-    const x = PAD.left + t * cW;
-    ctx.fillText(xLabels[i], x, PAD.top + cH + 20);
+    ctx.fillText(xLabels[i], PAD.left + t * cW, PAD.top + cH + 20);
   });
 
-  // Y axis label (rotated)
   ctx.save();
   ctx.translate(14, PAD.top + cH / 2);
   ctx.rotate(-Math.PI / 2);
@@ -347,25 +308,22 @@ function draw() {
   ctx.fillText('Implied PNC value (€)', 0, 0);
   ctx.restore();
 
-  // Y values
   ctx.textAlign = 'right';
   ctx.fillStyle = 'rgba(245,242,234,0.25)';
   const maxVal = 150000;
-  [0, 0.25, 0.5, 0.75, 1].forEach((t, i) => {
+  [0, 0.25, 0.5, 0.75, 1].forEach((t) => {
     const y = PAD.top + cH - t * cH;
     const val = t * maxVal;
     const label = val >= 1000 ? '€' + (val/1000).toFixed(0) + 'k' : '€' + val.toFixed(0);
     ctx.fillText(label, PAD.left - 8, y + 4);
   });
 
-  // Entropy area (green, subtle)
   const maxEntropy = TOTAL_EU_ENTROPY;
   ctx.beginPath();
   projectionData.forEach((d, i) => {
     const x = PAD.left + d.t * cW;
     const y = PAD.top + cH - (d.entropy / maxEntropy) * cH * 0.6;
-    if (i === 0) ctx.moveTo(x, y);
-    else ctx.lineTo(x, y);
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
   });
   ctx.lineTo(PAD.left + cW, PAD.top + cH);
   ctx.lineTo(PAD.left, PAD.top + cH);
@@ -373,7 +331,6 @@ function draw() {
   ctx.fillStyle = 'rgba(74,222,128,0.05)';
   ctx.fill();
 
-  // Entropy line
   ctx.beginPath();
   ctx.strokeStyle = 'rgba(74,222,128,0.5)';
   ctx.lineWidth = 1.5;
@@ -381,12 +338,10 @@ function draw() {
   projectionData.forEach((d, i) => {
     const x = PAD.left + d.t * cW;
     const y = PAD.top + cH - (d.entropy / maxEntropy) * cH * 0.6;
-    if (i === 0) ctx.moveTo(x, y);
-    else ctx.lineTo(x, y);
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
   });
   ctx.stroke();
 
-  // Projected PNC value — dashed
   ctx.beginPath();
   ctx.strokeStyle = 'rgba(184,134,11,0.25)';
   ctx.lineWidth = 1.5;
@@ -395,49 +350,41 @@ function draw() {
     if (i < 8) return;
     const x = PAD.left + d.t * cW;
     const y = PAD.top + cH - (d.impliedValue / maxVal) * cH;
-    if (i === 8) ctx.moveTo(x, y);
-    else ctx.lineTo(x, y);
+    if (i === 8) ctx.moveTo(x, y); else ctx.lineTo(x, y);
   });
   ctx.stroke();
   ctx.setLineDash([]);
 
-  // Actual PNC value — real data or founding flat line
   const realData = window.realTimeSeries;
   if (realData && realData.length > 1) {
-    // Draw real implied PNC value line
     ctx.beginPath();
     ctx.strokeStyle = '#b8860b';
     ctx.lineWidth = 2.5;
     ctx.setLineDash([]);
     realData.forEach((d, i) => {
-      const x = PAD.left + (i / (realData.length - 1)) * cW * 0.15; // real data in first 15%
+      const x = PAD.left + (i / (realData.length - 1)) * cW * 0.15;
       const y = PAD.top + cH - (d.implied_pnc_value / maxVal) * cH;
-      if (i === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
     });
     ctx.stroke();
   } else {
-    // Founding phase — flat at €99
     ctx.beginPath();
     ctx.strokeStyle = '#b8860b';
     ctx.lineWidth = 2.5;
     foundingData.forEach((d, i) => {
       const x = PAD.left + d.t * cW;
       const y = PAD.top + cH - (FOUNDING_PRICE / maxVal) * cH;
-      if (i === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
     });
     ctx.stroke();
   }
 
-  // Founding price label
   const foundingY = PAD.top + cH - (FOUNDING_PRICE / maxVal) * cH;
   ctx.fillStyle = 'rgba(184,134,11,0.9)';
   ctx.font = '10px DM Mono, monospace';
   ctx.textAlign = 'left';
   ctx.fillText('€99 founding price', PAD.left + 8, foundingY - 8);
 
-  // Phase 1 region highlight
   const phase1X = PAD.left + foundingData[foundingData.length-1].t * cW;
   ctx.fillStyle = 'rgba(184,134,11,0.04)';
   ctx.fillRect(PAD.left, PAD.top, phase1X - PAD.left, cH);
@@ -450,13 +397,11 @@ function draw() {
   ctx.stroke();
   ctx.setLineDash([]);
 
-  // Phase label
   ctx.fillStyle = 'rgba(184,134,11,0.5)';
   ctx.font = '9px DM Mono, monospace';
   ctx.textAlign = 'center';
   ctx.fillText('YOU ARE HERE', PAD.left + (phase1X - PAD.left) / 2, PAD.top + 14);
 
-  // Asymptote line
   ctx.strokeStyle = 'rgba(245,242,234,0.08)';
   ctx.lineWidth = 1;
   ctx.setLineDash([2,6]);
@@ -471,7 +416,6 @@ function draw() {
   ctx.textAlign = 'right';
   ctx.fillText('asymptote — perpetual motion', PAD.left + cW - 4, asymY - 6);
 
-  // Current point dot
   const curX = PAD.left + foundingData[foundingData.length-1].t * cW;
   const curY = PAD.top + cH - (FOUNDING_PRICE / maxVal) * cH;
   ctx.beginPath();
@@ -485,7 +429,6 @@ function draw() {
   ctx.stroke();
 }
 
-// ── Live data from eulawscanner.eu/api/stats ─────────────────────────────────
 const STATS_URL = 'https://eulawscanner.eu/api/stats';
 
 async function fetchStats() {
@@ -493,15 +436,12 @@ async function fetchStats() {
     const res = await fetch(STATS_URL);
     if (!res.ok) return null;
     return await res.json();
-  } catch {
-    return null;
-  }
+  } catch { return null; }
 }
 
 function animateCounters() {
   fetchStats().then(stats => {
     if (!stats) {
-      // Fallback — show founding phase placeholders
       document.getElementById('m-scans').textContent = '—';
       document.getElementById('m-systems').textContent = '—';
       document.getElementById('m-entropy').textContent = '—';
@@ -509,36 +449,15 @@ function animateCounters() {
       document.getElementById('m-value').textContent = '€99';
       return;
     }
-
-    // Animate numbers counting up
     animateNumber('m-scans', stats.total_scans, '', 1200);
-    animateNumber('m-systems', stats.total_scans, '', 1200); // unique entities approximated
+    animateNumber('m-systems', stats.total_scans, '', 1200);
     animateNumber('m-entropy', stats.total_entropy, '', 1400);
     animateNumber('m-pnc', stats.pnc_in_circulation, '', 1000);
     animateNumber('m-value', stats.implied_pnc_value, '€', 1600);
-
-    // EU-27 metrics
-    const EU27_TOTAL = 5200000000000; // €5.2T
-    const identifiedValue = stats.total_entropy * 1000000; // €1M per entropy unit
-    const pctIdentified = ((identifiedValue / EU27_TOTAL) * 100).toFixed(6);
-    const identifiedFormatted = identifiedValue >= 1000000000
-      ? '€' + (identifiedValue / 1000000000).toFixed(2) + 'B'
-      : identifiedValue >= 1000000
-      ? '€' + (identifiedValue / 1000000).toFixed(1) + 'M'
-      : '€' + identifiedValue.toLocaleString();
-
-    const identifiedEl = document.getElementById('m-identified');
-    const pctEl = document.getElementById('m-pct');
-    if (identifiedEl) identifiedEl.textContent = identifiedFormatted;
-    if (pctEl) pctEl.textContent = pctIdentified + '%';
-
-    // Update chart with real data if we have time series
     if (stats.time_series && stats.time_series.length > 1) {
       updateChartWithRealData(stats);
     }
   });
-
-  // Refresh every 60 seconds
   setTimeout(animateCounters, 60000);
 }
 
@@ -557,7 +476,6 @@ function animateNumber(id, target, prefix, duration) {
 }
 
 function updateChartWithRealData(stats) {
-  // Store real data globally so draw() can use it
   window.realTimeSeries = stats.time_series;
   window.realImpliedPNC = stats.implied_pnc_value;
   draw();
@@ -567,11 +485,10 @@ window.addEventListener('resize', resize);
 resize();
 animateCounters();
 
-// Subtle animation — redraw with slight shimmer on the current point
 let frame = 0;
 function animate() {
   frame++;
-  if (frame % 60 === 0) draw(); // redraw every ~2s for live feel
+  if (frame % 60 === 0) draw();
   requestAnimationFrame(animate);
 }
 animate();
