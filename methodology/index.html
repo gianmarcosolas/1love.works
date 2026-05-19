@@ -9,35 +9,26 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --ink: #0f0f0d;
-      --parchment: #f5f2ea;
-      --cream: #ede9df;
-      --gold: #b8860b;
-      --blue: #1a4e8a;
-      --green: #2d6a2d;
-      --red: #8b0000;
-      --muted: #6b6860;
-      --rule: rgba(15,15,13,0.12);
-      --serif: 'EB Garamond', Georgia, serif;
-      --mono: 'DM Mono', monospace;
+      --ink: #0f0f0d; --parchment: #f5f2ea; --cream: #ede9df;
+      --gold: #b8860b; --blue: #1a4e8a; --green: #2d6a2d; --red: #8b0000;
+      --muted: #6b6860; --rule: rgba(15,15,13,0.12);
+      --serif: 'EB Garamond', Georgia, serif; --mono: 'DM Mono', monospace;
     }
     body { font-family: var(--serif); background: var(--parchment); color: var(--ink); line-height: 1.75; font-size: 17px; }
 
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      border-bottom: 1px solid var(--rule);
-      background: rgba(245,242,234,0.96); backdrop-filter: blur(8px);
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 14px 48px;
-    }
+    nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(245,242,234,0.96); backdrop-filter: blur(8px); display: flex; justify-content: space-between; align-items: center; padding: 14px 48px; }
     .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; font-weight: 500; }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
     .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--ink); }
+    .lang-switcher { display: flex; border: 1px solid var(--rule); overflow: hidden; }
+    .lang-btn { font-family: var(--mono); font-size: 10px; padding: 5px 9px; border: none; background: transparent; color: var(--muted); cursor: pointer; border-right: 1px solid var(--rule); transition: all 0.15s; }
+    .lang-btn:last-child { border-right: none; }
+    .lang-btn.active { background: var(--ink); color: var(--parchment); }
+    .lang-btn:hover:not(.active) { background: var(--cream); }
 
     .wrap { max-width: 900px; margin: 0 auto; padding: 56px 48px 80px; }
 
-    /* Header */
     .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--rule); }
     .page-overline { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 16px; }
     .page-header h1 { font-size: 36px; font-weight: 400; line-height: 1.15; margin-bottom: 16px; }
@@ -50,18 +41,12 @@
     .ip-notice p { font-size: 13px; color: #3a3a36; line-height: 1.8; }
     .ip-notice a { color: var(--blue); }
 
-    /* Sections */
     .section { margin-bottom: 56px; }
     .section-head { font-family: var(--mono); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
     .section-head::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
 
-    /* Accordion */
     .accordion-item { margin-bottom: 8px; }
-    .accordion-trigger {
-      width: 100%; background: white; border: 1px solid var(--rule); padding: 14px 18px;
-      cursor: pointer; display: flex; align-items: center; gap: 16px;
-      text-align: left; font-family: var(--serif); transition: border-color 0.2s;
-    }
+    .accordion-trigger { width: 100%; background: white; border: 1px solid var(--rule); padding: 14px 18px; cursor: pointer; display: flex; align-items: center; gap: 16px; text-align: left; font-family: var(--serif); transition: border-color 0.2s; }
     .accordion-trigger:hover { border-color: rgba(15,15,13,0.25); }
     .accordion-trigger.open { border-bottom-color: transparent; }
     .acc-symbol { width: 44px; height: 44px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-style: italic; flex-shrink: 0; }
@@ -71,11 +56,7 @@
     .acc-title-sub { font-family: var(--mono); font-size: 11px; }
     .acc-arrow { font-size: 12px; color: var(--muted); transition: transform 0.2s; flex-shrink: 0; }
     .accordion-trigger.open .acc-arrow { transform: rotate(180deg); }
-    .accordion-body {
-      display: none; background: rgba(245,242,234,0.6);
-      border: 1px solid var(--rule); border-top: none;
-      padding: 16px 18px;
-    }
+    .accordion-body { display: none; background: rgba(245,242,234,0.6); border: 1px solid var(--rule); border-top: none; padding: 16px 18px; }
     .accordion-body.open { display: block; }
     .acc-body-text { font-size: 14px; color: #3a3a36; line-height: 1.85; margin-bottom: 12px; }
     .acc-origin { border-left: 2px solid rgba(15,15,13,0.15); padding-left: 12px; margin-bottom: 12px; }
@@ -86,31 +67,22 @@
     .acc-formula-label { font-family: var(--mono); font-size: 10px; color: var(--muted); }
     .acc-analogy { font-size: 13px; color: var(--muted); line-height: 1.7; font-style: italic; }
 
-    /* Status badges */
     .status { font-family: var(--mono); font-size: 8px; padding: 2px 8px; border-radius: 10px; white-space: nowrap; flex-shrink: 0; }
     .status-established { background: rgba(45,106,45,0.1); color: var(--green); border: 1px solid rgba(45,106,45,0.25); }
     .status-strong { background: rgba(26,78,138,0.1); color: var(--blue); border: 1px solid rgba(26,78,138,0.25); }
     .status-hypothesis { background: rgba(184,134,11,0.1); color: var(--gold); border: 1px solid rgba(184,134,11,0.25); }
     .status-open { background: rgba(107,104,96,0.1); color: var(--muted); border: 1px solid rgba(107,104,96,0.25); }
 
-    /* Research item */
-    .research-section { margin-bottom: 24px; }
-    .research-section-title { font-family: var(--mono); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-    .research-section-title::before { content: ''; display: inline-block; width: 2px; height: 12px; border-radius: 1px; }
-
-    /* Grid */
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .card { background: white; border: 1px solid var(--rule); border-radius: 6px; padding: 16px 18px; }
     .card-title { font-size: 13px; font-weight: 500; margin-bottom: 8px; }
     .card-text { font-size: 13px; color: var(--muted); line-height: 1.7; }
 
-    /* Summary table */
     .summary-table { background: white; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
     .summary-row { display: flex; align-items: center; gap: 16px; padding: 10px 16px; border-bottom: 1px solid rgba(15,15,13,0.06); }
     .summary-row:last-child { border-bottom: none; }
     .summary-q { font-size: 13px; color: #3a3a36; }
 
-    /* About */
     .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 48px; align-items: start; }
     .about-text p { font-size: 15px; color: #3a3a36; line-height: 1.85; margin-bottom: 14px; }
     .about-text a { color: var(--blue); }
@@ -127,7 +99,6 @@
     .exec-item { font-size: 12px; color: #3a3a36; line-height: 1.6; margin-bottom: 5px; }
     .exec-school { font-family: var(--mono); font-size: 10px; color: var(--muted); }
 
-    /* Collaboration box */
     .collab-box { padding: 20px 24px; background: white; border: 1px solid var(--rule); border-radius: 6px; }
     .collab-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 8px; }
     .collab-box p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 12px; }
@@ -137,7 +108,6 @@
     .btn-outline-blue { background: rgba(26,78,138,0.04); color: var(--blue); border: 1px solid rgba(26,78,138,0.3); }
     .btn-outline-blue:hover { background: rgba(26,78,138,0.08); }
 
-    /* Note */
     .note { border: 1px solid var(--rule); border-radius: 6px; padding: 20px 24px; background: white; }
     .note-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue); margin-bottom: 10px; }
     .note p { font-size: 13px; color: var(--muted); line-height: 1.8; margin-bottom: 8px; }
@@ -174,185 +144,187 @@
     <li class="hide-mobile"><a href="/participate">Participate</a></li>
     <li class="hide-mobile"><a href="/criticisms">Criticisms</a></li>
     <li class="hide-mobile"><a href="https://calendly.com/gmsolas-sustainab-law/legal-consultation-public-entity" target="_blank">Consultation</a></li>
+    <li>
+      <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('it')">IT</button>
+        <button class="lang-btn" onclick="setLang('fr')">FR</button>
+        <button class="lang-btn" onclick="setLang('es')">ES</button>
+      </div>
+    </li>
   </ul>
 </nav>
 
 <div class="wrap">
 
-  <!-- Header -->
   <div class="page-header">
-    <p class="page-overline">1love.works · Theory of Interrelation</p>
-    <h1>The Problem &<br/><em>Methodology to solve it</em></h1>
-    <p>Bureaucracy. Legal weight. Entropy. The invisible tax on everything. €5.2 trillion of unexpressed economic value trapped in EU-27 legal systems. The legal-physics framework is the first scientific instrument designed to measure it — and the first step toward reducing it.</p>
+    <p class="page-overline" data-i18n="overline">1love.works · Theory of Interrelation</p>
+    <h1 data-i18n="h1">The Problem &<br/><em>Methodology to solve it</em></h1>
+    <p data-i18n="header_p">Bureaucracy. Legal weight. Entropy. The invisible tax on everything. €5.2 trillion of unexpressed economic value trapped in EU-27 legal systems. The legal-physics framework is the first scientific instrument designed to measure it — and the first step toward reducing it.</p>
     <div class="tags">
-      <span class="tag">Physics-reviewed pre-print</span>
-      <span class="tag">Based on JLMI 1/25 (Scopus indexed)</span>
-      <span class="tag">Empirical dataset in construction</span>
-      <span class="tag">Collaboration open</span>
+      <span class="tag" data-i18n="tag1">Physics-reviewed pre-print</span>
+      <span class="tag" data-i18n="tag2">Based on JLMI 1/25 (Scopus indexed)</span>
+      <span class="tag" data-i18n="tag3">Empirical dataset in construction</span>
+      <span class="tag" data-i18n="tag4">Collaboration open</span>
     </div>
     <div class="ip-notice">
-      <div class="ip-label">© Intellectual Property</div>
-      <p>The legal-physics framework documented on this page is the original work of <strong>Avv. Dr. Gian Marco Solas</strong> (Italian/EU qualified lawyer, PhD Maastricht/Cagliari, LLM College of Europe). Published in <a href="https://doi.org/10.13135/2785-7867/12266" target="_blank">JLMI 1/25</a>, <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank">Law is Love, SSRN</a>, and <a href="https://www.cambridge.org/core/books/third-party-funding" target="_blank">Cambridge University Press (2019)</a>. All formulas, variables, and their application are © 2019–2026. The methodology is a public scientific contribution — citable and teachable. The instruments are proprietary.</p>
+      <div class="ip-label" data-i18n="ip_label">© Intellectual Property</div>
+      <p data-i18n="ip_p">The legal-physics framework documented on this page is the original work of <strong>Avv. Dr. Gian Marco Solas</strong> (Italian/EU qualified lawyer, PhD Maastricht/Cagliari, LLM College of Europe). Published in <a href="https://doi.org/10.13135/2785-7867/12266" target="_blank">JLMI 1/25</a>, <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank">Law is Love, SSRN</a>, and <a href="https://www.cambridge.org/core/books/third-party-funding" target="_blank">Cambridge University Press (2019)</a>. All formulas, variables, and their application are © 2019–2026. The methodology is a public scientific contribution — citable and teachable. The instruments are proprietary.</p>
     </div>
   </div>
 
   <!-- The Problem -->
   <div class="section" style="margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid var(--rule);">
-    <div class="section-head" style="color: var(--red);">I · The Problem — Bureaucracy. Legal weight. Entropy.</div>
+    <div class="section-head" style="color: var(--red);" data-i18n="s1_head">I · The Problem — Bureaucracy. Legal weight. Entropy.</div>
 
     <div style="font-family: var(--mono); font-size: 38px; font-weight: 500; color: var(--gold); margin-bottom: 8px; line-height: 1.1;">€5.2 trillion</div>
-    <div style="font-family: var(--mono); font-size: 12px; color: var(--muted); margin-bottom: 24px;">Conservative estimate of unexpressed economic value trapped in EU-27 legal systems by regulatory weight and entropy · JLMI 2/25</div>
+    <div style="font-family: var(--mono); font-size: 12px; color: var(--muted); margin-bottom: 24px;" data-i18n="s1_stat">Conservative estimate of unexpressed economic value trapped in EU-27 legal systems by regulatory weight and entropy · JLMI 2/25</div>
 
-    <p style="font-size: 16px; color: #3a3a36; line-height: 1.85; margin-bottom: 16px;">Not because Europe lacks resources. Because its legal systems accumulated faster than they could be measured, codified, or optimised. The invisible tax on everything — paid by everyone, seen by almost no one, and until now, never measured.</p>
+    <p style="font-size: 16px; color: #3a3a36; line-height: 1.85; margin-bottom: 16px;" data-i18n="s1_p1">Not because Europe lacks resources. Because its legal systems accumulated faster than they could be measured, codified, or optimised. The invisible tax on everything — paid by everyone, seen by almost no one, and until now, never measured.</p>
 
-    <p style="font-size: 16px; color: #3a3a36; line-height: 1.85; margin-bottom: 16px;">Human law is like a net — it catches mass in free fall, prevents conflicts from becoming existential, saves human life from crashing into chaos. Without law, human civilisation would have disappeared into destruction much earlier. <strong>The net is necessary. It has always been there.</strong></p>
+    <p style="font-size: 16px; color: #3a3a36; line-height: 1.85; margin-bottom: 16px;" data-i18n="s1_p2">Human law is like a net — it catches mass in free fall, prevents conflicts from becoming existential, saves human life from crashing into chaos. Without law, human civilisation would have disappeared into destruction much earlier. <strong>The net is necessary. It has always been there.</strong></p>
 
-    <p style="font-size: 16px; color: #3a3a36; line-height: 1.85; margin-bottom: 16px;">But when too many nets become entangled with each other and are placed on the ground — overlapping jurisdictions, stacked regulations, redundant obligations accumulated over decades — they no longer save life. They prevent it from emerging. Like flowers and grass that cannot grow through a tangle of nets laid across the soil.</p>
+    <p style="font-size: 16px; color: #3a3a36; line-height: 1.85; margin-bottom: 16px;" data-i18n="s1_p3">But when too many nets become entangled with each other and are placed on the ground — overlapping jurisdictions, stacked regulations, redundant obligations accumulated over decades — they no longer save life. They prevent it from emerging. Like flowers and grass that cannot grow through a tangle of nets laid across the soil.</p>
 
     <div style="border-left: 4px solid var(--gold); padding: 16px 24px; margin: 24px 0; background: var(--cream);">
-      <p style="font-size: 17px; font-style: italic; color: var(--ink); line-height: 1.7; margin: 0;">"Human law is like a net that can be used to save a mass in free fall — but that once entangled to many other nets and placed on the ground would not let life, like flowers or grass, emerge." — <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank" style="color: var(--gold);">Law is Love</a></p>
+      <p style="font-size: 17px; font-style: italic; color: var(--ink); line-height: 1.7; margin: 0;" data-i18n="s1_quote">"Human law is like a net that can be used to save a mass in free fall — but that once entangled to many other nets and placed on the ground would not let life, like flowers or grass, emerge." — <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank" style="color: var(--gold);">Law is Love</a></p>
     </div>
 
-    <p style="font-size: 16px; color: #3a3a36; line-height: 1.85; margin-bottom: 16px;">This is legal weight. Not the law. What the law becomes when it accumulates faster than it can be maintained. The difference between legal weight and ordinary inefficiency is that legal weight is <strong>measurable</strong>. It has a formula. It has a unit. It has a value — the value of everything it is preventing from existing.</p>
+    <p style="font-size: 16px; color: #3a3a36; line-height: 1.85; margin-bottom: 16px;" data-i18n="s1_p4">This is legal weight. Not the law. What the law becomes when it accumulates faster than it can be maintained. The difference between legal weight and ordinary inefficiency is that legal weight is <strong>measurable</strong>. It has a formula. It has a unit. It has a value — the value of everything it is preventing from existing.</p>
 
-    <p style="font-size: 16px; color: #3a3a36; line-height: 1.85; margin-bottom: 24px;">The social market economy and the internal market — the most ambitious legal-economic project in modern history — is still unfinished. The reason it is unfinished is entropy. The goal of the legal-physics framework is to finish the project. Not by adding more regulation. By measuring what exists, reducing what is redundant, converting what is entropic.</p>
+    <p style="font-size: 16px; color: #3a3a36; line-height: 1.85; margin-bottom: 24px;" data-i18n="s1_p5">The social market economy and the internal market — the most ambitious legal-economic project in modern history — is still unfinished. The reason it is unfinished is entropy. The goal of the legal-physics framework is to finish the project. Not by adding more regulation. By measuring what exists, reducing what is redundant, converting what is entropic.</p>
 
     <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: var(--rule);">
       <div style="background: var(--parchment); padding: 20px;">
         <div style="font-size: 22px; margin-bottom: 8px;">🏠</div>
-        <div style="font-size: 15px; font-weight: 500; margin-bottom: 8px; color: var(--ink);">Housing crisis</div>
-        <div style="font-size: 13px; color: var(--muted); line-height: 1.7;">Regulatory weight trapping land, stalling permits, blocking supply. Europe has the land. Legal entropy prevents building.</div>
+        <div style="font-size: 15px; font-weight: 500; margin-bottom: 8px; color: var(--ink);" data-i18n="case1_title">Housing crisis</div>
+        <div style="font-size: 13px; color: var(--muted); line-height: 1.7;" data-i18n="case1_text">Regulatory weight trapping land, stalling permits, blocking supply. Europe has the land. Legal entropy prevents building.</div>
       </div>
       <div style="background: var(--parchment); padding: 20px;">
         <div style="font-size: 22px; margin-bottom: 8px;">⚡</div>
-        <div style="font-size: 15px; font-weight: 500; margin-bottom: 8px; color: var(--ink);">Energy crisis</div>
-        <div style="font-size: 13px; color: var(--muted); line-height: 1.7;">Renewable projects wait years for permits. The energy transition is not blocked by physics — it is blocked by legal weight.</div>
+        <div style="font-size: 15px; font-weight: 500; margin-bottom: 8px; color: var(--ink);" data-i18n="case2_title">Energy crisis</div>
+        <div style="font-size: 13px; color: var(--muted); line-height: 1.7;" data-i18n="case2_text">Renewable projects wait years for permits. The energy transition is not blocked by physics — it is blocked by legal weight.</div>
       </div>
       <div style="background: var(--parchment); padding: 20px;">
         <div style="font-size: 22px; margin-bottom: 8px;">🌾</div>
-        <div style="font-size: 15px; font-weight: 500; margin-bottom: 8px; color: var(--ink);">Local value chain</div>
-        <div style="font-size: 13px; color: var(--muted); line-height: 1.7;">Food, agriculture, SMEs, labour, crafts — crushed by administrative weight designed for industrial scale applied to human-scale activity.</div>
+        <div style="font-size: 15px; font-weight: 500; margin-bottom: 8px; color: var(--ink);" data-i18n="case3_title">Local value chain</div>
+        <div style="font-size: 13px; color: var(--muted); line-height: 1.7;" data-i18n="case3_text">Food, agriculture, SMEs, labour, crafts — crushed by administrative weight designed for industrial scale applied to human-scale activity.</div>
       </div>
     </div>
 
-    <p style="font-size: 14px; color: var(--muted); line-height: 1.8; margin-top: 20px; font-family: var(--mono);">You cannot reduce what you cannot measure. The reason legal weight has never been systematically reduced is not political will — it is the absence of a scientific instrument capable of quantifying it. Until now.</p>
+    <p style="font-size: 14px; color: var(--muted); line-height: 1.8; margin-top: 20px; font-family: var(--mono);" data-i18n="s1_coda">You cannot reduce what you cannot measure. The reason legal weight has never been systematically reduced is not political will — it is the absence of a scientific instrument capable of quantifying it. Until now.</p>
   </div>
 
   <!-- Variables -->
   <div class="section">
-    <div class="section-head" style="color: var(--blue);">Variables</div>
+    <div class="section-head" style="color: var(--blue);" data-i18n="s_variables">Variables</div>
 
-    <!-- λ -->
     <div class="accordion-item">
       <button class="accordion-trigger" onclick="toggle(this)">
         <div class="acc-symbol" style="background: rgba(26,78,138,0.08); border: 1px solid rgba(26,78,138,0.2); color: var(--blue);">λ</div>
         <div class="acc-title">
-          <div class="acc-title-main">Lambda — The Legal Factor</div>
+          <div class="acc-title-main" data-i18n="v1_title">Lambda — The Legal Factor</div>
           <div class="acc-title-sub" style="color: var(--blue);">λX = EX/MX</div>
         </div>
         <span class="acc-arrow">▾</span>
       </button>
       <div class="accordion-body">
-        <p class="acc-body-text">The fundamental legal constant. Its mathematical genealogy begins with Shavell's standard model (Cambridge University Press, 2019), where λ is the legal risk probabilistic factor — the probability of success of a legal claim, used to determine the rational investment threshold c &lt; λ(R). Extended for TPF investment valuation (empirically validated in the European truck cartel, +/- €300M pending settlement), then generalised to entire legal systems as λX = EX/MX in JLMI 2025. The probabilistic nature of λ is preserved throughout: λX measures the probability that a legal system is expressing its full potential value.</p>
+        <p class="acc-body-text" data-i18n="v1_body">The fundamental legal constant. Its mathematical genealogy begins with Shavell's standard model (Cambridge University Press, 2019), where λ is the legal risk probabilistic factor — the probability of success of a legal claim, used to determine the rational investment threshold c &lt; λ(R). Extended for TPF investment valuation (empirically validated in the European truck cartel, +/- €300M pending settlement), then generalised to entire legal systems as λX = EX/MX in JLMI 2025. The probabilistic nature of λ is preserved throughout: λX measures the probability that a legal system is expressing its full potential value.</p>
         <div class="acc-origin">
-          <div class="acc-origin-label">Origin</div>
-          <p class="acc-origin-text">Derived from the Greek letter used to denote wavelength (λ) and the cosmological constant (Λ) in Einstein's field equations. The hypothesis proposes these are not merely analogous but unified — human law as a missing variable in physics equations.</p>
+          <div class="acc-origin-label" data-i18n="origin_label">Origin</div>
+          <p class="acc-origin-text" data-i18n="v1_origin">Derived from the Greek letter used to denote wavelength (λ) and the cosmological constant (Λ) in Einstein's field equations. The hypothesis proposes these are not merely analogous but unified — human law as a missing variable in physics equations.</p>
         </div>
         <div class="acc-formula-box" style="background: rgba(26,78,138,0.05); border: 1px solid rgba(26,78,138,0.15);">
           <div class="acc-formula-main" style="color: var(--blue);">λX = EX/MX</div>
-          <div class="acc-formula-label">Expressed potential over total mass — generalisation to legal systems [JLMI 2025]</div>
+          <div class="acc-formula-label" data-i18n="v1_formula_label">Expressed potential over total mass — generalisation to legal systems [JLMI 2025]</div>
         </div>
       </div>
     </div>
 
-    <!-- PC -->
     <div class="accordion-item">
       <button class="accordion-trigger" onclick="toggle(this)">
         <div class="acc-symbol" style="background: rgba(45,106,45,0.08); border: 1px solid rgba(45,106,45,0.2); color: var(--green); font-size: 14px;">PC</div>
         <div class="acc-title">
-          <div class="acc-title-main">Client / Market Pressure</div>
+          <div class="acc-title-main" data-i18n="v2_title">Client / Market Pressure</div>
           <div class="acc-title-sub" style="color: var(--green);">PC = λCF</div>
         </div>
         <span class="acc-arrow">▾</span>
       </button>
       <div class="accordion-body">
-        <p class="acc-body-text">The force exerted on a legal actor by a client, investor, or market participant. Triggers legal work cycles. In any legal system, PC manifests as demand for rights enforcement, market pressure for compliance, or litigation by affected parties.</p>
+        <p class="acc-body-text" data-i18n="v2_body">The force exerted on a legal actor by a client, investor, or market participant. Triggers legal work cycles. In any legal system, PC manifests as demand for rights enforcement, market pressure for compliance, or litigation by affected parties.</p>
         <div class="acc-origin">
-          <div class="acc-origin-label">Origin</div>
-          <p class="acc-origin-text">From fluid mechanics and thermodynamics: pressure as vector force applied to a container. Here the container is the legal system, and the fluid is legal-economic activity.</p>
+          <div class="acc-origin-label" data-i18n="origin_label">Origin</div>
+          <p class="acc-origin-text" data-i18n="v2_origin">From fluid mechanics and thermodynamics: pressure as vector force applied to a container. Here the container is the legal system, and the fluid is legal-economic activity.</p>
         </div>
         <div class="acc-formula-box" style="background: rgba(45,106,45,0.05); border: 1px solid rgba(45,106,45,0.15);">
           <div class="acc-formula-main" style="color: var(--green);">PC = λCF</div>
-          <div class="acc-formula-label">Client pressure equals legal service times fee [Eq. 4]</div>
+          <div class="acc-formula-label" data-i18n="v2_formula_label">Client pressure equals legal service times fee [Eq. 4]</div>
         </div>
       </div>
     </div>
 
-    <!-- F -->
     <div class="accordion-item">
       <button class="accordion-trigger" onclick="toggle(this)">
         <div class="acc-symbol" style="background: rgba(184,134,11,0.08); border: 1px solid rgba(184,134,11,0.2); color: var(--gold);">F</div>
         <div class="acc-title">
-          <div class="acc-title-main">Fee — Legal Energy</div>
+          <div class="acc-title-main" data-i18n="v3_title">Fee — Legal Energy</div>
           <div class="acc-title-sub" style="color: var(--gold);">PC = λCF</div>
         </div>
         <span class="acc-arrow">▾</span>
       </button>
       <div class="accordion-body">
-        <p class="acc-body-text">The energy input that enables legal work to begin. The fee is not merely payment — it is the physical energy that removes friction and converts pressure into productive legal work. Without F, no work cycle starts. Applied to regulation: compliance costs are legal friction — the energy actors must expend simply to be permitted to operate, before any productive work begins.</p>
+        <p class="acc-body-text" data-i18n="v3_body">The energy input that enables legal work to begin. The fee is not merely payment — it is the physical energy that removes friction and converts pressure into productive legal work. Without F, no work cycle starts. Applied to regulation: compliance costs are legal friction — the energy actors must expend simply to be permitted to operate, before any productive work begins.</p>
         <div class="acc-origin">
-          <div class="acc-origin-label">Origin</div>
-          <p class="acc-origin-text">From Joule's 1845 paper On the Mechanical Equivalent of Heat. F links monetary policy to entropy — money as the universal energy carrier in legal-economic systems.</p>
+          <div class="acc-origin-label" data-i18n="origin_label">Origin</div>
+          <p class="acc-origin-text" data-i18n="v3_origin">From Joule's 1845 paper On the Mechanical Equivalent of Heat. F links monetary policy to entropy — money as the universal energy carrier in legal-economic systems.</p>
         </div>
         <div class="acc-formula-box" style="background: rgba(184,134,11,0.05); border: 1px solid rgba(184,134,11,0.15);">
           <div class="acc-formula-main" style="color: var(--gold);">PC = λCF</div>
-          <div class="acc-formula-label">Fee as energy enabling the legal work cycle [Eq. 4]</div>
+          <div class="acc-formula-label" data-i18n="v3_formula_label">Fee as energy enabling the legal work cycle [Eq. 4]</div>
         </div>
       </div>
     </div>
 
-    <!-- W -->
     <div class="accordion-item">
       <button class="accordion-trigger" onclick="toggle(this)">
         <div class="acc-symbol" style="background: rgba(139,0,0,0.08); border: 1px solid rgba(139,0,0,0.2); color: var(--red);">W</div>
         <div class="acc-title">
-          <div class="acc-title-main">Legal Microstates — W = f(λ)</div>
+          <div class="acc-title-main" data-i18n="v4_title">Legal Microstates — W = f(λ)</div>
           <div class="acc-title-sub" style="color: var(--red);">S = k · log W(λ)</div>
         </div>
         <span class="acc-arrow">▾</span>
       </button>
       <div class="accordion-body">
-        <p class="acc-body-text">The number of unresolved legal states in a system — undisclosed liabilities, opacity, unexpressed asset value, regulatory ambiguity, governance failures. Critically: W is a function of λ — the applicable law determines which states are unresolved. The higher W(λ), the greater the disorder, the higher the entropy. This is a genuine mathematical extension of Boltzmann's W to legal systems, not a metaphor.</p>
+        <p class="acc-body-text" data-i18n="v4_body">The number of unresolved legal states in a system — undisclosed liabilities, opacity, unexpressed asset value, regulatory ambiguity, governance failures. Critically: W is a function of λ — the applicable law determines which states are unresolved. The higher W(λ), the greater the disorder, the higher the entropy. This is a genuine mathematical extension of Boltzmann's W to legal systems, not a metaphor.</p>
         <div class="acc-origin">
-          <div class="acc-origin-label">Origin</div>
-          <p class="acc-origin-text">Extends Boltzmann's W (number of physical microstates) to legal systems. The λ-dependence of W is the framework's original contribution: legal microstates are not absolute but relative to the applicable law.</p>
+          <div class="acc-origin-label" data-i18n="origin_label">Origin</div>
+          <p class="acc-origin-text" data-i18n="v4_origin">Extends Boltzmann's W (number of physical microstates) to legal systems. The λ-dependence of W is the framework's original contribution: legal microstates are not absolute but relative to the applicable law.</p>
         </div>
         <div class="acc-formula-box" style="background: rgba(139,0,0,0.05); border: 1px solid rgba(139,0,0,0.15);">
           <div class="acc-formula-main" style="color: var(--red);">W = f(λ) → S = k · log W(λ)</div>
-          <div class="acc-formula-label">Legal microstates as function of λ → Boltzmann entropy [Eq. 8]</div>
+          <div class="acc-formula-label" data-i18n="v4_formula_label">Legal microstates as function of λ → Boltzmann entropy [Eq. 8]</div>
         </div>
       </div>
     </div>
 
-    <!-- π -->
     <div class="accordion-item">
       <button class="accordion-trigger" onclick="toggle(this)">
         <div class="acc-symbol" style="background: rgba(184,134,11,0.08); border: 1px solid rgba(184,134,11,0.2); color: var(--gold);">π</div>
         <div class="acc-title">
-          <div class="acc-title-main">Sustainable Return</div>
+          <div class="acc-title-main" data-i18n="v5_title">Sustainable Return</div>
           <div class="acc-title-sub" style="color: var(--gold);">π = λ(R − C)</div>
         </div>
         <span class="acc-arrow">▾</span>
       </button>
       <div class="accordion-body">
-        <p class="acc-body-text">Expected profit from a sustainable investment. π is amplified or destroyed by the legal factor λ — good governance, low legal weight, and SDG alignment increase net return; entropy and inertia reduce it. The formula makes governance mathematically inseparable from return.</p>
+        <p class="acc-body-text" data-i18n="v5_body">Expected profit from a sustainable investment. π is amplified or destroyed by the legal factor λ — good governance, low legal weight, and SDG alignment increase net return; entropy and inertia reduce it. The formula makes governance mathematically inseparable from return.</p>
         <div class="acc-origin">
-          <div class="acc-origin-label">Origin</div>
-          <p class="acc-origin-text">Adapted from third-party funding investment models and generalised to any legal investment. Empirically validated in the European truck cartel collective redress initiative.</p>
+          <div class="acc-origin-label" data-i18n="origin_label">Origin</div>
+          <p class="acc-origin-text" data-i18n="v5_origin">Adapted from third-party funding investment models and generalised to any legal investment. Empirically validated in the European truck cartel collective redress initiative.</p>
         </div>
         <div class="acc-formula-box" style="background: rgba(184,134,11,0.05); border: 1px solid rgba(184,134,11,0.15);">
           <div class="acc-formula-main" style="color: var(--gold);">π = λ(R − C)</div>
-          <div class="acc-formula-label">Sustainable investment return formula [Eq. 6]</div>
+          <div class="acc-formula-label" data-i18n="v5_formula_label">Sustainable investment return formula [Eq. 6]</div>
         </div>
       </div>
     </div>
@@ -360,20 +332,20 @@
 
   <!-- Formulas -->
   <div class="section">
-    <div class="section-head" style="color: var(--green);">Formulas</div>
+    <div class="section-head" style="color: var(--green);" data-i18n="s_formulas">Formulas</div>
 
     <div class="accordion-item">
       <button class="accordion-trigger" onclick="toggle(this)">
         <div class="acc-eq" style="background: rgba(26,78,138,0.08); border: 1px solid rgba(26,78,138,0.2); color: var(--blue);">[1]</div>
         <div class="acc-title">
           <div class="acc-title-sub" style="color: var(--blue); font-size: 12px;">λx = (λx1 + λx2 + λx3 + ...)</div>
-          <div style="font-size: 12px; color: var(--muted); margin-top: 2px;">Legal System Composition</div>
+          <div style="font-size: 12px; color: var(--muted); margin-top: 2px;" data-i18n="f1_sub">Legal System Composition</div>
         </div>
         <span class="acc-arrow">▾</span>
       </button>
       <div class="accordion-body">
-        <p class="acc-body-text">Any legal system X — a city, company, jurisdiction — is the sum of all its constituent legal acts, contracts, and norms. This makes legal systems mathematically tractable and universally comparable.</p>
-        <div class="acc-origin"><div class="acc-origin-label">Physics analogy</div><p class="acc-analogy">Like a vector sum in physics: the total legal force on a body is the sum of all individual legal forces acting upon it.</p></div>
+        <p class="acc-body-text" data-i18n="f1_body">Any legal system X — a city, company, jurisdiction — is the sum of all its constituent legal acts, contracts, and norms. This makes legal systems mathematically tractable and universally comparable.</p>
+        <div class="acc-origin"><div class="acc-origin-label" data-i18n="analogy_label">Physics analogy</div><p class="acc-analogy" data-i18n="f1_analogy">Like a vector sum in physics: the total legal force on a body is the sum of all individual legal forces acting upon it.</p></div>
       </div>
     </div>
 
@@ -382,13 +354,13 @@
         <div class="acc-eq" style="background: rgba(45,106,45,0.08); border: 1px solid rgba(45,106,45,0.2); color: var(--green);">[2]</div>
         <div class="acc-title">
           <div class="acc-title-sub" style="color: var(--green); font-size: 12px;">λx = (λx + λP + λR + λS + λI)</div>
-          <div style="font-size: 12px; color: var(--muted); margin-top: 2px;">Legal Hierarchy</div>
+          <div style="font-size: 12px; color: var(--muted); margin-top: 2px;" data-i18n="f2_sub">Legal Hierarchy</div>
         </div>
         <span class="acc-arrow">▾</span>
       </button>
       <div class="accordion-body">
-        <p class="acc-body-text">A local legal system X is embedded within and subject to Provincial (P), Regional (R), State (S), and International (I) law. The full legal weight bearing on any entity is the sum across all jurisdictional layers — from municipal bylaws to international treaties.</p>
-        <div class="acc-origin"><div class="acc-origin-label">Physics analogy</div><p class="acc-analogy">Analogous to nested coordinate systems in general relativity: each frame of reference is subject to the curvature imposed by the larger frame.</p></div>
+        <p class="acc-body-text" data-i18n="f2_body">A local legal system X is embedded within and subject to Provincial (P), Regional (R), State (S), and International (I) law. The full legal weight bearing on any entity is the sum across all jurisdictional layers — from municipal bylaws to international treaties.</p>
+        <div class="acc-origin"><div class="acc-origin-label" data-i18n="analogy_label">Physics analogy</div><p class="acc-analogy" data-i18n="f2_analogy">Analogous to nested coordinate systems in general relativity: each frame of reference is subject to the curvature imposed by the larger frame.</p></div>
       </div>
     </div>
 
@@ -397,13 +369,13 @@
         <div class="acc-eq" style="background: rgba(45,106,45,0.08); border: 1px solid rgba(45,106,45,0.2); color: var(--green);">[3]</div>
         <div class="acc-title">
           <div class="acc-title-sub" style="color: var(--green); font-size: 12px;">MAλ = FXλ</div>
-          <div style="font-size: 12px; color: var(--muted); margin-top: 2px;">Newton's Second Law Applied to Law</div>
+          <div style="font-size: 12px; color: var(--muted); margin-top: 2px;" data-i18n="f3_sub">Newton's Second Law Applied to Law</div>
         </div>
         <span class="acc-arrow">▾</span>
       </button>
       <div class="accordion-body">
-        <p class="acc-body-text">Both the mass in acceleration (MAλ) and the force (FXλ) are bound by applicable law λ. The car does not stop because of physics alone — it stops because λ (municipal traffic law) acts on both the mass (driver+car system) and the force (legal obligation to stop). Without λ, there is no legal event, only a physical one.</p>
-        <div class="acc-origin"><div class="acc-origin-label">Physics analogy</div><p class="acc-analogy">Newton's F=MA: the red light is a legal force vector that decelerates the mass 'driver+car'. CCTV provides the objective measurement of the spatio-temporal legal event.</p></div>
+        <p class="acc-body-text" data-i18n="f3_body">Both the mass in acceleration (MAλ) and the force (FXλ) are bound by applicable law λ. The car does not stop because of physics alone — it stops because λ (municipal traffic law) acts on both the mass (driver+car system) and the force (legal obligation to stop). Without λ, there is no legal event, only a physical one.</p>
+        <div class="acc-origin"><div class="acc-origin-label" data-i18n="analogy_label">Physics analogy</div><p class="acc-analogy" data-i18n="f3_analogy">Newton's F=MA: the red light is a legal force vector that decelerates the mass 'driver+car'. CCTV provides the objective measurement of the spatio-temporal legal event.</p></div>
       </div>
     </div>
 
@@ -412,13 +384,13 @@
         <div class="acc-eq" style="background: rgba(184,134,11,0.08); border: 1px solid rgba(184,134,11,0.2); color: var(--gold);">[5]</div>
         <div class="acc-title">
           <div class="acc-title-sub" style="color: var(--gold); font-size: 12px;">λ = C²</div>
-          <div style="font-size: 12px; color: var(--muted); margin-top: 2px;">Law as Light</div>
+          <div style="font-size: 12px; color: var(--muted); margin-top: 2px;" data-i18n="f5_sub">Law as Light</div>
         </div>
         <span class="acc-arrow">▾</span>
       </button>
       <div class="accordion-body">
-        <p class="acc-body-text">Applicable law (λ) is proposed as the physical equivalent of the speed of light squared (C²) in Einstein's E=MC². Like light, law has both particle properties (specific legal acts, binding decisions) and wave properties (general principles, jurisprudential influence spreading across systems). Law is the beacon of science — what we can, cannot, and must do in any legal frame of reference.</p>
-        <div class="acc-origin"><div class="acc-origin-label">Physics analogy</div><p class="acc-analogy">Einstein's wave-particle duality of light: 'We have two contradictory pictures of reality; separately neither fully explains the phenomena of light, but together they do.' The same applies to law as both specific act and general principle.</p></div>
+        <p class="acc-body-text" data-i18n="f5_body">Applicable law (λ) is proposed as the physical equivalent of the speed of light squared (C²) in Einstein's E=MC². Like light, law has both particle properties (specific legal acts, binding decisions) and wave properties (general principles, jurisprudential influence spreading across systems). Law is the beacon of science — what we can, cannot, and must do in any legal frame of reference.</p>
+        <div class="acc-origin"><div class="acc-origin-label" data-i18n="analogy_label">Physics analogy</div><p class="acc-analogy" data-i18n="f5_analogy">Einstein's wave-particle duality of light: 'We have two contradictory pictures of reality; separately neither fully explains the phenomena of light, but together they do.' The same applies to law as both specific act and general principle.</p></div>
       </div>
     </div>
 
@@ -427,13 +399,13 @@
         <div class="acc-eq" style="background: rgba(139,0,0,0.08); border: 1px solid rgba(139,0,0,0.2); color: var(--red);">[7]</div>
         <div class="acc-title">
           <div class="acc-title-sub" style="color: var(--red); font-size: 12px;">W = MG(λ) ≈ Λ</div>
-          <div style="font-size: 12px; color: var(--muted); margin-top: 2px;">Legal Weight & Gravitational Curvature</div>
+          <div style="font-size: 12px; color: var(--muted); margin-top: 2px;" data-i18n="f7_sub">Legal Weight & Gravitational Curvature</div>
         </div>
         <span class="acc-arrow">▾</span>
       </button>
       <div class="accordion-body">
-        <p class="acc-body-text">Legal weight equals mass multiplied by a λ-dependent gravitational function G(λ). This is formally analogous to Einstein's cosmological constant Λ: excessive legal weight acts as a brake on the expansion of the civilisation progress spiral. When W is optimal, the legal universe expands sustainably — the Fibonacci spiral of civilisation progress.</p>
-        <div class="acc-origin"><div class="acc-origin-label">Physics analogy</div><p class="acc-analogy">Einstein's cosmological constant Λ was introduced to prevent universal expansion. Legal weight W = MG(λ) plays the same role in civilisation space-time: at the right level it provides structure; in excess it prevents the expansion of human potential.</p></div>
+        <p class="acc-body-text" data-i18n="f7_body">Legal weight equals mass multiplied by a λ-dependent gravitational function G(λ). This is formally analogous to Einstein's cosmological constant Λ: excessive legal weight acts as a brake on the expansion of the civilisation progress spiral. When W is optimal, the legal universe expands sustainably — the Fibonacci spiral of civilisation progress.</p>
+        <div class="acc-origin"><div class="acc-origin-label" data-i18n="analogy_label">Physics analogy</div><p class="acc-analogy" data-i18n="f7_analogy">Einstein's cosmological constant Λ was introduced to prevent universal expansion. Legal weight W = MG(λ) plays the same role in civilisation space-time: at the right level it provides structure; in excess it prevents the expansion of human potential.</p></div>
       </div>
     </div>
 
@@ -442,80 +414,67 @@
         <div class="acc-eq" style="background: rgba(139,0,0,0.08); border: 1px solid rgba(139,0,0,0.2); color: var(--red);">[8]</div>
         <div class="acc-title">
           <div class="acc-title-sub" style="color: var(--red); font-size: 12px;">S = k · log W(λ)</div>
-          <div style="font-size: 12px; color: var(--muted); margin-top: 2px;">Boltzmann Entropy Extended to Legal Systems</div>
+          <div style="font-size: 12px; color: var(--muted); margin-top: 2px;" data-i18n="f8_sub">Boltzmann Entropy Extended to Legal Systems</div>
         </div>
         <span class="acc-arrow">▾</span>
       </button>
       <div class="accordion-body">
-        <p class="acc-body-text">Entropy of a legal system equals the Boltzmann constant (k) multiplied by the logarithm of the number of unresolved legal states W(λ) — where W is itself a function of the applicable law λ. The same set of facts produces different entropy in different legal systems. W counts all sources of legal disorder: opacity, undisclosed liabilities, governance failures, regulatory ambiguity, unexpressed asset value.</p>
-        <div class="acc-origin"><div class="acc-origin-label">Physics analogy</div><p class="acc-analogy">Boltzmann 1877: S = k log W. In thermodynamics, W counts physical microstates. In legal systems, W(λ) counts unresolved legal states relative to the applicable law — introducing the λ-dependence as the framework's original contribution.</p></div>
+        <p class="acc-body-text" data-i18n="f8_body">Entropy of a legal system equals the Boltzmann constant (k) multiplied by the logarithm of the number of unresolved legal states W(λ) — where W is itself a function of the applicable law λ. The same set of facts produces different entropy in different legal systems. W counts all sources of legal disorder: opacity, undisclosed liabilities, governance failures, regulatory ambiguity, unexpressed asset value.</p>
+        <div class="acc-origin"><div class="acc-origin-label" data-i18n="analogy_label">Physics analogy</div><p class="acc-analogy" data-i18n="f8_analogy">Boltzmann 1877: S = k log W. In thermodynamics, W counts physical microstates. In legal systems, W(λ) counts unresolved legal states relative to the applicable law — introducing the λ-dependence as the framework's original contribution.</p></div>
       </div>
     </div>
   </div>
 
   <!-- Classical vs Quantum -->
   <div class="section">
-    <div class="section-head" style="color: var(--gold);">Classical vs Quantum — What Is Currently Instrumented</div>
+    <div class="section-head" style="color: var(--gold);" data-i18n="s_cvsq">Classical vs Quantum — What Is Currently Instrumented</div>
     <div class="grid-2">
       <div class="card" style="border-color: rgba(45,106,45,0.25);">
-        <div class="card-title" style="color: var(--green); font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;">✓ Currently instrumented</div>
-        <div class="card-text">
-          Classical physics applied to legal systems:<br/>
-          · Newton (MAλ=FXλ) — legal force and acceleration<br/>
-          · Carnot — motive power, work cycles, useful effect<br/>
-          · Joule (PC/PS=λCF) — fee as legal energy / friction<br/>
-          · Einstein (λ=C², W=MG(λ)) — law as light, legal weight<br/>
-          · Boltzmann (S=k·logW(λ)) — entropy of legal microstates
-        </div>
+        <div class="card-title" style="color: var(--green); font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;" data-i18n="cvsq_instrumented">✓ Currently instrumented</div>
+        <div class="card-text" data-i18n="cvsq_instrumented_body">Classical physics applied to legal systems:<br/>· Newton (MAλ=FXλ) — legal force and acceleration<br/>· Carnot — motive power, work cycles, useful effect<br/>· Joule (PC/PS=λCF) — fee as legal energy / friction<br/>· Einstein (λ=C², W=MG(λ)) — law as light, legal weight<br/>· Boltzmann (S=k·logW(λ)) — entropy of legal microstates</div>
       </div>
       <div class="card" style="border-color: rgba(184,134,11,0.25);">
-        <div class="card-title" style="color: var(--gold); font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;">◎ Theoretically developed — pending instrumentation</div>
-        <div class="card-text">
-          Quantum mechanics — in the framework, not yet in the scanner:<br/>
-          · <strong>Entanglement</strong> — individuals cannot be described independently of their legal system<br/>
-          · <strong>Quantum jump</strong> — legal codification transitions<br/>
-          · <strong>Superposition</strong> — law as particle and wave<br/>
-          · <strong>Planck threshold</strong> — minimum legal activation energy
-        </div>
+        <div class="card-title" style="color: var(--gold); font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;" data-i18n="cvsq_pending">◎ Theoretically developed — pending instrumentation</div>
+        <div class="card-text" data-i18n="cvsq_pending_body">Quantum mechanics — in the framework, not yet in the scanner:<br/>· <strong>Entanglement</strong> — individuals cannot be described independently of their legal system<br/>· <strong>Quantum jump</strong> — legal codification transitions<br/>· <strong>Superposition</strong> — law as particle and wave<br/>· <strong>Planck threshold</strong> — minimum legal activation energy</div>
       </div>
     </div>
   </div>
 
   <!-- Research Programme Summary -->
   <div class="section">
-    <div class="section-head" style="color: var(--blue);">Research Programme — Summary</div>
+    <div class="section-head" style="color: var(--blue);" data-i18n="s_research">Research Programme — Summary</div>
     <div class="summary-table">
-      <div class="summary-row"><span class="status status-established">ESTABLISHED</span><span class="summary-q">Shavell c &lt; λ(R) extension for TPF</span></div>
-      <div class="summary-row"><span class="status status-established">ESTABLISHED</span><span class="summary-q">λX = EX/MX for legal systems</span></div>
-      <div class="summary-row"><span class="status status-established">ESTABLISHED</span><span class="summary-q">Human inertia vs rational actor</span></div>
-      <div class="summary-row"><span class="status status-strong">STRONG HYPOTHESIS</span><span class="summary-q">BCM rule + attention economy</span></div>
-      <div class="summary-row"><span class="status status-strong">STRONG HYPOTHESIS</span><span class="summary-q">Network analysis + Art.101(3) conversion</span></div>
-      <div class="summary-row"><span class="status status-hypothesis">HYPOTHESIS</span><span class="summary-q">De Broglie unification</span></div>
-      <div class="summary-row"><span class="status status-hypothesis">HYPOTHESIS</span><span class="summary-q">Λ = π/φ cosmological constant</span></div>
-      <div class="summary-row"><span class="status status-hypothesis">HYPOTHESIS</span><span class="summary-q">Three-way λ unification (Shavell / De Broglie / Einstein)</span></div>
-      <div class="summary-row"><span class="status status-hypothesis">HYPOTHESIS</span><span class="summary-q">Gödel rotating universe + legal cycles</span></div>
-      <div class="summary-row"><span class="status status-hypothesis">HYPOTHESIS</span><span class="summary-q">Dirac light cone + legal causality</span></div>
-      <div class="summary-row"><span class="status status-hypothesis">HYPOTHESIS</span><span class="summary-q">Planckian threshold in legal systems</span></div>
-      <div class="summary-row"><span class="status status-hypothesis">HYPOTHESIS</span><span class="summary-q">Einstein elevator + Fibonacci pair</span></div>
-      <div class="summary-row"><span class="status status-hypothesis">HYPOTHESIS</span><span class="summary-q">Shannon entropy + λX equivalence</span></div>
-      <div class="summary-row"><span class="status status-hypothesis">HYPOTHESIS</span><span class="summary-q">Maxwell's Demon → Maxwell's Angel</span></div>
-      <div class="summary-row"><span class="status status-hypothesis">HYPOTHESIS</span><span class="summary-q">Eddington arrow of time + legal progress</span></div>
-      <div class="summary-row"><span class="status status-hypothesis">HYPOTHESIS</span><span class="summary-q">Brownian motion + lawyer agents</span></div>
-      <div class="summary-row"><span class="status status-open">OPEN QUESTION</span><span class="summary-q">Legal weight + corporate structure / IPO</span></div>
-      <div class="summary-row"><span class="status status-open">OPEN QUESTION</span><span class="summary-q">Embodied skill preservation</span></div>
+      <div class="summary-row"><span class="status status-established" data-i18n="status_established">ESTABLISHED</span><span class="summary-q">Shavell c &lt; λ(R) extension for TPF</span></div>
+      <div class="summary-row"><span class="status status-established" data-i18n="status_established">ESTABLISHED</span><span class="summary-q">λX = EX/MX for legal systems</span></div>
+      <div class="summary-row"><span class="status status-established" data-i18n="status_established">ESTABLISHED</span><span class="summary-q">Human inertia vs rational actor</span></div>
+      <div class="summary-row"><span class="status status-strong" data-i18n="status_strong">STRONG HYPOTHESIS</span><span class="summary-q">BCM rule + attention economy</span></div>
+      <div class="summary-row"><span class="status status-strong" data-i18n="status_strong">STRONG HYPOTHESIS</span><span class="summary-q">Network analysis + Art.101(3) conversion</span></div>
+      <div class="summary-row"><span class="status status-hypothesis" data-i18n="status_hypothesis">HYPOTHESIS</span><span class="summary-q">De Broglie unification</span></div>
+      <div class="summary-row"><span class="status status-hypothesis" data-i18n="status_hypothesis">HYPOTHESIS</span><span class="summary-q">Λ = π/φ cosmological constant</span></div>
+      <div class="summary-row"><span class="status status-hypothesis" data-i18n="status_hypothesis">HYPOTHESIS</span><span class="summary-q">Three-way λ unification (Shavell / De Broglie / Einstein)</span></div>
+      <div class="summary-row"><span class="status status-hypothesis" data-i18n="status_hypothesis">HYPOTHESIS</span><span class="summary-q">Gödel rotating universe + legal cycles</span></div>
+      <div class="summary-row"><span class="status status-hypothesis" data-i18n="status_hypothesis">HYPOTHESIS</span><span class="summary-q">Dirac light cone + legal causality</span></div>
+      <div class="summary-row"><span class="status status-hypothesis" data-i18n="status_hypothesis">HYPOTHESIS</span><span class="summary-q">Planckian threshold in legal systems</span></div>
+      <div class="summary-row"><span class="status status-hypothesis" data-i18n="status_hypothesis">HYPOTHESIS</span><span class="summary-q">Einstein elevator + Fibonacci pair</span></div>
+      <div class="summary-row"><span class="status status-hypothesis" data-i18n="status_hypothesis">HYPOTHESIS</span><span class="summary-q">Shannon entropy + λX equivalence</span></div>
+      <div class="summary-row"><span class="status status-hypothesis" data-i18n="status_hypothesis">HYPOTHESIS</span><span class="summary-q">Maxwell's Demon → Maxwell's Angel</span></div>
+      <div class="summary-row"><span class="status status-hypothesis" data-i18n="status_hypothesis">HYPOTHESIS</span><span class="summary-q">Eddington arrow of time + legal progress</span></div>
+      <div class="summary-row"><span class="status status-hypothesis" data-i18n="status_hypothesis">HYPOTHESIS</span><span class="summary-q">Brownian motion + lawyer agents</span></div>
+      <div class="summary-row"><span class="status status-open" data-i18n="status_open">OPEN QUESTION</span><span class="summary-q">Legal weight + corporate structure / IPO</span></div>
+      <div class="summary-row"><span class="status status-open" data-i18n="status_open">OPEN QUESTION</span><span class="summary-q">Embodied skill preservation</span></div>
     </div>
   </div>
 
   <!-- Theoretical Foundation -->
   <div class="section">
-    <div class="section-head" style="color: var(--blue);">Theoretical Foundation</div>
+    <div class="section-head" style="color: var(--blue);" data-i18n="s_foundation">Theoretical Foundation</div>
     <div class="collab-box">
-      <p>The framework builds on three published contributions. The <strong>Shavell standard model</strong> (Cambridge University Press, 2019) — the established rational claim condition c &lt; λ(R), where λ is the legal risk probabilistic factor — was extended for third-party funding investment valuation and empirically validated in the European truck cartel collective redress initiative (+/- €300M pending settlement).</p>
-      <p>This was generalised to entire legal systems in <strong>JLMI 2025</strong>: λX = EX/MX measures the ratio of expressed potential to total legal mass in any system, using UN SDGs as universal benchmark. Empirically tested in Masainas, Sardinia (270 comuni, €21.65B net unexpressed value identified).</p>
-      <p>The framework was not built by a physicist. It was built by a lawyer who studied physics and identified a missing variable. Finding out whether that variable belongs in the equations is the work of those who built the equations.</p>
+      <p data-i18n="found_p1">The framework builds on three published contributions. The <strong>Shavell standard model</strong> (Cambridge University Press, 2019) — the established rational claim condition c &lt; λ(R), where λ is the legal risk probabilistic factor — was extended for third-party funding investment valuation and empirically validated in the European truck cartel collective redress initiative (+/- €300M pending settlement).</p>
+      <p data-i18n="found_p2">This was generalised to entire legal systems in <strong>JLMI 2025</strong>: λX = EX/MX measures the ratio of expressed potential to total legal mass in any system, using UN SDGs as universal benchmark. Empirically tested in Masainas, Sardinia (270 comuni, €21.65B net unexpressed value identified).</p>
+      <p data-i18n="found_p3">The framework was not built by a physicist. It was built by a lawyer who studied physics and identified a missing variable. Finding out whether that variable belongs in the equations is the work of those who built the equations.</p>
       <div style="margin-top: 16px; padding: 14px 18px; background: rgba(184,134,11,0.05); border: 1px solid rgba(184,134,11,0.2);">
-        <div class="collab-label">Get involved</div>
-        <p style="font-size: 13px; margin-bottom: 12px;">Researchers interested in collaborating — accessing the empirical dataset, co-authoring on the pre-print, or testing the framework — are welcome to reach out.</p>
+        <div class="collab-label" data-i18n="collab_label">Get involved</div>
+        <p style="font-size: 13px; margin-bottom: 12px;" data-i18n="collab_p">Researchers interested in collaborating — accessing the empirical dataset, co-authoring on the pre-print, or testing the framework — are welcome to reach out.</p>
         <a href="mailto:gmsolas@sustainab-law.eu?subject=Scientific Collaboration — Theory of Interrelation&body=Research area:%0AInstitution:%0AProposed contribution:" class="btn btn-outline-blue">✉ gmsolas@sustainab-law.eu</a>
       </div>
     </div>
@@ -523,7 +482,7 @@
 
   <!-- Publications -->
   <div class="section">
-    <div class="section-head" style="color: var(--green);">Publications</div>
+    <div class="section-head" style="color: var(--green);" data-i18n="s_publications">Publications</div>
     <ul class="pub-list">
       <li class="pub-item"><strong>Law is Love</strong> · <span class="journal">SSRN 5694423 · 2025 · physics-reviewed pre-print</span><br/><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank" style="color: var(--blue); font-family: var(--mono); font-size: 10px;">ssrn.com →</a></li>
       <li class="pub-item"><strong>Interrelation of Human Laws and Laws of Nature? Codification of Sustainable Legal Systems</strong> · <span class="journal">Journal of Law, Market & Innovation (JLMI) · Scopus · University of Turin · 1/25</span><br/><a href="https://doi.org/10.13135/2785-7867/12266" target="_blank" style="color: var(--blue); font-family: var(--mono); font-size: 10px;">doi.org →</a></li>
@@ -537,32 +496,32 @@
 
   <!-- About -->
   <div class="section">
-    <div class="section-head" style="color: var(--ink);">About — Avv. Dr. Gian Marco Solas</div>
+    <div class="section-head" style="color: var(--ink);" data-i18n="s_about">About — Avv. Dr. Gian Marco Solas</div>
     <div class="about-grid">
       <div class="about-text">
-        <p>Italian and EU qualified lawyer. Founder of Sustainab-Law and inventor of the 1love.works algorithm and related legal technology — phenography, phenocurrency, and fractal cross-pollination — for the codification of sustainable legal systems.</p>
-        <p>15+ years of experience in global litigation funds, national and international law firms, and at the European Commission. Leading Expert at the BRICS Competition Law & Policy Centre (Higher School of Economics, Moscow). Counsel at <strong>Omni Bridgeway</strong> (Amsterdam), consultant at <strong>Woodsford Litigation Funding</strong> (London).</p>
-        <p>The author's competence is in the legal and economic foundations: litigation funding, competition law, GDPR, EU regulatory frameworks, and the λX codification methodology. The physics, mathematics and neuroscience validation is explicitly the work of the scientific community.</p>
+        <p data-i18n="about_p1">Italian and EU qualified lawyer. Founder of Sustainab-Law and inventor of the 1love.works algorithm and related legal technology — phenography, phenocurrency, and fractal cross-pollination — for the codification of sustainable legal systems.</p>
+        <p data-i18n="about_p2">15+ years of experience in global litigation funds, national and international law firms, and at the European Commission. Leading Expert at the BRICS Competition Law & Policy Centre (Higher School of Economics, Moscow). Counsel at <strong>Omni Bridgeway</strong> (Amsterdam), consultant at <strong>Woodsford Litigation Funding</strong> (London).</p>
+        <p data-i18n="about_p3">The author's competence is in the legal and economic foundations: litigation funding, competition law, GDPR, EU regulatory frameworks, and the λX codification methodology. The physics, mathematics and neuroscience validation is explicitly the work of the scientific community.</p>
         <div style="margin-top: 24px; padding: 16px 20px; background: var(--cream); border: 1px solid var(--rule);">
-          <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 12px;">Strategic Mandate</div>
-          <p style="font-size: 15px; line-height: 1.75; margin-bottom: 16px;">For complex cases requiring legal remediation, conversion of liabilities into sustainable investments, collective redress, or litigation finance — direct mandate with the author of the legal-physics methodology.</p>
-          <a href="https://calendly.com/gmsolas-sustainab-law/legal-consultation-public-entity" target="_blank" class="btn btn-dark">Book consultation →</a>
+          <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 12px;" data-i18n="mandate_label">Strategic Mandate</div>
+          <p style="font-size: 15px; line-height: 1.75; margin-bottom: 16px;" data-i18n="mandate_p">For complex cases requiring legal remediation, conversion of liabilities into sustainable investments, collective redress, or litigation finance — direct mandate with the author of the legal-physics methodology.</p>
+          <a href="https://calendly.com/gmsolas-sustainab-law/legal-consultation-public-entity" target="_blank" class="btn btn-dark" data-i18n="mandate_btn">Book consultation →</a>
         </div>
       </div>
       <div>
         <ul class="cred-list">
-          <li class="cred-item"><span class="cred-label">Qualification</span><span class="cred-value">Italian & EU Lawyer</span></li>
+          <li class="cred-item"><span class="cred-label" data-i18n="cred_qual">Qualification</span><span class="cred-value">Italian & EU Lawyer</span></li>
           <li class="cred-item"><span class="cred-label">PhD</span><span class="cred-value">Maastricht (Economic Analysis of Law) · Cagliari (Comparative Law)</span></li>
           <li class="cred-item"><span class="cred-label">LLM</span><span class="cred-value">College of Europe, EU Competition Law</span></li>
-          <li class="cred-item"><span class="cred-label">Visiting Fellow</span><span class="cred-value">Fordham Law School (US antitrust) · NYU (litigation finance)</span></li>
-          <li class="cred-item"><span class="cred-label">Award</span><span class="cred-value">Premio Cossiga — best thesis & grades, University of Cagliari</span></li>
+          <li class="cred-item"><span class="cred-label" data-i18n="cred_visiting">Visiting Fellow</span><span class="cred-value">Fordham Law School (US antitrust) · NYU (litigation finance)</span></li>
+          <li class="cred-item"><span class="cred-label" data-i18n="cred_award">Award</span><span class="cred-value">Premio Cossiga — best thesis & grades, University of Cagliari</span></li>
           <li class="cred-item"><span class="cred-label">CUP 2019</span><span class="cred-value">Third Party Funding</span></li>
           <li class="cred-item"><span class="cred-label">JLMI 1/25</span><span class="cred-value">Theory of Interrelation</span></li>
           <li class="cred-item"><span class="cred-label">SSRN 5694423</span><span class="cred-value">Law is Love</span></li>
-          <li class="cred-item"><span class="cred-label">Contact</span><span class="cred-value"><a href="mailto:gmsolas@sustainab-law.eu" style="color: var(--blue);">gmsolas@sustainab-law.eu</a></span></li>
+          <li class="cred-item"><span class="cred-label" data-i18n="cred_contact">Contact</span><span class="cred-value"><a href="mailto:gmsolas@sustainab-law.eu" style="color: var(--blue);">gmsolas@sustainab-law.eu</a></span></li>
         </ul>
         <div class="exec-ed">
-          <div class="exec-label">Executive Education</div>
+          <div class="exec-label" data-i18n="exec_label">Executive Education</div>
           <div class="exec-item">Entrepreneurship<br/><span class="exec-school">Harvard Business School · 2021</span></div>
           <div class="exec-item">Blockchain Technology<br/><span class="exec-school">INSEAD · 2022</span></div>
           <div class="exec-item">Private Equity & Venture Capital<br/><span class="exec-school">Università Bocconi · 2022</span></div>
@@ -574,19 +533,19 @@
 
   <!-- Criticisms -->
   <div class="section" style="margin-bottom: 40px;">
-    <div class="section-head" style="color: var(--red);">Criticisms</div>
+    <div class="section-head" style="color: var(--red);" data-i18n="s_criticisms">Criticisms</div>
     <div class="collab-box">
-      <p>Every serious framework must confront its critics directly. The strongest objections to the legal-physics framework — scientific, legal, economic, political, and practical — are answered honestly on a dedicated page. Where we don't know, we say so. Where the evidence speaks, we cite it. Where the limitation makes us stronger, we explain why.</p>
+      <p data-i18n="crit_p">Every serious framework must confront its critics directly. The strongest objections to the legal-physics framework — scientific, legal, economic, political, and practical — are answered honestly on a dedicated page. Where we don't know, we say so. Where the evidence speaks, we cite it. Where the limitation makes us stronger, we explain why.</p>
       <div style="margin-top: 16px;">
-        <a href="/criticisms" class="btn btn-outline-blue">Read the criticisms →</a>
+        <a href="/criticisms" class="btn btn-outline-blue" data-i18n="crit_btn">Read the criticisms →</a>
       </div>
     </div>
   </div>
 
   <!-- Reproducibility Note -->
   <div class="note">
-    <div class="note-label">Note on reproducibility</div>
-    <p>The scanner is designed as a scientific instrument — the same document should produce consistent scores. The current beta version uses LLM-based scoring which introduces variance. Score calibration is in active development. Every scan contributes to the empirical dataset.</p>
+    <div class="note-label" data-i18n="note_label">Note on reproducibility</div>
+    <p data-i18n="note_p1">The scanner is designed as a scientific instrument — the same document should produce consistent scores. The current beta version uses LLM-based scoring which introduces variance. Score calibration is in active development. Every scan contributes to the empirical dataset.</p>
     <p>© 2019–2026 Avv. Dr. Gian Marco Solas · <a href="https://doi.org/10.13135/2785-7867/12266" target="_blank">JLMI 1/25</a> · <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank">SSRN 5694423</a> · <a href="/">1love.works</a> · All rights reserved.</p>
   </div>
 
@@ -594,8 +553,8 @@
 
 <footer>
   <div class="footer-left">
-    <strong>1love.works</strong> · © 2019–2026 Avv. Dr. Gian Marco Solas · All rights reserved<br/>
-    <em style="font-size:10px;">Proprietary instruments. Methodology: public scientific contribution. · De Lege et Amore.</em>
+    <strong>1love.works</strong> · © 2019–2026 Avv. Dr. Gian Marco Solas · <span data-i18n="footer_rights">All rights reserved</span><br/>
+    <em style="font-size:10px;" data-i18n="footer_note">Proprietary instruments. Methodology: public scientific contribution. · De Lege et Amore.</em>
   </div>
   <div class="footer-right">
     <a href="/">Home</a>
@@ -612,11 +571,322 @@ function toggle(btn) {
   const isOpen = body.classList.contains('open');
   document.querySelectorAll('.accordion-body.open').forEach(b => b.classList.remove('open'));
   document.querySelectorAll('.accordion-trigger.open').forEach(b => b.classList.remove('open'));
-  if (!isOpen) {
-    body.classList.add('open');
-    btn.classList.add('open');
-  }
+  if (!isOpen) { body.classList.add('open'); btn.classList.add('open'); }
 }
+
+const T = {
+  en: {
+    overline: '1love.works · Theory of Interrelation',
+    h1: 'The Problem &<br/><em>Methodology to solve it</em>',
+    header_p: 'Bureaucracy. Legal weight. Entropy. The invisible tax on everything. €5.2 trillion of unexpressed economic value trapped in EU-27 legal systems. The legal-physics framework is the first scientific instrument designed to measure it — and the first step toward reducing it.',
+    tag1: 'Physics-reviewed pre-print', tag2: 'Based on JLMI 1/25 (Scopus indexed)', tag3: 'Empirical dataset in construction', tag4: 'Collaboration open',
+    ip_label: '© Intellectual Property',
+    ip_p: 'The legal-physics framework documented on this page is the original work of <strong>Avv. Dr. Gian Marco Solas</strong> (Italian/EU qualified lawyer, PhD Maastricht/Cagliari, LLM College of Europe). Published in <a href="https://doi.org/10.13135/2785-7867/12266" target="_blank">JLMI 1/25</a>, <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank">Law is Love, SSRN</a>, and <a href="https://www.cambridge.org/core/books/third-party-funding" target="_blank">Cambridge University Press (2019)</a>. All formulas, variables, and their application are © 2019–2026. The methodology is a public scientific contribution — citable and teachable. The instruments are proprietary.',
+    s1_head: 'I · The Problem — Bureaucracy. Legal weight. Entropy.',
+    s1_stat: 'Conservative estimate of unexpressed economic value trapped in EU-27 legal systems by regulatory weight and entropy · JLMI 2/25',
+    s1_p1: 'Not because Europe lacks resources. Because its legal systems accumulated faster than they could be measured, codified, or optimised. The invisible tax on everything — paid by everyone, seen by almost no one, and until now, never measured.',
+    s1_p2: 'Human law is like a net — it catches mass in free fall, prevents conflicts from becoming existential, saves human life from crashing into chaos. Without law, human civilisation would have disappeared into destruction much earlier. <strong>The net is necessary. It has always been there.</strong>',
+    s1_p3: 'But when too many nets become entangled with each other and are placed on the ground — overlapping jurisdictions, stacked regulations, redundant obligations accumulated over decades — they no longer save life. They prevent it from emerging. Like flowers and grass that cannot grow through a tangle of nets laid across the soil.',
+    s1_quote: '"Human law is like a net that can be used to save a mass in free fall — but that once entangled to many other nets and placed on the ground would not let life, like flowers or grass, emerge." — <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank" style="color: var(--gold);">Law is Love</a>',
+    s1_p4: 'This is legal weight. Not the law. What the law becomes when it accumulates faster than it can be maintained. The difference between legal weight and ordinary inefficiency is that legal weight is <strong>measurable</strong>. It has a formula. It has a unit. It has a value — the value of everything it is preventing from existing.',
+    s1_p5: 'The social market economy and the internal market — the most ambitious legal-economic project in modern history — is still unfinished. The reason it is unfinished is entropy. The goal of the legal-physics framework is to finish the project. Not by adding more regulation. By measuring what exists, reducing what is redundant, converting what is entropic.',
+    case1_title: 'Housing crisis', case1_text: 'Regulatory weight trapping land, stalling permits, blocking supply. Europe has the land. Legal entropy prevents building.',
+    case2_title: 'Energy crisis', case2_text: 'Renewable projects wait years for permits. The energy transition is not blocked by physics — it is blocked by legal weight.',
+    case3_title: 'Local value chain', case3_text: 'Food, agriculture, SMEs, labour, crafts — crushed by administrative weight designed for industrial scale applied to human-scale activity.',
+    s1_coda: 'You cannot reduce what you cannot measure. The reason legal weight has never been systematically reduced is not political will — it is the absence of a scientific instrument capable of quantifying it. Until now.',
+    s_variables: 'Variables', s_formulas: 'Formulas',
+    s_cvsq: 'Classical vs Quantum — What Is Currently Instrumented',
+    s_research: 'Research Programme — Summary',
+    s_foundation: 'Theoretical Foundation',
+    s_publications: 'Publications',
+    s_about: 'About — Avv. Dr. Gian Marco Solas',
+    s_criticisms: 'Criticisms',
+    origin_label: 'Origin', analogy_label: 'Physics analogy',
+    v1_title: 'Lambda — The Legal Factor',
+    v1_body: 'The fundamental legal constant. Its mathematical genealogy begins with Shavell\'s standard model (Cambridge University Press, 2019), where λ is the legal risk probabilistic factor — the probability of success of a legal claim, used to determine the rational investment threshold c &lt; λ(R). Extended for TPF investment valuation (empirically validated in the European truck cartel, +/- €300M pending settlement), then generalised to entire legal systems as λX = EX/MX in JLMI 2025.',
+    v1_origin: 'Derived from the Greek letter used to denote wavelength (λ) and the cosmological constant (Λ) in Einstein\'s field equations. The hypothesis proposes these are not merely analogous but unified — human law as a missing variable in physics equations.',
+    v1_formula_label: 'Expressed potential over total mass — generalisation to legal systems [JLMI 2025]',
+    v2_title: 'Client / Market Pressure', v2_body: 'The force exerted on a legal actor by a client, investor, or market participant. Triggers legal work cycles. In any legal system, PC manifests as demand for rights enforcement, market pressure for compliance, or litigation by affected parties.',
+    v2_origin: 'From fluid mechanics and thermodynamics: pressure as vector force applied to a container. Here the container is the legal system, and the fluid is legal-economic activity.',
+    v2_formula_label: 'Client pressure equals legal service times fee [Eq. 4]',
+    v3_title: 'Fee — Legal Energy', v3_body: 'The energy input that enables legal work to begin. The fee is not merely payment — it is the physical energy that removes friction and converts pressure into productive legal work. Without F, no work cycle starts.',
+    v3_origin: 'From Joule\'s 1845 paper On the Mechanical Equivalent of Heat. F links monetary policy to entropy — money as the universal energy carrier in legal-economic systems.',
+    v3_formula_label: 'Fee as energy enabling the legal work cycle [Eq. 4]',
+    v4_title: 'Legal Microstates — W = f(λ)', v4_body: 'The number of unresolved legal states in a system — undisclosed liabilities, opacity, unexpressed asset value, regulatory ambiguity, governance failures. Critically: W is a function of λ — the applicable law determines which states are unresolved.',
+    v4_origin: 'Extends Boltzmann\'s W (number of physical microstates) to legal systems. The λ-dependence of W is the framework\'s original contribution: legal microstates are not absolute but relative to the applicable law.',
+    v4_formula_label: 'Legal microstates as function of λ → Boltzmann entropy [Eq. 8]',
+    v5_title: 'Sustainable Return', v5_body: 'Expected profit from a sustainable investment. π is amplified or destroyed by the legal factor λ — good governance, low legal weight, and SDG alignment increase net return; entropy and inertia reduce it.',
+    v5_origin: 'Adapted from third-party funding investment models and generalised to any legal investment. Empirically validated in the European truck cartel collective redress initiative.',
+    v5_formula_label: 'Sustainable investment return formula [Eq. 6]',
+    f1_sub: 'Legal System Composition', f1_body: 'Any legal system X — a city, company, jurisdiction — is the sum of all its constituent legal acts, contracts, and norms. This makes legal systems mathematically tractable and universally comparable.',
+    f1_analogy: 'Like a vector sum in physics: the total legal force on a body is the sum of all individual legal forces acting upon it.',
+    f2_sub: 'Legal Hierarchy', f2_body: 'A local legal system X is embedded within and subject to Provincial (P), Regional (R), State (S), and International (I) law. The full legal weight bearing on any entity is the sum across all jurisdictional layers — from municipal bylaws to international treaties.',
+    f2_analogy: 'Analogous to nested coordinate systems in general relativity: each frame of reference is subject to the curvature imposed by the larger frame.',
+    f3_sub: 'Newton\'s Second Law Applied to Law', f3_body: 'Both the mass in acceleration (MAλ) and the force (FXλ) are bound by applicable law λ. The car does not stop because of physics alone — it stops because λ (municipal traffic law) acts on both the mass (driver+car system) and the force (legal obligation to stop).',
+    f3_analogy: 'Newton\'s F=MA: the red light is a legal force vector that decelerates the mass \'driver+car\'. CCTV provides the objective measurement of the spatio-temporal legal event.',
+    f5_sub: 'Law as Light', f5_body: 'Applicable law (λ) is proposed as the physical equivalent of the speed of light squared (C²) in Einstein\'s E=MC². Like light, law has both particle properties (specific legal acts, binding decisions) and wave properties (general principles, jurisprudential influence spreading across systems).',
+    f5_analogy: 'Einstein\'s wave-particle duality of light: \'We have two contradictory pictures of reality; separately neither fully explains the phenomena of light, but together they do.\' The same applies to law as both specific act and general principle.',
+    f7_sub: 'Legal Weight & Gravitational Curvature', f7_body: 'Legal weight equals mass multiplied by a λ-dependent gravitational function G(λ). This is formally analogous to Einstein\'s cosmological constant Λ: excessive legal weight acts as a brake on the expansion of the civilisation progress spiral.',
+    f7_analogy: 'Einstein\'s cosmological constant Λ was introduced to prevent universal expansion. Legal weight W = MG(λ) plays the same role in civilisation space-time: at the right level it provides structure; in excess it prevents the expansion of human potential.',
+    f8_sub: 'Boltzmann Entropy Extended to Legal Systems', f8_body: 'Entropy of a legal system equals the Boltzmann constant (k) multiplied by the logarithm of the number of unresolved legal states W(λ). The same set of facts produces different entropy in different legal systems.',
+    f8_analogy: 'Boltzmann 1877: S = k log W. In thermodynamics, W counts physical microstates. In legal systems, W(λ) counts unresolved legal states relative to the applicable law — introducing the λ-dependence as the framework\'s original contribution.',
+    cvsq_instrumented: '✓ Currently instrumented',
+    cvsq_instrumented_body: 'Classical physics applied to legal systems:<br/>· Newton (MAλ=FXλ) — legal force and acceleration<br/>· Carnot — motive power, work cycles, useful effect<br/>· Joule (PC/PS=λCF) — fee as legal energy / friction<br/>· Einstein (λ=C², W=MG(λ)) — law as light, legal weight<br/>· Boltzmann (S=k·logW(λ)) — entropy of legal microstates',
+    cvsq_pending: '◎ Theoretically developed — pending instrumentation',
+    cvsq_pending_body: 'Quantum mechanics — in the framework, not yet in the scanner:<br/>· <strong>Entanglement</strong> — individuals cannot be described independently of their legal system<br/>· <strong>Quantum jump</strong> — legal codification transitions<br/>· <strong>Superposition</strong> — law as particle and wave<br/>· <strong>Planck threshold</strong> — minimum legal activation energy',
+    status_established: 'ESTABLISHED', status_strong: 'STRONG HYPOTHESIS', status_hypothesis: 'HYPOTHESIS', status_open: 'OPEN QUESTION',
+    found_p1: 'The framework builds on three published contributions. The <strong>Shavell standard model</strong> (Cambridge University Press, 2019) — the established rational claim condition c &lt; λ(R), where λ is the legal risk probabilistic factor — was extended for third-party funding investment valuation and empirically validated in the European truck cartel collective redress initiative (+/- €300M pending settlement).',
+    found_p2: 'This was generalised to entire legal systems in <strong>JLMI 2025</strong>: λX = EX/MX measures the ratio of expressed potential to total legal mass in any system, using UN SDGs as universal benchmark. Empirically tested in Masainas, Sardinia (270 comuni, €21.65B net unexpressed value identified).',
+    found_p3: 'The framework was not built by a physicist. It was built by a lawyer who studied physics and identified a missing variable. Finding out whether that variable belongs in the equations is the work of those who built the equations.',
+    collab_label: 'Get involved', collab_p: 'Researchers interested in collaborating — accessing the empirical dataset, co-authoring on the pre-print, or testing the framework — are welcome to reach out.',
+    about_p1: 'Italian and EU qualified lawyer. Founder of Sustainab-Law and inventor of the 1love.works algorithm and related legal technology — phenography, phenocurrency, and fractal cross-pollination — for the codification of sustainable legal systems.',
+    about_p2: '15+ years of experience in global litigation funds, national and international law firms, and at the European Commission. Leading Expert at the BRICS Competition Law & Policy Centre (Higher School of Economics, Moscow). Counsel at <strong>Omni Bridgeway</strong> (Amsterdam), consultant at <strong>Woodsford Litigation Funding</strong> (London).',
+    about_p3: 'The author\'s competence is in the legal and economic foundations: litigation funding, competition law, GDPR, EU regulatory frameworks, and the λX codification methodology. The physics, mathematics and neuroscience validation is explicitly the work of the scientific community.',
+    mandate_label: 'Strategic Mandate', mandate_p: 'For complex cases requiring legal remediation, conversion of liabilities into sustainable investments, collective redress, or litigation finance — direct mandate with the author of the legal-physics methodology.', mandate_btn: 'Book consultation →',
+    cred_qual: 'Qualification', cred_visiting: 'Visiting Fellow', cred_award: 'Award', cred_contact: 'Contact', exec_label: 'Executive Education',
+    crit_p: 'Every serious framework must confront its critics directly. The strongest objections to the legal-physics framework — scientific, legal, economic, political, and practical — are answered honestly on a dedicated page. Where we don\'t know, we say so. Where the evidence speaks, we cite it. Where the limitation makes us stronger, we explain why.',
+    crit_btn: 'Read the criticisms →',
+    note_label: 'Note on reproducibility', note_p1: 'The scanner is designed as a scientific instrument — the same document should produce consistent scores. The current beta version uses LLM-based scoring which introduces variance. Score calibration is in active development. Every scan contributes to the empirical dataset.',
+    footer_rights: 'All rights reserved', footer_note: 'Proprietary instruments. Methodology: public scientific contribution. · De Lege et Amore.',
+  },
+  it: {
+    overline: '1love.works · Teoria dell\'Interrelazione',
+    h1: 'Il Problema &<br/><em>la Metodologia per risolverlo</em>',
+    header_p: 'Burocrazia. Peso normativo. Entropia. La tassa invisibile su tutto. 5,2 trilioni di € di valore economico non espresso intrappolati nei sistemi giuridici UE-27. Il framework di fisica giuridica è il primo strumento scientifico progettato per misurarla — e il primo passo verso la sua riduzione.',
+    tag1: 'Pre-print rivisto da fisici', tag2: 'Basato su JLMI 1/25 (indicizzato Scopus)', tag3: 'Dataset empirico in costruzione', tag4: 'Collaborazione aperta',
+    ip_label: '© Proprietà Intellettuale',
+    ip_p: 'Il framework di fisica giuridica documentato in questa pagina è opera originale di <strong>Avv. Dr. Gian Marco Solas</strong> (avvocato italiano/UE, PhD Maastricht/Cagliari, LLM College of Europe). Pubblicato in <a href="https://doi.org/10.13135/2785-7867/12266" target="_blank">JLMI 1/25</a>, <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank">Law is Love, SSRN</a>, e <a href="https://www.cambridge.org/core/books/third-party-funding" target="_blank">Cambridge University Press (2019)</a>. Tutte le formule, variabili e la loro applicazione sono © 2019–2026. La metodologia è un contributo scientifico pubblico — citabile e insegnabile. Gli strumenti sono proprietari.',
+    s1_head: 'I · Il Problema — Burocrazia. Peso normativo. Entropia.',
+    s1_stat: 'Stima conservativa del valore economico non espresso intrappolato nei sistemi giuridici UE-27 dal peso normativo e dall\'entropia · JLMI 2/25',
+    s1_p1: 'Non perché l\'Europa manchi di risorse. Perché i suoi sistemi giuridici si sono accumulati più velocemente di quanto potessero essere misurati, codificati o ottimizzati. La tassa invisibile su tutto — pagata da tutti, vista da quasi nessuno, e fino ad ora mai misurata.',
+    s1_p2: 'Il diritto umano è come una rete — cattura la massa in caduta libera, impedisce ai conflitti di diventare esistenziali, salva la vita umana dal precipitare nel caos. Senza diritto, la civiltà umana sarebbe scomparsa nella distruzione molto prima. <strong>La rete è necessaria. È sempre stata lì.</strong>',
+    s1_p3: 'Ma quando troppe reti si intrecciano l\'una con l\'altra e vengono posate a terra — giurisdizioni sovrapposte, normative impilate, obblighi ridondanti accumulati nel corso di decenni — non salvano più la vita. La impediscono di emergere. Come fiori ed erba che non possono crescere attraverso un groviglio di reti distese sul suolo.',
+    s1_quote: '"Il diritto umano è come una rete che può essere usata per salvare una massa in caduta libera — ma che una volta intrecciata ad altre reti e posata a terra non lascerebbe emergere la vita, come fiori o erba." — <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank" style="color: var(--gold);">Law is Love</a>',
+    s1_p4: 'Questo è il peso normativo. Non il diritto. Ciò in cui il diritto si trasforma quando si accumula più velocemente di quanto possa essere mantenuto. La differenza tra peso normativo e inefficienza ordinaria è che il peso normativo è <strong>misurabile</strong>. Ha una formula. Ha un\'unità. Ha un valore — il valore di tutto ciò che impedisce di esistere.',
+    s1_p5: 'L\'economia sociale di mercato e il mercato interno — il progetto giuridico-economico più ambizioso della storia moderna — è ancora incompiuto. La ragione per cui è incompiuto è l\'entropia. L\'obiettivo del framework di fisica giuridica è completare il progetto. Non aggiungendo più regolamentazione. Misurando ciò che esiste, riducendo ciò che è ridondante, convertendo ciò che è entropico.',
+    case1_title: 'Crisi abitativa', case1_text: 'Il peso normativo blocca la terra, stalla i permessi, blocca l\'offerta. L\'Europa ha la terra. L\'entropia giuridica impedisce di costruire.',
+    case2_title: 'Crisi energetica', case2_text: 'I progetti rinnovabili aspettano anni per i permessi. La transizione energetica non è bloccata dalla fisica — è bloccata dal peso normativo.',
+    case3_title: 'Catena del valore locale', case3_text: 'Cibo, agricoltura, PMI, lavoro, artigianato — schiacciati da un peso amministrativo pensato per la scala industriale applicato ad attività di scala umana.',
+    s1_coda: 'Non si può ridurre ciò che non si può misurare. Il motivo per cui il peso normativo non è mai stato sistematicamente ridotto non è la volontà politica — è l\'assenza di uno strumento scientifico capace di quantificarlo. Fino ad ora.',
+    s_variables: 'Variabili', s_formulas: 'Formule',
+    s_cvsq: 'Classica vs Quantistica — Cosa è attualmente strumentato',
+    s_research: 'Programma di Ricerca — Sintesi',
+    s_foundation: 'Fondamento Teorico',
+    s_publications: 'Pubblicazioni',
+    s_about: 'Chi è — Avv. Dr. Gian Marco Solas',
+    s_criticisms: 'Critiche',
+    origin_label: 'Origine', analogy_label: 'Analogia fisica',
+    v1_title: 'Lambda — Il Fattore Giuridico',
+    v1_body: 'La costante giuridica fondamentale. La sua genealogia matematica inizia con il modello standard di Shavell (Cambridge University Press, 2019), dove λ è il fattore probabilistico del rischio giuridico — la probabilità di successo di una pretesa giuridica. Esteso per la valutazione degli investimenti TPF (validato empiricamente nel cartello europeo dei camion, +/- €300M in attesa di accordo), poi generalizzato a interi sistemi giuridici come λX = EX/MX in JLMI 2025.',
+    v1_origin: 'Derivato dalla lettera greca usata per denotare la lunghezza d\'onda (λ) e la costante cosmologica (Λ) nelle equazioni di campo di Einstein. L\'ipotesi propone che questi non siano semplicemente analoghi ma unificati — il diritto umano come variabile mancante nelle equazioni fisiche.',
+    v1_formula_label: 'Potenziale espresso sulla massa totale — generalizzazione ai sistemi giuridici [JLMI 2025]',
+    v2_title: 'Pressione Cliente / Mercato', v2_body: 'La forza esercitata su un attore giuridico da un cliente, investitore o partecipante al mercato. Innesca cicli di lavoro giuridico. In qualsiasi sistema giuridico, PC si manifesta come domanda di applicazione dei diritti, pressione del mercato per la conformità, o contenzioso da parte degli interessati.',
+    v2_origin: 'Dalla meccanica dei fluidi e dalla termodinamica: la pressione come forza vettoriale applicata a un contenitore. Qui il contenitore è il sistema giuridico e il fluido è l\'attività giuridico-economica.',
+    v2_formula_label: 'La pressione del cliente equivale al servizio legale per l\'onorario [Eq. 4]',
+    v3_title: 'Onorario — Energia Giuridica', v3_body: 'L\'apporto energetico che consente l\'inizio del lavoro giuridico. L\'onorario non è semplicemente un pagamento — è l\'energia fisica che rimuove l\'attrito e converte la pressione in lavoro giuridico produttivo. Senza F, nessun ciclo di lavoro inizia.',
+    v3_origin: 'Dal documento di Joule del 1845 sull\'Equivalente Meccanico del Calore. F collega la politica monetaria all\'entropia — il denaro come vettore energetico universale nei sistemi giuridico-economici.',
+    v3_formula_label: 'L\'onorario come energia che abilita il ciclo di lavoro giuridico [Eq. 4]',
+    v4_title: 'Microstati Giuridici — W = f(λ)', v4_body: 'Il numero di stati giuridici irrisolti in un sistema — passività non divulgate, opacità, valore patrimoniale non espresso, ambiguità normativa, fallimenti di governance. W è una funzione di λ — il diritto applicabile determina quali stati sono irrisolti.',
+    v4_origin: 'Estende la W di Boltzmann (numero di microstati fisici) ai sistemi giuridici. La dipendenza da λ di W è il contributo originale del framework: i microstati giuridici non sono assoluti ma relativi al diritto applicabile.',
+    v4_formula_label: 'Microstati giuridici come funzione di λ → entropia di Boltzmann [Eq. 8]',
+    v5_title: 'Rendimento Sostenibile', v5_body: 'Profitto atteso da un investimento sostenibile. π è amplificato o distrutto dal fattore giuridico λ — buona governance, basso peso normativo e allineamento agli SDG aumentano il rendimento netto; l\'entropia e l\'inerzia lo riducono.',
+    v5_origin: 'Adattato dai modelli di investimento di finanziamento di terze parti e generalizzato a qualsiasi investimento giuridico. Validato empiricamente nell\'iniziativa di risarcimento collettivo del cartello europeo dei camion.',
+    v5_formula_label: 'Formula del rendimento sostenibile degli investimenti [Eq. 6]',
+    f1_sub: 'Composizione del Sistema Giuridico', f1_body: 'Qualsiasi sistema giuridico X — una città, un\'azienda, una giurisdizione — è la somma di tutti i suoi atti giuridici, contratti e norme costitutivi. Questo rende i sistemi giuridici matematicamente trattabili e universalmente comparabili.',
+    f1_analogy: 'Come una somma vettoriale in fisica: la forza giuridica totale su un corpo è la somma di tutte le forze giuridiche individuali che agiscono su di esso.',
+    f2_sub: 'Gerarchia Giuridica', f2_body: 'Un sistema giuridico locale X è incorporato in e soggetto al diritto Provinciale (P), Regionale (R), Statale (S) e Internazionale (I). Il peso normativo complessivo che grava su qualsiasi entità è la somma attraverso tutti i livelli giurisdizionali.',
+    f2_analogy: 'Analogo ai sistemi di coordinate annidati nella relatività generale: ogni sistema di riferimento è soggetto alla curvatura imposta dal frame più grande.',
+    f3_sub: 'Seconda Legge di Newton Applicata al Diritto', f3_body: 'Sia la massa in accelerazione (MAλ) che la forza (FXλ) sono vincolate dal diritto applicabile λ. L\'auto non si ferma solo per la fisica — si ferma perché λ (il codice della strada comunale) agisce sia sulla massa che sulla forza.',
+    f3_analogy: 'F=MA di Newton: il semaforo rosso è un vettore di forza giuridica che decelera la massa \'conducente+auto\'. Il CCTV fornisce la misurazione oggettiva dell\'evento giuridico spazio-temporale.',
+    f5_sub: 'Il Diritto come Luce', f5_body: 'Il diritto applicabile (λ) è proposto come equivalente fisico della velocità della luce al quadrato (C²) in E=MC² di Einstein. Come la luce, il diritto ha sia proprietà corpuscolari (atti giuridici specifici, decisioni vincolanti) che proprietà ondulatorie (principi generali, influenza giurisprudenziale).',
+    f5_analogy: 'Dualità onda-particella della luce di Einstein: \'Abbiamo due immagini contraddittorie della realtà; separatamente nessuna spiega completamente i fenomeni della luce, ma insieme lo fanno.\' Lo stesso vale per il diritto come atto specifico e principio generale.',
+    f7_sub: 'Peso Normativo e Curvatura Gravitazionale', f7_body: 'Il peso normativo equivale alla massa moltiplicata per una funzione gravitazionale dipendente da λ, G(λ). Questo è formalmente analogo alla costante cosmologica Λ di Einstein: il peso normativo eccessivo agisce come freno all\'espansione della spirale del progresso della civiltà.',
+    f7_analogy: 'La costante cosmologica Λ di Einstein è stata introdotta per prevenire l\'espansione universale. Il peso normativo W = MG(λ) svolge lo stesso ruolo nello spazio-tempo della civiltà: al giusto livello fornisce struttura; in eccesso impedisce l\'espansione del potenziale umano.',
+    f8_sub: 'Entropia di Boltzmann Estesa ai Sistemi Giuridici', f8_body: 'L\'entropia di un sistema giuridico equivale alla costante di Boltzmann (k) moltiplicata per il logaritmo del numero di stati giuridici irrisolti W(λ). Lo stesso insieme di fatti produce entropia diversa in sistemi giuridici diversi.',
+    f8_analogy: 'Boltzmann 1877: S = k log W. In termodinamica, W conta i microstati fisici. Nei sistemi giuridici, W(λ) conta gli stati giuridici irrisolti relativi al diritto applicabile — introducendo la dipendenza da λ come contributo originale del framework.',
+    cvsq_instrumented: '✓ Attualmente strumentato',
+    cvsq_instrumented_body: 'Fisica classica applicata ai sistemi giuridici:<br/>· Newton (MAλ=FXλ) — forza e accelerazione giuridica<br/>· Carnot — potenza motrice, cicli di lavoro, effetto utile<br/>· Joule (PC/PS=λCF) — onorario come energia / attrito giuridico<br/>· Einstein (λ=C², W=MG(λ)) — diritto come luce, peso normativo<br/>· Boltzmann (S=k·logW(λ)) — entropia dei microstati giuridici',
+    cvsq_pending: '◎ Sviluppato teoricamente — in attesa di strumentazione',
+    cvsq_pending_body: 'Meccanica quantistica — nel framework, non ancora nello scanner:<br/>· <strong>Entanglement</strong> — gli individui non possono essere descritti indipendentemente dal loro sistema giuridico<br/>· <strong>Salto quantistico</strong> — transizioni di codificazione giuridica<br/>· <strong>Sovrapposizione</strong> — il diritto come particella e onda<br/>· <strong>Soglia di Planck</strong> — energia minima di attivazione giuridica',
+    status_established: 'CONSOLIDATO', status_strong: 'IPOTESI FORTE', status_hypothesis: 'IPOTESI', status_open: 'DOMANDA APERTA',
+    found_p1: 'Il framework si basa su tre contributi pubblicati. Il <strong>modello standard di Shavell</strong> (Cambridge University Press, 2019) — la condizione razionale del credito c &lt; λ(R) — è stato esteso per la valutazione degli investimenti TPF e validato empiricamente nel cartello europeo dei camion (+/- €300M in attesa di accordo).',
+    found_p2: 'Questo è stato generalizzato a interi sistemi giuridici in <strong>JLMI 2025</strong>: λX = EX/MX misura il rapporto tra potenziale espresso e massa giuridica totale, utilizzando gli SDG ONU come benchmark universale. Testato empiricamente a Masainas, Sardegna (270 comuni, €21,65 miliardi di valore non espresso identificato).',
+    found_p3: 'Il framework non è stato costruito da un fisico. È stato costruito da un avvocato che ha studiato fisica e ha identificato una variabile mancante. Scoprire se quella variabile appartiene alle equazioni è il lavoro di coloro che le hanno costruite.',
+    collab_label: 'Partecipa', collab_p: 'I ricercatori interessati a collaborare — accedere al dataset empirico, co-autorare il pre-print, o testare il framework — sono invitati a contattarci.',
+    about_p1: 'Avvocato italiano e UE. Fondatore di Sustainab-Law e inventore dell\'algoritmo 1love.works e della relativa tecnologia giuridica — fenografia, fenomoneta e impollinazione incrociata frattale — per la codificazione di sistemi giuridici sostenibili.',
+    about_p2: 'Oltre 15 anni di esperienza in fondi di contenzioso globali, studi legali nazionali e internazionali, e alla Commissione europea. Leading Expert presso il BRICS Competition Law & Policy Centre (Higher School of Economics, Mosca). Counsel presso <strong>Omni Bridgeway</strong> (Amsterdam), consulente presso <strong>Woodsford Litigation Funding</strong> (Londra).',
+    about_p3: 'La competenza dell\'autore è nei fondamenti giuridici ed economici: finanziamento del contenzioso, diritto della concorrenza, GDPR, quadri normativi UE e metodologia di codificazione λX. La validazione fisica, matematica e neuroscientifica è esplicitamente il lavoro della comunità scientifica.',
+    mandate_label: 'Mandato Strategico', mandate_p: 'Per casi complessi che richiedono rimedi giuridici, conversione di passività in investimenti sostenibili, risarcimento collettivo o finanziamento del contenzioso — mandato diretto con l\'autore della metodologia di fisica giuridica.', mandate_btn: 'Prenota consulenza →',
+    cred_qual: 'Qualifica', cred_visiting: 'Visiting Fellow', cred_award: 'Premio', cred_contact: 'Contatto', exec_label: 'Formazione Esecutiva',
+    crit_p: 'Ogni framework serio deve affrontare direttamente i suoi critici. Le obiezioni più forti al framework di fisica giuridica — scientifiche, giuridiche, economiche, politiche e pratiche — sono risposte onestamente in una pagina dedicata.',
+    crit_btn: 'Leggi le critiche →',
+    note_label: 'Nota sulla riproducibilità', note_p1: 'Lo scanner è progettato come strumento scientifico — lo stesso documento dovrebbe produrre punteggi coerenti. La versione beta attuale utilizza un punteggio basato su LLM che introduce varianza. La calibrazione dei punteggi è in sviluppo attivo. Ogni scansione contribuisce al dataset empirico.',
+    footer_rights: 'Tutti i diritti riservati', footer_note: 'Strumenti proprietari. Metodologia: contributo scientifico pubblico. · De Lege et Amore.',
+  },
+  fr: {
+    overline: '1love.works · Théorie de l\'Interrelation',
+    h1: 'Le Problème &<br/><em>la Méthodologie pour le résoudre</em>',
+    header_p: 'Bureaucratie. Poids juridique. Entropie. La taxe invisible sur tout. 5,2 billions d\'€ de valeur économique non exprimée piégée dans les systèmes juridiques de l\'UE-27. Le cadre de physique juridique est le premier instrument scientifique conçu pour la mesurer — et le premier pas vers sa réduction.',
+    tag1: 'Pré-print revu par des physiciens', tag2: 'Basé sur JLMI 1/25 (indexé Scopus)', tag3: 'Dataset empirique en construction', tag4: 'Collaboration ouverte',
+    ip_label: '© Propriété Intellectuelle',
+    ip_p: 'Le cadre de physique juridique documenté sur cette page est l\'œuvre originale de <strong>Avv. Dr. Gian Marco Solas</strong> (avocat italien/UE, PhD Maastricht/Cagliari, LLM Collège d\'Europe). Publié dans <a href="https://doi.org/10.13135/2785-7867/12266" target="_blank">JLMI 1/25</a>, <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank">Law is Love, SSRN</a>, et <a href="https://www.cambridge.org/core/books/third-party-funding" target="_blank">Cambridge University Press (2019)</a>. Toutes les formules, variables et leur application sont © 2019–2026. La méthodologie est une contribution scientifique publique — citable et enseignable. Les instruments sont propriétaires.',
+    s1_head: 'I · Le Problème — Bureaucratie. Poids juridique. Entropie.',
+    s1_stat: 'Estimation conservative de la valeur économique non exprimée piégée dans les systèmes juridiques UE-27 par le poids réglementaire et l\'entropie · JLMI 2/25',
+    s1_p1: 'Non parce que l\'Europe manque de ressources. Parce que ses systèmes juridiques se sont accumulés plus vite qu\'ils ne pouvaient être mesurés, codifiés ou optimisés. La taxe invisible sur tout — payée par tous, vue par presque personne, et jusqu\'à présent jamais mesurée.',
+    s1_p2: 'Le droit humain est comme un filet — il attrape la masse en chute libre, empêche les conflits de devenir existentiels, sauve la vie humaine du chaos. Sans droit, la civilisation humaine aurait disparu dans la destruction bien plus tôt. <strong>Le filet est nécessaire. Il a toujours été là.</strong>',
+    s1_p3: 'Mais quand trop de filets s\'enchevêtrent les uns aux autres et sont posés à terre — juridictions qui se chevauchent, réglementations empilées, obligations redondantes accumulées sur des décennies — ils ne sauvent plus la vie. Ils l\'empêchent d\'émerger. Comme des fleurs et de l\'herbe qui ne peuvent pas pousser à travers un enchevêtrement de filets posés sur le sol.',
+    s1_quote: '"Le droit humain est comme un filet qui peut être utilisé pour sauver une masse en chute libre — mais qui, une fois emmêlé à d\'autres filets et posé à terre, ne laisserait pas la vie, comme des fleurs ou de l\'herbe, émerger." — <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank" style="color: var(--gold);">Law is Love</a>',
+    s1_p4: 'C\'est le poids juridique. Pas le droit. Ce que le droit devient quand il s\'accumule plus vite qu\'il ne peut être maintenu. La différence entre le poids juridique et l\'inefficacité ordinaire est que le poids juridique est <strong>mesurable</strong>. Il a une formule. Il a une unité. Il a une valeur — la valeur de tout ce qu\'il empêche d\'exister.',
+    s1_p5: 'L\'économie sociale de marché et le marché intérieur — le projet juridico-économique le plus ambitieux de l\'histoire moderne — est encore inachevé. La raison pour laquelle il est inachevé est l\'entropie. L\'objectif du cadre de physique juridique est d\'achever le projet. Non en ajoutant plus de réglementation. En mesurant ce qui existe, en réduisant ce qui est redondant, en convertissant ce qui est entropique.',
+    case1_title: 'Crise du logement', case1_text: 'Le poids réglementaire bloque les terres, retarde les permis, bloque l\'offre. L\'Europe a les terres. L\'entropie juridique empêche de construire.',
+    case2_title: 'Crise énergétique', case2_text: 'Les projets renouvelables attendent des années pour les permis. La transition énergétique n\'est pas bloquée par la physique — elle est bloquée par le poids juridique.',
+    case3_title: 'Chaîne de valeur locale', case3_text: 'Alimentation, agriculture, PME, travail, artisanat — écrasés par un poids administratif conçu pour l\'échelle industrielle appliqué à des activités à échelle humaine.',
+    s1_coda: 'On ne peut pas réduire ce qu\'on ne peut pas mesurer. La raison pour laquelle le poids juridique n\'a jamais été systématiquement réduit n\'est pas la volonté politique — c\'est l\'absence d\'un instrument scientifique capable de le quantifier. Jusqu\'à présent.',
+    s_variables: 'Variables', s_formulas: 'Formules',
+    s_cvsq: 'Classique vs Quantique — Ce qui est actuellement instrumenté',
+    s_research: 'Programme de Recherche — Synthèse',
+    s_foundation: 'Fondement Théorique',
+    s_publications: 'Publications',
+    s_about: 'À propos — Avv. Dr. Gian Marco Solas',
+    s_criticisms: 'Critiques',
+    origin_label: 'Origine', analogy_label: 'Analogie physique',
+    v1_title: 'Lambda — Le Facteur Juridique',
+    v1_body: 'La constante juridique fondamentale. Sa généalogie mathématique commence avec le modèle standard de Shavell (Cambridge University Press, 2019), où λ est le facteur probabiliste du risque juridique. Étendu pour l\'évaluation des investissements TPF (validé empiriquement dans le cartel européen des camions, +/- €300M en attente de règlement), puis généralisé à des systèmes juridiques entiers comme λX = EX/MX dans JLMI 2025.',
+    v1_origin: 'Dérivé de la lettre grecque utilisée pour désigner la longueur d\'onde (λ) et la constante cosmologique (Λ) dans les équations de champ d\'Einstein. L\'hypothèse propose que ceux-ci ne sont pas seulement analogues mais unifiés — le droit humain comme variable manquante dans les équations physiques.',
+    v1_formula_label: 'Potentiel exprimé sur la masse totale — généralisation aux systèmes juridiques [JLMI 2025]',
+    v2_title: 'Pression Client / Marché', v2_body: 'La force exercée sur un acteur juridique par un client, un investisseur ou un participant au marché. Déclenche des cycles de travail juridique. Dans tout système juridique, PC se manifeste comme une demande d\'application des droits, une pression du marché pour la conformité, ou un contentieux.',
+    v2_origin: 'De la mécanique des fluides et de la thermodynamique : la pression comme force vectorielle appliquée à un conteneur. Ici le conteneur est le système juridique et le fluide est l\'activité juridico-économique.',
+    v2_formula_label: 'La pression client égale le service juridique multiplié par les honoraires [Éq. 4]',
+    v3_title: 'Honoraires — Énergie Juridique', v3_body: 'L\'apport énergétique qui permet au travail juridique de commencer. Les honoraires ne sont pas simplement un paiement — ils sont l\'énergie physique qui élimine les frictions et convertit la pression en travail juridique productif.',
+    v3_origin: 'Du document de Joule de 1845 sur l\'Équivalent Mécanique de la Chaleur. F lie la politique monétaire à l\'entropie — l\'argent comme vecteur d\'énergie universel dans les systèmes juridico-économiques.',
+    v3_formula_label: 'Les honoraires comme énergie permettant le cycle de travail juridique [Éq. 4]',
+    v4_title: 'Micro-états Juridiques — W = f(λ)', v4_body: 'Le nombre d\'états juridiques non résolus dans un système — passifs non divulgués, opacité, valeur d\'actifs non exprimée, ambiguïté réglementaire, défaillances de gouvernance. W est une fonction de λ — le droit applicable détermine quels états sont non résolus.',
+    v4_origin: 'Étend le W de Boltzmann (nombre de micro-états physiques) aux systèmes juridiques. La dépendance en λ de W est la contribution originale du cadre : les micro-états juridiques ne sont pas absolus mais relatifs au droit applicable.',
+    v4_formula_label: 'Micro-états juridiques en fonction de λ → entropie de Boltzmann [Éq. 8]',
+    v5_title: 'Rendement Durable', v5_body: 'Profit attendu d\'un investissement durable. π est amplifié ou détruit par le facteur juridique λ — bonne gouvernance, faible poids juridique et alignement sur les ODD augmentent le rendement net ; l\'entropie et l\'inertie le réduisent.',
+    v5_origin: 'Adapté des modèles d\'investissement de financement par des tiers et généralisé à tout investissement juridique. Validé empiriquement dans l\'initiative de recours collectif du cartel européen des camions.',
+    v5_formula_label: 'Formule de rendement d\'investissement durable [Éq. 6]',
+    f1_sub: 'Composition du Système Juridique', f1_body: 'Tout système juridique X — une ville, une entreprise, une juridiction — est la somme de tous ses actes juridiques, contrats et normes constitutifs. Cela rend les systèmes juridiques mathématiquement tractables et universellement comparables.',
+    f1_analogy: 'Comme une somme vectorielle en physique : la force juridique totale sur un corps est la somme de toutes les forces juridiques individuelles agissant sur lui.',
+    f2_sub: 'Hiérarchie Juridique', f2_body: 'Un système juridique local X est intégré dans et soumis au droit Provincial (P), Régional (R), National (S) et International (I). Le poids juridique total pesant sur toute entité est la somme à travers toutes les couches juridictionnelles.',
+    f2_analogy: 'Analogue aux systèmes de coordonnées imbriqués en relativité générale : chaque référentiel est soumis à la courbure imposée par le référentiel plus grand.',
+    f3_sub: 'Deuxième Loi de Newton Appliquée au Droit', f3_body: 'La masse en accélération (MAλ) et la force (FXλ) sont liées par le droit applicable λ. La voiture ne s\'arrête pas uniquement à cause de la physique — elle s\'arrête parce que λ (le code de la route municipal) agit à la fois sur la masse et sur la force.',
+    f3_analogy: 'F=MA de Newton : le feu rouge est un vecteur de force juridique qui décélère la masse \'conducteur+voiture\'. La vidéosurveillance fournit la mesure objective de l\'événement juridique spatio-temporel.',
+    f5_sub: 'Le Droit comme Lumière', f5_body: 'Le droit applicable (λ) est proposé comme l\'équivalent physique du carré de la vitesse de la lumière (C²) dans E=MC² d\'Einstein. Comme la lumière, le droit possède à la fois des propriétés corpusculaires (actes juridiques spécifiques, décisions contraignantes) et ondulatoires (principes généraux, influence jurisprudentielle).',
+    f5_analogy: 'Dualité onde-corpuscule de la lumière d\'Einstein : \'Nous avons deux images contradictoires de la réalité ; séparément, aucune n\'explique pleinement les phénomènes de la lumière, mais ensemble elles le font.\' Il en va de même pour le droit comme acte spécifique et principe général.',
+    f7_sub: 'Poids Juridique & Courbure Gravitationnelle', f7_body: 'Le poids juridique est égal à la masse multipliée par une fonction gravitationnelle dépendant de λ, G(λ). Ceci est formellement analogue à la constante cosmologique Λ d\'Einstein : un poids juridique excessif agit comme un frein à l\'expansion de la spirale du progrès de la civilisation.',
+    f7_analogy: 'La constante cosmologique Λ d\'Einstein a été introduite pour empêcher l\'expansion universelle. Le poids juridique W = MG(λ) joue le même rôle dans l\'espace-temps de la civilisation : au bon niveau il fournit une structure ; en excès il empêche l\'expansion du potentiel humain.',
+    f8_sub: 'Entropie de Boltzmann Étendue aux Systèmes Juridiques', f8_body: 'L\'entropie d\'un système juridique est égale à la constante de Boltzmann (k) multipliée par le logarithme du nombre d\'états juridiques non résolus W(λ). Le même ensemble de faits produit une entropie différente dans différents systèmes juridiques.',
+    f8_analogy: 'Boltzmann 1877 : S = k log W. En thermodynamique, W compte les micro-états physiques. Dans les systèmes juridiques, W(λ) compte les états juridiques non résolus par rapport au droit applicable — introduisant la dépendance en λ comme contribution originale du cadre.',
+    cvsq_instrumented: '✓ Actuellement instrumenté',
+    cvsq_instrumented_body: 'Physique classique appliquée aux systèmes juridiques :<br/>· Newton (MAλ=FXλ) — force et accélération juridique<br/>· Carnot — puissance motrice, cycles de travail, effet utile<br/>· Joule (PC/PS=λCF) — honoraires comme énergie / friction juridique<br/>· Einstein (λ=C², W=MG(λ)) — droit comme lumière, poids juridique<br/>· Boltzmann (S=k·logW(λ)) — entropie des micro-états juridiques',
+    cvsq_pending: '◎ Développé théoriquement — en attente d\'instrumentation',
+    cvsq_pending_body: 'Mécanique quantique — dans le cadre, pas encore dans le scanner :<br/>· <strong>Intrication</strong> — les individus ne peuvent pas être décrits indépendamment de leur système juridique<br/>· <strong>Saut quantique</strong> — transitions de codification juridique<br/>· <strong>Superposition</strong> — le droit comme particule et onde<br/>· <strong>Seuil de Planck</strong> — énergie minimale d\'activation juridique',
+    status_established: 'ÉTABLI', status_strong: 'HYPOTHÈSE FORTE', status_hypothesis: 'HYPOTHÈSE', status_open: 'QUESTION OUVERTE',
+    found_p1: 'Le cadre s\'appuie sur trois contributions publiées. Le <strong>modèle standard de Shavell</strong> (Cambridge University Press, 2019) — la condition rationnelle c &lt; λ(R) — a été étendu pour l\'évaluation des investissements TPF et validé empiriquement dans le cartel européen des camions (+/- €300M en attente de règlement).',
+    found_p2: 'Ceci a été généralisé à des systèmes juridiques entiers dans <strong>JLMI 2025</strong> : λX = EX/MX mesure le rapport du potentiel exprimé à la masse juridique totale, en utilisant les ODD de l\'ONU comme référence universelle. Testé empiriquement à Masainas, Sardaigne (270 comuni, €21,65 milliards de valeur non exprimée identifiée).',
+    found_p3: 'Le cadre n\'a pas été construit par un physicien. Il a été construit par un juriste qui a étudié la physique et identifié une variable manquante. Déterminer si cette variable appartient aux équations est le travail de ceux qui ont construit les équations.',
+    collab_label: 'Participer', collab_p: 'Les chercheurs intéressés à collaborer — accéder au dataset empirique, co-écrire le pré-print, ou tester le cadre — sont les bienvenus.',
+    about_p1: 'Avocat italien et européen. Fondateur de Sustainab-Law et inventeur de l\'algorithme 1love.works et de la technologie juridique associée — phénographie, phénomonnaie et pollinisation croisée fractale — pour la codification de systèmes juridiques durables.',
+    about_p2: 'Plus de 15 ans d\'expérience dans des fonds de contentieux mondiaux, des cabinets d\'avocats nationaux et internationaux, et à la Commission européenne. Expert principal au Centre de droit et politique de la concurrence des BRICS (École supérieure d\'économie, Moscou). Conseil chez <strong>Omni Bridgeway</strong> (Amsterdam), consultant chez <strong>Woodsford Litigation Funding</strong> (Londres).',
+    about_p3: 'La compétence de l\'auteur réside dans les fondements juridiques et économiques : financement du contentieux, droit de la concurrence, RGPD, cadres réglementaires européens et méthodologie de codification λX. La validation physique, mathématique et neuroscientifique est explicitement le travail de la communauté scientifique.',
+    mandate_label: 'Mandat Stratégique', mandate_p: 'Pour des cas complexes nécessitant une remédiation juridique, la conversion de passifs en investissements durables, un recours collectif ou un financement du contentieux — mandat direct avec l\'auteur de la méthodologie de physique juridique.', mandate_btn: 'Réserver une consultation →',
+    cred_qual: 'Qualification', cred_visiting: 'Chercheur Invité', cred_award: 'Prix', cred_contact: 'Contact', exec_label: 'Formation Continue',
+    crit_p: 'Tout cadre sérieux doit confronter directement ses critiques. Les objections les plus fortes au cadre de physique juridique — scientifiques, juridiques, économiques, politiques et pratiques — reçoivent des réponses honnêtes sur une page dédiée.',
+    crit_btn: 'Lire les critiques →',
+    note_label: 'Note sur la reproductibilité', note_p1: 'Le scanner est conçu comme un instrument scientifique — le même document devrait produire des scores cohérents. La version bêta actuelle utilise un scoring basé sur LLM qui introduit de la variance. La calibration des scores est en développement actif. Chaque scan contribue au dataset empirique.',
+    footer_rights: 'Tous droits réservés', footer_note: 'Instruments propriétaires. Méthodologie : contribution scientifique publique. · De Lege et Amore.',
+  },
+  es: {
+    overline: '1love.works · Teoría de la Interrelación',
+    h1: 'El Problema &<br/><em>la Metodología para resolverlo</em>',
+    header_p: 'Burocracia. Peso jurídico. Entropía. El impuesto invisible sobre todo. 5,2 billones de € de valor económico no expresado atrapado en los sistemas jurídicos de la UE-27. El marco de física jurídica es el primer instrumento científico diseñado para medirlo — y el primer paso hacia su reducción.',
+    tag1: 'Pre-print revisado por físicos', tag2: 'Basado en JLMI 1/25 (indexado Scopus)', tag3: 'Dataset empírico en construcción', tag4: 'Colaboración abierta',
+    ip_label: '© Propiedad Intelectual',
+    ip_p: 'El marco de física jurídica documentado en esta página es la obra original de <strong>Avv. Dr. Gian Marco Solas</strong> (abogado italiano/UE, PhD Maastricht/Cagliari, LLM Colegio de Europa). Publicado en <a href="https://doi.org/10.13135/2785-7867/12266" target="_blank">JLMI 1/25</a>, <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank">Law is Love, SSRN</a>, y <a href="https://www.cambridge.org/core/books/third-party-funding" target="_blank">Cambridge University Press (2019)</a>. Todas las fórmulas, variables y su aplicación son © 2019–2026. La metodología es una contribución científica pública — citable y enseñable. Los instrumentos son propietarios.',
+    s1_head: 'I · El Problema — Burocracia. Peso jurídico. Entropía.',
+    s1_stat: 'Estimación conservadora del valor económico no expresado atrapado en los sistemas jurídicos UE-27 por el peso normativo y la entropía · JLMI 2/25',
+    s1_p1: 'No porque Europa carezca de recursos. Porque sus sistemas jurídicos se acumularon más rápido de lo que podían medirse, codificarse u optimizarse. El impuesto invisible sobre todo — pagado por todos, visto por casi nadie, y hasta ahora nunca medido.',
+    s1_p2: 'El derecho humano es como una red — atrapa la masa en caída libre, impide que los conflictos se vuelvan existenciales, salva la vida humana del caos. Sin derecho, la civilización humana habría desaparecido en la destrucción mucho antes. <strong>La red es necesaria. Siempre ha estado ahí.</strong>',
+    s1_p3: 'Pero cuando demasiadas redes se enredan entre sí y se colocan en el suelo — jurisdicciones superpuestas, regulaciones apiladas, obligaciones redundantes acumuladas durante décadas — ya no salvan vidas. Las impiden emerger. Como flores y hierba que no pueden crecer a través de un enredo de redes tendidas sobre el suelo.',
+    s1_quote: '"El derecho humano es como una red que puede usarse para salvar una masa en caída libre — pero que una vez enredada con otras redes y colocada en el suelo no dejaría emerger la vida, como flores o hierba." — <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank" style="color: var(--gold);">Law is Love</a>',
+    s1_p4: 'Esto es el peso jurídico. No el derecho. Lo que el derecho se convierte cuando se acumula más rápido de lo que puede mantenerse. La diferencia entre el peso jurídico y la ineficiencia ordinaria es que el peso jurídico es <strong>medible</strong>. Tiene una fórmula. Tiene una unidad. Tiene un valor — el valor de todo lo que impide existir.',
+    s1_p5: 'La economía social de mercado y el mercado interior — el proyecto jurídico-económico más ambicioso de la historia moderna — sigue incompleto. La razón por la que está incompleto es la entropía. El objetivo del marco de física jurídica es completar el proyecto. No añadiendo más regulación. Midiendo lo que existe, reduciendo lo redundante, convirtiendo lo entrópico.',
+    case1_title: 'Crisis de vivienda', case1_text: 'El peso normativo bloquea tierras, paraliza permisos, bloquea la oferta. Europa tiene la tierra. La entropía jurídica impide construir.',
+    case2_title: 'Crisis energética', case2_text: 'Los proyectos renovables esperan años para los permisos. La transición energética no está bloqueada por la física — está bloqueada por el peso jurídico.',
+    case3_title: 'Cadena de valor local', case3_text: 'Alimentación, agricultura, PYME, trabajo, artesanía — aplastados por un peso administrativo diseñado para escala industrial aplicado a actividades de escala humana.',
+    s1_coda: 'No se puede reducir lo que no se puede medir. La razón por la que el peso jurídico nunca se ha reducido sistemáticamente no es la voluntad política — es la ausencia de un instrumento científico capaz de cuantificarlo. Hasta ahora.',
+    s_variables: 'Variables', s_formulas: 'Fórmulas',
+    s_cvsq: 'Clásica vs Cuántica — Lo que está actualmente instrumentado',
+    s_research: 'Programa de Investigación — Resumen',
+    s_foundation: 'Fundamento Teórico',
+    s_publications: 'Publicaciones',
+    s_about: 'Acerca de — Avv. Dr. Gian Marco Solas',
+    s_criticisms: 'Críticas',
+    origin_label: 'Origen', analogy_label: 'Analogía física',
+    v1_title: 'Lambda — El Factor Jurídico',
+    v1_body: 'La constante jurídica fundamental. Su genealogía matemática comienza con el modelo estándar de Shavell (Cambridge University Press, 2019), donde λ es el factor probabilístico del riesgo jurídico. Extendido para la valoración de inversiones TPF (validado empíricamente en el cartel europeo de camiones, +/- €300M pendiente de acuerdo), luego generalizado a sistemas jurídicos enteros como λX = EX/MX en JLMI 2025.',
+    v1_origin: 'Derivado de la letra griega utilizada para denotar la longitud de onda (λ) y la constante cosmológica (Λ) en las ecuaciones de campo de Einstein. La hipótesis propone que estos no son meramente análogos sino unificados — el derecho humano como variable faltante en las ecuaciones físicas.',
+    v1_formula_label: 'Potencial expresado sobre masa total — generalización a sistemas jurídicos [JLMI 2025]',
+    v2_title: 'Presión Cliente / Mercado', v2_body: 'La fuerza ejercida sobre un actor jurídico por un cliente, inversor o participante del mercado. Desencadena ciclos de trabajo jurídico. En cualquier sistema jurídico, PC se manifiesta como demanda de aplicación de derechos, presión del mercado para el cumplimiento, o litigios.',
+    v2_origin: 'De la mecánica de fluidos y la termodinámica: la presión como fuerza vectorial aplicada a un contenedor. Aquí el contenedor es el sistema jurídico y el fluido es la actividad jurídico-económica.',
+    v2_formula_label: 'La presión del cliente equivale al servicio jurídico por los honorarios [Ec. 4]',
+    v3_title: 'Honorarios — Energía Jurídica', v3_body: 'El aporte energético que permite que comience el trabajo jurídico. Los honorarios no son simplemente un pago — son la energía física que elimina la fricción y convierte la presión en trabajo jurídico productivo.',
+    v3_origin: 'Del artículo de Joule de 1845 sobre el Equivalente Mecánico del Calor. F vincula la política monetaria con la entropía — el dinero como portador de energía universal en los sistemas jurídico-económicos.',
+    v3_formula_label: 'Los honorarios como energía que permite el ciclo de trabajo jurídico [Ec. 4]',
+    v4_title: 'Microestados Jurídicos — W = f(λ)', v4_body: 'El número de estados jurídicos no resueltos en un sistema — pasivos no divulgados, opacidad, valor de activos no expresado, ambigüedad normativa, fallas de gobernanza. W es una función de λ — el derecho aplicable determina qué estados no están resueltos.',
+    v4_origin: 'Extiende la W de Boltzmann (número de microestados físicos) a los sistemas jurídicos. La dependencia en λ de W es la contribución original del marco: los microestados jurídicos no son absolutos sino relativos al derecho aplicable.',
+    v4_formula_label: 'Microestados jurídicos como función de λ → entropía de Boltzmann [Ec. 8]',
+    v5_title: 'Rendimiento Sostenible', v5_body: 'Beneficio esperado de una inversión sostenible. π es amplificado o destruido por el factor jurídico λ — buena gobernanza, bajo peso jurídico y alineación con los ODS aumentan el rendimiento neto; la entropía y la inercia lo reducen.',
+    v5_origin: 'Adaptado de los modelos de inversión de financiación por terceros y generalizado a cualquier inversión jurídica. Validado empíricamente en la iniciativa de recurso colectivo del cartel europeo de camiones.',
+    v5_formula_label: 'Fórmula de rendimiento de inversión sostenible [Ec. 6]',
+    f1_sub: 'Composición del Sistema Jurídico', f1_body: 'Cualquier sistema jurídico X — una ciudad, empresa, jurisdicción — es la suma de todos sus actos jurídicos, contratos y normas constitutivas. Esto hace que los sistemas jurídicos sean matemáticamente tratables y universalmente comparables.',
+    f1_analogy: 'Como una suma vectorial en física: la fuerza jurídica total sobre un cuerpo es la suma de todas las fuerzas jurídicas individuales que actúan sobre él.',
+    f2_sub: 'Jerarquía Jurídica', f2_body: 'Un sistema jurídico local X está integrado en y sujeto al derecho Provincial (P), Regional (R), Estatal (S) e Internacional (I). El peso jurídico total que recae sobre cualquier entidad es la suma a través de todas las capas jurisdiccionales.',
+    f2_analogy: 'Análogo a los sistemas de coordenadas anidados en relatividad general: cada sistema de referencia está sujeto a la curvatura impuesta por el marco más grande.',
+    f3_sub: 'Segunda Ley de Newton Aplicada al Derecho', f3_body: 'Tanto la masa en aceleración (MAλ) como la fuerza (FXλ) están vinculadas por el derecho aplicable λ. El coche no se detiene solo por la física — se detiene porque λ (la ley de tráfico municipal) actúa tanto sobre la masa como sobre la fuerza.',
+    f3_analogy: 'F=MA de Newton: el semáforo en rojo es un vector de fuerza jurídica que decelera la masa \'conductor+coche\'. Las cámaras de tráfico proporcionan la medición objetiva del evento jurídico espacio-temporal.',
+    f5_sub: 'El Derecho como Luz', f5_body: 'El derecho aplicable (λ) se propone como el equivalente físico del cuadrado de la velocidad de la luz (C²) en E=MC² de Einstein. Como la luz, el derecho tiene propiedades corpusculares (actos jurídicos específicos, decisiones vinculantes) y ondulatorias (principios generales, influencia jurisprudencial).',
+    f5_analogy: 'Dualidad onda-corpúsculo de la luz de Einstein: \'Tenemos dos imágenes contradictorias de la realidad; por separado ninguna explica completamente los fenómenos de la luz, pero juntas lo hacen.\' Lo mismo aplica al derecho como acto específico y principio general.',
+    f7_sub: 'Peso Jurídico y Curvatura Gravitacional', f7_body: 'El peso jurídico es igual a la masa multiplicada por una función gravitacional dependiente de λ, G(λ). Esto es formalmente análogo a la constante cosmológica Λ de Einstein: el peso jurídico excesivo actúa como freno a la expansión de la espiral del progreso de la civilización.',
+    f7_analogy: 'La constante cosmológica Λ de Einstein fue introducida para prevenir la expansión universal. El peso jurídico W = MG(λ) juega el mismo papel en el espacio-tiempo de la civilización: al nivel correcto proporciona estructura; en exceso impide la expansión del potencial humano.',
+    f8_sub: 'Entropía de Boltzmann Extendida a Sistemas Jurídicos', f8_body: 'La entropía de un sistema jurídico es igual a la constante de Boltzmann (k) multiplicada por el logaritmo del número de estados jurídicos no resueltos W(λ). El mismo conjunto de hechos produce entropía diferente en diferentes sistemas jurídicos.',
+    f8_analogy: 'Boltzmann 1877: S = k log W. En termodinámica, W cuenta los microestados físicos. En los sistemas jurídicos, W(λ) cuenta los estados jurídicos no resueltos relativos al derecho aplicable — introduciendo la dependencia en λ como la contribución original del marco.',
+    cvsq_instrumented: '✓ Actualmente instrumentado',
+    cvsq_instrumented_body: 'Física clásica aplicada a sistemas jurídicos:<br/>· Newton (MAλ=FXλ) — fuerza y aceleración jurídica<br/>· Carnot — potencia motriz, ciclos de trabajo, efecto útil<br/>· Joule (PC/PS=λCF) — honorarios como energía / fricción jurídica<br/>· Einstein (λ=C², W=MG(λ)) — derecho como luz, peso jurídico<br/>· Boltzmann (S=k·logW(λ)) — entropía de microestados jurídicos',
+    cvsq_pending: '◎ Desarrollado teóricamente — pendiente de instrumentación',
+    cvsq_pending_body: 'Mecánica cuántica — en el marco, aún no en el scanner:<br/>· <strong>Entrelazamiento</strong> — los individuos no pueden describirse independientemente de su sistema jurídico<br/>· <strong>Salto cuántico</strong> — transiciones de codificación jurídica<br/>· <strong>Superposición</strong> — el derecho como partícula y onda<br/>· <strong>Umbral de Planck</strong> — energía mínima de activación jurídica',
+    status_established: 'CONSOLIDADO', status_strong: 'HIPÓTESIS FUERTE', status_hypothesis: 'HIPÓTESIS', status_open: 'PREGUNTA ABIERTA',
+    found_p1: 'El marco se basa en tres contribuciones publicadas. El <strong>modelo estándar de Shavell</strong> (Cambridge University Press, 2019) — la condición racional c &lt; λ(R) — fue extendido para la valoración de inversiones TPF y validado empíricamente en el cartel europeo de camiones (+/- €300M pendiente de acuerdo).',
+    found_p2: 'Esto se generalizó a sistemas jurídicos enteros en <strong>JLMI 2025</strong>: λX = EX/MX mide la proporción del potencial expresado a la masa jurídica total, utilizando los ODS de la ONU como referencia universal. Probado empíricamente en Masainas, Cerdeña (270 comuni, €21,65 mil millones de valor no expresado identificado).',
+    found_p3: 'El marco no fue construido por un físico. Fue construido por un abogado que estudió física e identificó una variable faltante. Determinar si esa variable pertenece a las ecuaciones es el trabajo de quienes construyeron las ecuaciones.',
+    collab_label: 'Participar', collab_p: 'Los investigadores interesados en colaborar — acceder al dataset empírico, co-redactar el pre-print o probar el marco — son bienvenidos.',
+    about_p1: 'Abogado italiano y europeo. Fundador de Sustainab-Law e inventor del algoritmo 1love.works y la tecnología jurídica relacionada — fenografía, fenomoneda y polinización cruzada fractal — para la codificación de sistemas jurídicos sostenibles.',
+    about_p2: 'Más de 15 años de experiencia en fondos de litigación globales, despachos de abogados nacionales e internacionales, y en la Comisión Europea. Experto Principal en el Centro de Derecho y Política de la Competencia de los BRICS (Escuela Superior de Economía, Moscú). Counsel en <strong>Omni Bridgeway</strong> (Ámsterdam), consultor en <strong>Woodsford Litigation Funding</strong> (Londres).',
+    about_p3: 'La competencia del autor radica en los fundamentos jurídicos y económicos: financiación de litigios, derecho de la competencia, RGPD, marcos regulatorios de la UE y metodología de codificación λX. La validación física, matemática y neurocientífica es explícitamente el trabajo de la comunidad científica.',
+    mandate_label: 'Mandato Estratégico', mandate_p: 'Para casos complejos que requieren remediación jurídica, conversión de pasivos en inversiones sostenibles, recurso colectivo o financiación de litigios — mandato directo con el autor de la metodología de física jurídica.', mandate_btn: 'Reservar consulta →',
+    cred_qual: 'Cualificación', cred_visiting: 'Investigador Visitante', cred_award: 'Premio', cred_contact: 'Contacto', exec_label: 'Formación Ejecutiva',
+    crit_p: 'Todo marco serio debe confrontar directamente a sus críticos. Las objeciones más fuertes al marco de física jurídica — científicas, jurídicas, económicas, políticas y prácticas — se responden honestamente en una página dedicada.',
+    crit_btn: 'Leer las críticas →',
+    note_label: 'Nota sobre reproducibilidad', note_p1: 'El scanner está diseñado como instrumento científico — el mismo documento debería producir puntuaciones consistentes. La versión beta actual utiliza puntuación basada en LLM que introduce varianza. La calibración de puntuaciones está en desarrollo activo. Cada análisis contribuye al dataset empírico.',
+    footer_rights: 'Todos los derechos reservados', footer_note: 'Instrumentos propietarios. Metodología: contribución científica pública. · De Lege et Amore.',
+  }
+};
+
+let currentLang = localStorage.getItem('1lw_lang') || 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('1lw_lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (T[lang] && T[lang][key] !== undefined) el.innerHTML = T[lang][key];
+  });
+  document.documentElement.lang = lang;
+}
+
+setLang(currentLang);
 </script>
 
 </body>
