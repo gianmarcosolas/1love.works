@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -19,9 +19,14 @@
 
     nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(245,242,234,0.96); backdrop-filter: blur(8px); display: flex; justify-content: space-between; align-items: center; padding: 14px 48px; }
     .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; font-weight: 500; }
-    .nav-links { display: flex; gap: 28px; list-style: none; }
-    .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+    .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
+    .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--ink); }
+    .lang-switcher { display: flex; border: 1px solid var(--rule); overflow: hidden; }
+    .lang-btn { font-family: var(--mono); font-size: 10px; padding: 5px 9px; border: none; background: transparent; color: var(--muted); cursor: pointer; border-right: 1px solid var(--rule); transition: all 0.15s; }
+    .lang-btn:last-child { border-right: none; }
+    .lang-btn.active { background: var(--ink); color: var(--parchment); }
+    .lang-btn:hover:not(.active) { background: var(--cream); }
 
     .hero { max-width: 760px; margin: 0 auto; padding: 80px 48px 56px; border-bottom: 1px solid var(--rule); }
     .hero-overline { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; }
@@ -31,12 +36,10 @@
 
     .wrap { max-width: 760px; margin: 0 auto; padding: 0 48px 80px; }
 
-    /* Category header */
     .cat-header { padding: 48px 0 24px; border-bottom: 2px solid var(--ink); margin-bottom: 0; }
     .cat-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 8px; }
     .cat-title { font-size: 26px; font-weight: 400; color: var(--ink); }
 
-    /* Criticism item */
     .criticism { border-bottom: 1px solid var(--rule); padding: 32px 0; }
     .criticism-q { font-size: 20px; font-weight: 500; color: var(--ink); line-height: 1.3; margin-bottom: 16px; }
     .criticism-q::before { content: '❝ '; color: var(--red); font-size: 18px; }
@@ -49,15 +52,12 @@
     .criticism-a em { font-style: italic; }
     .criticism-a a { color: var(--blue); }
 
-    /* Pull quote */
     .pull-quote { border-left: 3px solid var(--gold); padding: 14px 20px; margin: 20px 0; background: var(--cream); }
     .pull-quote p { font-size: 16px; font-style: italic; color: var(--ink); line-height: 1.7; margin: 0; }
 
-    /* Answer types legend */
     .legend { display: flex; gap: 16px; flex-wrap: wrap; padding: 20px 0; border-bottom: 1px solid var(--rule); margin-bottom: 0; }
     .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
 
-    /* CTA */
     .cta { padding: 48px 0; text-align: center; border-top: 1px solid var(--rule); margin-top: 48px; }
     .cta h2 { font-size: 30px; font-weight: 400; margin-bottom: 12px; }
     .cta h2 em { font-style: italic; color: var(--gold); }
@@ -75,6 +75,7 @@
 
     @media (max-width: 720px) {
       nav { padding: 12px 20px; }
+      .hide-mobile { display: none; }
       .hero, .wrap { padding-left: 24px; padding-right: 24px; }
       footer { flex-direction: column; padding: 24px 20px; }
     }
@@ -85,157 +86,165 @@
 <nav>
   <a class="nav-logo" href="/">1love.works</a>
   <ul class="nav-links">
-    <li><a href="/methodology">Methodology</a></li>
-    <li><a href="/pnc">PNC</a></li>
-    <li><a href="/pricing">Access</a></li>
-    <li><a href="https://eulawscanner.eu" target="_blank">EU Scanner</a></li>
-    <li><a href="mailto:gmsolas@sustainab-law.eu">Contact</a></li>
+    <li class="hide-mobile"><a href="https://eulawscanner.eu" target="_blank">EU Law Meter ↗</a></li>
+    <li class="hide-mobile"><a href="https://corporate-scanner.com" target="_blank">Corporate Meter ↗</a></li>
+    <li class="hide-mobile"><a href="/codification">Codification</a></li>
+    <li class="hide-mobile"><a href="/methodology">Methodology</a></li>
+    <li class="hide-mobile"><a href="/pnc">Why PNC</a></li>
+    <li class="hide-mobile"><a href="/participate">Participate</a></li>
+    <li class="hide-mobile"><a href="/criticisms">Criticisms</a></li>
+    <li class="hide-mobile"><a href="https://calendly.com/gmsolas-sustainab-law/legal-consultation-public-entity" target="_blank">Consultation</a></li>
+    <li>
+      <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('it')">IT</button>
+        <button class="lang-btn" onclick="setLang('fr')">FR</button>
+        <button class="lang-btn" onclick="setLang('es')">ES</button>
+      </div>
+    </li>
   </ul>
 </nav>
 
 <div class="hero">
-  <p class="hero-overline">1love.works · Criticisms</p>
-  <h1>The strongest objections.<br/><em>Answered honestly.</em></h1>
-  <p class="hero-intro">Honesty is the most important thing. Every serious framework must confront its critics directly. These are the strongest objections to the legal-physics framework — answered not defensively, but scientifically. Where we don't know, we say so. Where the evidence speaks, we cite it. Where the limitation makes us stronger, we explain why.</p>
+  <p class="hero-overline" data-i18n="overline">1love.works · Criticisms</p>
+  <h1 data-i18n="h1">The strongest objections.<br/><em>Answered honestly.</em></h1>
+  <p class="hero-intro" data-i18n="hero_intro">Honesty is the most important thing. Every serious framework must confront its critics directly. These are the strongest objections to the legal-physics framework — answered not defensively, but scientifically. Where we don't know, we say so. Where the evidence speaks, we cite it. Where the limitation makes us stronger, we explain why.</p>
 </div>
 
 <div class="wrap">
 
   <div class="legend">
-    <div class="legend-item"><span class="answer-type honest" style="margin:0;">Honest admission</span> We don't know yet — and we say so</div>
-    <div class="legend-item"><span class="answer-type evidence" style="margin:0;">Published evidence</span> The peer-reviewed record addresses this</div>
-    <div class="legend-item"><span class="answer-type stronger" style="margin:0;">Stronger for it</span> The limitation is why the framework is more credible</div>
+    <div class="legend-item"><span class="answer-type honest" style="margin:0;" data-i18n="legend_honest">Honest admission</span> <span data-i18n="legend_honest_desc">We don't know yet — and we say so</span></div>
+    <div class="legend-item"><span class="answer-type evidence" style="margin:0;" data-i18n="legend_evidence">Published evidence</span> <span data-i18n="legend_evidence_desc">The peer-reviewed record addresses this</span></div>
+    <div class="legend-item"><span class="answer-type stronger" style="margin:0;" data-i18n="legend_stronger">Stronger for it</span> <span data-i18n="legend_stronger_desc">The limitation is why the framework is more credible</span></div>
   </div>
 
-  <!-- Scientific -->
+  <!-- Category I -->
   <div class="cat-header">
-    <div class="cat-label">Category I</div>
-    <div class="cat-title">Scientific objections</div>
+    <div class="cat-label" data-i18n="cat1_label">Category I</div>
+    <div class="cat-title" data-i18n="cat1_title">Scientific objections</div>
   </div>
 
   <div class="criticism">
-    <div class="criticism-q">Is human law really a physical variable, or just an analogy?</div>
-    <span class="answer-type evidence">Published evidence</span>
-    <p class="criticism-a">This is the central question — and it is the right one to ask. The framework proposes that human law can be treated as a physical variable — measured with the same mathematical tools used to measure natural systems. The hypothesis, whose opposite cannot be proven (<em>probatio diabolica</em>), is that human law has always existed alongside the laws of nature. Physicists cannot prove that gravity does not apply to legal systems. Lawyers cannot prove that entropy does not accumulate in regulatory frameworks. The framework proposes to test this empirically — not assume it. Published: <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank">Law is Love, SSRN</a> · <a href="https://doi.org/10.13135/2785-7867/12266" target="_blank">JLMI 1/25</a>.</p>
+    <div class="criticism-q" data-i18n="q1">Is human law really a physical variable, or just an analogy?</div>
+    <span class="answer-type evidence" data-i18n="legend_evidence">Published evidence</span>
+    <p class="criticism-a" data-i18n="a1">This is the central question — and it is the right one to ask. The framework proposes that human law can be treated as a physical variable — measured with the same mathematical tools used to measure natural systems. The hypothesis, whose opposite cannot be proven (<em>probatio diabolica</em>), is that human law has always existed alongside the laws of nature. Physicists cannot prove that gravity does not apply to legal systems. Lawyers cannot prove that entropy does not accumulate in regulatory frameworks. The framework proposes to test this empirically — not assume it. Published: <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank">Law is Love, SSRN</a> · <a href="https://doi.org/10.13135/2785-7867/12266" target="_blank">JLMI 1/25</a>.</p>
   </div>
 
   <div class="criticism">
-    <div class="criticism-q">Can entropy be meaningfully quantified in legal systems, or is the measurement too subjective?</div>
-    <span class="answer-type honest">Honest admission</span>
-    <p class="criticism-a">The current scanner uses LLM-based scoring, which introduces variance. The same document may produce slightly different scores across scans. This is acknowledged. Score calibration is in active development and will be improved as it scans. The framework's response is not to hide the variance but to instrument it — every scan contributes to the empirical dataset, and the methodology is being refined through use. The Boltzmann extension to legal microstates (S = k · log W(λ)) is mathematically rigorous in its structure; the question is whether W(λ) — the number of unresolved legal states relative to applicable law — can be measured precisely enough to be scientific. That is the open research question and can only be solved by lawyers in concrete cases. We are honest about it.</p>
+    <div class="criticism-q" data-i18n="q2">Can entropy be meaningfully quantified in legal systems, or is the measurement too subjective?</div>
+    <span class="answer-type honest" data-i18n="legend_honest">Honest admission</span>
+    <p class="criticism-a" data-i18n="a2">The current scanner uses LLM-based scoring, which introduces variance. The same document may produce slightly different scores across scans. This is acknowledged. Score calibration is in active development and will be improved as it scans. The framework's response is not to hide the variance but to instrument it — every scan contributes to the empirical dataset, and the methodology is being refined through use. The Boltzmann extension to legal microstates (S = k · log W(λ)) is mathematically rigorous in its structure; the question is whether W(λ) — the number of unresolved legal states relative to applicable law — can be measured precisely enough to be scientific. That is the open research question and can only be solved by lawyers in concrete cases. We are honest about it.</p>
   </div>
 
   <div class="criticism">
-    <div class="criticism-q">Is the Boltzmann extension to legal microstates mathematically rigorous or metaphorical?</div>
-    <span class="answer-type honest">Honest admission</span>
-    <p class="criticism-a">Both, at present. The structural analogy is mathematically sound — W(λ) counts unresolved legal states relative to applicable law, exactly as W counts physical microstates in thermodynamics. The λ-dependence of W is the framework's original contribution: the same set of facts produces different legal entropy in different jurisdictions. This is not a metaphor — it is a genuine mathematical extension. Whether it holds to the rigour required for physical science is the question that physicists and mathematicians are invited to test, and lawyers to measure in actual cases. The framework was not built by a physicist. It was built by a lawyer who identified a missing variable. Finding out whether it belongs in the equations is the work of those who built the equations.</p>
+    <div class="criticism-q" data-i18n="q3">Is the Boltzmann extension to legal microstates mathematically rigorous or metaphorical?</div>
+    <span class="answer-type honest" data-i18n="legend_honest">Honest admission</span>
+    <p class="criticism-a" data-i18n="a3">Both, at present. The structural analogy is mathematically sound — W(λ) counts unresolved legal states relative to applicable law, exactly as W counts physical microstates in thermodynamics. The λ-dependence of W is the framework's original contribution: the same set of facts produces different legal entropy in different jurisdictions. This is not a metaphor — it is a genuine mathematical extension. Whether it holds to the rigour required for physical science is the question that physicists and mathematicians are invited to test, and lawyers to measure in actual cases. The framework was not built by a physicist. It was built by a lawyer who identified a missing variable. Finding out whether it belongs in the equations is the work of those who built the equations.</p>
   </div>
 
   <div class="criticism">
-    <div class="criticism-q">Is Λ = π/φ mathematically proven?</div>
-    <span class="answer-type honest">Honest admission</span>
-    <p class="criticism-a">No. It is a hypothesis, or a dream. The relationship between the cosmological constant Λ, pi (π), and the golden ratio (φ) is proposed as a research direction — not a proven result. It is included because it is mathematically interesting, not because it is established. The framework is explicit about this. It invites mathematicians to test it. If it is wrong, the rest of the framework stands independently. If it is right, it would be one of the most significant mathematical discoveries in modern science. The honest answer is: we don't know yet.</p>
+    <div class="criticism-q" data-i18n="q4">Is Λ = π/φ mathematically proven?</div>
+    <span class="answer-type honest" data-i18n="legend_honest">Honest admission</span>
+    <p class="criticism-a" data-i18n="a4">No. It is a hypothesis, or a dream. The relationship between the cosmological constant Λ, pi (π), and the golden ratio (φ) is proposed as a research direction — not a proven result. It is included because it is mathematically interesting, not because it is established. The framework is explicit about this. It invites mathematicians to test it. If it is wrong, the rest of the framework stands independently. If it is right, it would be one of the most significant mathematical discoveries in modern science. The honest answer is: we don't know yet.</p>
   </div>
 
-  <!-- Legal/Regulatory -->
+  <!-- Category II -->
   <div class="cat-header">
-    <div class="cat-label">Category II</div>
-    <div class="cat-title">Legal and regulatory objections</div>
+    <div class="cat-label" data-i18n="cat2_label">Category II</div>
+    <div class="cat-title" data-i18n="cat2_title">Legal and regulatory objections</div>
   </div>
 
   <div class="criticism">
-    <div class="criticism-q">Is PNC really not a security? Regulators may disagree.</div>
-    <span class="answer-type honest">Honest admission</span>
-    <p class="criticism-a">This is a legitimate concern and we take it seriously. PNC is structured to avoid security classification under MiCA and general EU financial regulation on three grounds: (1) it is issued as part of a service transaction, not sold independently; (2) it carries no promise of financial return; (3) it is not tradeable on any exchange. The implied value on the dashboard is a mathematical calculation, not a market price. However, regulatory interpretation evolves. We recommend that institutional holders seek their own legal advice on the classification of PNC in their jurisdiction. If a regulator determines that PNC constitutes a security, we will adapt the structure accordingly. The underlying service and methodology are independent of the token classification. The most important thing for this project is that it aims to be a scientific instrument open to everyone.</p>
+    <div class="criticism-q" data-i18n="q5">Is PNC really not a security? Regulators may disagree.</div>
+    <span class="answer-type honest" data-i18n="legend_honest">Honest admission</span>
+    <p class="criticism-a" data-i18n="a5">This is a legitimate concern and we take it seriously. PNC is structured to avoid security classification under MiCA and general EU financial regulation on three grounds: (1) it is issued as part of a service transaction, not sold independently; (2) it carries no promise of financial return; (3) it is not tradeable on any exchange. The implied value on the dashboard is a mathematical calculation, not a market price. However, regulatory interpretation evolves. We recommend that institutional holders seek their own legal advice on the classification of PNC in their jurisdiction. If a regulator determines that PNC constitutes a security, we will adapt the structure accordingly. The underlying service and methodology are independent of the token classification. The most important thing for this project is that it aims to be a scientific instrument open to everyone.</p>
   </div>
 
   <div class="criticism">
-    <div class="criticism-q">Can a token genuinely be non-tradeable in practice?</div>
-    <span class="answer-type honest">Honest admission</span>
-    <p class="criticism-a">In practice, any digital asset can be transferred if the holder chooses to do so outside a formal exchange. We cannot prevent peer-to-peer transfers of PNC any more than a deed can prevent a house from being sold informally. What we can do — and do — is make clear that PNC has no utility outside the network, that its value is tied to the entropy reduction it represents, and that transferring it severs it from its meaning. The architecture is designed to make holding more rational than selling. The long-term goal is blockchain recording that ties PNC to a specific entity — making informal transfer meaningless, and of course to give tools to transform the underlying entropy and legal weight into actual value in real legal systems.</p>
+    <div class="criticism-q" data-i18n="q6">Can a token genuinely be non-tradeable in practice?</div>
+    <span class="answer-type honest" data-i18n="legend_honest">Honest admission</span>
+    <p class="criticism-a" data-i18n="a6">In practice, any digital asset can be transferred if the holder chooses to do so outside a formal exchange. We cannot prevent peer-to-peer transfers of PNC any more than a deed can prevent a house from being sold informally. What we can do — and do — is make clear that PNC has no utility outside the network, that its value is tied to the entropy reduction it represents, and that transferring it severs it from its meaning. The architecture is designed to make holding more rational than selling. The long-term goal is blockchain recording that ties PNC to a specific entity — making informal transfer meaningless, and of course to give tools to transform the underlying entropy and legal weight into actual value in real legal systems.</p>
   </div>
 
   <div class="criticism">
-    <div class="criticism-q">Who validates the lawyer certification of entropy reduction?</div>
-    <span class="answer-type honest">Honest admission</span>
-    <p class="criticism-a">In Phase 1, no one. PNC is issued based on service delivery, not verified entropy reduction. This is a founding-phase limitation that we are honest about. The lawyer validation layer — where a qualified lawyer certifies the ΔS before PNC is issued — is Phase 2. Until then, founding PNC reflects participation in the network, not verified entropy reduction, only approximate identification. Those who buy access at €99/PNC do so knowing this. The founding price reflects the distance still to travel.</p>
+    <div class="criticism-q" data-i18n="q7">Who validates the lawyer certification of entropy reduction?</div>
+    <span class="answer-type honest" data-i18n="legend_honest">Honest admission</span>
+    <p class="criticism-a" data-i18n="a7">In Phase 1, no one. PNC is issued based on service delivery, not verified entropy reduction. This is a founding-phase limitation that we are honest about. The lawyer validation layer — where a qualified lawyer certifies the ΔS before PNC is issued — is Phase 2. Until then, founding PNC reflects participation in the network, not verified entropy reduction, only approximate identification. Those who buy access at €99/PNC do so knowing this. The founding price reflects the distance still to travel.</p>
   </div>
 
-  <!-- Economic -->
+  <!-- Category III -->
   <div class="cat-header">
-    <div class="cat-label">Category III</div>
-    <div class="cat-title">Economic objections</div>
+    <div class="cat-label" data-i18n="cat3_label">Category III</div>
+    <div class="cat-title" data-i18n="cat3_title">Economic objections</div>
   </div>
 
   <div class="criticism">
-    <div class="criticism-q">Is €5.2 trillion a real number or a back-of-envelope estimate?</div>
-    <span class="answer-type honest">Honest admission</span>
-    <p class="criticism-a">It is a conservative approximate estimate derived from the legal-physics methodology (λX = EX/MX), validated in a pilot study of 270 comuni in Sardinia (€21.65B net unexpressed value identified). The EU-27 figure extrapolates from this pilot. It is not the result of a comprehensive EU-wide empirical study — that study does not yet exist and needs to be done with this instrument. It is the best available estimate from the methodology as currently developed. It is published in JLMI 2/25 as such. We call it conservative because the methodology, at its current stage of development, is more likely to undercount than overcount entropy.</p>
+    <div class="criticism-q" data-i18n="q8">Is €5.2 trillion a real number or a back-of-envelope estimate?</div>
+    <span class="answer-type honest" data-i18n="legend_honest">Honest admission</span>
+    <p class="criticism-a" data-i18n="a8">It is a conservative approximate estimate derived from the legal-physics methodology (λX = EX/MX), validated in a pilot study of 270 comuni in Sardinia (€21.65B net unexpressed value identified). The EU-27 figure extrapolates from this pilot. It is not the result of a comprehensive EU-wide empirical study — that study does not yet exist and needs to be done with this instrument. It is the best available estimate from the methodology as currently developed. It is published in JLMI 2/25 as such. We call it conservative because the methodology, at its current stage of development, is more likely to undercount than overcount entropy.</p>
   </div>
 
   <div class="criticism">
-    <div class="criticism-q">Who decides what "optimum" looks like — isn't that political, not mathematical?</div>
-    <span class="answer-type evidence">Published evidence</span>
-    <p class="criticism-a">This is the most important political objection. The answer is: the UN SDGs as universal benchmark. The framework does not define optimum according to any political ideology. It uses the Sustainable Development Goals — agreed by all 193 UN member states — as the universal reference point for what a legal system at optimum looks like. A legal system at optimum is one where housing, energy, food, labour, and governance meet SDG standards. This is not a political choice made by the framework's author. It is the closest thing humanity has to a universal agreement on what a good legal system produces. We also like the Aristotelian idea that optimum is relative happiness.</p>
+    <div class="criticism-q" data-i18n="q9">Who decides what "optimum" looks like — isn't that political, not mathematical?</div>
+    <span class="answer-type evidence" data-i18n="legend_evidence">Published evidence</span>
+    <p class="criticism-a" data-i18n="a9">This is the most important political objection. The answer is: the UN SDGs as universal benchmark. The framework does not define optimum according to any political ideology. It uses the Sustainable Development Goals — agreed by all 193 UN member states — as the universal reference point for what a legal system at optimum looks like. A legal system at optimum is one where housing, energy, food, labour, and governance meet SDG standards. This is not a political choice made by the framework's author. It is the closest thing humanity has to a universal agreement on what a good legal system produces. We also like the Aristotelian idea that optimum is relative happiness.</p>
   </div>
 
   <div class="criticism">
-    <div class="criticism-q">Does fractal cross-pollination© actually work across different legal traditions — common law vs civil law?</div>
-    <span class="answer-type honest">Honest admission</span>
-    <p class="criticism-a">This is an open empirical question. The framework proposes that λ(entity) is comparable across legal traditions because it is measured against a universal benchmark (UN SDGs) rather than against any specific legal tradition. A civil law municipality in Sardinia and a common law municipality in Ireland can both be measured on housing entropy, energy entropy, and local value chain entropy using the same instrument. <strong>Whether the cross-pollination intelligence generated by one is genuinely actionable for the other is something the empirical dataset will tell us.</strong> We do not claim it works perfectly across all traditions. We claim it is worth testing.</p>
+    <div class="criticism-q" data-i18n="q10">Does fractal cross-pollination© actually work across different legal traditions — common law vs civil law?</div>
+    <span class="answer-type honest" data-i18n="legend_honest">Honest admission</span>
+    <p class="criticism-a" data-i18n="a10">This is an open empirical question. The framework proposes that λ(entity) is comparable across legal traditions because it is measured against a universal benchmark (UN SDGs) rather than against any specific legal tradition. A civil law municipality in Sardinia and a common law municipality in Ireland can both be measured on housing entropy, energy entropy, and local value chain entropy using the same instrument. <strong>Whether the cross-pollination intelligence generated by one is genuinely actionable for the other is something the empirical dataset will tell us.</strong> We do not claim it works perfectly across all traditions. We claim it is worth testing.</p>
   </div>
 
-  <!-- Political -->
+  <!-- Category IV -->
   <div class="cat-header">
-    <div class="cat-label">Category IV</div>
-    <div class="cat-title">Political objections</div>
+    <div class="cat-label" data-i18n="cat4_label">Category IV</div>
+    <div class="cat-title" data-i18n="cat4_title">Political objections</div>
   </div>
 
   <div class="criticism">
-    <div class="criticism-q">Is this a Trojan horse for deregulation?</div>
-    <span class="answer-type stronger">Stronger for it</span>
-    <p class="criticism-a">No — and the architecture makes this clear. The framework measures legal entropy against UN SDGs, not against a free-market ideal. A legal system with no environmental regulation scores high entropy on the energy and food sectors. A legal system with no labour protections scores high entropy on the local value chain sector. <strong>The instrument is designed to identify regulation that produces no value — not regulation that produces social value at a cost.</strong> Deregulation that removes social protections would increase entropy under the framework's own measurement, not reduce it. This is not a philosophical position. It is what the mathematics produces.</p>
+    <div class="criticism-q" data-i18n="q11">Is this a Trojan horse for deregulation?</div>
+    <span class="answer-type stronger" data-i18n="legend_stronger">Stronger for it</span>
+    <p class="criticism-a" data-i18n="a11">No — and the architecture makes this clear. The framework measures legal entropy against UN SDGs, not against a free-market ideal. A legal system with no environmental regulation scores high entropy on the energy and food sectors. A legal system with no labour protections scores high entropy on the local value chain sector. <strong>The instrument is designed to identify regulation that produces no value — not regulation that produces social value at a cost.</strong> Deregulation that removes social protections would increase entropy under the framework's own measurement, not reduce it. This is not a philosophical position. It is what the mathematics produces.</p>
   </div>
 
   <div class="criticism">
-    <div class="criticism-q">Who governs the framework?</div>
-    <span class="answer-type honest">Honest admission</span>
-    <p class="criticism-a">The framework, the methodology, the scanner, and the PNC protocol are the work of one person. This is a founding-phase reality, not a permanent governance structure. The goal is a public network governed by its nodes — institutions, municipalities, lawyers, and scientists who use and validate the instrument, and that only represents and measures the existing laws like other laws of nature. The methodology is published and peer-reviewed, which means it is subject to the governance of the scientific community. The instruments are meant to be proprietary for anyone.</p>
+    <div class="criticism-q" data-i18n="q12">Who governs the framework?</div>
+    <span class="answer-type honest" data-i18n="legend_honest">Honest admission</span>
+    <p class="criticism-a" data-i18n="a12">The framework, the methodology, the scanner, and the PNC protocol are the work of one person. This is a founding-phase reality, not a permanent governance structure. The goal is a public network governed by its nodes — institutions, municipalities, lawyers, and scientists who use and validate the instrument, and that only represents and measures the existing laws like other laws of nature. The methodology is published and peer-reviewed, which means it is subject to the governance of the scientific community. The instruments are meant to be proprietary for anyone.</p>
   </div>
 
   <div class="criticism">
-    <div class="criticism-q">What prevents the methodology from being used to justify removing social protections?</div>
-    <span class="answer-type stronger">Stronger for it</span>
-    <p class="criticism-a">The UN SDGs as universal benchmark. SDG 1 (No Poverty), SDG 3 (Good Health), SDG 8 (Decent Work), SDG 10 (Reduced Inequalities) — these are all components of the benchmark against which legal entropy is measured. <strong>A legal reform that reduces social protections would score as entropy-increasing under the framework, not entropy-reducing.</strong> The instrument is structurally incompatible with its use as a justification for social regression. This is not a promise. It is what the mathematics produces when the UN SDGs are the benchmark.</p>
+    <div class="criticism-q" data-i18n="q13">What prevents the methodology from being used to justify removing social protections?</div>
+    <span class="answer-type stronger" data-i18n="legend_stronger">Stronger for it</span>
+    <p class="criticism-a" data-i18n="a13">The UN SDGs as universal benchmark. SDG 1 (No Poverty), SDG 3 (Good Health), SDG 8 (Decent Work), SDG 10 (Reduced Inequalities) — these are all components of the benchmark against which legal entropy is measured. <strong>A legal reform that reduces social protections would score as entropy-increasing under the framework, not entropy-reducing.</strong> The instrument is structurally incompatible with its use as a justification for social regression. This is not a promise. It is what the mathematics produces when the UN SDGs are the benchmark.</p>
   </div>
 
-  <!-- Practical -->
+  <!-- Category V -->
   <div class="cat-header">
-    <div class="cat-label">Category V</div>
-    <div class="cat-title">Practical objections</div>
+    <div class="cat-label" data-i18n="cat5_label">Category V</div>
+    <div class="cat-title" data-i18n="cat5_title">Practical objections</div>
   </div>
 
   <div class="criticism">
-    <div class="criticism-q">What happens if the scanner gives wrong scores?</div>
-    <span class="answer-type honest">Honest admission</span>
-    <p class="criticism-a">It will. The current beta uses LLM-based scoring which introduces variance and, in some cases, error. <strong>The scanner is a measurement instrument in calibration, not a certified legal opinion.</strong> Its scores should be treated as directional — identifying areas of potential entropy for further investigation by a qualified lawyer — not as definitive legal assessments. Every scan comes with this caveat. The instrument is honest about its limitations. As the empirical dataset grows and calibration improves, score reliability will increase. The methodology is versioned and all updates are documented.</p>
+    <div class="criticism-q" data-i18n="q14">What happens if the scanner gives wrong scores?</div>
+    <span class="answer-type honest" data-i18n="legend_honest">Honest admission</span>
+    <p class="criticism-a" data-i18n="a14">It will. The current beta uses LLM-based scoring which introduces variance and, in some cases, error. <strong>The scanner is a measurement instrument in calibration, not a certified legal opinion.</strong> Its scores should be treated as directional — identifying areas of potential entropy for further investigation by a qualified lawyer — not as definitive legal assessments. Every scan comes with this caveat. The instrument is honest about its limitations. As the empirical dataset grows and calibration improves, score reliability will increase. The methodology is versioned and all updates are documented.</p>
   </div>
 
   <div class="criticism">
-    <div class="criticism-q">What is the liability if a municipality acts on a faulty codification?</div>
-    <span class="answer-type honest">Honest admission</span>
-    <p class="criticism-a">The codification is a measurement and advisory service, not a legal opinion with professional liability attached. <strong>Municipalities that commission a codification receive a scientific measurement of their legal system's entropy — not legal advice on specific decisions.</strong> The instrument identifies entropy. The qualified lawyers advising the municipality take responsibility for the legal decisions made in response. This is the same model as any scientific instrument — a thermometer does not bear liability for medical decisions made on the basis of a temperature reading. The doctor does. In the legal-physics framework, the scanner measures. The lawyer advises. The institution decides.</p>
+    <div class="criticism-q" data-i18n="q15">What is the liability if a municipality acts on a faulty codification?</div>
+    <span class="answer-type honest" data-i18n="legend_honest">Honest admission</span>
+    <p class="criticism-a" data-i18n="a15">The codification is a measurement and advisory service, not a legal opinion with professional liability attached. <strong>Municipalities that commission a codification receive a scientific measurement of their legal system's entropy — not legal advice on specific decisions.</strong> The instrument identifies entropy. The qualified lawyers advising the municipality take responsibility for the legal decisions made in response. This is the same model as any scientific instrument — a thermometer does not bear liability for medical decisions made on the basis of a temperature reading. The doctor does. In the legal-physics framework, the scanner measures. The lawyer advises. The institution decides.</p>
   </div>
 
-  </div>
-
-  <!-- CTA -->
   <div class="cta">
-    <h2>Disagree?<br/><em>Good. Write to us.</em></h2>
-    <p>The framework is stronger for criticism. If you have an objection not addressed here — scientific, legal, political, or practical — write directly. The goal is not to be right. It is to be correct.</p>
+    <h2 data-i18n="cta_h2">Disagree?<br/><em>Good. Write to us.</em></h2>
+    <p data-i18n="cta_p">The framework is stronger for criticism. If you have an objection not addressed here — scientific, legal, political, or practical — write directly. The goal is not to be right. It is to be correct.</p>
     <div class="cta-buttons">
-      <a href="mailto:gmsolas@sustainab-law.eu?subject=Criticism — 1love.works framework&body=My objection:%0A%0AMy suggested response:%0A%0AName / Institution:" class="btn btn-dark">Submit a criticism →</a>
-      <a href="/methodology" class="btn btn-outline">Read the methodology</a>
+      <a href="mailto:gmsolas@sustainab-law.eu?subject=Criticism — 1love.works framework&body=My objection:%0A%0AMy suggested response:%0A%0AName / Institution:" class="btn btn-dark" data-i18n="cta_btn1">Submit a criticism →</a>
+      <a href="/methodology" class="btn btn-outline" data-i18n="cta_btn2">Read the methodology</a>
     </div>
   </div>
 
@@ -243,16 +252,228 @@
 
 <footer>
   <div class="footer-left">
-    <strong>1love.works</strong> · © 2019–2026 Avv. Dr. Gian Marco Solas · All rights reserved<br/>
-    <em style="font-size:10px;">Honesty is the most important thing. · De Lege et Amore.</em>
+    <strong>1love.works</strong> · © 2019–2026 Avv. Dr. Gian Marco Solas · <span data-i18n="footer_rights">All rights reserved</span><br/>
+    <em style="font-size:10px;" data-i18n="footer_note">Honesty is the most important thing. · De Lege et Amore.</em>
   </div>
   <div class="footer-right">
     <a href="/">Home</a>
     <a href="/methodology">Methodology</a>
-    <a href="/pnc">PNC</a>
-    <a href="/pricing">Access</a>
+    <a href="/pnc">Why PNC</a>
+    <a href="/participate">Participate</a>
   </div>
 </footer>
+
+<script>
+const T = {
+  en: {
+    overline: '1love.works · Criticisms',
+    h1: 'The strongest objections.<br/><em>Answered honestly.</em>',
+    hero_intro: 'Honesty is the most important thing. Every serious framework must confront its critics directly. These are the strongest objections to the legal-physics framework — answered not defensively, but scientifically. Where we don\'t know, we say so. Where the evidence speaks, we cite it. Where the limitation makes us stronger, we explain why.',
+    legend_honest: 'Honest admission', legend_honest_desc: 'We don\'t know yet — and we say so',
+    legend_evidence: 'Published evidence', legend_evidence_desc: 'The peer-reviewed record addresses this',
+    legend_stronger: 'Stronger for it', legend_stronger_desc: 'The limitation is why the framework is more credible',
+    cat1_label: 'Category I', cat1_title: 'Scientific objections',
+    cat2_label: 'Category II', cat2_title: 'Legal and regulatory objections',
+    cat3_label: 'Category III', cat3_title: 'Economic objections',
+    cat4_label: 'Category IV', cat4_title: 'Political objections',
+    cat5_label: 'Category V', cat5_title: 'Practical objections',
+    q1: 'Is human law really a physical variable, or just an analogy?',
+    a1: 'This is the central question — and it is the right one to ask. The framework proposes that human law can be treated as a physical variable — measured with the same mathematical tools used to measure natural systems. The hypothesis, whose opposite cannot be proven (<em>probatio diabolica</em>), is that human law has always existed alongside the laws of nature. Physicists cannot prove that gravity does not apply to legal systems. Lawyers cannot prove that entropy does not accumulate in regulatory frameworks. The framework proposes to test this empirically — not assume it. Published: <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank">Law is Love, SSRN</a> · <a href="https://doi.org/10.13135/2785-7867/12266" target="_blank">JLMI 1/25</a>.',
+    q2: 'Can entropy be meaningfully quantified in legal systems, or is the measurement too subjective?',
+    a2: 'The current scanner uses LLM-based scoring, which introduces variance. The same document may produce slightly different scores across scans. This is acknowledged. Score calibration is in active development and will be improved as it scans. The framework\'s response is not to hide the variance but to instrument it — every scan contributes to the empirical dataset, and the methodology is being refined through use. The Boltzmann extension to legal microstates (S = k · log W(λ)) is mathematically rigorous in its structure; the question is whether W(λ) — the number of unresolved legal states relative to applicable law — can be measured precisely enough to be scientific. That is the open research question and can only be solved by lawyers in concrete cases. We are honest about it.',
+    q3: 'Is the Boltzmann extension to legal microstates mathematically rigorous or metaphorical?',
+    a3: 'Both, at present. The structural analogy is mathematically sound — W(λ) counts unresolved legal states relative to applicable law, exactly as W counts physical microstates in thermodynamics. The λ-dependence of W is the framework\'s original contribution: the same set of facts produces different legal entropy in different jurisdictions. This is not a metaphor — it is a genuine mathematical extension. Whether it holds to the rigour required for physical science is the question that physicists and mathematicians are invited to test, and lawyers to measure in actual cases. The framework was not built by a physicist. It was built by a lawyer who identified a missing variable. Finding out whether it belongs in the equations is the work of those who built the equations.',
+    q4: 'Is Λ = π/φ mathematically proven?',
+    a4: 'No. It is a hypothesis, or a dream. The relationship between the cosmological constant Λ, pi (π), and the golden ratio (φ) is proposed as a research direction — not a proven result. It is included because it is mathematically interesting, not because it is established. The framework is explicit about this. It invites mathematicians to test it. If it is wrong, the rest of the framework stands independently. If it is right, it would be one of the most significant mathematical discoveries in modern science. The honest answer is: we don\'t know yet.',
+    q5: 'Is PNC really not a security? Regulators may disagree.',
+    a5: 'This is a legitimate concern and we take it seriously. PNC is structured to avoid security classification under MiCA and general EU financial regulation on three grounds: (1) it is issued as part of a service transaction, not sold independently; (2) it carries no promise of financial return; (3) it is not tradeable on any exchange. The implied value on the dashboard is a mathematical calculation, not a market price. However, regulatory interpretation evolves. We recommend that institutional holders seek their own legal advice on the classification of PNC in their jurisdiction. If a regulator determines that PNC constitutes a security, we will adapt the structure accordingly. The underlying service and methodology are independent of the token classification. The most important thing for this project is that it aims to be a scientific instrument open to everyone.',
+    q6: 'Can a token genuinely be non-tradeable in practice?',
+    a6: 'In practice, any digital asset can be transferred if the holder chooses to do so outside a formal exchange. We cannot prevent peer-to-peer transfers of PNC any more than a deed can prevent a house from being sold informally. What we can do — and do — is make clear that PNC has no utility outside the network, that its value is tied to the entropy reduction it represents, and that transferring it severs it from its meaning. The architecture is designed to make holding more rational than selling. The long-term goal is blockchain recording that ties PNC to a specific entity — making informal transfer meaningless, and of course to give tools to transform the underlying entropy and legal weight into actual value in real legal systems.',
+    q7: 'Who validates the lawyer certification of entropy reduction?',
+    a7: 'In Phase 1, no one. PNC is issued based on service delivery, not verified entropy reduction. This is a founding-phase limitation that we are honest about. The lawyer validation layer — where a qualified lawyer certifies the ΔS before PNC is issued — is Phase 2. Until then, founding PNC reflects participation in the network, not verified entropy reduction, only approximate identification. Those who buy access at €99/PNC do so knowing this. The founding price reflects the distance still to travel.',
+    q8: 'Is €5.2 trillion a real number or a back-of-envelope estimate?',
+    a8: 'It is a conservative approximate estimate derived from the legal-physics methodology (λX = EX/MX), validated in a pilot study of 270 comuni in Sardinia (€21.65B net unexpressed value identified). The EU-27 figure extrapolates from this pilot. It is not the result of a comprehensive EU-wide empirical study — that study does not yet exist and needs to be done with this instrument. It is the best available estimate from the methodology as currently developed. It is published in JLMI 2/25 as such. We call it conservative because the methodology, at its current stage of development, is more likely to undercount than overcount entropy.',
+    q9: 'Who decides what "optimum" looks like — isn\'t that political, not mathematical?',
+    a9: 'This is the most important political objection. The answer is: the UN SDGs as universal benchmark. The framework does not define optimum according to any political ideology. It uses the Sustainable Development Goals — agreed by all 193 UN member states — as the universal reference point for what a legal system at optimum looks like. A legal system at optimum is one where housing, energy, food, labour, and governance meet SDG standards. This is not a political choice made by the framework\'s author. It is the closest thing humanity has to a universal agreement on what a good legal system produces. We also like the Aristotelian idea that optimum is relative happiness.',
+    q10: 'Does fractal cross-pollination© actually work across different legal traditions — common law vs civil law?',
+    a10: 'This is an open empirical question. The framework proposes that λ(entity) is comparable across legal traditions because it is measured against a universal benchmark (UN SDGs) rather than against any specific legal tradition. A civil law municipality in Sardinia and a common law municipality in Ireland can both be measured on housing entropy, energy entropy, and local value chain entropy using the same instrument. <strong>Whether the cross-pollination intelligence generated by one is genuinely actionable for the other is something the empirical dataset will tell us.</strong> We do not claim it works perfectly across all traditions. We claim it is worth testing.',
+    q11: 'Is this a Trojan horse for deregulation?',
+    a11: 'No — and the architecture makes this clear. The framework measures legal entropy against UN SDGs, not against a free-market ideal. A legal system with no environmental regulation scores high entropy on the energy and food sectors. A legal system with no labour protections scores high entropy on the local value chain sector. <strong>The instrument is designed to identify regulation that produces no value — not regulation that produces social value at a cost.</strong> Deregulation that removes social protections would increase entropy under the framework\'s own measurement, not reduce it. This is not a philosophical position. It is what the mathematics produces.',
+    q12: 'Who governs the framework?',
+    a12: 'The framework, the methodology, the scanner, and the PNC protocol are the work of one person. This is a founding-phase reality, not a permanent governance structure. The goal is a public network governed by its nodes — institutions, municipalities, lawyers, and scientists who use and validate the instrument, and that only represents and measures the existing laws like other laws of nature. The methodology is published and peer-reviewed, which means it is subject to the governance of the scientific community. The instruments are meant to be proprietary for anyone.',
+    q13: 'What prevents the methodology from being used to justify removing social protections?',
+    a13: 'The UN SDGs as universal benchmark. SDG 1 (No Poverty), SDG 3 (Good Health), SDG 8 (Decent Work), SDG 10 (Reduced Inequalities) — these are all components of the benchmark against which legal entropy is measured. <strong>A legal reform that reduces social protections would score as entropy-increasing under the framework, not entropy-reducing.</strong> The instrument is structurally incompatible with its use as a justification for social regression. This is not a promise. It is what the mathematics produces when the UN SDGs are the benchmark.',
+    q14: 'What happens if the scanner gives wrong scores?',
+    a14: 'It will. The current beta uses LLM-based scoring which introduces variance and, in some cases, error. <strong>The scanner is a measurement instrument in calibration, not a certified legal opinion.</strong> Its scores should be treated as directional — identifying areas of potential entropy for further investigation by a qualified lawyer — not as definitive legal assessments. Every scan comes with this caveat. The instrument is honest about its limitations. As the empirical dataset grows and calibration improves, score reliability will increase. The methodology is versioned and all updates are documented.',
+    q15: 'What is the liability if a municipality acts on a faulty codification?',
+    a15: 'The codification is a measurement and advisory service, not a legal opinion with professional liability attached. <strong>Municipalities that commission a codification receive a scientific measurement of their legal system\'s entropy — not legal advice on specific decisions.</strong> The instrument identifies entropy. The qualified lawyers advising the municipality take responsibility for the legal decisions made in response. This is the same model as any scientific instrument — a thermometer does not bear liability for medical decisions made on the basis of a temperature reading. The doctor does. In the legal-physics framework, the scanner measures. The lawyer advises. The institution decides.',
+    cta_h2: 'Disagree?<br/><em>Good. Write to us.</em>',
+    cta_p: 'The framework is stronger for criticism. If you have an objection not addressed here — scientific, legal, political, or practical — write directly. The goal is not to be right. It is to be correct.',
+    cta_btn1: 'Submit a criticism →', cta_btn2: 'Read the methodology',
+    footer_rights: 'All rights reserved',
+    footer_note: 'Honesty is the most important thing. · De Lege et Amore.',
+  },
+  it: {
+    overline: '1love.works · Critiche',
+    h1: 'Le obiezioni più forti.<br/><em>Risposte oneste.</em>',
+    hero_intro: 'L\'onestà è la cosa più importante. Ogni framework serio deve affrontare direttamente i propri critici. Queste sono le obiezioni più forti al framework di fisica giuridica — risposte non in modo difensivo, ma scientifico. Dove non sappiamo, lo diciamo. Dove le prove parlano, le citiamo. Dove il limite ci rende più forti, spieghiamo perché.',
+    legend_honest: 'Ammissione onesta', legend_honest_desc: 'Non lo sappiamo ancora — e lo diciamo',
+    legend_evidence: 'Prove pubblicate', legend_evidence_desc: 'Il registro peer-reviewed affronta questo',
+    legend_stronger: 'Più forti per questo', legend_stronger_desc: 'Il limite è il motivo per cui il framework è più credibile',
+    cat1_label: 'Categoria I', cat1_title: 'Obiezioni scientifiche',
+    cat2_label: 'Categoria II', cat2_title: 'Obiezioni giuridiche e normative',
+    cat3_label: 'Categoria III', cat3_title: 'Obiezioni economiche',
+    cat4_label: 'Categoria IV', cat4_title: 'Obiezioni politiche',
+    cat5_label: 'Categoria V', cat5_title: 'Obiezioni pratiche',
+    q1: 'Il diritto umano è davvero una variabile fisica, o solo un\'analogia?',
+    a1: 'Questa è la domanda centrale — ed è quella giusta da porre. Il framework propone che il diritto umano possa essere trattato come una variabile fisica — misurata con gli stessi strumenti matematici usati per misurare i sistemi naturali. L\'ipotesi, il cui contrario non può essere provato (<em>probatio diabolica</em>), è che il diritto umano sia sempre esistito accanto alle leggi della natura. I fisici non possono provare che la gravità non si applica ai sistemi giuridici. Gli avvocati non possono provare che l\'entropia non si accumula nei framework normativi. Il framework propone di testarlo empiricamente — non di assumerlo. Pubblicato: <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank">Law is Love, SSRN</a> · <a href="https://doi.org/10.13135/2785-7867/12266" target="_blank">JLMI 1/25</a>.',
+    q2: 'L\'entropia può essere quantificata in modo significativo nei sistemi giuridici, o la misurazione è troppo soggettiva?',
+    a2: 'Lo scanner attuale utilizza un punteggio basato su LLM, che introduce varianza. Lo stesso documento può produrre punteggi leggermente diversi tra le scansioni. Questo è riconosciuto. La calibrazione dei punteggi è in sviluppo attivo e verrà migliorata con l\'uso. La risposta del framework non è nascondere la varianza ma strumentarla — ogni scansione contribuisce al dataset empirico e la metodologia viene perfezionata attraverso l\'uso. L\'estensione di Boltzmann ai microstati giuridici (S = k · log W(λ)) è matematicamente rigorosa nella sua struttura; la domanda è se W(λ) — il numero di stati giuridici irrisolti rispetto al diritto applicabile — possa essere misurato con sufficiente precisione per essere scientifico. Questa è la domanda di ricerca aperta e può essere risolta solo dagli avvocati in casi concreti. Siamo onesti al riguardo.',
+    q3: 'L\'estensione di Boltzmann ai microstati giuridici è matematicamente rigorosa o metaforica?',
+    a3: 'Entrambe, al momento. L\'analogia strutturale è matematicamente solida — W(λ) conta gli stati giuridici irrisolti rispetto al diritto applicabile, esattamente come W conta i microstati fisici in termodinamica. La dipendenza da λ di W è il contributo originale del framework: lo stesso insieme di fatti produce entropia giuridica diversa in giurisdizioni diverse. Questa non è una metafora — è una genuina estensione matematica. Se regge al rigore richiesto per la fisica è la domanda che fisici e matematici sono invitati a testare, e gli avvocati a misurare in casi reali. Il framework non è stato costruito da un fisico. È stato costruito da un avvocato che ha identificato una variabile mancante.',
+    q4: 'Λ = π/φ è matematicamente provato?',
+    a4: 'No. È un\'ipotesi, o un sogno. La relazione tra la costante cosmologica Λ, pi (π) e la sezione aurea (φ) è proposta come direzione di ricerca — non come risultato provato. È inclusa perché è matematicamente interessante, non perché sia stabilita. Il framework è esplicito su questo. Invita i matematici a testarla. Se è sbagliata, il resto del framework regge indipendentemente. Se è giusta, sarebbe una delle scoperte matematiche più significative della scienza moderna. La risposta onesta è: non lo sappiamo ancora.',
+    q5: 'Il PNC non è davvero un titolo finanziario? Le autorità di regolamentazione potrebbero non essere d\'accordo.',
+    a5: 'Questa è una preoccupazione legittima e la prendiamo sul serio. Il PNC è strutturato per evitare la classificazione come titolo finanziario ai sensi di MiCA e della normativa finanziaria UE generale per tre motivi: (1) viene emesso come parte di una transazione di servizio, non venduto indipendentemente; (2) non porta alcuna promessa di rendimento finanziario; (3) non è negoziabile su alcuna borsa. Il valore implicito sul dashboard è un calcolo matematico, non un prezzo di mercato. Tuttavia, l\'interpretazione normativa si evolve. Raccomandiamo che i detentori istituzionali cerchino la propria consulenza legale sulla classificazione del PNC nella loro giurisdizione. La cosa più importante per questo progetto è che mira a essere uno strumento scientifico aperto a tutti.',
+    q6: 'Un token può davvero essere non negoziabile nella pratica?',
+    a6: 'In pratica, qualsiasi asset digitale può essere trasferito se il detentore sceglie di farlo al di fuori di una borsa formale. Non possiamo impedire i trasferimenti peer-to-peer del PNC più di quanto un atto notarile possa impedire la vendita informale di una casa. Quello che possiamo fare — e facciamo — è chiarire che il PNC non ha utilità al di fuori della rete, che il suo valore è legato alla riduzione dell\'entropia che rappresenta, e che trasferirlo lo separa dal suo significato. L\'architettura è progettata per rendere più razionale il mantenimento rispetto alla vendita.',
+    q7: 'Chi convalida la certificazione dell\'avvocato sulla riduzione dell\'entropia?',
+    a7: 'Nella Fase 1, nessuno. Il PNC viene emesso in base alla fornitura del servizio, non alla riduzione verificata dell\'entropia. Questa è una limitazione della fase fondatrice di cui siamo onesti. Il livello di validazione dell\'avvocato — dove un avvocato qualificato certifica il ΔS prima che il PNC venga emesso — è la Fase 2. Fino ad allora, il PNC fondatore riflette la partecipazione alla rete, non la riduzione verificata dell\'entropia, solo un\'identificazione approssimativa. Chi acquista l\'accesso a €99/PNC lo fa sapendo questo.',
+    q8: '5,2 trilioni di € è un numero reale o una stima approssimativa?',
+    a8: 'È una stima approssimativa conservativa derivata dalla metodologia di fisica giuridica (λX = EX/MX), validata in uno studio pilota di 270 comuni in Sardegna (€21,65 miliardi di valore non espresso netto identificato). Il dato UE-27 estrapolandolo da questo pilota. Non è il risultato di uno studio empirico completo a livello UE — quello studio non esiste ancora e deve essere fatto con questo strumento. È la migliore stima disponibile dalla metodologia così come attualmente sviluppata. È pubblicato in JLMI 2/25 come tale. Lo chiamiamo conservativo perché la metodologia, nella sua attuale fase di sviluppo, è più probabile che sottovaluti piuttosto che sovrastimi l\'entropia.',
+    q9: 'Chi decide come appare l\'"ottimo" — non è politico, non matematico?',
+    a9: 'Questa è l\'obiezione politica più importante. La risposta è: gli SDG ONU come benchmark universale. Il framework non definisce l\'ottimo secondo alcuna ideologia politica. Utilizza gli Obiettivi di Sviluppo Sostenibile — concordati da tutti i 193 stati membri dell\'ONU — come punto di riferimento universale per come appare un sistema giuridico all\'ottimo. Un sistema giuridico all\'ottimo è quello in cui alloggi, energia, cibo, lavoro e governance soddisfano gli standard SDG. Apprezziamo anche l\'idea aristotelica che l\'ottimo è la felicità relativa.',
+    q10: 'L\'impollinazione incrociata frattale© funziona davvero attraverso diverse tradizioni giuridiche — common law vs diritto civile?',
+    a10: 'Questa è una domanda empirica aperta. Il framework propone che λ(entità) sia comparabile tra le tradizioni giuridiche perché viene misurato rispetto a un benchmark universale (SDG ONU) piuttosto che rispetto a qualsiasi tradizione giuridica specifica. Un comune di diritto civile in Sardegna e un comune di common law in Irlanda possono essere entrambi misurati sull\'entropia abitativa, energetica e della catena del valore locale con lo stesso strumento. <strong>Se l\'intelligenza di impollinazione crociata generata da uno sia genuinamente utilizzabile dall\'altro è qualcosa che il dataset empirico ci dirà.</strong> Non affermiamo che funzioni perfettamente in tutte le tradizioni. Affermiamo che vale la pena testarlo.',
+    q11: 'Questo è un cavallo di Troia per la deregolamentazione?',
+    a11: 'No — e l\'architettura lo chiarisce. Il framework misura l\'entropia giuridica rispetto agli SDG ONU, non rispetto a un ideale di libero mercato. Un sistema giuridico senza regolamentazione ambientale ottiene un punteggio elevato di entropia nei settori energetico e alimentare. Un sistema giuridico senza tutele del lavoro ottiene un punteggio elevato di entropia nel settore della catena del valore locale. <strong>Lo strumento è progettato per identificare la regolamentazione che non produce valore — non la regolamentazione che produce valore sociale a un costo.</strong> La deregolamentazione che rimuove le protezioni sociali aumenterebbe l\'entropia secondo la misurazione del framework, non la ridurrebbe.',
+    q12: 'Chi governa il framework?',
+    a12: 'Il framework, la metodologia, lo scanner e il protocollo PNC sono opera di una sola persona. Questa è una realtà della fase fondatrice, non una struttura di governance permanente. L\'obiettivo è una rete pubblica governata dai suoi nodi — istituzioni, comuni, avvocati e scienziati che utilizzano e validano lo strumento, e che rappresenta e misura solo le leggi esistenti come altre leggi della natura. La metodologia è pubblicata e peer-reviewed, il che significa che è soggetta alla governance della comunità scientifica.',
+    q13: 'Cosa impedisce che la metodologia venga usata per giustificare la rimozione delle protezioni sociali?',
+    a13: 'Gli SDG ONU come benchmark universale. SDG 1 (Nessuna povertà), SDG 3 (Buona salute), SDG 8 (Lavoro dignitoso), SDG 10 (Riduzione delle disuguaglianze) — questi sono tutti componenti del benchmark rispetto al quale viene misurata l\'entropia giuridica. <strong>Una riforma giuridica che riduce le protezioni sociali otterrebbe un punteggio come aumento dell\'entropia nel framework, non riduzione.</strong> Lo strumento è strutturalmente incompatibile con il suo utilizzo come giustificazione per la regressione sociale.',
+    q14: 'Cosa succede se lo scanner dà punteggi sbagliati?',
+    a14: 'Lo farà. L\'attuale beta utilizza un punteggio basato su LLM che introduce varianza e, in alcuni casi, errori. <strong>Lo scanner è uno strumento di misurazione in calibrazione, non un parere legale certificato.</strong> I suoi punteggi dovrebbero essere trattati come indicativi — identificando aree di potenziale entropia per ulteriori indagini da parte di un avvocato qualificato — non come valutazioni legali definitive. Ogni scansione viene fornita con questa avvertenza. Man mano che il dataset empirico cresce e la calibrazione migliora, l\'affidabilità dei punteggi aumenterà.',
+    q15: 'Qual è la responsabilità se un comune agisce su una codificazione difettosa?',
+    a15: 'La codificazione è un servizio di misurazione e consulenza, non un parere legale con responsabilità professionale allegata. <strong>I comuni che commissionano una codificazione ricevono una misurazione scientifica dell\'entropia del loro sistema giuridico — non una consulenza legale su decisioni specifiche.</strong> Lo strumento identifica l\'entropia. Gli avvocati qualificati che consigliano il comune si assumono la responsabilità delle decisioni legali prese in risposta. È lo stesso modello di qualsiasi strumento scientifico — un termometro non ha responsabilità per le decisioni mediche prese sulla base di una lettura della temperatura.',
+    cta_h2: 'Non sei d\'accordo?<br/><em>Bene. Scrivici.</em>',
+    cta_p: 'Il framework è più forte grazie alle critiche. Se hai un\'obiezione non affrontata qui — scientifica, giuridica, politica o pratica — scrivi direttamente. L\'obiettivo non è avere ragione. È essere corretti.',
+    cta_btn1: 'Invia una critica →', cta_btn2: 'Leggi la metodologia',
+    footer_rights: 'Tutti i diritti riservati',
+    footer_note: 'L\'onestà è la cosa più importante. · De Lege et Amore.',
+  },
+  fr: {
+    overline: '1love.works · Critiques',
+    h1: 'Les objections les plus fortes.<br/><em>Répondues honnêtement.</em>',
+    hero_intro: 'L\'honnêteté est la chose la plus importante. Tout cadre sérieux doit confronter directement ses critiques. Ce sont les objections les plus fortes au cadre de physique juridique — répondues non pas défensivement, mais scientifiquement. Là où nous ne savons pas, nous le disons. Là où les preuves parlent, nous les citons. Là où la limitation nous rend plus forts, nous expliquons pourquoi.',
+    legend_honest: 'Admission honnête', legend_honest_desc: 'Nous ne savons pas encore — et nous le disons',
+    legend_evidence: 'Preuves publiées', legend_evidence_desc: 'Le registre peer-reviewed aborde cela',
+    legend_stronger: 'Plus forts pour cela', legend_stronger_desc: 'La limitation est la raison pour laquelle le cadre est plus crédible',
+    cat1_label: 'Catégorie I', cat1_title: 'Objections scientifiques',
+    cat2_label: 'Catégorie II', cat2_title: 'Objections juridiques et réglementaires',
+    cat3_label: 'Catégorie III', cat3_title: 'Objections économiques',
+    cat4_label: 'Catégorie IV', cat4_title: 'Objections politiques',
+    cat5_label: 'Catégorie V', cat5_title: 'Objections pratiques',
+    q1: 'Le droit humain est-il vraiment une variable physique, ou juste une analogie ?',
+    a1: 'C\'est la question centrale — et c\'est la bonne question à poser. Le cadre propose que le droit humain peut être traité comme une variable physique — mesurée avec les mêmes outils mathématiques utilisés pour mesurer les systèmes naturels. L\'hypothèse, dont l\'opposé ne peut être prouvé (<em>probatio diabolica</em>), est que le droit humain a toujours existé aux côtés des lois de la nature. Les physiciens ne peuvent pas prouver que la gravité ne s\'applique pas aux systèmes juridiques. Les juristes ne peuvent pas prouver que l\'entropie ne s\'accumule pas dans les cadres réglementaires. Publié : <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank">Law is Love, SSRN</a> · <a href="https://doi.org/10.13135/2785-7867/12266" target="_blank">JLMI 1/25</a>.',
+    q2: 'L\'entropie peut-elle être quantifiée de manière significative dans les systèmes juridiques, ou la mesure est-elle trop subjective ?',
+    a2: 'Le scanner actuel utilise un scoring basé sur LLM, qui introduit de la variance. Le même document peut produire des scores légèrement différents entre les analyses. Cela est reconnu. La calibration des scores est en développement actif. La réponse du cadre n\'est pas de cacher la variance mais de l\'instrumenter — chaque analyse contribue au dataset empirique. L\'extension de Boltzmann aux micro-états juridiques (S = k · log W(λ)) est mathématiquement rigoureuse dans sa structure ; la question est de savoir si W(λ) — le nombre d\'états juridiques non résolus par rapport au droit applicable — peut être mesuré avec suffisamment de précision pour être scientifique. C\'est la question de recherche ouverte.',
+    q3: 'L\'extension de Boltzmann aux micro-états juridiques est-elle mathématiquement rigoureuse ou métaphorique ?',
+    a3: 'Les deux, à l\'heure actuelle. L\'analogie structurelle est mathématiquement solide — W(λ) compte les états juridiques non résolus par rapport au droit applicable, exactement comme W compte les micro-états physiques en thermodynamique. La dépendance en λ de W est la contribution originale du cadre : le même ensemble de faits produit une entropie juridique différente dans différentes juridictions. Ce n\'est pas une métaphore — c\'est une véritable extension mathématique. Le cadre n\'a pas été construit par un physicien. Il a été construit par un juriste qui a identifié une variable manquante.',
+    q4: 'Λ = π/φ est-il mathématiquement prouvé ?',
+    a4: 'Non. C\'est une hypothèse, ou un rêve. La relation entre la constante cosmologique Λ, pi (π) et le nombre d\'or (φ) est proposée comme direction de recherche — pas comme résultat prouvé. Elle est incluse parce qu\'elle est mathématiquement intéressante, pas parce qu\'elle est établie. Le cadre est explicite à ce sujet. Il invite les mathématiciens à la tester. La réponse honnête est : nous ne savons pas encore.',
+    q5: 'Le PNC n\'est-il vraiment pas un titre financier ? Les régulateurs pourraient ne pas être d\'accord.',
+    a5: 'C\'est une préoccupation légitime et nous la prenons au sérieux. Le PNC est structuré pour éviter la classification comme titre financier sous MiCA et la réglementation financière UE générale pour trois raisons : (1) il est émis dans le cadre d\'une transaction de service, pas vendu indépendamment ; (2) il ne comporte aucune promesse de rendement financier ; (3) il n\'est pas échangeable sur aucune bourse. La chose la plus importante pour ce projet est qu\'il vise à être un instrument scientifique ouvert à tous.',
+    q6: 'Un token peut-il vraiment être non échangeable en pratique ?',
+    a6: 'En pratique, tout actif numérique peut être transféré si le détenteur choisit de le faire en dehors d\'une bourse formelle. Ce que nous pouvons faire — et faisons — c\'est clarifier que le PNC n\'a aucune utilité en dehors du réseau, que sa valeur est liée à la réduction d\'entropie qu\'il représente, et que le transférer le sépare de sa signification. L\'architecture est conçue pour rendre la détention plus rationnelle que la vente.',
+    q7: 'Qui valide la certification de l\'avocat sur la réduction de l\'entropie ?',
+    a7: 'En Phase 1, personne. Le PNC est émis sur la base de la prestation de service, pas d\'une réduction d\'entropie vérifiée. C\'est une limitation de la phase fondatrice dont nous sommes honnêtes. La couche de validation par l\'avocat — où un avocat qualifié certifie le ΔS avant l\'émission du PNC — est la Phase 2.',
+    q8: '5,2 billions d\'€ est-ce un vrai chiffre ou une estimation approximative ?',
+    a8: 'C\'est une estimation approximative conservative dérivée de la méthodologie de physique juridique (λX = EX/MX), validée dans une étude pilote de 270 comuni en Sardaigne (€21,65 milliards de valeur non exprimée nette identifiée). Le chiffre UE-27 extrapole à partir de ce pilote. Ce n\'est pas le résultat d\'une étude empirique complète à l\'échelle de l\'UE — cette étude n\'existe pas encore. Nous l\'appelons conservatif car la méthodologie est plus susceptible de sous-estimer que de surestimer l\'entropie.',
+    q9: 'Qui décide à quoi ressemble l\'"optimum" — n\'est-ce pas politique, pas mathématique ?',
+    a9: 'C\'est l\'objection politique la plus importante. La réponse est : les ODD de l\'ONU comme référence universelle. Le cadre ne définit pas l\'optimum selon aucune idéologie politique. Il utilise les Objectifs de Développement Durable — convenus par les 193 États membres de l\'ONU — comme point de référence universel. Nous apprécions aussi l\'idée aristotélicienne que l\'optimum est le bonheur relatif.',
+    q10: 'La pollinisation croisée fractale© fonctionne-t-elle vraiment à travers différentes traditions juridiques — common law vs droit civil ?',
+    a10: 'C\'est une question empirique ouverte. Le cadre propose que λ(entité) soit comparable entre les traditions juridiques parce qu\'il est mesuré par rapport à un référentiel universel (ODD de l\'ONU). <strong>Si l\'intelligence de pollinisation croisée générée par l\'un est réellement exploitable pour l\'autre est quelque chose que le dataset empirique nous dira.</strong> Nous ne prétendons pas que cela fonctionne parfaitement dans toutes les traditions. Nous prétendons que cela vaut la peine d\'être testé.',
+    q11: 'Est-ce un cheval de Troie pour la déréglementation ?',
+    a11: 'Non — et l\'architecture le clarifie. Le cadre mesure l\'entropie juridique par rapport aux ODD de l\'ONU, pas par rapport à un idéal de libre marché. <strong>L\'instrument est conçu pour identifier la réglementation qui ne produit aucune valeur — pas la réglementation qui produit de la valeur sociale à un coût.</strong> La déréglementation qui supprime les protections sociales augmenterait l\'entropie selon la propre mesure du cadre, pas la réduirait.',
+    q12: 'Qui gouverne le cadre ?',
+    a12: 'Le cadre, la méthodologie, le scanner et le protocole PNC sont l\'œuvre d\'une seule personne. C\'est une réalité de la phase fondatrice, pas une structure de gouvernance permanente. L\'objectif est un réseau public gouverné par ses nœuds. La méthodologie est publiée et peer-reviewed, ce qui signifie qu\'elle est soumise à la gouvernance de la communauté scientifique.',
+    q13: 'Qu\'est-ce qui empêche que la méthodologie soit utilisée pour justifier la suppression des protections sociales ?',
+    a13: 'Les ODD de l\'ONU comme référence universelle. ODD 1 (Pas de pauvreté), ODD 3 (Bonne santé), ODD 8 (Travail décent), ODD 10 (Réduction des inégalités). <strong>Une réforme juridique qui réduit les protections sociales obtiendrait un score d\'augmentation de l\'entropie dans le cadre, pas de réduction.</strong> L\'instrument est structurellement incompatible avec son utilisation comme justification de la régression sociale.',
+    q14: 'Que se passe-t-il si le scanner donne de mauvais scores ?',
+    a14: 'Il le fera. L\'actuel beta utilise un scoring basé sur LLM qui introduit de la variance et, dans certains cas, des erreurs. <strong>Le scanner est un instrument de mesure en calibration, pas un avis juridique certifié.</strong> Ses scores doivent être traités comme directionnels — identifiant des domaines d\'entropie potentielle pour une investigation plus approfondie par un avocat qualifié.',
+    q15: 'Quelle est la responsabilité si une municipalité agit sur une codification défectueuse ?',
+    a15: 'La codification est un service de mesure et de conseil, pas un avis juridique avec responsabilité professionnelle attachée. <strong>Les municipalités qui commandent une codification reçoivent une mesure scientifique de l\'entropie de leur système juridique — pas un conseil juridique sur des décisions spécifiques.</strong> Le scanner mesure. L\'avocat conseille. L\'institution décide.',
+    cta_h2: 'Pas d\'accord ?<br/><em>Bien. Écrivez-nous.</em>',
+    cta_p: 'Le cadre est plus fort grâce aux critiques. Si vous avez une objection non abordée ici — scientifique, juridique, politique ou pratique — écrivez directement. L\'objectif n\'est pas d\'avoir raison. C\'est d\'être correct.',
+    cta_btn1: 'Soumettre une critique →', cta_btn2: 'Lire la méthodologie',
+    footer_rights: 'Tous droits réservés',
+    footer_note: 'L\'honnêteté est la chose la plus importante. · De Lege et Amore.',
+  },
+  es: {
+    overline: '1love.works · Críticas',
+    h1: 'Las objeciones más fuertes.<br/><em>Respondidas honestamente.</em>',
+    hero_intro: 'La honestidad es lo más importante. Todo marco serio debe confrontar directamente a sus críticos. Estas son las objeciones más fuertes al marco de física jurídica — respondidas no defensivamente, sino científicamente. Donde no sabemos, lo decimos. Donde las pruebas hablan, las citamos. Donde la limitación nos hace más fuertes, explicamos por qué.',
+    legend_honest: 'Admisión honesta', legend_honest_desc: 'Aún no lo sabemos — y lo decimos',
+    legend_evidence: 'Evidencia publicada', legend_evidence_desc: 'El registro revisado por pares aborda esto',
+    legend_stronger: 'Más fuertes por ello', legend_stronger_desc: 'La limitación es por qué el marco es más creíble',
+    cat1_label: 'Categoría I', cat1_title: 'Objeciones científicas',
+    cat2_label: 'Categoría II', cat2_title: 'Objeciones jurídicas y regulatorias',
+    cat3_label: 'Categoría III', cat3_title: 'Objeciones económicas',
+    cat4_label: 'Categoría IV', cat4_title: 'Objeciones políticas',
+    cat5_label: 'Categoría V', cat5_title: 'Objeciones prácticas',
+    q1: '¿El derecho humano es realmente una variable física, o solo una analogía?',
+    a1: 'Esta es la pregunta central — y es la correcta. El marco propone que el derecho humano puede tratarse como una variable física — medida con las mismas herramientas matemáticas utilizadas para medir los sistemas naturales. La hipótesis, cuyo opuesto no puede probarse (<em>probatio diabolica</em>), es que el derecho humano siempre ha existido junto a las leyes de la naturaleza. Los físicos no pueden probar que la gravedad no se aplica a los sistemas jurídicos. Los abogados no pueden probar que la entropía no se acumula en los marcos regulatorios. Publicado: <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank">Law is Love, SSRN</a> · <a href="https://doi.org/10.13135/2785-7867/12266" target="_blank">JLMI 1/25</a>.',
+    q2: '¿Puede la entropía cuantificarse significativamente en los sistemas jurídicos, o la medición es demasiado subjetiva?',
+    a2: 'El scanner actual utiliza puntuación basada en LLM, que introduce varianza. El mismo documento puede producir puntuaciones ligeramente diferentes entre análisis. Esto se reconoce. La calibración de puntuaciones está en desarrollo activo. La respuesta del marco no es ocultar la varianza sino instrumentarla — cada análisis contribuye al dataset empírico. La extensión de Boltzmann a los microestados jurídicos (S = k · log W(λ)) es matemáticamente rigurosa en su estructura; la pregunta es si W(λ) puede medirse con suficiente precisión para ser científica.',
+    q3: '¿La extensión de Boltzmann a los microestados jurídicos es matemáticamente rigurosa o metafórica?',
+    a3: 'Ambas, en la actualidad. La analogía estructural es matemáticamente sólida — W(λ) cuenta los estados jurídicos no resueltos respecto al derecho aplicable, exactamente como W cuenta los microestados físicos en termodinámica. La dependencia en λ de W es la contribución original del marco: el mismo conjunto de hechos produce entropía jurídica diferente en diferentes jurisdicciones. El marco no fue construido por un físico. Fue construido por un abogado que identificó una variable faltante.',
+    q4: '¿Λ = π/φ está matemáticamente probado?',
+    a4: 'No. Es una hipótesis, o un sueño. La relación entre la constante cosmológica Λ, pi (π) y la proporción áurea (φ) se propone como dirección de investigación — no como resultado probado. Se incluye porque es matemáticamente interesante, no porque esté establecida. La respuesta honesta es: aún no lo sabemos.',
+    q5: '¿El PNC realmente no es un valor financiero? Los reguladores podrían no estar de acuerdo.',
+    a5: 'Esta es una preocupación legítima y la tomamos en serio. El PNC está estructurado para evitar la clasificación como valor financiero bajo MiCA y la regulación financiera UE general por tres razones: (1) se emite como parte de una transacción de servicio, no se vende independientemente; (2) no conlleva ninguna promesa de rendimiento financiero; (3) no es negociable en ninguna bolsa. Lo más importante para este proyecto es que aspira a ser un instrumento científico abierto a todos.',
+    q6: '¿Puede un token ser genuinamente no negociable en la práctica?',
+    a6: 'En la práctica, cualquier activo digital puede transferirse si el titular elige hacerlo fuera de una bolsa formal. Lo que podemos hacer — y hacemos — es dejar claro que el PNC no tiene utilidad fuera de la red, que su valor está vinculado a la reducción de entropía que representa, y que transferirlo lo separa de su significado. La arquitectura está diseñada para hacer que conservarlo sea más racional que venderlo.',
+    q7: '¿Quién valida la certificación del abogado sobre la reducción de entropía?',
+    a7: 'En la Fase 1, nadie. El PNC se emite basándose en la prestación del servicio, no en la reducción de entropía verificada. Esta es una limitación de la fase fundadora de la que somos honestos. La capa de validación del abogado es la Fase 2.',
+    q8: '¿Son 5,2 billones de € un número real o una estimación aproximada?',
+    a8: 'Es una estimación aproximada conservadora derivada de la metodología de física jurídica (λX = EX/MX), validada en un estudio piloto de 270 comuni en Cerdeña (€21.650 millones de valor no expresado neto identificado). El dato UE-27 extrapola de este piloto. No es el resultado de un estudio empírico completo a nivel UE — ese estudio aún no existe. Lo llamamos conservador porque la metodología es más probable que subestime que sobreestime la entropía.',
+    q9: '¿Quién decide cómo es el "óptimo" — ¿no es político, no matemático?',
+    a9: 'Esta es la objeción política más importante. La respuesta es: los ODS de la ONU como referencia universal. El marco no define el óptimo según ninguna ideología política. Utiliza los Objetivos de Desarrollo Sostenible — acordados por los 193 Estados miembros de la ONU. También nos gusta la idea aristotélica de que el óptimo es la felicidad relativa.',
+    q10: '¿La polinización cruzada fractal© funciona realmente a través de diferentes tradiciones jurídicas — common law vs derecho civil?',
+    a10: 'Esta es una pregunta empírica abierta. El marco propone que λ(entidad) es comparable entre tradiciones jurídicas porque se mide contra una referencia universal (ODS de la ONU). <strong>Si la inteligencia de polinización cruzada generada por uno es genuinamente accionable para el otro es algo que el dataset empírico nos dirá.</strong> No afirmamos que funcione perfectamente en todas las tradiciones. Afirmamos que vale la pena probarlo.',
+    q11: '¿Es esto un caballo de Troya para la desregulación?',
+    a11: 'No — y la arquitectura lo deja claro. El marco mide la entropía jurídica contra los ODS de la ONU, no contra un ideal de libre mercado. <strong>El instrumento está diseñado para identificar la regulación que no produce valor — no la regulación que produce valor social a un costo.</strong> La desregulación que elimina las protecciones sociales aumentaría la entropía según la propia medición del marco, no la reduciría.',
+    q12: '¿Quién gobierna el marco?',
+    a12: 'El marco, la metodología, el scanner y el protocolo PNC son obra de una sola persona. Este es una realidad de la fase fundadora, no una estructura de gobernanza permanente. El objetivo es una red pública gobernada por sus nodos. La metodología está publicada y revisada por pares, lo que significa que está sujeta a la gobernanza de la comunidad científica.',
+    q13: '¿Qué impide que la metodología se use para justificar la eliminación de protecciones sociales?',
+    a13: 'Los ODS de la ONU como referencia universal. ODS 1 (Fin de la pobreza), ODS 3 (Salud y bienestar), ODS 8 (Trabajo decente), ODS 10 (Reducción de las desigualdades). <strong>Una reforma jurídica que reduce las protecciones sociales obtendría una puntuación de aumento de entropía en el marco, no de reducción.</strong> El instrumento es estructuralmente incompatible con su uso como justificación de la regresión social.',
+    q14: '¿Qué ocurre si el scanner da puntuaciones incorrectas?',
+    a14: 'Lo hará. El actual beta utiliza puntuación basada en LLM que introduce varianza y, en algunos casos, errores. <strong>El scanner es un instrumento de medición en calibración, no una opinión jurídica certificada.</strong> Sus puntuaciones deben tratarse como indicativas — identificando áreas de entropía potencial para una investigación más profunda por parte de un abogado cualificado.',
+    q15: '¿Cuál es la responsabilidad si un municipio actúa sobre una codificación defectuosa?',
+    a15: 'La codificación es un servicio de medición y asesoramiento, no una opinión jurídica con responsabilidad profesional adjunta. <strong>Los municipios que encargan una codificación reciben una medición científica de la entropía de su sistema jurídico — no asesoramiento jurídico sobre decisiones específicas.</strong> El scanner mide. El abogado asesora. La institución decide.',
+    cta_h2: '¿No está de acuerdo?<br/><em>Bien. Escríbanos.</em>',
+    cta_p: 'El marco es más fuerte gracias a las críticas. Si tiene una objeción no abordada aquí — científica, jurídica, política o práctica — escriba directamente. El objetivo no es tener razón. Es ser correcto.',
+    cta_btn1: 'Enviar una crítica →', cta_btn2: 'Leer la metodología',
+    footer_rights: 'Todos los derechos reservados',
+    footer_note: 'La honestidad es lo más importante. · De Lege et Amore.',
+  }
+};
+
+let currentLang = localStorage.getItem('1lw_lang') || 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('1lw_lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (T[lang] && T[lang][key] !== undefined) el.innerHTML = T[lang][key];
+  });
+  document.documentElement.lang = lang;
+}
+
+setLang(currentLang);
+</script>
 
 </body>
 </html>
