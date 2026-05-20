@@ -36,7 +36,8 @@
     .hero-img-caption { font-family: var(--mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-top: 3px; text-align: center; }
     .hero { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0; max-width: 100%; margin: 0; }
 
-    .hero-overline { font-family: var(--serif); font-size: clamp(38px, 6vw, 72px); font-weight: 400; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 20px; line-height: 1.1; text-align: center; }
+    .hero-overline { font-family: var(--serif); font-size: clamp(38px, 6vw, 72px); font-weight: 400; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 4px; line-height: 1.1; text-align: center; }
+    .hero-overline-sub { font-family: var(--serif); font-size: clamp(22px, 3.5vw, 42px); font-weight: 400; font-style: italic; letter-spacing: -0.01em; color: var(--muted); margin-bottom: 20px; line-height: 1.2; text-align: center; }
     .hero h1 { font-size: clamp(20px, 2.8vw, 36px); font-weight: 400; line-height: 1.3; letter-spacing: -0.01em; margin-bottom: 24px; text-align: center; }
     .hero h1 em { font-style: italic; color: var(--gold); }
     .hero-equation { font-family: var(--mono); font-size: 22px; font-weight: 500; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 16px; padding: 16px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); width: 100%; text-align: center; }
@@ -119,7 +120,8 @@
 
   <!-- Centre: hero text -->
   <div class="hero">
-  <p class="hero-overline" data-i18n="overline">LAW IS LOVE — Experimental proposal</p>
+  <p class="hero-overline" data-i18n="overline">LAW IS LOVE</p>
+  <p class="hero-overline-sub" data-i18n="overline_sub">Experimental proposal</p>
   <p class="hero-equation">E = MC² &nbsp;→&nbsp; Λ = C² &nbsp;→&nbsp; Λ = E / M &nbsp;<span style="font-size:13px; opacity:0.5;">(JLMI 2/25)</span></p>
   <p class="hero-sub" data-i18n="sub">A technological framework to measure legal weight and entropy in, codify and optimise legal systems with smart legal claims. Engineering legal processes for "perpetual motion" and competitiveness of European legal systems (and more).</p>
 
@@ -239,7 +241,8 @@
 <script>
 const T = {
   en: {
-    overline: 'LAW IS LOVE — Experimental proposal',
+    overline: 'LAW IS LOVE',
+    overline_sub: 'Experimental proposal',
     sub: 'A technological framework to measure legal weight and entropy in, codify and optimise legal systems with smart legal claims. Engineering legal processes for "perpetual motion" and competitiveness of European legal systems (and more).',
     metric_scans: 'Documents scanned',
     metric_entropy: 'Total legal weight / entropy (ΣS)',
@@ -264,7 +267,8 @@ const T = {
     p3_link: 'Explore →',
   },
   it: {
-    overline: 'LEGGE È AMORE — Proposta sperimentale',
+    overline: 'LEGGE È AMORE',
+    overline_sub: 'Proposta sperimentale',
     sub: 'Un framework tecnologico per misurare il peso normativo e l\'entropia, codificare e ottimizzare i sistemi giuridici con azioni legali intelligenti. Ingegnerizzare i processi giuridici per il "moto perpetuo" e la competitività dei sistemi giuridici europei (e non solo).',
     metric_scans: 'Documenti analizzati',
     metric_entropy: 'Peso normativo / entropia totale (ΣS)',
@@ -289,7 +293,8 @@ const T = {
     p3_link: 'Scopri →',
   },
   fr: {
-    overline: 'LA LOI EST AMOUR — Proposition expérimentale',
+    overline: 'LA LOI EST AMOUR',
+    overline_sub: 'Proposition expérimentale',
     sub: 'Un cadre technologique pour mesurer le poids juridique et l\'entropie, codifier et optimiser les systèmes juridiques avec des actions juridiques intelligentes. Ingénierie des processus juridiques pour le "mouvement perpétuel" et la compétitivité des systèmes juridiques européens (et plus).',
     metric_scans: 'Documents analysés',
     metric_entropy: 'Poids juridique / entropie totale (ΣS)',
@@ -314,7 +319,8 @@ const T = {
     p3_link: 'Découvrir →',
   },
   es: {
-    overline: 'LA LEY ES AMOR — Propuesta experimental',
+    overline: 'LA LEY ES AMOR',
+    overline_sub: 'Propuesta experimental',
     sub: 'Un marco tecnológico para medir el peso jurídico y la entropía, codificar y optimizar los sistemas jurídicos con acciones jurídicas inteligentes. Ingeniería de procesos jurídicos para el "movimiento perpetuo" y la competitividad de los sistemas jurídicos europeos (y más).',
     metric_scans: 'Documentos analizados',
     metric_entropy: 'Peso jurídico / entropía total (ΣS)',
