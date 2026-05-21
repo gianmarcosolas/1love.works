@@ -480,30 +480,68 @@ function drawLPChart(realStats) {
   ctx.stroke();
   ctx.setLineDash([]);
 
+  // ── Real data: solid gold line from actual scans ──────────────────────────
   const timeSeries = realStats && realStats.time_series;
-  if (timeSeries && timeSeries.length > 1) {
+  const REAL_X_FRACTION = 0.30;
+
+  if (timeSeries && timeSeries.length >= 1) {
+    // Shaded area under real curve
+    ctx.beginPath();
+    timeSeries.forEach((d, i) => {
+      const x = PAD.left + (i / Math.max(timeSeries.length - 1, 1)) * cW * REAL_X_FRACTION;
+      const y = PAD.top + cH - (d.implied_value / maxVal) * cH;
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    });
+    const lastRealX = PAD.left + cW * REAL_X_FRACTION;
+    ctx.lineTo(lastRealX, PAD.top + cH);
+    ctx.lineTo(PAD.left, PAD.top + cH);
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(184,134,11,0.06)';
+    ctx.fill();
+
+    // Solid gold line — real growth scan by scan
     ctx.beginPath();
     ctx.strokeStyle = '#b8860b';
     ctx.lineWidth = 2.5;
     timeSeries.forEach((d, i) => {
-      const x = PAD.left + (i / Math.max(timeSeries.length - 1, 1)) * cW * 0.15;
-      const y = PAD.top + cH - (d.implied_pnc_value / maxVal) * cH;
+      const x = PAD.left + (i / Math.max(timeSeries.length - 1, 1)) * cW * REAL_X_FRACTION;
+      const y = PAD.top + cH - (d.implied_value / maxVal) * cH;
       if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
     });
     ctx.stroke();
+
+    // Dot for each scan
+    timeSeries.forEach((d, i) => {
+      const x = PAD.left + (i / Math.max(timeSeries.length - 1, 1)) * cW * REAL_X_FRACTION;
+      const y = PAD.top + cH - (d.implied_value / maxVal) * cH;
+      ctx.beginPath();
+      ctx.arc(x, y, 2, 0, Math.PI * 2);
+      ctx.fillStyle = i === timeSeries.length - 1 ? '#b8860b' : 'rgba(184,134,11,0.45)';
+      ctx.fill();
+    });
+
+    // Formula annotation at mid-point scan
+    const midIdx = Math.floor(timeSeries.length / 2);
+    const midD = timeSeries[midIdx];
+    const midX = PAD.left + (midIdx / Math.max(timeSeries.length - 1, 1)) * cW * REAL_X_FRACTION;
+    const midY = PAD.top + cH - (midD.implied_value / maxVal) * cH;
+    ctx.fillStyle = 'rgba(184,134,11,0.55)';
+    ctx.font = '8px DM Mono, monospace';
+    ctx.textAlign = 'left';
+    ctx.fillText('scan #' + midD.scan + ': €99\u00d7(1+' + midD.cumulative_entropy + '/1k)=\u20ac' + midD.implied_value, midX + 6, midY - 4);
   } else {
+    // Fallback: flat €99 line
     ctx.beginPath();
     ctx.strokeStyle = '#b8860b';
     ctx.lineWidth = 2.5;
-    foundingData.forEach((d, i) => {
-      const x = PAD.left + d.t * cW;
-      const y = PAD.top + cH - (FOUNDING_PRICE / maxVal) * cH;
-      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-    });
+    const flatY = PAD.top + cH - (FOUNDING_PRICE / maxVal) * cH;
+    ctx.moveTo(PAD.left, flatY);
+    ctx.lineTo(PAD.left + cW * REAL_X_FRACTION, flatY);
     ctx.stroke();
   }
 
-  const phase1X = PAD.left + foundingData[foundingData.length - 1].t * cW;
+  // ── Phase 1 boundary ──────────────────────────────────────────────────────
+  const phase1X = PAD.left + cW * REAL_X_FRACTION;
   ctx.fillStyle = 'rgba(184,134,11,0.03)';
   ctx.fillRect(PAD.left, PAD.top, phase1X - PAD.left, cH);
   ctx.strokeStyle = 'rgba(184,134,11,0.15)';
@@ -512,12 +550,20 @@ function drawLPChart(realStats) {
   ctx.beginPath(); ctx.moveTo(phase1X, PAD.top); ctx.lineTo(phase1X, PAD.top + cH); ctx.stroke();
   ctx.setLineDash([]);
 
+  // ── €99 floor label ───────────────────────────────────────────────────────
   const foundingY = PAD.top + cH - (FOUNDING_PRICE / maxVal) * cH;
   ctx.fillStyle = 'rgba(184,134,11,0.7)';
   ctx.font = '9px DM Mono, monospace';
   ctx.textAlign = 'left';
-  ctx.fillText('€99 founding price', PAD.left + 6, foundingY - 5);
+  ctx.fillText('\u20ac99 floor', PAD.left + 6, foundingY - 5);
 
+  // ── Formula label top-left ────────────────────────────────────────────────
+  ctx.fillStyle = 'rgba(184,134,11,0.4)';
+  ctx.font = '8px DM Mono, monospace';
+  ctx.textAlign = 'left';
+  ctx.fillText('implied_value = \u20ac99 \u00d7 (1 + \u03a3S / 1,000)', PAD.left + 6, PAD.top + 14);
+
+  // ── Perpetual motion asymptote ────────────────────────────────────────────
   ctx.strokeStyle = 'rgba(245,242,234,0.06)';
   ctx.lineWidth = 1;
   ctx.setLineDash([2, 6]);
@@ -528,12 +574,20 @@ function drawLPChart(realStats) {
   ctx.textAlign = 'right';
   ctx.fillText('perpetual motion', PAD.left + cW - 4, asymY - 4);
 
-  const curX = PAD.left + foundingData[foundingData.length - 1].t * cW;
-  const curY = PAD.top + cH - (FOUNDING_PRICE / maxVal) * cH;
-  ctx.beginPath(); ctx.arc(curX, curY, 4, 0, Math.PI * 2);
+  // ── YOU ARE HERE dot — real current position ──────────────────────────────
+  const currentValue = (realStats && realStats.implied_value) || FOUNDING_PRICE;
+  const curX = timeSeries && timeSeries.length >= 1
+    ? PAD.left + cW * REAL_X_FRACTION
+    : PAD.left + cW * 0.02;
+  const curY = PAD.top + cH - (currentValue / maxVal) * cH;
+  ctx.beginPath(); ctx.arc(curX, curY, 5, 0, Math.PI * 2);
   ctx.fillStyle = '#b8860b'; ctx.fill();
-  ctx.beginPath(); ctx.arc(curX, curY, 8, 0, Math.PI * 2);
-  ctx.strokeStyle = 'rgba(184,134,11,0.3)'; ctx.lineWidth = 2; ctx.stroke();
+  ctx.beginPath(); ctx.arc(curX, curY, 10, 0, Math.PI * 2);
+  ctx.strokeStyle = 'rgba(184,134,11,0.35)'; ctx.lineWidth = 2; ctx.stroke();
+  ctx.fillStyle = '#b8860b';
+  ctx.font = '9px DM Mono, monospace';
+  ctx.textAlign = 'left';
+  ctx.fillText('\u20ac' + currentValue + ' now', curX + 14, curY + 3);
 }
 
 window.addEventListener('load', () => {
@@ -544,7 +598,7 @@ window.addEventListener('load', () => {
         if (s.total_scans) document.getElementById('lp-scans').textContent = s.total_scans.toLocaleString();
         if (s.total_entropy) document.getElementById('lp-entropy').textContent = s.total_entropy.toLocaleString();
         if (s.pnc_in_circulation !== undefined) document.getElementById('lp-pnc').textContent = s.pnc_in_circulation.toLocaleString();
-        if (s.implied_pnc_value) document.getElementById('lp-value').textContent = '€' + s.implied_pnc_value.toLocaleString();
+        if (s.implied_value) document.getElementById('lp-value').textContent = '€' + s.implied_value.toLocaleString();
         drawLPChart(s);
       })
       .catch(() => { drawLPChart(null); });
