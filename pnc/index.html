@@ -16,7 +16,6 @@
     }
     html { scroll-behavior: smooth; }
     body { font-family: var(--serif); background: var(--parchment); color: var(--ink); line-height: 1.75; font-size: 18px; }
-
     nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(245,242,234,0.96); backdrop-filter: blur(8px); display: flex; justify-content: space-between; align-items: center; padding: 14px 48px; }
     .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; font-weight: 500; }
     .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
@@ -27,7 +26,6 @@
     .lang-btn:last-child { border-right: none; }
     .lang-btn.active { background: var(--ink); color: var(--parchment); }
     .lang-btn:hover:not(.active) { background: var(--cream); }
-
     .hero { max-width: 760px; margin: 0 auto; padding: 80px 48px 60px; border-bottom: 1px solid var(--rule); }
     .hero-overline { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; }
     .hero h1 { font-size: clamp(42px, 6vw, 72px); font-weight: 400; line-height: 1.1; margin-bottom: 28px; }
@@ -35,7 +33,6 @@
     .hero-equation { font-family: var(--mono); font-size: 16px; color: var(--gold); letter-spacing: 0.08em; padding: 16px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 28px; }
     .hero-intro { font-size: 20px; color: #3a3a36; line-height: 1.85; }
     .hero-intro em { font-style: italic; color: var(--ink); }
-
     .section { max-width: 760px; margin: 0 auto; padding: 64px 48px; border-bottom: 1px solid var(--rule); }
     .section-num { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
     .section-num::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
@@ -45,10 +42,8 @@
     .section p:last-child { margin-bottom: 0; }
     .section p strong { color: var(--ink); font-weight: 500; }
     .section p em { font-style: italic; }
-
     .pull-quote { border-left: 4px solid var(--gold); padding: 20px 28px; margin: 32px 0; background: var(--cream); }
     .pull-quote p { font-size: 20px; font-style: italic; color: var(--ink); line-height: 1.7; margin: 0; }
-
     .dashboard { background: var(--ink); color: var(--parchment); padding: 40px 48px; margin: 40px 0; }
     .dashboard-title { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(245,242,234,0.5); margin-bottom: 24px; }
     .dashboard-note { font-family: var(--mono); font-size: 11px; color: rgba(245,242,234,0.4); margin-top: 20px; font-style: italic; }
@@ -61,7 +56,6 @@
     .metric-desc { font-size: 12px; color: rgba(245,242,234,0.5); line-height: 1.5; }
     .metric.highlight { background: rgba(184,134,11,0.08); border: 1px solid rgba(184,134,11,0.2); }
     .metric.highlight .metric-value { font-size: 32px; }
-
     .inheritance { background: var(--cream); border: 1px solid var(--rule); padding: 36px 40px; margin: 32px 0; }
     .inheritance-title { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 20px; }
     .timeline { display: flex; flex-direction: column; gap: 0; }
@@ -70,12 +64,10 @@
     .timeline-year { font-family: var(--mono); font-size: 12px; color: var(--gold); font-weight: 500; padding-top: 2px; }
     .timeline-text { font-size: 15px; color: #3a3a36; line-height: 1.75; }
     .timeline-text strong { color: var(--ink); }
-
     .no-trading { padding: 28px 32px; border: 1px solid var(--rule); margin: 32px 0; display: flex; gap: 24px; align-items: start; }
     .no-trading-icon { font-size: 28px; flex-shrink: 0; }
     .no-trading-title { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 8px; }
     .no-trading p { font-size: 15px; color: #3a3a36; line-height: 1.8; margin: 0; }
-
     .cta-section { max-width: 760px; margin: 0 auto; padding: 64px 48px 80px; text-align: center; }
     .cta-section h2 { font-size: 38px; font-weight: 400; line-height: 1.2; margin-bottom: 16px; }
     .cta-section h2 em { font-style: italic; color: var(--gold); }
@@ -86,13 +78,11 @@
     .btn-dark:hover { opacity: 0.82; }
     .btn-outline { background: transparent; color: var(--ink); border: 1px solid rgba(15,15,13,0.3); }
     .btn-outline:hover { background: var(--cream); }
-
     footer { border-top: 2px solid var(--ink); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
     .footer-left { font-family: var(--mono); font-size: 11px; color: var(--muted); line-height: 1.7; }
     .footer-right { font-family: var(--mono); font-size: 10px; display: flex; gap: 24px; }
     .footer-right a { color: var(--muted); text-decoration: none; }
     .footer-right a:hover { color: var(--ink); }
-
     @media (max-width: 720px) {
       nav { padding: 12px 20px; }
       .hide-mobile { display: none; }
@@ -132,7 +122,7 @@
   <p class="hero-overline" data-i18n="overline">1love.works · PNC — Perpetual Node Certificate</p>
   <h1 data-i18n="h1">A stake in <em>optimal Europe.</em><br/>For you.<br/>And your children.</h1>
   <p class="hero-equation">PNC = f(ΔS) &nbsp;·&nbsp; ΔS = S₁ − S₂ &nbsp;·&nbsp; S = k · log W(λ) &nbsp;·&nbsp; 1 PNC = €99 founding price</p>
-  <p class="hero-intro" data-i18n="hero_intro">PNC is not a token you trade. It is a perpetual stake in the only scientific instrument designed to measure and reduce European legal entropy created by regulatory weight — defined as a protocol in <strong>phenography©</strong>, the legal-physics technology for the codification of sustainable legal systems. Held for life, inherited by your family, and — if financial institutions accept — available as collateral without ever being sold.</p>
+  <p class="hero-intro" data-i18n="hero_intro">PNC is not a token you trade. It is a perpetual stake in the only scientific instrument designed to measure the useful work in the system, specifically to reduce European legal entropy created by regulatory weight — defined as a protocol in <strong>phenography©</strong>, the legal-physics technology for the codification of sustainable legal systems. Held for life, inherited by your family, and — if financial institutions accept — available as collateral without ever being sold.</p>
 </div>
 
 <div class="section">
@@ -141,9 +131,7 @@
   <p data-i18n="s1_p1">Nobody wakes up wanting to fill in forms. Nobody loves a regulation that produces nothing, a liability that sits unresolved for decades, an asset trapped in legal weight that could be investment, employment, life. Everyone has felt the friction of a legal system accumulating faster than it can resolve — entropy made bureaucratic.</p>
   <p data-i18n="s1_p2">Nature doesn't work like this. A forest doesn't accumulate dead wood indefinitely — it converts it. A river doesn't stop — it finds the path of least resistance. An ecosystem doesn't produce waste — it cycles everything back into energy. Nature tends toward optimum — because it was designed to. The laws of physics are the design. Thermodynamics, gravity, the golden ratio, the Fibonacci spiral — these are not accidents. They are the mathematical expression of a universe built to convert entropy into life, waste into growth, chaos into equilibrium.</p>
   <p data-i18n="s1_p3"><strong>Human law is also a law of nature.</strong> It has always been present in the equations of thermodynamics, general relativity, and quantum mechanics — we simply never measured it as one. The legal-physics framework is the first instrument that does.</p>
-  <div class="pull-quote">
-    <p data-i18n="s1_quote">"Every redundant regulation, every unresolved liability, every abandoned asset is entropy: energy that could be life, trapped in legal weight. PNC is the proof that somewhere, in some legal system, that entropy became flow."</p>
-  </div>
+  <div class="pull-quote"><p data-i18n="s1_quote">"Every redundant regulation, every unresolved liability, every abandoned asset is entropy: energy that could be life, trapped in legal weight. PNC is the proof that somewhere, in some legal system, that entropy became flow."</p></div>
 </div>
 
 <div class="section">
@@ -152,9 +140,7 @@
   <p data-i18n="s2_p1">The European Union was built on a radical idea: that competition and solidarity are not opposites. That efficiency and justice can coexist. That a market economy can have a social dimension. The social market economy is the most ambitious political project in human history — and it is still unfinished.</p>
   <p data-i18n="s2_p2">The reason it is unfinished is entropy. Regulatory accumulation. Legal systems that grew faster than they could be measured, codified, or optimised. Institutions that generate friction rather than value. Cities carrying liabilities that were never identified, assets that were never measured, potential that was never unlocked.</p>
   <p data-i18n="s2_p3"><strong>The goal of the legal-physics framework is to finish the project.</strong> Not by adding more regulation. By measuring what exists, reducing what is redundant, converting what is entropic. The reward is not personal wealth. It is Europe — its cities, its institutions, its legal systems — functioning at their full potential.</p>
-  <div class="pull-quote">
-    <p data-i18n="s2_quote">"The cathedral takes generations. The first stone matters. PNC holders are not investors. They are founding nodes of the measurement — architects of the optimum."</p>
-  </div>
+  <div class="pull-quote"><p data-i18n="s2_quote">"The cathedral takes generations. The first stone matters. PNC holders are not investors. They are founding nodes of the measurement — architects of the optimum."</p></div>
 </div>
 
 <div class="section">
@@ -163,37 +149,16 @@
   <p data-i18n="s3_p1">€21.65 billion of unexpressed economic value was identified in 270 comuni in Sardinia alone — a single region of a single member state, measured with an early version of the instrument. Multiply that across the EU: 27 member states, 90,000 municipalities, hundreds of thousands of institutions, millions of legal acts accumulated over decades.</p>
   <p data-i18n="s3_p2">The market for legal entropy reduction does not yet exist. We are building the instrument that will create it. The institutions, lawyers, investors, and municipalities that are already nodes in the measurement network when that market matures are positioned to benefit from it — not because PNC promises a financial return, but because <strong>being a founding node in the only instrument designed to measure European legal entropy is a first-mover advantage that compounds over time.</strong></p>
   <p data-i18n="s3_p3">Like owning land near a railway before the railway is built. The land doesn't change. The network changes everything.</p>
-
   <div class="dashboard">
     <div class="dashboard-title" data-i18n="dash_title">⬡ PNC Network — Implied Value Dashboard (live when Phase 2 launches)</div>
     <div class="metrics">
-      <div class="metric">
-        <div class="metric-label" data-i18n="dash_m1_label">Legal systems measured</div>
-        <div class="metric-value live">—</div>
-        <div class="metric-desc" data-i18n="dash_m1_desc">Entities that have commissioned at least one scan</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label" data-i18n="dash_m2_label">Total entropy measured (ΣS)</div>
-        <div class="metric-value live">—</div>
-        <div class="metric-desc" data-i18n="dash_m2_desc">Cumulative legal entropy identified across all scans</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label" data-i18n="dash_m3_label">Total entropy reduced (ΣΔS)</div>
-        <div class="metric-value live">—</div>
-        <div class="metric-desc" data-i18n="dash_m3_desc">Verified entropy reduction across all legal systems</div>
-      </div>
+      <div class="metric"><div class="metric-label" data-i18n="dash_m1_label">Legal systems measured</div><div class="metric-value live">—</div><div class="metric-desc" data-i18n="dash_m1_desc">Entities that have commissioned at least one scan</div></div>
+      <div class="metric"><div class="metric-label" data-i18n="dash_m2_label">Total entropy measured (ΣS)</div><div class="metric-value live">—</div><div class="metric-desc" data-i18n="dash_m2_desc">Cumulative legal entropy identified across all scans</div></div>
+      <div class="metric"><div class="metric-label" data-i18n="dash_m3_label">Total entropy reduced (ΣΔS)</div><div class="metric-value live">—</div><div class="metric-desc" data-i18n="dash_m3_desc">Verified entropy reduction across all legal systems</div></div>
     </div>
     <div class="metrics-bottom">
-      <div class="metric">
-        <div class="metric-label" data-i18n="dash_m4_label">Estimated value unlocked</div>
-        <div class="metric-value live">—</div>
-        <div class="metric-desc" data-i18n="dash_m4_desc">Based on λX = EX/MX applied to measured entropy reduction</div>
-      </div>
-      <div class="metric highlight">
-        <div class="metric-label" data-i18n="dash_m5_label">⬡ Implied PNC value</div>
-        <div class="metric-value">€99</div>
-        <div class="metric-desc" data-i18n="dash_m5_desc">Founding price · will update automatically as ΣΔS and unlocked value grow · not a market price · not tradeable</div>
-      </div>
+      <div class="metric"><div class="metric-label" data-i18n="dash_m4_label">Estimated value unlocked</div><div class="metric-value live">—</div><div class="metric-desc" data-i18n="dash_m4_desc">Based on λX = EX/MX applied to measured entropy reduction</div></div>
+      <div class="metric highlight"><div class="metric-label" data-i18n="dash_m5_label">⬡ Implied PNC value</div><div class="metric-value">€99</div><div class="metric-desc" data-i18n="dash_m5_desc">Founding price · will update automatically as ΣΔS and unlocked value grow · not a market price · not tradeable</div></div>
     </div>
     <p class="dashboard-note" data-i18n="dash_note">Dashboard goes live with Phase 2 (entropy delta measurement). Founding holders see their implied value grow as the network does real work in real legal systems. No trading. No speculation. Mathematics.</p>
   </div>
@@ -205,9 +170,7 @@
   <p data-i18n="s4_p1">Service fees fund two things — both public and personal simultaneously.</p>
   <p data-i18n="s4_p2"><strong>First: the IT infrastructure.</strong> Blockchain, scanner, AI simulation layer — built as open architecture that everyone owns as a node. Not a private platform. Not a closed system. Public infrastructure for the measurement of legal entropy, like the internet for information or GPS for navigation. The methodology is published. The measurement is transparent. The blockchain is open. Every node is a co-owner.</p>
   <p data-i18n="s4_p3"><strong>Second: legal claims.</strong> The instrument identifies unexpressed value — liabilities, frozen assets, regulatory anomalies — in real legal systems. The capital raised funds the legal mechanisms to unlock that value: third-party funded claims, collective redress actions, codification mandates. Recoveries flow back to the territories and institutions where the entropy was measured. Not to a private fund. To the legal system itself.</p>
-  <div class="pull-quote">
-    <p data-i18n="s4_quote">"You are not giving money away. You are funding the conversion of entropy you can measure into value you can recover. PNC is your proof of contribution to that conversion — held in perpetuity, inherited by your family, worth more as Europe moves toward optimum."</p>
-  </div>
+  <div class="pull-quote"><p data-i18n="s4_quote">"You are not giving money away. You are funding the conversion of entropy you can measure into value you can recover. PNC is your proof of contribution to that conversion — held in perpetuity, inherited by your family, worth more as Europe moves toward optimum."</p></div>
   <div class="no-trading">
     <div class="no-trading-icon">⬡</div>
     <div>
@@ -237,9 +200,7 @@
   <p data-i18n="s5_p1">Every scan and every empirical legal measurement adds intelligence to the network — not just for the entity being measured, but for every other node in the system. This is <strong>fractal cross-pollination©</strong>: the principle that measurement in one legal system generates actionable intelligence for every comparable system in the network.</p>
   <p data-i18n="s5_p2">The logic is simple. If a village of 1,000 people has two hairdressers and functions at optimum, and a comparable village of 1,000 people has only one hairdresser — the network identifies the gap. Not as an opinion. As a measurement. The λ score of the second village reflects unexpressed economic potential in the personal care sector. The instrument suggests the market. The village can act.</p>
   <p data-i18n="s5_p3">Scale this to European legal systems. If a municipality in Sardinia has resolved its regulatory entropy around renewable energy permits and achieved optimum in that sector, every comparable municipality in the EU benefits from that measurement. The network knows what optimum looks like. It can show every other node the distance still to travel — and the path.</p>
-  <div class="pull-quote">
-    <p data-i18n="s5_quote">"The measurement of one system is not a private discovery. It is a contribution to the intelligence of the whole network. Every node makes every other node smarter. This is fractal cross-pollination© — and it is why the network becomes exponentially more valuable as it grows."</p>
-  </div>
+  <div class="pull-quote"><p data-i18n="s5_quote">"The measurement of one system is not a private discovery. It is a contribution to the intelligence of the whole network. Every node makes every other node smarter. This is fractal cross-pollination© — and it is why the network becomes exponentially more valuable as it grows."</p></div>
   <p data-i18n="s5_p4">This is also why PNC compounds in value over time without trading. Each new node that joins the network increases the cross-pollination intelligence available to all existing nodes. The founding nodes — those who entered at €99/PNC — benefit from every subsequent measurement in every legal system that joins the network. Their stake appreciates not because of speculation, but because <strong>the network is doing real scientific work that makes their node more valuable.</strong></p>
   <div class="no-trading" style="margin-top: 24px; border-color: rgba(184,134,11,0.3); background: rgba(184,134,11,0.03);">
     <div class="no-trading-icon">🌿</div>
@@ -267,12 +228,12 @@
         <div class="timeline-year">2027–30</div>
         <div class="timeline-text" data-i18n="tl2"><strong>Phase 2 launches.</strong> Entropy delta measurement goes live with the identification of real entropy in real legal systems. Abandoned buildings, abandoned land, abandoned people. Blockchain recording active. The dashboard shows ΔS across hundreds of legal systems. Implied PNC value begins to visibly reflect unlocked value. Legal actions mature. The European legal system becomes aware.</div>
       </div>
-    </div><!-- end timeline inner -->
+    </div>
     <div style="margin: 16px 0; padding: 24px 28px; border: 1px solid rgba(184,134,11,0.3); background: rgba(184,134,11,0.04); display: flex; gap: 20px; align-items: start;">
       <div style="font-size: 22px; flex-shrink: 0;">⚖️</div>
       <div>
-        <div style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 8px;" data-i18n="phase2_pro_title">Phase 2 — Professional tier</div>
-        <p style="font-size: 15px; color: #3a3a36; line-height: 1.8; margin: 0;" data-i18n="phase2_pro_text">Certified legal professionals — EU lawyers, notaries, accountants, law and physics professors (based on specific competence) and other certified professionals (subject to applicable law) — acquire PNC directly through codification work. Each PNC is anchored on-chain to a specific legal document scanned and processed. Supply in this tier is bounded by the finite size of the legal corpus. This is the concrete work of reordering the law — document by document, jurisdiction by jurisdiction. It is made possible by the infrastructure, tools, and team built in Phase 1. Professionals self-declare credentials with liability, subject to counter-verification against public professional registers.</p>
+        <div style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 8px;" data-i18n="phase2_pro_title">Phase 2 — Professional &amp; Legal Order tier</div>
+        <p style="font-size: 15px; color: #3a3a36; line-height: 1.8; margin: 0;" data-i18n="phase2_pro_text">Certified legal professionals — EU lawyers, notaries, accountants, law and physics professors (based on specific competence) and other certified professionals (subject to applicable law) — acquire PNC directly through codification work at founding price (€99). Each PNC is anchored on-chain to a specific legal document scanned and processed. Supply in this tier is bounded by the finite size of the legal corpus. This is the concrete work of reordering the law — document by document, jurisdiction by jurisdiction. It is made possible by the infrastructure, tools, and team built in Phase 1. Professionals self-declare credentials with liability, subject to counter-verification against public professional registers. Members of the public service and legal order (as defined by the respective EU member states) will be recognised with at least 1 PNC at founding price (€99) on the basis of the presumption of participation in the maintenance and improvement of the legal order — a presumption to be measured in any case against physico-legal criteria.</p>
       </div>
     </div>
     <div class="timeline" style="margin-top: 0;">
@@ -297,47 +258,19 @@
   <h2 data-i18n="s7_h2">The mayor who gave citizens<br/>a stake in their own <em>optimum.</em></h2>
   <p data-i18n="s7_p1">A municipality commissions a full legal system codification. The instrument measures the entropy of every regulation, every land classification, every administrative act in the territory. It identifies unexpressed value — frozen assets, missing markets, regulatory weight that is costing the community money it never knew it had. It produces a remediation roadmap. It issues PNC.</p>
   <p data-i18n="s7_p2">But the PNC does not stay with the municipality. <strong>It is distributed to the citizens.</strong> Each resident receives a fractional stake in the optimisation of their own territory — a mathematical proof that their municipality began its journey toward optimum, and that they are a node in that journey.</p>
-
   <div style="background: var(--cream); border: 1px solid var(--rule); padding: 28px 32px; margin: 32px 0;">
     <div style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 20px;" data-i18n="muni_example">⬡ Example — Municipality of 1,400 citizens · €139,000 mandate · 1,404 PNC issued</div>
     <div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 2px; background: var(--rule);">
-      <div style="background: white; padding: 16px 18px;">
-        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 8px;" data-i18n="muni_c1_label">Each citizen</div>
-        <div style="font-family: var(--mono); font-size: 22px; color: var(--gold); margin-bottom: 6px;">0.5 PNC</div>
-        <div style="font-size: 13px; color: var(--muted); line-height: 1.6;" data-i18n="muni_c1_text">The largest individual stake — because citizens bore the most entropy. They lived with the broken system. They deserve the largest stake in its repair.</div>
-      </div>
-      <div style="background: white; padding: 16px 18px;">
-        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 8px;" data-i18n="muni_c2_label">Local associations & businesses</div>
-        <div style="font-family: var(--mono); font-size: 22px; color: var(--gold); margin-bottom: 6px;">0.3 PNC each</div>
-        <div style="font-size: 13px; color: var(--muted); line-height: 1.6;" data-i18n="muni_c2_text">Active economic actors who operated under entropy. Their stake reflects their exposure to regulatory weight and their role in reducing it.</div>
-      </div>
-      <div style="background: white; padding: 16px 18px;">
-        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 8px;" data-i18n="muni_c3_label">Municipal council</div>
-        <div style="font-family: var(--mono); font-size: 22px; color: var(--gold); margin-bottom: 6px;">0.1 PNC each</div>
-        <div style="font-size: 13px; color: var(--muted); line-height: 1.6;" data-i18n="muni_c3_text">The governance layer. Their reward is the better-governed municipality and the political credit. Their PNC stake is proportionally smaller.</div>
-      </div>
-      <div style="background: white; padding: 16px 18px;">
-        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 8px;" data-i18n="muni_c4_label">Mayor / mandate signatory</div>
-        <div style="font-family: var(--mono); font-size: 22px; color: var(--gold); margin-bottom: 6px;">0.1 PNC</div>
-        <div style="font-size: 13px; color: var(--muted); line-height: 1.6;" data-i18n="muni_c4_text">The person who committed to the optimum. Their reward is the mandate itself — the legacy of a better territory. Equal to the council, not above it.</div>
-      </div>
-      <div style="background: white; padding: 16px 18px;">
-        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 8px;" data-i18n="muni_c5_label">Municipality reserve (20%)</div>
-        <div style="font-family: var(--mono); font-size: 22px; color: var(--gold); margin-bottom: 6px;">~280 PNC</div>
-        <div style="font-size: 13px; color: var(--muted); line-height: 1.6;" data-i18n="muni_c5_text">Held for future distribution as successive codification cycles reduce entropy further. The reserve grows the civic stake over time.</div>
-      </div>
-      <div style="background: rgba(184,134,11,0.05); border: 1px solid rgba(184,134,11,0.2); padding: 16px 18px;">
-        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 8px;" data-i18n="muni_c6_label">Phenography© protocol fee</div>
-        <div style="font-family: var(--mono); font-size: 22px; color: var(--gold); margin-bottom: 6px;">1 PNC/cycle</div>
-        <div style="font-size: 13px; color: var(--muted); line-height: 1.6;" data-i18n="muni_c6_text">Issued to the framework author per codification cycle. The protocol is proprietary. The measurement is public. The fee is mathematical.</div>
-      </div>
+      <div style="background: white; padding: 16px 18px;"><div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 8px;" data-i18n="muni_c1_label">Each citizen</div><div style="font-family: var(--mono); font-size: 22px; color: var(--gold); margin-bottom: 6px;">0.5 PNC</div><div style="font-size: 13px; color: var(--muted); line-height: 1.6;" data-i18n="muni_c1_text">The largest individual stake — because citizens bore the most entropy. They lived with the broken system. They deserve the largest stake in its repair.</div></div>
+      <div style="background: white; padding: 16px 18px;"><div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 8px;" data-i18n="muni_c2_label">Local associations &amp; businesses</div><div style="font-family: var(--mono); font-size: 22px; color: var(--gold); margin-bottom: 6px;">0.3 PNC each</div><div style="font-size: 13px; color: var(--muted); line-height: 1.6;" data-i18n="muni_c2_text">Active economic actors who operated under entropy. Their stake reflects their exposure to regulatory weight and their role in reducing it.</div></div>
+      <div style="background: white; padding: 16px 18px;"><div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 8px;" data-i18n="muni_c3_label">Municipal council</div><div style="font-family: var(--mono); font-size: 22px; color: var(--gold); margin-bottom: 6px;">0.1 PNC each</div><div style="font-size: 13px; color: var(--muted); line-height: 1.6;" data-i18n="muni_c3_text">The governance layer. Their reward is the better-governed municipality and the political credit. Their PNC stake is proportionally smaller.</div></div>
+      <div style="background: white; padding: 16px 18px;"><div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 8px;" data-i18n="muni_c4_label">Mayor / mandate signatory</div><div style="font-family: var(--mono); font-size: 22px; color: var(--gold); margin-bottom: 6px;">0.1 PNC</div><div style="font-size: 13px; color: var(--muted); line-height: 1.6;" data-i18n="muni_c4_text">The person who committed to the optimum. Their reward is the mandate itself — the legacy of a better territory. Equal to the council, not above it.</div></div>
+      <div style="background: white; padding: 16px 18px;"><div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 8px;" data-i18n="muni_c5_label">Municipality reserve (20%)</div><div style="font-family: var(--mono); font-size: 22px; color: var(--gold); margin-bottom: 6px;">~280 PNC</div><div style="font-size: 13px; color: var(--muted); line-height: 1.6;" data-i18n="muni_c5_text">Held for future distribution as successive codification cycles reduce entropy further. The reserve grows the civic stake over time.</div></div>
+      <div style="background: rgba(184,134,11,0.05); border: 1px solid rgba(184,134,11,0.2); padding: 16px 18px;"><div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 8px;" data-i18n="muni_c6_label">Phenography© protocol fee</div><div style="font-family: var(--mono); font-size: 22px; color: var(--gold); margin-bottom: 6px;">1 PNC/cycle</div><div style="font-size: 13px; color: var(--muted); line-height: 1.6;" data-i18n="muni_c6_text">Issued to the framework author per codification cycle. The protocol is proprietary. The measurement is public. The fee is mathematical.</div></div>
     </div>
   </div>
-
   <p data-i18n="s7_p3">The child born today in this municipality receives 0.5 PNC — not as a gift, but as a mathematical record that their territory began its journey toward optimum the year they were born. Over their lifetime, as the municipality completes successive codification cycles, they accumulate more. By age 40 they might hold 2–3 PNC. They pass them to their children, who were born into a measurably better legal system — and hold the proof on-chain, permanently, theirs.</p>
-  <div class="pull-quote">
-    <p data-i18n="s7_quote">"A mayor who distributes PNC to citizens is not making a promise. They are issuing a mathematical certificate: your territory is being measured, optimised, and you are a node in that process. Not a beneficiary. A founder."</p>
-  </div>
+  <div class="pull-quote"><p data-i18n="s7_quote">"A mayor who distributes PNC to citizens is not making a promise. They are issuing a mathematical certificate: your territory is being measured, optimised, and you are a node in that process. Not a beneficiary. A founder."</p></div>
   <p data-i18n="s7_p4">This scales across the EU. A village of 1,000 issues 100 PNC to citizens. A city of 100,000 issues 10,000. A region of 1,000,000 issues 100,000 — a genuine mass civic stake in the optimisation of a legal system. <strong>Fractal cross-pollination©</strong> means that each municipality's measurement makes every comparable municipality smarter. The network of civic nodes compounds in intelligence and value as it grows.</p>
 </div>
 
@@ -364,7 +297,7 @@ const T = {
   en: {
     overline: '1love.works · PNC — Perpetual Node Certificate',
     h1: 'A stake in <em>optimal Europe.</em><br/>For you.<br/>And your children.',
-    hero_intro: 'PNC is not a token you trade. It is a perpetual stake in the only scientific instrument designed to measure and reduce European legal entropy created by regulatory weight — defined as a protocol in <strong>phenography©</strong>, the legal-physics technology for the codification of sustainable legal systems. Held for life, inherited by your family, and — if financial institutions accept — available as collateral without ever being sold.',
+    hero_intro: 'PNC is not a token you trade. It is a perpetual stake in the only scientific instrument designed to measure the useful work in the system, specifically to reduce European legal entropy created by regulatory weight — defined as a protocol in <strong>phenography©</strong>, the legal-physics technology for the codification of sustainable legal systems. Held for life, inherited by your family, and — if financial institutions accept — available as collateral without ever being sold.',
     s1_num: 'I · The problem everyone feels',
     s1_h2: 'People hate bureaucracy.<br/>People love <em>nature.</em>',
     s1_p1: 'Nobody wakes up wanting to fill in forms. Nobody loves a regulation that produces nothing, a liability that sits unresolved for decades, an asset trapped in legal weight that could be investment, employment, life. Everyone has felt the friction of a legal system accumulating faster than it can resolve — entropy made bureaucratic.',
@@ -418,8 +351,8 @@ const T = {
     timeline_title: '⬡ A generational arc — illustrative',
     tl1: '<strong>You acquire PNC</strong> as part of a scan or codification service. The network is in its founding phase. Implied value: €99/PNC. You are a founding node. PNC begins to take on value through the scanning of real legal documents, the engineering of real legal processes, and the transmission of legal-physical education and the Galilean method applied to legal systems for the first time in history. The progress process becomes irreversible and begins to improve society immediately. And it is measurable. The first legal actions begin. The European legal system starts to become aware of itself.',
     tl2: '<strong>Phase 2 launches.</strong> Entropy delta measurement goes live with the identification of real entropy in real legal systems. Abandoned buildings, abandoned land, abandoned people. Blockchain recording active. The dashboard shows ΔS across hundreds of legal systems. Implied PNC value begins to visibly reflect unlocked value. Legal actions mature. The European legal system becomes aware.',
-    phase2_pro_title: 'Phase 2 — Professional tier',
-    phase2_pro_text: 'Certified legal professionals — EU lawyers, notaries, accountants, law and physics professors (based on specific competence) and other certified professionals (subject to applicable law) — acquire PNC directly through codification work. Each PNC is anchored on-chain to a specific legal document scanned and processed. Supply in this tier is bounded by the finite size of the legal corpus. This is the concrete work of reordering the law — document by document, jurisdiction by jurisdiction. It is made possible by the infrastructure, tools, and team built in Phase 1. Professionals self-declare credentials with liability, subject to counter-verification against public professional registers.',
+    phase2_pro_title: 'Phase 2 — Professional &amp; Legal Order tier',
+    phase2_pro_text: 'Certified legal professionals — EU lawyers, notaries, accountants, law and physics professors (based on specific competence) and other certified professionals (subject to applicable law) — acquire PNC directly through codification work at founding price (€99). Each PNC is anchored on-chain to a specific legal document scanned and processed. Supply in this tier is bounded by the finite size of the legal corpus. This is the concrete work of reordering the law — document by document, jurisdiction by jurisdiction. It is made possible by the infrastructure, tools, and team built in Phase 1. Professionals self-declare credentials with liability, subject to counter-verification against public professional registers. Members of the public service and legal order (as defined by the respective EU member states) will be recognised with at least 1 PNC at founding price (€99) on the basis of the presumption of participation in the maintenance and improvement of the legal order — a presumption to be measured in any case against physico-legal criteria.',
     tl3: '<strong>First recoveries</strong> from entropy reduction actions. Municipalities that commissioned codifications see investment flowing in. The network grows. Entropy visibly decreases.',
     tl4: '<strong>Your children inherit your PNC.</strong> The network has measured legal entropy across the EU. The social market economy is measurably more optimised. Their PNC is a proof of your generation\'s contribution to that — held on-chain, permanent, theirs.',
     tl5_year: 'Perpetuity', tl5: '<strong>The machine approaches equilibrium.</strong> PNC supply bounded by total measurable entropy — which is finite. As entropy approaches zero, the machine approaches perpetual motion. The cathedral is complete. The first stone still matters.',
@@ -446,7 +379,7 @@ const T = {
   it: {
     overline: '1love.works · PNC — Certificato Nodo Perpetuo',
     h1: 'Una quota nell\'<em>Europa ottimale.</em><br/>Per te.<br/>E per i tuoi figli.',
-    hero_intro: 'Il PNC non è un token che si scambia. È una quota perpetua nell\'unico strumento scientifico progettato per misurare e ridurre l\'entropia giuridica europea creata dal peso normativo — definito come protocollo nella <strong>fenografia©</strong>, la tecnologia di fisica giuridica per la codificazione di sistemi giuridici sostenibili. Detenuto per tutta la vita, ereditato dalla tua famiglia, e — se gli istituti finanziari lo accettano — disponibile come garanzia senza mai essere venduto.',
+    hero_intro: 'Il PNC non è un token che si scambia. È una quota perpetua nell\'unico strumento scientifico progettato per misurare il lavoro utile al sistema, segnatamente a ridurre l\'entropia giuridica europea creata dal peso normativo — definito come protocollo nella <strong>phenografia©</strong>, la tecnologia di fisica giuridica per la codificazione di sistemi giuridici sostenibili. Detenuto per tutta la vita, ereditato dalla tua famiglia, e — se gli istituti finanziari lo accettano — disponibile come garanzia senza mai essere venduto.',
     s1_num: 'I · Il problema che tutti sentono',
     s1_h2: 'Le persone odiano la burocrazia.<br/>Le persone amano la <em>natura.</em>',
     s1_p1: 'Nessuno si sveglia volendo compilare moduli. Nessuno ama una norma che non produce nulla, una passività irrisolta per decenni, un asset intrappolato nel peso normativo che potrebbe essere investimento, occupazione, vita. Tutti hanno sentito l\'attrito di un sistema giuridico che si accumula più velocemente di quanto possa risolvere — entropia resa burocratica.',
@@ -500,8 +433,8 @@ const T = {
     timeline_title: '⬡ Un arco generazionale — illustrativo',
     tl1: '<strong>Acquisti il PNC</strong> come parte di una scansione o di un servizio di codificazione. La rete è nella sua fase fondatrice. Valore implicito: €99/PNC. Sei un nodo fondatore. Il PNC inizia ad assumere valore grazie alle scannerizzazioni di documenti legali reali, all\'ingegnerizzazione di processi legali reali, alla trasmissione dell\'educazione giuridico-fisica e del metodo Galileiano applicato ai sistemi giuridici per la prima volta nella storia. Il processo di progresso diventa irreversibile e inizia a migliorare la società fin da subito. Ed è misurabile. Partono le prime azioni legali. Il sistema legale europeo inizia a prendere coscienza di se stesso.',
     tl2: '<strong>Si lancia la Fase 2.</strong> La misurazione del delta entropico va in diretta con l\'identificazione di entropia reale nei sistemi giuridici reali. Case abbandonate, terreni abbandonati, umani abbandonati. La registrazione blockchain è attiva. La dashboard mostra il ΔS in centinaia di sistemi giuridici. Il valore implicito PNC inizia a riflettere il valore sbloccato in maniera visibile. Le azioni legali maturano. Il sistema legale europeo prende coscienza.',
-    phase2_pro_title: 'Fase 2 — Livello professionale',
-    phase2_pro_text: 'I professionisti legali certificati — avvocati, notai, commercialisti, professori di diritto e fisica (in base a specifica competenza) e altri professionisti certificati UE (secondo il diritto applicabile) — acquisiscono PNC direttamente attraverso il lavoro di codificazione. Ogni PNC è ancorato on-chain a uno specifico documento legale scansionato e processato. L\'offerta in questo livello è limitata dalla dimensione finita del corpus giuridico. Questo è il lavoro concreto di riordino del diritto — documento per documento, giurisdizione per giurisdizione. È reso possibile dall\'infrastruttura, dagli strumenti e dal team costruiti nella Fase 1. I professionisti autodichiarano le credenziali con responsabilità, soggetti a verifica incrociata nei registri professionali pubblici.',
+    phase2_pro_title: 'Fase 2 — Livello Professionale e di Ordine Giuridico',
+    phase2_pro_text: 'I professionisti legali certificati — avvocati, notai, commercialisti, professori di diritto e fisica (in base a specifica competenza) e altri professionisti certificati UE (secondo il diritto applicabile) — acquisiscono PNC direttamente attraverso il lavoro di codificazione a prezzo di lancio (99€). Ogni PNC è ancorato on-chain a uno specifico documento legale scansionato e processato. L\'offerta in questo livello è limitata dalla dimensione finita del corpus giuridico. Questo è il lavoro concreto di riordino del diritto — documento per documento, giurisdizione per giurisdizione. È reso possibile dall\'infrastruttura, dagli strumenti e dal team costruiti nella Fase 1. I professionisti autodichiarano le credenziali con responsabilità, soggetti a verifica incrociata nei registri professionali pubblici. Ai componenti del servizio pubblico e dell\'ordine (definito come tale dai rispettivi stati membri dell\'Unione Europea) verrà riconosciuto almeno 1 PNC a prezzo di lancio (99€) sulla base della presunzione di partecipazione al mantenimento e miglioramento dell\'ordine giuridico, presunzione comunque da misurare sulla base dei criteri fisico-giuridici.',
     tl3: '<strong>Primi recuperi</strong> da azioni di riduzione dell\'entropia. I comuni che hanno commissionato codificazioni vedono affluire investimenti. La rete cresce. L\'entropia diminuisce visibilmente.',
     tl4: '<strong>I tuoi figli ereditano il tuo PNC.</strong> La rete ha misurato l\'entropia giuridica in tutta l\'UE. L\'economia sociale di mercato è misurabilmente più ottimizzata. Il loro PNC è una prova del contributo della tua generazione a ciò — detenuto on-chain, permanente, loro.',
     tl5_year: 'Perpetuità', tl5: '<strong>La macchina si avvicina all\'equilibrio.</strong> L\'offerta di PNC è limitata dall\'entropia totale misurabile — che è finita. Man mano che l\'entropia si avvicina a zero, la macchina si avvicina al moto perpetuo. La cattedrale è completa. La prima pietra conta ancora.',
@@ -528,7 +461,7 @@ const T = {
   fr: {
     overline: '1love.works · PNC — Certificat de Nœud Perpétuel',
     h1: 'Une participation dans l\'<em>Europe optimale.</em><br/>Pour vous.<br/>Et vos enfants.',
-    hero_intro: 'Le PNC n\'est pas un jeton que l\'on échange. C\'est une participation perpétuelle dans le seul instrument scientifique conçu pour mesurer et réduire l\'entropie juridique européenne créée par le poids réglementaire — défini comme un protocole dans la <strong>phénographie©</strong>, la technologie de physique juridique pour la codification de systèmes juridiques durables. Détenu à vie, hérité par votre famille, et — si les institutions financières l\'acceptent — disponible comme garantie sans jamais être vendu.',
+    hero_intro: 'Le PNC n\'est pas un jeton que l\'on échange. C\'est une participation perpétuelle dans le seul instrument scientifique conçu pour mesurer le travail utile au système, notamment à réduire l\'entropie juridique européenne créée par le poids réglementaire — défini comme un protocole dans la <strong>phénographie©</strong>, la technologie de physique juridique pour la codification de systèmes juridiques durables. Détenu à vie, hérité par votre famille, et — si les institutions financières l\'acceptent — disponible comme garantie sans jamais être vendu.',
     s1_num: 'I · Le problème que tout le monde ressent',
     s1_h2: 'Les gens détestent la bureaucratie.<br/>Les gens aiment la <em>nature.</em>',
     s1_p1: 'Personne ne se réveille en voulant remplir des formulaires. Personne n\'aime une réglementation qui ne produit rien, un passif non résolu pendant des décennies, un actif piégé dans le poids juridique qui pourrait être investissement, emploi, vie. Tout le monde a ressenti la friction d\'un système juridique s\'accumulant plus vite qu\'il ne peut résoudre — l\'entropie rendue bureaucratique.',
@@ -582,8 +515,8 @@ const T = {
     timeline_title: '⬡ Un arc générationnel — illustratif',
     tl1: '<strong>Vous acquérez le PNC</strong> dans le cadre d\'une analyse ou d\'un service de codification. Le réseau est dans sa phase fondatrice. Valeur implicite : €99/PNC. Vous êtes un nœud fondateur. Le PNC commence à prendre de la valeur grâce à l\'analyse de documents juridiques réels, à l\'ingénierie de processus juridiques réels, et à la transmission de l\'éducation juridico-physique et de la méthode galiléenne appliquée aux systèmes juridiques pour la première fois dans l\'histoire. Le processus de progrès devient irréversible et commence à améliorer la société immédiatement. Et c\'est mesurable. Les premières actions en justice commencent. Le système juridique européen commence à prendre conscience de lui-même.',
     tl2: '<strong>La Phase 2 se lance.</strong> La mesure du delta entropique est en direct avec l\'identification de l\'entropie réelle dans les systèmes juridiques réels. Bâtiments abandonnés, terres abandonnées, humains abandonnés. L\'enregistrement blockchain est actif. Le dashboard montre le ΔS dans des centaines de systèmes juridiques. La valeur implicite PNC commence à refléter visiblement la valeur libérée. Les actions en justice mûrissent. Le système juridique européen prend conscience.',
-    phase2_pro_title: 'Phase 2 — Niveau professionnel',
-    phase2_pro_text: 'Les professionnels juridiques certifiés — avocats, notaires, comptables, professeurs de droit et de physique (selon compétence spécifique) et autres professionnels certifiés UE (selon le droit applicable) — acquièrent des PNC directement par le travail de codification. Chaque PNC est ancré on-chain à un document juridique spécifique analysé et traité. L\'offre dans ce niveau est bornée par la taille finie du corpus juridique. C\'est le travail concret de réorganisation du droit — document par document, juridiction par juridiction. Il est rendu possible par l\'infrastructure, les outils et l\'équipe construits en Phase 1. Les professionnels autodéclarent leurs accréditations avec responsabilité, sous réserve de contre-vérification dans les registres professionnels publics.',
+    phase2_pro_title: 'Phase 2 — Niveau professionnel et de l\'Ordre juridique',
+    phase2_pro_text: 'Les professionnels juridiques certifiés — avocats, notaires, comptables, professeurs de droit et de physique (selon compétence spécifique) et autres professionnels certifiés UE (selon le droit applicable) — acquièrent des PNC directement par le travail de codification au prix de lancement (99€). Chaque PNC est ancré on-chain à un document juridique spécifique analysé et traité. L\'offre dans ce niveau est bornée par la taille finie du corpus juridique. C\'est le travail concret de réorganisation du droit — document par document, juridiction par juridiction. Il est rendu possible par l\'infrastructure, les outils et l\'équipe construits en Phase 1. Les professionnels autodéclarent leurs accréditations avec responsabilité, sous réserve de contre-vérification dans les registres professionnels publics. Les membres du service public et de l\'ordre juridique (tel que défini par les États membres respectifs de l\'UE) se verront reconnaître au moins 1 PNC au prix de lancement (99€) sur la base de la présomption de participation au maintien et à l\'amélioration de l\'ordre juridique — présomption à mesurer en tout état de cause selon les critères physico-juridiques.',
     tl3: '<strong>Premières récupérations</strong> d\'actions de réduction de l\'entropie. Les municipalités qui ont commandé des codifications voient les investissements affluer. Le réseau croît. L\'entropie diminue visiblement.',
     tl4: '<strong>Vos enfants héritent de votre PNC.</strong> Le réseau a mesuré l\'entropie juridique dans toute l\'UE. L\'économie sociale de marché est mesurables plus optimisée. Leur PNC est une preuve de la contribution de votre génération à cela — détenu on-chain, permanent, le leur.',
     tl5_year: 'Perpétuité', tl5: '<strong>La machine approche l\'équilibre.</strong> L\'offre de PNC est bornée par l\'entropie totale mesurable — qui est finie. Au fur et à mesure que l\'entropie tend vers zéro, la machine approche le mouvement perpétuel. La cathédrale est complète. La première pierre compte encore.',
@@ -610,7 +543,7 @@ const T = {
   es: {
     overline: '1love.works · PNC — Certificado de Nodo Perpetuo',
     h1: 'Una participación en la <em>Europa óptima.</em><br/>Para usted.<br/>Y sus hijos.',
-    hero_intro: 'El PNC no es un token que se intercambia. Es una participación perpetua en el único instrumento científico diseñado para medir y reducir la entropía jurídica europea creada por el peso normativo — definido como protocolo en la <strong>fenografía©</strong>, la tecnología de física jurídica para la codificación de sistemas jurídicos sostenibles. Conservado de por vida, heredado por su familia, y — si las instituciones financieras lo aceptan — disponible como garantía sin ser jamás vendido.',
+    hero_intro: 'El PNC no es un token que se intercambia. Es una participación perpetua en el único instrumento científico diseñado para medir el trabajo útil al sistema, concretamente a reducir la entropía jurídica europea creada por el peso normativo — definido como protocolo en la <strong>fenografía©</strong>, la tecnología de física jurídica para la codificación de sistemas jurídicos sostenibles. Conservado de por vida, heredado por su familia, y — si las instituciones financieras lo aceptan — disponible como garantía sin ser jamás vendido.',
     s1_num: 'I · El problema que todos sienten',
     s1_h2: 'La gente odia la burocracia.<br/>La gente ama la <em>naturaleza.</em>',
     s1_p1: 'Nadie se despierta queriendo rellenar formularios. Nadie ama una regulación que no produce nada, un pasivo sin resolver durante décadas, un activo atrapado en el peso jurídico que podría ser inversión, empleo, vida. Todos han sentido la fricción de un sistema jurídico que se acumula más rápido de lo que puede resolver — la entropía convertida en burocracia.',
@@ -664,8 +597,8 @@ const T = {
     timeline_title: '⬡ Un arco generacional — ilustrativo',
     tl1: '<strong>Usted adquiere PNC</strong> como parte de un análisis o servicio de codificación. La red está en su fase fundadora. Valor implícito: €99/PNC. Usted es un nodo fundador. El PNC comienza a adquirir valor a través del escaneo de documentos jurídicos reales, la ingeniería de procesos jurídicos reales, y la transmisión de la educación jurídico-física y el método galileano aplicado a los sistemas jurídicos por primera vez en la historia. El proceso de progreso se vuelve irreversible y comienza a mejorar la sociedad de inmediato. Y es medible. Comienzan las primeras acciones legales. El sistema jurídico europeo comienza a tomar conciencia de sí mismo.',
     tl2: '<strong>Se lanza la Fase 2.</strong> La medición del delta entrópico se activa con la identificación de entropía real en sistemas jurídicos reales. Edificios abandonados, tierras abandonadas, personas abandonadas. El registro blockchain está activo. El dashboard muestra el ΔS en cientos de sistemas jurídicos. El valor implícito PNC comienza a reflejar visiblemente el valor liberado. Las acciones legales maduran. El sistema jurídico europeo toma conciencia.',
-    phase2_pro_title: 'Fase 2 — Nivel profesional',
-    phase2_pro_text: 'Los profesionales jurídicos certificados — abogados, notarios, contables, profesores de derecho y física (según competencia específica) y otros profesionales certificados de la UE (según el derecho aplicable) — adquieren PNC directamente a través del trabajo de codificación. Cada PNC está anclado on-chain a un documento jurídico específico escaneado y procesado. La oferta en este nivel está acotada por el tamaño finito del corpus jurídico. Este es el trabajo concreto de reordenación del derecho — documento por documento, jurisdicción por jurisdicción. Es posible gracias a la infraestructura, las herramientas y el equipo construidos en la Fase 1. Los profesionales autodeclaran sus credenciales con responsabilidad, sujetos a verificación cruzada en los registros profesionales públicos.',
+    phase2_pro_title: 'Fase 2 — Nivel Profesional y de Orden Jurídico',
+    phase2_pro_text: 'Los profesionales jurídicos certificados — abogados, notarios, contables, profesores de derecho y física (según competencia específica) y otros profesionales certificados de la UE (según el derecho aplicable) — adquieren PNC directamente a través del trabajo de codificación al precio de lanzamiento (99€). Cada PNC está anclado on-chain a un documento jurídico específico escaneado y procesado. La oferta en este nivel está acotada por el tamaño finito del corpus jurídico. Este es el trabajo concreto de reordenación del derecho — documento por documento, jurisdicción por jurisdicción. Es posible gracias a la infraestructura, las herramientas y el equipo construidos en la Fase 1. Los profesionales autodeclaran sus credenciales con responsabilidad, sujetos a verificación cruzada en los registros profesionales públicos. A los miembros del servicio público y del orden jurídico (tal como lo definen los respectivos estados miembros de la UE) se les reconocerá al menos 1 PNC al precio de lanzamiento (99€) sobre la base de la presunción de participación en el mantenimiento y mejora del orden jurídico — presunción que deberá medirse en todo caso según los criterios físico-jurídicos.',
     tl3: '<strong>Primeras recuperaciones</strong> de acciones de reducción de entropía. Los municipios que encargaron codificaciones ven fluir inversiones. La red crece. La entropía disminuye visiblemente.',
     tl4: '<strong>Sus hijos heredan su PNC.</strong> La red ha medido la entropía jurídica en toda la UE. La economía social de mercado es mediblemente más optimizada. Su PNC es una prueba de la contribución de su generación a eso — conservado on-chain, permanente, suyo.',
     tl5_year: 'Perpetuidad', tl5: '<strong>La máquina se acerca al equilibrio.</strong> El suministro de PNC está acotado por la entropía total medible — que es finita. A medida que la entropía se acerca a cero, la máquina se acerca al movimiento perpetuo. La catedral está completa. La primera piedra sigue importando.',
