@@ -67,16 +67,19 @@
     .footer-right a { color: var(--muted); text-decoration: none; }
     .footer-right a:hover { color: var(--ink); }
 
+    
     @media (max-width: 720px) {
-      nav { padding: 12px 20px; }
-      .nav-links { gap: 12px; }
+      #nav-toggle { display: block !important; }
+      nav { padding: 12px 20px; grid-template-columns: 1fr auto; }
+      .nav-links { display: none; }
       .hide-mobile { display: none; }
-      .hero-outer { grid-template-columns: 1fr; }
-      .hero-images-left, .hero-images-right { display: none; }
-      .hero { padding: 100px 24px 0; }
-      .products { padding: 0 24px 60px; }
+      .hero { padding: 24px 20px 20px; }
+      .products { padding: 0 20px 48px; }
       .products-grid { grid-template-columns: 1fr; }
       footer { flex-direction: column; padding: 24px 20px; }
+    }
+    @media (max-width: 720px) {
+      [style*="grid-template-columns: 1fr 1fr 1fr 1fr 1fr"] { grid-template-columns: 1fr 1fr !important; }
     }
   </style>
 </head>
@@ -99,6 +102,7 @@
       <button class="lang-btn" onclick="setLang('es')">ES</button>
     </div>
   </div>
+  <button id="nav-toggle" style="display:none; font-size:18px; background:none; border:none; cursor:pointer; color:var(--ink); padding:4px;" aria-label="Menu">☰</button>
 </nav>
 
 <!-- EUROPEAN LEGAL SYSTEMS VALUE header -->
@@ -594,6 +598,29 @@ window.addEventListener('load', () => {
 });
 
 window.addEventListener('resize', () => drawLPChart(null));
+</script>
+<script>
+// Mobile nav toggle
+document.addEventListener('DOMContentLoaded', function() {
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.querySelector('.nav-links');
+  if (toggle && links) {
+    toggle.addEventListener('click', function() {
+      const open = links.style.display === 'flex';
+      links.style.display = open ? 'none' : 'flex';
+      links.style.flexDirection = 'column';
+      links.style.position = 'absolute';
+      links.style.top = '52px';
+      links.style.left = '0';
+      links.style.right = '0';
+      links.style.background = 'rgba(245,242,234,0.98)';
+      links.style.padding = '16px 20px';
+      links.style.borderBottom = '1px solid rgba(15,15,13,0.12)';
+      links.style.zIndex = '99';
+      toggle.textContent = open ? '☰' : '✕';
+    });
+  }
+});
 </script>
 </body>
 </html>
