@@ -16,9 +16,9 @@
     }
     html { scroll-behavior: smooth; }
     body { font-family: var(--serif); background: var(--parchment); color: var(--ink); line-height: 1.75; font-size: 18px; }
-    nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(245,242,234,0.96); backdrop-filter: blur(8px); display: flex; justify-content: space-between; align-items: center; padding: 14px 48px; }
+    nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(253,252,248,0.96); backdrop-filter: blur(8px); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 14px 48px; }
     .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; font-weight: 500; }
-    .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
+    .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; justify-content: center; }
     .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--ink); }
     .lang-switcher { display: flex; border: 1px solid var(--rule); overflow: hidden; }
@@ -124,20 +124,20 @@
 <nav>
   <a class="nav-logo" href="/">1love.works</a>
   <ul class="nav-links">
-    <li class="hide-mobile"><a href="/problem" style="color: var(--ink); border-bottom: 1.5px solid var(--gold);">The Problem</a></li>
-    <li class="hide-mobile"><a href="/solutions">The Proposed Solutions</a></li>
-    <li class="hide-mobile"><a href="/pnc">PNC</a></li>
-    <li class="hide-mobile"><a href="/methodology">About &amp; Methodology</a></li>
-    <li class="hide-mobile"><a href="/participate">Participate</a></li>
-    <li>
-      <div class="lang-switcher">
-        <button class="lang-btn active" onclick="setLang('en')">EN</button>
-        <button class="lang-btn" onclick="setLang('it')">IT</button>
-        <button class="lang-btn" onclick="setLang('fr')">FR</button>
-        <button class="lang-btn" onclick="setLang('es')">ES</button>
-      </div>
-    </li>
+    <li class="hide-mobile"><a href="/problem" style="color: var(--ink); border-bottom: 1.5px solid var(--gold);" data-i18n="nav_problem">The Problem</a></li>
+    <li class="hide-mobile"><a href="/solutions" data-i18n="nav_solutions">The Proposed Solutions</a></li>
+    <li class="hide-mobile"><a href="/pnc" data-i18n="nav_pnc">PNC</a></li>
+    <li class="hide-mobile"><a href="/methodology" data-i18n="nav_methodology">About &amp; Methodology</a></li>
+    <li class="hide-mobile"><a href="/participate" data-i18n="nav_participate">Participate</a></li>
   </ul>
+  <div style="display: flex; justify-content: flex-end;">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('it')">IT</button>
+      <button class="lang-btn" onclick="setLang('fr')">FR</button>
+      <button class="lang-btn" onclick="setLang('es')">ES</button>
+    </div>
+  </div>
 </nav>
 
 <!-- Hero -->
@@ -237,6 +237,7 @@
 <script>
 const T = {
   en: {
+    nav_problem: 'The Problem', nav_solutions: 'The Proposed Solutions', nav_pnc: 'PNC', nav_methodology: 'About &amp; Methodology', nav_participate: 'Participate',
     overline: 'The Problem',
     h1: 'The problem<br/><em>everyone feels</em>',
     hero_intro: 'Bureaucracy. Legal weight. Entropy. The invisible tax on everything.',
@@ -264,6 +265,7 @@ const T = {
     step5_body: "The Legal Systems Meter is the instrument that makes the whole framework legible — to institutions, to investors, to citizens. It tracks entropy in real time, maps it against the equilibrium point, and certifies progress toward optimum. PNC is what the meter issues when a system — or a claim within one — has demonstrably converted entropy into flow. It is not a compliance certificate. It is a mathematical proof that the system is moving towards equilibrium.",
   },
   it: {
+    nav_problem: 'Il Problema', nav_solutions: 'Le Soluzioni Proposte', nav_pnc: 'PNC', nav_methodology: 'Informazioni &amp; Metodologia', nav_participate: 'Partecipa',
     overline: 'Il Problema',
     h1: 'Il problema<br/><em>che tutti sentono</em>',
     hero_intro: 'Burocrazia. Peso normativo. Entropia. La tassa invisibile su tutto.',
@@ -281,6 +283,7 @@ const T = {
     step5_num: '05 — Il Legal System Meter', step5_title: '<em>Piattaforma gamificata</em> proprietaria per ogni sistema giuridico', step5_body: "Il Legal Systems Meter è lo strumento che rende l'intero framework leggibile — per le istituzioni, gli investitori, i cittadini. Il PNC è ciò che il metro emette quando un sistema ha dimostrabilmente convertito l'entropia in flusso.",
   },
   fr: {
+    nav_problem: 'Le Problème', nav_solutions: 'Les Solutions Proposées', nav_pnc: 'PNC', nav_methodology: 'À Propos &amp; Méthodologie', nav_participate: 'Participer',
     overline: 'Le Problème',
     h1: 'Le problème<br/><em>que tout le monde ressent</em>',
     hero_intro: 'Bureaucratie. Poids juridique. Entropie. La taxe invisible sur tout.',
@@ -298,6 +301,7 @@ const T = {
     step5_num: '05 — Le Legal System Meter', step5_title: '<em>Plateforme gamifiée</em> propriétaire pour chaque système juridique', step5_body: "Le Legal Systems Meter est l'instrument qui rend l'ensemble du cadre lisible — pour les institutions, les investisseurs, les citoyens.",
   },
   es: {
+    nav_problem: 'El Problema', nav_solutions: 'Las Soluciones Propuestas', nav_pnc: 'PNC', nav_methodology: 'Acerca &amp; Metodología', nav_participate: 'Participar',
     overline: 'El Problema',
     h1: 'El problema<br/><em>que todos sienten</em>',
     hero_intro: 'Burocracia. Peso jurídico. Entropía. El impuesto invisible sobre todo.',
