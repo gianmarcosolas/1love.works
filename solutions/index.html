@@ -274,4 +274,19 @@ const T = {
     p5_desc: 'La conversión de la entropía jurídica en activos sostenibles. Reclamaciones jurídicas inteligentes convierten esa entropía en activos cuantificables y negociables.',
   },
 };
->
+
+const currentLang = localStorage.getItem('1lw_lang') || (navigator.language || 'en').slice(0,2).toLowerCase();
+
+function setLang(lang) {
+  if (!T[lang]) lang = 'en';
+  localStorage.setItem('1lw_lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (T[lang] && T[lang][key]) el.innerHTML = T[lang][key];
+  });
+  document.documentElement.lang = lang;
+}
+
+document.addEventListener('DOMContentLoaded', () => setLang(currentLang));
+</script>
