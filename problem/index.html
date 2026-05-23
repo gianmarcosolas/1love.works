@@ -97,6 +97,7 @@
       .hero-images .hero-img-item:last-child { grid-column: span 2; }
     }
     @media (max-width: 720px) {
+      #nav-toggle { display: block !important; }
       nav { padding: 12px 20px; }
       .hide-mobile { display: none; }
       .hero, .section, .cta-section { padding-left: 24px; padding-right: 24px; }
@@ -116,8 +117,21 @@
     .step-body { font-size: 17px; color: #3a3a36; line-height: 1.85; }
     .step-arrow { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 28px 192px; display: flex; align-items: center; gap: 8px; }
     .step-arrow::before { content: ''; display: block; width: 40px; height: 0.5px; background: var(--rule); }
-    @media (max-width: 640px) { .step { grid-template-columns: 1fr; } .step img { width: 100%; height: 180px; } .step-arrow { margin-left: 0; } }
-</style>
+    
+    @media (max-width: 720px) {
+      nav { padding: 12px 20px; grid-template-columns: 1fr auto; }
+      .nav-links { display: none; }
+      .hero, .section { padding-left: 20px; padding-right: 20px; }
+      .hero { padding-top: 48px; padding-bottom: 40px; }
+      .hero h1 { font-size: clamp(28px, 8vw, 44px); }
+      .hero-intro { font-size: 16px; }
+      .step { grid-template-columns: 1fr; gap: 16px; }
+      .step img { width: 100%; height: 180px; object-fit: cover; }
+      .step-arrow { margin-left: 0; }
+      .section-num[style*="font-size: 18px"] { font-size: 15px !important; }
+      footer { flex-direction: column; padding: 24px 20px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -138,6 +152,7 @@
       <button class="lang-btn" onclick="setLang('es')">ES</button>
     </div>
   </div>
+  <button id="nav-toggle" style="display:none; font-size:18px; background:none; border:none; cursor:pointer; color:var(--ink); padding:4px;" aria-label="Menu">☰</button>
 </nav>
 
 <!-- Hero -->
