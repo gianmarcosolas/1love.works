@@ -189,7 +189,7 @@
 </footer>
 
 <script>
-const T = {
+var T = {
   en: {
     overline: 'THE PROPOSED SOLUTIONS',
     list_1: 'EU Law Meter', list_2: 'Corporate Meter',
@@ -280,20 +280,20 @@ const T = {
   },
 };
 
-const currentLang = (function(){ try { return localStorage.getItem('1lw_lang'); } catch(e) { return null; } })() || (navigator.language || 'en').slice(0,2).toLowerCase();
+let currentLang = localStorage.getItem('1lw_lang') || 'en';
 
 function setLang(lang) {
-  if (!T[lang]) lang = 'en';
-  try { localStorage.setItem('1lw_lang', lang); } catch(e) {}
+  currentLang = lang;
+  localStorage.setItem('1lw_lang', lang);
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    if (T[lang] && T[lang][key]) el.innerHTML = T[lang][key];
+    if (T[lang] && T[lang][key] !== undefined) el.innerHTML = T[lang][key];
   });
   document.documentElement.lang = lang;
 }
 
-if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', () => setLang(currentLang)); } else { setLang(currentLang); }
+setLang(currentLang);
 </script>
 
 </body>
