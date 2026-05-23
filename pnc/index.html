@@ -16,7 +16,7 @@
     }
     html { scroll-behavior: smooth; }
     body { font-family: var(--serif); background: var(--parchment); color: var(--ink); line-height: 1.75; font-size: 18px; }
-    nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(245,242,234,0.96); backdrop-filter: blur(8px); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 14px 48px; }
+    nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(253,252,248,0.96); backdrop-filter: blur(8px); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 14px 48px; }
     .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; font-weight: 500; }
     .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; justify-content: center; }
     .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
@@ -111,11 +111,11 @@
 <nav>
   <a class="nav-logo" href="/">1love.works</a>
   <ul class="nav-links">
-    <li class="hide-mobile"><a href="/problem">The Problem</a></li>
-    <li class="hide-mobile"><a href="/solutions">The Proposed Solutions</a></li>
-    <li class="hide-mobile"><a href="/pnc" style="color: var(--ink); border-bottom: 1.5px solid var(--gold);">PNC</a></li>
-    <li class="hide-mobile"><a href="/methodology">About &amp; Methodology</a></li>
-    <li class="hide-mobile"><a href="/participate">Participate</a></li>
+    <li class="hide-mobile"><a href="/problem" data-i18n="nav_problem">The Problem</a></li>
+    <li class="hide-mobile"><a href="/solutions" data-i18n="nav_solutions">The Proposed Solutions</a></li>
+    <li class="hide-mobile"><a href="/pnc" style="color: var(--ink); border-bottom: 1.5px solid var(--gold);" data-i18n="nav_pnc">PNC</a></li>
+    <li class="hide-mobile"><a href="/methodology" data-i18n="nav_methodology">About &amp; Methodology</a></li>
+    <li class="hide-mobile"><a href="/participate" data-i18n="nav_participate">Participate</a></li>
   </ul>
   <div style="display: flex; justify-content: flex-end;">
     <div class="lang-switcher">
@@ -329,6 +329,7 @@
 <script>
 const T = {
   en: {
+    nav_problem: 'The Problem', nav_solutions: 'The Proposed Solutions', nav_pnc: 'PNC', nav_methodology: 'About &amp; Methodology', nav_participate: 'Participate',
     overline: '1love.works · PNC — Perpetual Node Certificate',
     h1: 'A stake in <em>optimal Europe.</em><br/>For you.<br/>And your children.',
     hero_intro: 'PNC is not a token you trade. It is a perpetual stake in the only scientific instrument designed to measure the useful work in the system, specifically to reduce European legal entropy created by regulatory weight — defined as a protocol in <strong>phenography©</strong>, the legal-physics technology for the codification of sustainable legal systems. Held for life, inherited by your family, and — if financial institutions accept — available as collateral without ever being sold.',
@@ -408,6 +409,7 @@ const T = {
     footer_note: 'PNC is not a financial instrument. Not tradeable. Issued as part of service delivery only. · De Lege et Amore.',
   },
   it: {
+    nav_problem: 'Il Problema', nav_solutions: 'Le Soluzioni Proposte', nav_pnc: 'PNC', nav_methodology: 'Informazioni &amp; Metodologia', nav_participate: 'Partecipa',
     overline: '1love.works · PNC — Certificato Nodo Perpetuo',
     h1: "Una quota nell'<em>Europa ottimale.</em><br/>Per te.<br/>E per i tuoi figli.",
     hero_intro: "Il PNC non è un token che si scambia. È una quota perpetua nell'unico strumento scientifico progettato per misurare il lavoro utile al sistema, segnatamente a ridurre l'entropia giuridica europea creata dal peso normativo — definito come protocollo nella <strong>phenografia©</strong>, la tecnologia di fisica giuridica per la codificazione di sistemi giuridici sostenibili. Detenuto per tutta la vita, ereditato dalla tua famiglia, e — se gli istituti finanziari lo accettano — disponibile come garanzia senza mai essere venduto.",
@@ -487,6 +489,7 @@ const T = {
     footer_note: 'Il PNC non è uno strumento finanziario. Non negoziabile. Emesso solo come parte della fornitura del servizio. · De Lege et Amore.',
   },
   fr: {
+    nav_problem: 'Le Problème', nav_solutions: 'Les Solutions Proposées', nav_pnc: 'PNC', nav_methodology: 'À Propos &amp; Méthodologie', nav_participate: 'Participer',
     overline: '1love.works · PNC — Certificat de Nœud Perpétuel',
     h1: "Une participation dans l'<em>Europe optimale.</em><br/>Pour vous.<br/>Et vos enfants.",
     hero_intro: "Le PNC n'est pas un jeton que l'on échange. C'est une participation perpétuelle dans le seul instrument scientifique conçu pour mesurer le travail utile au système, notamment à réduire l'entropie juridique européenne créée par le poids réglementaire — défini comme un protocole dans la <strong>phénographie©</strong>, la technologie de physique juridique pour la codification de systèmes juridiques durables. Détenu à vie, hérité par votre famille, et — si les institutions financières l'acceptent — disponible comme garantie sans jamais être vendu.",
@@ -566,6 +569,7 @@ const T = {
     footer_note: "Le PNC n'est pas un instrument financier. Non échangeable. Émis uniquement dans le cadre de la prestation de services. · De Lege et Amore.",
   },
   es: {
+    nav_problem: 'El Problema', nav_solutions: 'Las Soluciones Propuestas', nav_pnc: 'PNC', nav_methodology: 'Acerca &amp; Metodología', nav_participate: 'Participar',
     overline: '1love.works · PNC — Certificado de Nodo Perpetuo',
     h1: 'Una participación en la <em>Europa óptima.</em><br/>Para usted.<br/>Y sus hijos.',
     hero_intro: 'El PNC no es un token que se intercambia. Es una participación perpetua en el único instrumento científico diseñado para medir el trabajo útil al sistema, concretamente a reducir la entropía jurídica europea creada por el peso normativo — definido como protocolo en la <strong>fenografía©</strong>, la tecnología de física jurídica para la codificación de sistemas jurídicos sostenibles. Conservado de por vida, heredado por su familia, y — si las instituciones financieras lo aceptan — disponible como garantía sin ser jamás vendido.',
