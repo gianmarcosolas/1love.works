@@ -17,9 +17,9 @@
     html { scroll-behavior: smooth; }
     body { font-family: var(--serif); background: var(--parchment); color: var(--ink); line-height: 1.75; font-size: 18px; }
 
-    nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(245,242,234,0.96); backdrop-filter: blur(8px); display: flex; justify-content: space-between; align-items: center; padding: 14px 48px; }
+    nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(245,242,234,0.96); backdrop-filter: blur(8px); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 14px 48px; }
     .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; font-weight: 500; }
-    .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
+    .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; justify-content: center; }
     .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--ink); }
     .lang-switcher { display: flex; border: 1px solid var(--rule); overflow: hidden; }
@@ -86,23 +86,20 @@
 <nav>
   <a class="nav-logo" href="/">1love.works</a>
   <ul class="nav-links">
-    <li class="hide-mobile"><a href="https://eulawscanner.eu" target="_blank">EU Law Meter ↗</a></li>
-    <li class="hide-mobile"><a href="https://corporate-scanner.com" target="_blank">Corporate Meter ↗</a></li>
-    <li class="hide-mobile"><a href="/codification">Codification</a></li>
-    <li class="hide-mobile"><a href="/methodology">Methodology</a></li>
-    <li class="hide-mobile"><a href="/pnc">Why PNC</a></li>
-    <li class="hide-mobile"><a href="/participate">Participate</a></li>
-    <li class="hide-mobile"><a href="/criticisms">Criticisms</a></li>
-    <li class="hide-mobile"><a href="https://calendly.com/gmsolas-sustainab-law/legal-consultation-public-entity" target="_blank">Consultation</a></li>
-    <li>
-      <div class="lang-switcher">
-        <button class="lang-btn active" onclick="setLang('en')">EN</button>
-        <button class="lang-btn" onclick="setLang('it')">IT</button>
-        <button class="lang-btn" onclick="setLang('fr')">FR</button>
-        <button class="lang-btn" onclick="setLang('es')">ES</button>
-      </div>
-    </li>
+    <li class="hide-mobile"><a href="/problem" data-i18n="nav_problem">The Problem</a></li>
+    <li class="hide-mobile"><a href="/solutions" data-i18n="nav_solutions">The Proposed Solutions</a></li>
+    <li class="hide-mobile"><a href="/pnc" data-i18n="nav_pnc">PNC</a></li>
+    <li class="hide-mobile"><a href="/methodology" data-i18n="nav_methodology">About &amp; Methodology</a></li>
+    <li class="hide-mobile"><a href="/participate" data-i18n="nav_participate">Participate</a></li>
   </ul>
+  <div style="display: flex; justify-content: flex-end;">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('it')">IT</button>
+      <button class="lang-btn" onclick="setLang('fr')">FR</button>
+      <button class="lang-btn" onclick="setLang('es')">ES</button>
+    </div>
+  </div>
 </nav>
 
 <div class="hero">
@@ -266,6 +263,7 @@
 <script>
 const T = {
   en: {
+    nav_problem: 'The Problem', nav_solutions: 'The Proposed Solutions', nav_pnc: 'PNC', nav_methodology: 'About &amp; Methodology', nav_participate: 'Participate',
     overline: '1love.works · Criticisms',
     h1: 'The strongest objections.<br/><em>Answered honestly.</em>',
     hero_intro: 'Honesty is the most important thing. Every serious framework must confront its critics directly. These are the strongest objections to the legal-physics framework — answered not defensively, but scientifically. Where we don\'t know, we say so. Where the evidence speaks, we cite it. Where the limitation makes us stronger, we explain why.',
@@ -314,6 +312,7 @@ const T = {
     footer_note: 'Honesty is the most important thing. · De Lege et Amore.',
   },
   it: {
+    nav_problem: 'Il Problema', nav_solutions: 'Le Soluzioni Proposte', nav_pnc: 'PNC', nav_methodology: 'Informazioni &amp; Metodologia', nav_participate: 'Partecipa',
     overline: '1love.works · Critiche',
     h1: 'Le obiezioni più forti.<br/><em>Risposte oneste.</em>',
     hero_intro: 'L\'onestà è la cosa più importante. Ogni framework serio deve affrontare direttamente i propri critici. Queste sono le obiezioni più forti al framework di fisica giuridica — risposte non in modo difensivo, ma scientifico. Dove non sappiamo, lo diciamo. Dove le prove parlano, le citiamo. Dove il limite ci rende più forti, spieghiamo perché.',
@@ -362,6 +361,7 @@ const T = {
     footer_note: 'L\'onestà è la cosa più importante. · De Lege et Amore.',
   },
   fr: {
+    nav_problem: 'Le Problème', nav_solutions: 'Les Solutions Proposées', nav_pnc: 'PNC', nav_methodology: 'À Propos &amp; Méthodologie', nav_participate: 'Participer',
     overline: '1love.works · Critiques',
     h1: 'Les objections les plus fortes.<br/><em>Répondues honnêtement.</em>',
     hero_intro: 'L\'honnêteté est la chose la plus importante. Tout cadre sérieux doit confronter directement ses critiques. Ce sont les objections les plus fortes au cadre de physique juridique — répondues non pas défensivement, mais scientifiquement. Là où nous ne savons pas, nous le disons. Là où les preuves parlent, nous les citons. Là où la limitation nous rend plus forts, nous expliquons pourquoi.',
@@ -410,6 +410,7 @@ const T = {
     footer_note: 'L\'honnêteté est la chose la plus importante. · De Lege et Amore.',
   },
   es: {
+    nav_problem: 'El Problema', nav_solutions: 'Las Soluciones Propuestas', nav_pnc: 'PNC', nav_methodology: 'Acerca &amp; Metodología', nav_participate: 'Participar',
     overline: '1love.works · Críticas',
     h1: 'Las objeciones más fuertes.<br/><em>Respondidas honestamente.</em>',
     hero_intro: 'La honestidad es lo más importante. Todo marco serio debe confrontar directamente a sus críticos. Estas son las objeciones más fuertes al marco de física jurídica — respondidas no defensivamente, sino científicamente. Donde no sabemos, lo decimos. Donde las pruebas hablan, las citamos. Donde la limitación nos hace más fuertes, explicamos por qué.',
