@@ -117,7 +117,7 @@
 <!-- Live entropy dashboard -->
   <div style="border-top: 1px solid var(--rule); padding: 0;">
 
-    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1px; background: var(--rule); margin-bottom: 1px;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; gap: 1px; background: var(--rule); margin-bottom: 1px;">
 
       <div style="background: var(--parchment); padding: 16px 20px;">
         <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 6px;" data-i18n="metric_entropy">Total entropy (ΣS)</div>
@@ -126,6 +126,20 @@
       <div style="background: var(--parchment); padding: 16px 20px;">
         <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 6px;" data-i18n="metric_pnc">⬡ PNC in circulation</div>
         <div style="font-family: var(--mono); font-size: 26px; font-weight: 500; color: var(--ink);" id="lp-pnc">—</div>
+      </div>
+      <div style="background: var(--cream); padding: 16px 20px; border: 1px solid rgba(184,134,11,0.2);">
+        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 10px;" data-i18n="metric_value">⬡ Implied PNC value</div>
+        <div style="display: flex; align-items: baseline; gap: 16px;">
+          <div>
+            <div style="font-family: var(--mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 3px;" data-i18n="metric_founding">Founding</div>
+            <div style="font-family: var(--mono); font-size: 20px; font-weight: 500; color: var(--muted);">€99</div>
+          </div>
+          <div style="width: 1px; height: 36px; background: rgba(184,134,11,0.25);"></div>
+          <div>
+            <div style="font-family: var(--mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 3px;" data-i18n="metric_current">Current</div>
+            <div style="font-family: var(--mono); font-size: 26px; font-weight: 500; color: var(--gold);" id="lp-value">€99</div>
+          </div>
+        </div>
       </div>
       <a href="/solutions" style="background: var(--ink); padding: 16px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 8px; text-decoration: none;">
         <div style="font-family: var(--serif, Georgia, serif); font-size: 15px; font-weight: 500; color: var(--parchment); line-height: 1.35; letter-spacing: 0.01em;" data-i18n="box_entropy_label">How to measure entropy — legal weight and increase PNC value</div>
