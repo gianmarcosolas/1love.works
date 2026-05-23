@@ -16,9 +16,9 @@
     }
     html { scroll-behavior: smooth; }
     body { font-family: var(--serif); background: var(--parchment); color: var(--ink); line-height: 1.75; font-size: 18px; }
-    nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(245,242,234,0.96); backdrop-filter: blur(8px); display: flex; justify-content: space-between; align-items: center; padding: 14px 48px; }
+    nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(245,242,234,0.96); backdrop-filter: blur(8px); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 14px 48px; }
     .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; font-weight: 500; }
-    .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
+    .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; justify-content: center; }
     .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--ink); }
     .lang-switcher { display: flex; border: 1px solid var(--rule); overflow: hidden; }
@@ -117,15 +117,15 @@
     <li class="hide-mobile"><a href="/pnc">PNC</a></li>
     <li class="hide-mobile"><a href="/methodology">About &amp; Methodology</a></li>
     <li class="hide-mobile"><a href="/participate">Participate</a></li>
-    <li>
-      <div class="lang-switcher">
-        <button class="lang-btn active" onclick="setLang('en')">EN</button>
-        <button class="lang-btn" onclick="setLang('it')">IT</button>
-        <button class="lang-btn" onclick="setLang('fr')">FR</button>
-        <button class="lang-btn" onclick="setLang('es')">ES</button>
-      </div>
-    </li>
   </ul>
+  <div style="display: flex; justify-content: flex-end;">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('it')">IT</button>
+      <button class="lang-btn" onclick="setLang('fr')">FR</button>
+      <button class="lang-btn" onclick="setLang('es')">ES</button>
+    </div>
+  </div>
 </nav>
 
 <div class="hero">
