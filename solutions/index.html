@@ -217,8 +217,8 @@ const T = {
     list_1: 'EU Law Meter', list_2: 'Corporate Meter',
     list_3: 'Codificazione dei Sistemi Giuridici Sostenibili',
     list_4: 'Big Tech Claim', list_5: 'Azioni legali per attivi sostenibili',
-    hero_intro: 'Un framework tecnologico per misurare il peso normativo e l'entropia, codificare e ottimizzare i sistemi giuridici con azioni legali intelligenti.',
-    how_title: 'Come misurare l'entropia &mdash; il peso normativo e aumentare il valore PNC',
+    hero_intro: 'Un framework tecnologico per misurare il peso normativo e l\'entropia, codificare e ottimizzare i sistemi giuridici con azioni legali intelligenti.',
+    how_title: 'Come misurare l\'entropia &mdash; il peso normativo e aumentare il valore PNC',
     p1_label: 'I &mdash; Strumento pubblico', p1_tag: 'Attivo',
     p1_desc: 'Misurazione della conformità agli obblighi del diritto UE per qualsiasi atto o entità. Tre scansioni gratuite. Nessun account richiesto.',
     p2_label: 'II &mdash; Strumento enterprise', p2_tag: 'In sviluppo',
@@ -229,32 +229,32 @@ const T = {
     p3_link: 'Scopri &rarr;',
     p4_label: 'IV &mdash; Strumento legale collettivo', p4_tag: 'Attivo',
     p4_title: 'Big Tech<br/><em>Claim</em>',
-    p4_desc: 'Uno strumento di azione legale collettiva che prende di mira l'entropia normativa generata dalle piattaforme tecnologiche dominanti nei mercati europei.',
+    p4_desc: 'Uno strumento di azione legale collettiva che prende di mira l\'entropia normativa generata dalle piattaforme tecnologiche dominanti nei mercati europei.',
     p5_label: 'V &mdash; Strumento di conversione degli attivi', p5_tag: 'In sviluppo',
     p5_title: 'Azioni legali per<br/><em>attivi sostenibili</em>',
-    p5_desc: 'La conversione dell'entropia giuridica in attivi sostenibili attraverso azioni legali intelligenti strutturate con la metodologia legale-fisica.',
+    p5_desc: 'La conversione dell\'entropia giuridica in attivi sostenibili attraverso azioni legali intelligenti strutturate con la metodologia legale-fisica.',
   },
   fr: {
     overline: 'LES SOLUTIONS PROPOSÉES',
     list_1: 'EU Law Meter', list_2: 'Corporate Meter',
     list_3: 'Codification des Systèmes Juridiques Durables',
     list_4: 'Big Tech Claim', list_5: 'Actions juridiques pour actifs durables',
-    hero_intro: 'Un cadre technologique pour mesurer le poids juridique et l'entropie, codifier et optimiser les systèmes juridiques avec des actions juridiques intelligentes.',
-    how_title: 'Comment mesurer l'entropie &mdash; le poids juridique et augmenter la valeur PNC',
+    hero_intro: 'Un cadre technologique pour mesurer le poids juridique et l\'entropie, codifier et optimiser les systèmes juridiques avec des actions juridiques intelligentes.',
+    how_title: 'Comment mesurer l\'entropie &mdash; le poids juridique et augmenter la valeur PNC',
     p1_label: 'I &mdash; Instrument public', p1_tag: 'Actif',
     p1_desc: 'Mesure de conformité des obligations du droit UE pour tout acte ou entité. Trois analyses gratuites. Aucun compte requis.',
     p2_label: 'II &mdash; Instrument enterprise', p2_tag: 'En développement',
     p2_desc: 'Mesure de conformité pour toute société cotée. Une analyse aléatoire gratuite.',
     p3_label: 'III &mdash; Service système complet', p3_tag: 'Sur mandat',
     p3_title: 'Codification des Systèmes<br/><em>Juridiques Durables</em>',
-    p3_desc: 'Mesure, cartographie et optimisation d'un système juridique entier — ville, municipalité, état.',
+    p3_desc: 'Mesure, cartographie et optimisation d\'un système juridique entier — ville, municipalité, état.',
     p3_link: 'Explorer &rarr;',
     p4_label: 'IV &mdash; Instrument juridique collectif', p4_tag: 'Actif',
     p4_title: 'Big Tech<br/><em>Claim</em>',
-    p4_desc: 'Un instrument d'action juridique collective ciblant l'entropie réglementaire générée par les plateformes technologiques dominantes dans les marchés européens.',
-    p5_label: 'V &mdash; Instrument de conversion d'actifs', p5_tag: 'En développement',
+    p4_desc: 'Un instrument d\'action juridique collective ciblant l\'entropie réglementaire générée par les plateformes technologiques dominantes dans les marchés européens.',
+    p5_label: 'V &mdash; Instrument de conversion d\'actifs', p5_tag: 'En développement',
     p5_title: 'Actions juridiques pour<br/><em>actifs durables</em>',
-    p5_desc: 'La conversion de l'entropie juridique en actifs durables grâce à des actions juridiques intelligentes structurées selon la méthodologie juridico-physique.',
+    p5_desc: 'La conversion de l\'entropie juridique en actifs durables grâce à des actions juridiques intelligentes structurées selon la méthodologie juridico-physique.',
   },
   es: {
     overline: 'LAS SOLUCIONES PROPUESTAS',
@@ -280,11 +280,11 @@ const T = {
   },
 };
 
-const currentLang = localStorage.getItem('1lw_lang') || (navigator.language || 'en').slice(0,2).toLowerCase();
+const currentLang = (function(){ try { return localStorage.getItem('1lw_lang'); } catch(e) { return null; } })() || (navigator.language || 'en').slice(0,2).toLowerCase();
 
 function setLang(lang) {
   if (!T[lang]) lang = 'en';
-  localStorage.setItem('1lw_lang', lang);
+  try { localStorage.setItem('1lw_lang', lang); } catch(e) {}
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
@@ -293,7 +293,7 @@ function setLang(lang) {
   document.documentElement.lang = lang;
 }
 
-document.addEventListener('DOMContentLoaded', () => setLang(currentLang));
+if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', () => setLang(currentLang)); } else { setLang(currentLang); }
 </script>
 
 </body>
