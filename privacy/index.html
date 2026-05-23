@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Sovereignty — 1love.works</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #0f0f0d; --parchment: #f5f2ea; --cream: #ede9df; --white: #fdfcf8;
+      --gold: #b8860b; --muted: #6b6860; --rule: rgba(15,15,13,0.10);
+      --rule-med: rgba(15,15,13,0.18);
+      --serif: 'EB Garamond', Georgia, serif; --mono: 'DM Mono', monospace;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--serif); background: var(--white); color: var(--ink); line-height: 1.75; font-size: 18px; }
+
+    nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(253,252,248,0.96); backdrop-filter: blur(8px); display: flex; justify-content: space-between; align-items: center; padding: 14px 48px; }
+    .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; font-weight: 500; }
+    .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
+    .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--ink); }
+    .lang-switcher { display: flex; border: 1px solid var(--rule-med); overflow: hidden; }
+    .lang-btn { font-family: var(--mono); font-size: 10px; padding: 5px 9px; border: none; background: transparent; color: var(--muted); cursor: pointer; border-right: 1px solid var(--rule-med); transition: all 0.15s; }
+    .lang-btn:last-child { border-right: none; }
+    .lang-btn.active { background: var(--ink); color: var(--white); }
+    .lang-btn:hover:not(.active) { background: var(--cream); }
+
+    .hero { max-width: 760px; margin: 0 auto; padding: 72px 48px 56px; border-bottom: 1px solid var(--rule); }
+    .hero-overline { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+    .hero h1 { font-size: clamp(36px, 5vw, 58px); font-weight: 400; line-height: 1.12; margin-bottom: 20px; }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero-sub { font-size: 18px; color: #4a4a46; line-height: 1.9; max-width: 580px; }
+
+    .wrap { max-width: 760px; margin: 0 auto; padding: 56px 48px 96px; }
+
+    .principle { padding: 40px 0; border-bottom: 1px solid var(--rule); }
+    .principle:last-of-type { border-bottom: none; }
+    .principle-num { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+    .principle-num::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+    .principle h2 { font-size: clamp(22px, 3vw, 34px); font-weight: 400; line-height: 1.2; margin-bottom: 16px; }
+    .principle h2 em { font-style: italic; color: var(--gold); }
+    .principle p { font-size: 17px; color: #3a3a36; line-height: 1.9; margin-bottom: 16px; }
+    .principle p:last-child { margin-bottom: 0; }
+    .principle p strong { color: var(--ink); font-weight: 500; }
+
+    .data-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; }
+    .data-table th { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--rule-med); }
+    .data-table td { padding: 12px 14px; border-bottom: 1px solid var(--rule); color: #3a3a36; vertical-align: top; line-height: 1.6; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table td:first-child { font-family: var(--mono); font-size: 11px; color: var(--ink); white-space: nowrap; }
+    .tag { display: inline-block; font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; padding: 3px 8px; border: 1px solid var(--rule-med); color: var(--muted); margin-right: 4px; }
+    .tag.device { border-color: rgba(184,134,11,0.3); color: var(--gold); }
+    .tag.server { border-color: rgba(15,15,13,0.2); color: var(--muted); }
+    .tag.processor { border-color: rgba(15,15,13,0.15); color: var(--muted); }
+
+    .pull-quote { border-left: 4px solid var(--gold); padding: 20px 28px; margin: 32px 0; background: rgba(184,134,11,0.03); }
+    .pull-quote p { font-size: 19px; font-style: italic; color: var(--ink); line-height: 1.7; margin: 0; }
+
+    .rights-list { list-style: none; margin: 20px 0; }
+    .rights-list li { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--rule); font-size: 16px; color: #3a3a36; line-height: 1.7; }
+    .rights-list li:last-child { border-bottom: none; }
+    .rights-list li::before { content: '⬡'; color: var(--gold); font-size: 11px; flex-shrink: 0; padding-top: 4px; }
+
+    .contact-block { background: var(--cream); padding: 28px 32px; margin-top: 32px; }
+    .contact-block p { font-family: var(--mono); font-size: 11px; color: var(--muted); line-height: 1.8; }
+    .contact-block a { color: var(--gold); text-decoration: none; }
+    .contact-block a:hover { text-decoration: underline; }
+
+    .version-note { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule); letter-spacing: 0.05em; }
+
+    footer { border-top: 2px solid var(--ink); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-left { font-family: var(--mono); font-size: 11px; color: var(--muted); line-height: 1.7; }
+    .footer-right { font-family: var(--mono); font-size: 10px; display: flex; gap: 24px; }
+    .footer-right a { color: var(--muted); text-decoration: none; }
+    .footer-right a:hover { color: var(--ink); }
+
+    @media (max-width: 720px) {
+      nav { padding: 12px 20px; } .hide-mobile { display: none; }
+      .hero, .wrap { padding-left: 24px; padding-right: 24px; }
+      .hero { padding-top: 48px; }
+      .data-table { font-size: 13px; }
+      footer { flex-direction: column; padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">1love.works</a>
+  <ul class="nav-links">
+    <li class="hide-mobile"><a href="/pnc">Why PNC</a></li>
+    <li class="hide-mobile"><a href="/methodology">Methodology</a></li>
+    <li class="hide-mobile"><a href="/participate">Participate</a></li>
+    <li class="hide-mobile"><a href="/criticisms">Criticisms</a></li>
+    <li>
+      <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('it')">IT</button>
+        <button class="lang-btn" onclick="setLang('fr')">FR</button>
+        <button class="lang-btn" onclick="setLang('es')">ES</button>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <p class="hero-overline" data-i18n="overline">1love.works · Data Sovereignty</p>
+  <h1 data-i18n="h1">Your data.<br/><em>Your node.<br/>Your right.</em></h1>
+  <p class="hero-sub" data-i18n="hero_sub">This is not a privacy policy in the conventional sense. It is a statement of architecture. On this platform, data sovereignty is not a promise we make — it is the design. You own your node. You own your data. The network reads from nodes it never holds.</p>
+</div>
+
+<div class="wrap">
+
+  <!-- I -->
+  <div class="principle">
+    <p class="principle-num" data-i18n="p1_num">I · The principle</p>
+    <h2 data-i18n="p1_h2">You are not a user.<br/>You are a <em>node.</em></h2>
+    <p data-i18n="p1_p1">Conventional platforms treat personal data as a resource they extract, store, and monetise. The user is the product. The privacy policy is the contract by which the platform justifies that extraction. We reject this model — not as a legal strategy, but because it contradicts what 1love.works is.</p>
+    <p data-i18n="p1_p2">A PNC holder is a founding node in the measurement network of the European sovereign platform. A node is not a user record in a database. It is a sovereign participant — owning its own code, its own fraction of the platform, its own data. The network is the aggregate of nodes. The platform reads from nodes. It does not own them.</p>
+    <div class="pull-quote">
+      <p data-i18n="p1_quote">"Data sovereignty is not a privacy feature. It is the legal-physical expression of what a node is: a sovereign unit of measurement, owned by the person who holds it, anchored to no authority but the mathematics of the network."</p>
+    </div>
+    <p data-i18n="p1_p3">This is the direction of the architecture. Some of it is already live. Some of it — full on-chain anchoring of node identity, decentralised storage, wallet-based authentication — is being built. This document is honest about both.</p>
+  </div>
+
+  <!-- II -->
+  <div class="principle">
+    <p class="principle-num" data-i18n="p2_num">II · What lives where</p>
+    <h2 data-i18n="p2_h2">Your device.<br/>Your server.<br/><em>Nobody else's.</em></h2>
+    <p data-i18n="p2_intro">Here is a precise account of every data point this platform touches, where it lives, and who can access it.</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th data-i18n="th_data">Data</th>
+          <th data-i18n="th_where">Where it lives</th>
+          <th data-i18n="th_who">Who can access it</th>
+          <th data-i18n="th_why">Why</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-i18n="td1_data">Node declaration<br/>(name, role, jurisdiction, bio, link)</td>
+          <td><span class="tag device" data-i18n="tag_device">Your device</span></td>
+          <td data-i18n="td1_who">You only. Never transmitted.</td>
+          <td data-i18n="td1_why">localStorage — the registry lives in your browser. No server ever receives it.</td>
+        </tr>
+        <tr>
+          <td data-i18n="td2_data">Manifest interest form<br/>(email, country, region, city, interests)</td>
+          <td><span class="tag server" data-i18n="tag_server">Research server</span></td>
+          <td data-i18n="td2_who">Avv. Dr. Gian Marco Solas · Supabase (processor)</td>
+          <td data-i18n="td2_why">Empirical research map. Submitted voluntarily and explicitly. Used only to identify territories for codification priority. Never sold, never profiled, never shared.</td>
+        </tr>
+        <tr>
+          <td data-i18n="td3_data">Payment data<br/>(card, billing address)</td>
+          <td><span class="tag processor" data-i18n="tag_processor">Stripe</span></td>
+          <td data-i18n="td3_who">Stripe only. We never see card data.</td>
+          <td data-i18n="td3_why">Payment processing. Stripe is GDPR-compliant and acts as an independent data controller for payment data under their own privacy policy.</td>
+        </tr>
+        <tr>
+          <td data-i18n="td4_data">PNC certificate<br/>(node ID, wallet address)</td>
+          <td><span class="tag device" data-i18n="tag_chain">On-chain (coming)</span></td>
+          <td data-i18n="td4_who">Public — by design.</td>
+          <td data-i18n="td4_why">The PNC is a public proof of participation in the measurement network. Its on-chain record is readable by the network. The identity behind the address is yours to disclose or not.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- III -->
+  <div class="principle">
+    <p class="principle-num" data-i18n="p3_num">III · The manifest interest form</p>
+    <h2 data-i18n="p3_h2">The one place data<br/>reaches a <em>server.</em></h2>
+    <p data-i18n="p3_p1">When you submit the manifest interest form, your email address, country, region, city, and interest areas are transmitted to a research database hosted by Supabase (EU region). This is the only point in the platform where personal data leaves your device.</p>
+    <p data-i18n="p3_p2"><strong>The legal basis is your explicit consent,</strong> given by submitting the form after reading this document. The purpose is singular: to build an empirical map of territories where codification is needed. The data is not used for marketing, profiling, advertising, or any purpose beyond that map.</p>
+    <p data-i18n="p3_p3"><strong>Supabase</strong> acts as a data processor under a Data Processing Agreement. Data is stored in the EU. Supabase does not process your data for its own purposes.</p>
+    <p data-i18n="p3_p4">You may request deletion of your submitted data at any time by emailing <a href="mailto:gmsolas@sustainab-law.eu" style="color:var(--gold);">gmsolas@sustainab-law.eu</a> with the subject line "Data deletion request". Your record will be deleted within 30 days.</p>
+  </div>
+
+  <!-- IV -->
+  <div class="principle">
+    <p class="principle-num" data-i18n="p4_num">IV · What we will never do</p>
+    <h2 data-i18n="p4_h2">The <em>absolute limits.</em></h2>
+    <ul class="rights-list">
+      <li data-i18n="never1">Sell, rent, or share your data with any third party for commercial purposes — ever. This would corrupt the measurement network and contradict the founding logic of phenography©.</li>
+      <li data-i18n="never2">Use your data for advertising, behavioural profiling, or algorithmic targeting of any kind.</li>
+      <li data-i18n="never3">Retain your data beyond the purpose for which it was submitted. The empirical map is a research instrument, not a CRM.</li>
+      <li data-i18n="never4">Create hidden data flows. Every data point is accounted for in the table above. If that table changes, this document is updated and the change is noted with a version date.</li>
+      <li data-i18n="never5">Claim ownership of your node. Your PNC, your node identity, your declared data — these are yours. The platform is the measurement instrument. It does not own the nodes it measures.</li>
+    </ul>
+  </div>
+
+  <!-- V -->
+  <div class="principle">
+    <p class="principle-num" data-i18n="p5_num">V · The Web3 architecture — where we are going</p>
+    <h2 data-i18n="p5_h2">Every node a sovereign.<br/><em>No platform holds the network.</em></h2>
+    <p data-i18n="p5_p1">The current architecture is a transitional state. The direction is fully decentralised node identity: each PNC holder authenticates via a cryptographic wallet, their certificate is anchored on-chain, and their node data is stored on infrastructure they control — not on any server operated by or on behalf of 1love.works.</p>
+    <p data-i18n="p5_p2">In this architecture, GDPR compliance is not a policy question — it is a mathematical fact. Data that never reaches a controller cannot be processed by one. The network reads the aggregate of node measurements. It holds no individual records. The phenography© protocol defines what is measured. The nodes decide what they declare.</p>
+    <p data-i18n="p5_p3">This document will be updated as each layer of this architecture is implemented. The transition from centralised to decentralised storage will be communicated to all registered participants before it occurs.</p>
+    <div class="pull-quote">
+      <p data-i18n="p5_quote">"A legal system that measures entropy must itself be low-entropy. That means no unnecessary data, no unnecessary intermediaries, no unnecessary authority. The platform is the instrument. The nodes are the sovereigns."</p>
+    </div>
+  </div>
+
+  <!-- VI -->
+  <div class="principle">
+    <p class="principle-num" data-i18n="p6_num">VI · Your rights</p>
+    <h2 data-i18n="p6_h2">GDPR rights —<br/>and beyond <em>GDPR.</em></h2>
+    <p data-i18n="p6_intro">Under GDPR (Regulation EU 2016/679), you have the following rights with respect to any personal data processed by this platform:</p>
+    <ul class="rights-list">
+      <li data-i18n="right1"><strong>Access.</strong> You may request a copy of all personal data we hold about you.</li>
+      <li data-i18n="right2"><strong>Rectification.</strong> You may request correction of any inaccurate data.</li>
+      <li data-i18n="right3"><strong>Erasure.</strong> You may request deletion of your data at any time, without condition.</li>
+      <li data-i18n="right4"><strong>Portability.</strong> You may request your data in a structured, machine-readable format.</li>
+      <li data-i18n="right5"><strong>Objection.</strong> You may object to any processing at any time.</li>
+      <li data-i18n="right6"><strong>Complaint.</strong> You have the right to lodge a complaint with your national data protection authority.</li>
+    </ul>
+    <p data-i18n="p6_beyond" style="margin-top:20px;">Beyond GDPR: the architecture of this platform is designed so that most of your data never reaches a controller at all. The node registry lives on your device. Your PNC is yours. These are not privacy promises — they are architectural facts.</p>
+
+    <div class="contact-block">
+      <p data-i18n="contact_block">To exercise any right, or for any question about data processing on this platform:<br/><br/>
+        <strong>Avv. Dr. Gian Marco Solas</strong><br/>
+        Data controller · 1love.works<br/>
+        <a href="mailto:gmsolas@sustainab-law.eu">gmsolas@sustainab-law.eu</a><br/><br/>
+        Subject line: <em>"Data request — [your name]"</em><br/>
+        Response within 30 days. Deletion within 30 days of request.
+      </p>
+    </div>
+  </div>
+
+  <div class="version-note" data-i18n="version_note">Version 1.0 · May 2026 · This document is updated each time the data architecture changes. The current version is always at 1love.works/privacy. · De Lege et Amore.</div>
+
+</div>
+
+<footer>
+  <div class="footer-left">
+    <strong>1love.works</strong> · © 2019–2026 Avv. Dr. Gian Marco Solas · <span data-i18n="footer_rights">All rights reserved</span><br/>
+    <em style="font-size:10px;" data-i18n="footer_note">PNC is not a financial instrument. Not tradeable. Issued as part of service delivery only. · De Lege et Amore.</em>
+  </div>
+  <div class="footer-right">
+    <a href="/">Home</a>
+    <a href="/pnc">Why PNC</a>
+    <a href="/participate">Participate</a>
+    <a href="/methodology">Methodology</a>
+  </div>
+</footer>
+
+<script>
+const T = {
+  en: {
+    overline: '1love.works · Data Sovereignty',
+    h1: 'Your data.<br/><em>Your node.<br/>Your right.</em>',
+    hero_sub: 'This is not a privacy policy in the conventional sense. It is a statement of architecture. On this platform, data sovereignty is not a promise we make — it is the design. You own your node. You own your data. The network reads from nodes it never holds.',
+    p1_num: 'I · The principle',
+    p1_h2: 'You are not a user.<br/>You are a <em>node.</em>',
+    p1_p1: 'Conventional platforms treat personal data as a resource they extract, store, and monetise. The user is the product. The privacy policy is the contract by which the platform justifies that extraction. We reject this model — not as a legal strategy, but because it contradicts what 1love.works is.',
+    p1_p2: 'A PNC holder is a founding node in the measurement network of the European sovereign platform. A node is not a user record in a database. It is a sovereign participant — owning its own code, its own fraction of the platform, its own data. The network is the aggregate of nodes. The platform reads from nodes. It does not own them.',
+    p1_quote: '"Data sovereignty is not a privacy feature. It is the legal-physical expression of what a node is: a sovereign unit of measurement, owned by the person who holds it, anchored to no authority but the mathematics of the network."',
+    p1_p3: 'This is the direction of the architecture. Some of it is already live. Some of it — full on-chain anchoring of node identity, decentralised storage, wallet-based authentication — is being built. This document is honest about both.',
+    p2_num: 'II · What lives where',
+    p2_h2: 'Your device.<br/>Your server.<br/><em>Nobody else\'s.</em>',
+    p2_intro: 'Here is a precise account of every data point this platform touches, where it lives, and who can access it.',
+    th_data: 'Data', th_where: 'Where it lives', th_who: 'Who can access it', th_why: 'Why',
+    tag_device: 'Your device', tag_server: 'Research server', tag_processor: 'Stripe', tag_chain: 'On-chain (coming)',
+    td1_data: 'Node declaration<br/>(name, role, jurisdiction, bio, link)',
+    td1_who: 'You only. Never transmitted.',
+    td1_why: 'localStorage — the registry lives in your browser. No server ever receives it.',
+    td2_data: 'Manifest interest form<br/>(email, country, region, city, interests)',
+    td2_who: 'Avv. Dr. Gian Marco Solas · Supabase (processor)',
+    td2_why: 'Empirical research map. Submitted voluntarily and explicitly. Used only to identify territories for codification priority. Never sold, never profiled, never shared.',
+    td3_data: 'Payment data<br/>(card, billing address)',
+    td3_who: 'Stripe only. We never see card data.',
+    td3_why: 'Payment processing. Stripe is GDPR-compliant and acts as an independent data controller for payment data under their own privacy policy.',
+    td4_data: 'PNC certificate<br/>(node ID, wallet address)',
+    td4_who: 'Public — by design.',
+    td4_why: 'The PNC is a public proof of participation in the measurement network. Its on-chain record is readable by the network. The identity behind the address is yours to disclose or not.',
+    p3_num: 'III · The manifest interest form',
+    p3_h2: 'The one place data<br/>reaches a <em>server.</em>',
+    p3_p1: 'When you submit the manifest interest form, your email address, country, region, city, and interest areas are transmitted to a research database hosted by Supabase (EU region). This is the only point in the platform where personal data leaves your device.',
+    p3_p2: '<strong>The legal basis is your explicit consent,</strong> given by submitting the form after reading this document. The purpose is singular: to build an empirical map of territories where codification is needed. The data is not used for marketing, profiling, advertising, or any purpose beyond that map.',
+    p3_p3: '<strong>Supabase</strong> acts as a data processor under a Data Processing Agreement. Data is stored in the EU. Supabase does not process your data for its own purposes.',
+    p3_p4: 'You may request deletion of your submitted data at any time by emailing <a href="mailto:gmsolas@sustainab-law.eu" style="color:var(--gold);">gmsolas@sustainab-law.eu</a> with the subject line "Data deletion request". Your record will be deleted within 30 days.',
+    p4_num: 'IV · What we will never do',
+    p4_h2: 'The <em>absolute limits.</em>',
+    never1: 'Sell, rent, or share your data with any third party for commercial purposes — ever. This would corrupt the measurement network and contradict the founding logic of phenography©.',
+    never2: 'Use your data for advertising, behavioural profiling, or algorithmic targeting of any kind.',
+    never3: 'Retain your data beyond the purpose for which it was submitted. The empirical map is a research instrument, not a CRM.',
+    never4: 'Create hidden data flows. Every data point is accounted for in the table above. If that table changes, this document is updated and the change is noted with a version date.',
+    never5: 'Claim ownership of your node. Your PNC, your node identity, your declared data — these are yours. The platform is the measurement instrument. It does not own the nodes it measures.',
+    p5_num: 'V · The Web3 architecture — where we are going',
+    p5_h2: 'Every node a sovereign.<br/><em>No platform holds the network.</em>',
+    p5_p1: 'The current architecture is a transitional state. The direction is fully decentralised node identity: each PNC holder authenticates via a cryptographic wallet, their certificate is anchored on-chain, and their node data is stored on infrastructure they control — not on any server operated by or on behalf of 1love.works.',
+    p5_p2: 'In this architecture, GDPR compliance is not a policy question — it is a mathematical fact. Data that never reaches a controller cannot be processed by one. The network reads the aggregate of node measurements. It holds no individual records. The phenography© protocol defines what is measured. The nodes decide what they declare.',
+    p5_p3: 'This document will be updated as each layer of this architecture is implemented. The transition from centralised to decentralised storage will be communicated to all registered participants before it occurs.',
+    p5_quote: '"A legal system that measures entropy must itself be low-entropy. That means no unnecessary data, no unnecessary intermediaries, no unnecessary authority. The platform is the instrument. The nodes are the sovereigns."',
+    p6_num: 'VI · Your rights',
+    p6_h2: 'GDPR rights —<br/>and beyond <em>GDPR.</em>',
+    p6_intro: 'Under GDPR (Regulation EU 2016/679), you have the following rights with respect to any personal data processed by this platform:',
+    right1: '<strong>Access.</strong> You may request a copy of all personal data we hold about you.',
+    right2: '<strong>Rectification.</strong> You may request correction of any inaccurate data.',
+    right3: '<strong>Erasure.</strong> You may request deletion of your data at any time, without condition.',
+    right4: '<strong>Portability.</strong> You may request your data in a structured, machine-readable format.',
+    right5: '<strong>Objection.</strong> You may object to any processing at any time.',
+    right6: '<strong>Complaint.</strong> You have the right to lodge a complaint with your national data protection authority.',
+    p6_beyond: 'Beyond GDPR: the architecture of this platform is designed so that most of your data never reaches a controller at all. The node registry lives on your device. Your PNC is yours. These are not privacy promises — they are architectural facts.',
+    contact_block: 'To exercise any right, or for any question about data processing on this platform:<br/><br/><strong>Avv. Dr. Gian Marco Solas</strong><br/>Data controller · 1love.works<br/><a href="mailto:gmsolas@sustainab-law.eu" style="color:var(--gold);">gmsolas@sustainab-law.eu</a><br/><br/>Subject line: <em>"Data request — [your name]"</em><br/>Response within 30 days. Deletion within 30 days of request.',
+    version_note: 'Version 1.0 · May 2026 · This document is updated each time the data architecture changes. The current version is always at 1love.works/privacy. · De Lege et Amore.',
+    footer_rights: 'All rights reserved',
+    footer_note: 'PNC is not a financial instrument. Not tradeable. Issued as part of service delivery only. · De Lege et Amore.',
+  },
+  it: {
+    overline: '1love.works · Sovranità dei Dati',
+    h1: 'I tuoi dati.<br/><em>Il tuo nodo.<br/>Il tuo diritto.</em>',
+    hero_sub: 'Questo non è un\'informativa sulla privacy nel senso convenzionale. È una dichiarazione di architettura. Su questa piattaforma, la sovranità dei dati non è una promessa che facciamo — è il progetto. Sei proprietario del tuo nodo. Sei proprietario dei tuoi dati. La rete legge dai nodi che non detiene mai.',
+    p1_num: 'I · Il principio',
+    p1_h2: 'Non sei un utente.<br/>Sei un <em>nodo.</em>',
+    p1_p1: 'Le piattaforme convenzionali trattano i dati personali come una risorsa da estrarre, archiviare e monetizzare. L\'utente è il prodotto. L\'informativa sulla privacy è il contratto con cui la piattaforma giustifica quell\'estrazione. Rifiutiamo questo modello — non come strategia legale, ma perché contraddice ciò che è 1love.works.',
+    p1_p2: 'Un detentore di PNC è un nodo fondatore nella rete di misurazione della piattaforma sovrana europea. Un nodo non è un record utente in un database. È un partecipante sovrano — proprietario del proprio codice, della propria quota della piattaforma, dei propri dati. La rete è l\'aggregato dei nodi. La piattaforma legge dai nodi. Non li possiede.',
+    p1_quote: '"La sovranità dei dati non è una funzione di privacy. È l\'espressione fisico-giuridica di ciò che è un nodo: un\'unità sovrana di misurazione, di proprietà della persona che la detiene, ancorata a nessuna autorità se non alla matematica della rete."',
+    p1_p3: 'Questa è la direzione dell\'architettura. Parte di essa è già attiva. Parte di essa — ancoraggio on-chain completo dell\'identità del nodo, archiviazione decentralizzata, autenticazione tramite wallet — è in fase di sviluppo. Questo documento è onesto su entrambi i fronti.',
+    p2_num: 'II · Dove vive cosa',
+    p2_h2: 'Il tuo dispositivo.<br/>Il tuo server.<br/><em>Di nessun altro.</em>',
+    p2_intro: 'Ecco un resoconto preciso di ogni dato che questa piattaforma tratta, dove vive e chi può accedervi.',
+    th_data: 'Dato', th_where: 'Dove vive', th_who: 'Chi può accedervi', th_why: 'Perché',
+    tag_device: 'Il tuo dispositivo', tag_server: 'Server di ricerca', tag_processor: 'Stripe', tag_chain: 'On-chain (prossimamente)',
+    td1_data: 'Dichiarazione del nodo<br/>(nome, ruolo, giurisdizione, bio, link)',
+    td1_who: 'Solo tu. Mai trasmesso.',
+    td1_why: 'localStorage — il registro vive nel tuo browser. Nessun server lo riceve mai.',
+    td2_data: 'Modulo di manifestazione d\'interesse<br/>(email, paese, regione, città, interessi)',
+    td2_who: 'Avv. Dr. Gian Marco Solas · Supabase (responsabile)',
+    td2_why: 'Mappa di ricerca empirica. Inviato volontariamente ed esplicitamente. Usato solo per identificare i territori per la priorità di codificazione. Mai venduto, mai profilato, mai condiviso.',
+    td3_data: 'Dati di pagamento<br/>(carta, indirizzo di fatturazione)',
+    td3_who: 'Solo Stripe. Non vediamo mai i dati della carta.',
+    td3_why: 'Elaborazione dei pagamenti. Stripe è conforme al GDPR e agisce come titolare indipendente per i dati di pagamento ai sensi della propria informativa.',
+    td4_data: 'Certificato PNC<br/>(ID nodo, indirizzo wallet)',
+    td4_who: 'Pubblico — per progetto.',
+    td4_why: 'Il PNC è una prova pubblica di partecipazione alla rete di misurazione. Il suo record on-chain è leggibile dalla rete. L\'identità dietro l\'indirizzo è tua da rivelare o meno.',
+    p3_num: 'III · Il modulo di manifestazione d\'interesse',
+    p3_h2: 'L\'unico punto in cui i dati<br/>raggiungono un <em>server.</em>',
+    p3_p1: 'Quando invii il modulo di manifestazione d\'interesse, il tuo indirizzo email, paese, regione, città e aree di interesse vengono trasmessi a un database di ricerca ospitato da Supabase (regione UE). Questo è l\'unico punto della piattaforma in cui i dati personali lasciano il tuo dispositivo.',
+    p3_p2: '<strong>La base giuridica è il tuo consenso esplicito,</strong> fornito inviando il modulo dopo aver letto questo documento. Lo scopo è unico: costruire una mappa empirica dei territori dove è necessaria la codificazione. I dati non vengono utilizzati per marketing, profilazione, pubblicità, o qualsiasi scopo al di là di quella mappa.',
+    p3_p3: '<strong>Supabase</strong> agisce come responsabile del trattamento ai sensi di un Accordo sul Trattamento dei Dati. I dati sono archiviati nell\'UE. Supabase non tratta i tuoi dati per i propri scopi.',
+    p3_p4: 'Puoi richiedere la cancellazione dei tuoi dati in qualsiasi momento inviando un\'email a <a href="mailto:gmsolas@sustainab-law.eu" style="color:var(--gold);">gmsolas@sustainab-law.eu</a> con oggetto "Richiesta di cancellazione dati". Il tuo record verrà cancellato entro 30 giorni.',
+    p4_num: 'IV · Cosa non faremo mai',
+    p4_h2: 'I <em>limiti assoluti.</em>',
+    never1: 'Vendere, affittare o condividere i tuoi dati con terze parti a fini commerciali — mai. Ciò corromperebbe la rete di misurazione e contraddirebbe la logica fondatrice della fenografia©.',
+    never2: 'Usare i tuoi dati per pubblicità, profilazione comportamentale o targeting algoritmico di alcun tipo.',
+    never3: 'Conservare i tuoi dati oltre lo scopo per cui sono stati inviati. La mappa empirica è uno strumento di ricerca, non un CRM.',
+    never4: 'Creare flussi di dati nascosti. Ogni dato è rendicontato nella tabella sopra. Se quella tabella cambia, questo documento viene aggiornato con la data della versione.',
+    never5: 'Rivendicare la proprietà del tuo nodo. Il tuo PNC, la tua identità di nodo, i tuoi dati dichiarati — sono tuoi. La piattaforma è lo strumento di misurazione. Non possiede i nodi che misura.',
+    p5_num: 'V · L\'architettura Web3 — dove stiamo andando',
+    p5_h2: 'Ogni nodo un sovrano.<br/><em>Nessuna piattaforma detiene la rete.</em>',
+    p5_p1: 'L\'architettura attuale è uno stato transitorio. La direzione è un\'identità di nodo completamente decentralizzata: ogni detentore di PNC si autentica tramite un wallet crittografico, il suo certificato è ancorato on-chain, e i dati del suo nodo sono archiviati su infrastrutture che controlla — non su alcun server operato da o per conto di 1love.works.',
+    p5_p2: 'In questa architettura, la conformità al GDPR non è una questione di policy — è un fatto matematico. I dati che non raggiungono mai un titolare non possono essere trattati da uno. La rete legge l\'aggregato delle misurazioni dei nodi. Non detiene record individuali. Il protocollo fenografia© definisce cosa viene misurato. I nodi decidono cosa dichiarano.',
+    p5_p3: 'Questo documento verrà aggiornato man mano che ogni strato di questa architettura viene implementato. La transizione dall\'archiviazione centralizzata a quella decentralizzata sarà comunicata a tutti i partecipanti registrati prima che avvenga.',
+    p5_quote: '"Un sistema giuridico che misura l\'entropia deve essere esso stesso a bassa entropia. Ciò significa nessun dato non necessario, nessun intermediario non necessario, nessuna autorità non necessaria. La piattaforma è lo strumento. I nodi sono i sovrani."',
+    p6_num: 'VI · I tuoi diritti',
+    p6_h2: 'Diritti GDPR —<br/>e oltre il <em>GDPR.</em>',
+    p6_intro: 'Ai sensi del GDPR (Regolamento UE 2016/679), hai i seguenti diritti in merito a qualsiasi dato personale trattato da questa piattaforma:',
+    right1: '<strong>Accesso.</strong> Puoi richiedere una copia di tutti i dati personali che deteniamo su di te.',
+    right2: '<strong>Rettifica.</strong> Puoi richiedere la correzione di qualsiasi dato inesatto.',
+    right3: '<strong>Cancellazione.</strong> Puoi richiedere la cancellazione dei tuoi dati in qualsiasi momento, senza condizioni.',
+    right4: '<strong>Portabilità.</strong> Puoi richiedere i tuoi dati in un formato strutturato e leggibile da macchina.',
+    right5: '<strong>Opposizione.</strong> Puoi opporti a qualsiasi trattamento in qualsiasi momento.',
+    right6: '<strong>Reclamo.</strong> Hai il diritto di presentare un reclamo all\'autorità nazionale per la protezione dei dati.',
+    p6_beyond: 'Oltre il GDPR: l\'architettura di questa piattaforma è progettata in modo che la maggior parte dei tuoi dati non raggiunga mai un titolare. Il registro dei nodi vive sul tuo dispositivo. Il tuo PNC è tuo. Queste non sono promesse sulla privacy — sono fatti architetturali.',
+    contact_block: 'Per esercitare qualsiasi diritto, o per qualsiasi domanda sul trattamento dei dati su questa piattaforma:<br/><br/><strong>Avv. Dr. Gian Marco Solas</strong><br/>Titolare del trattamento · 1love.works<br/><a href="mailto:gmsolas@sustainab-law.eu" style="color:var(--gold);">gmsolas@sustainab-law.eu</a><br/><br/>Oggetto: <em>"Richiesta dati — [il tuo nome]"</em><br/>Risposta entro 30 giorni. Cancellazione entro 30 giorni dalla richiesta.',
+    version_note: 'Versione 1.0 · Maggio 2026 · Questo documento viene aggiornato ogni volta che l\'architettura dei dati cambia. La versione corrente è sempre su 1love.works/privacy. · De Lege et Amore.',
+    footer_rights: 'Tutti i diritti riservati',
+    footer_note: 'Il PNC non è uno strumento finanziario. Non negoziabile. Emesso solo come parte della fornitura del servizio. · De Lege et Amore.',
+  },
+  fr: {
+    overline: '1love.works · Souveraineté des Données',
+    h1: 'Vos données.<br/><em>Votre nœud.<br/>Votre droit.</em>',
+    hero_sub: 'Ce n\'est pas une politique de confidentialité au sens conventionnel. C\'est une déclaration d\'architecture. Sur cette plateforme, la souveraineté des données n\'est pas une promesse que nous faisons — c\'est la conception. Vous êtes propriétaire de votre nœud. Vous êtes propriétaire de vos données. Le réseau lit depuis des nœuds qu\'il ne détient jamais.',
+    p1_num: 'I · Le principe',
+    p1_h2: 'Vous n\'êtes pas un utilisateur.<br/>Vous êtes un <em>nœud.</em>',
+    p1_p1: 'Les plateformes conventionnelles traitent les données personnelles comme une ressource à extraire, stocker et monétiser. L\'utilisateur est le produit. La politique de confidentialité est le contrat par lequel la plateforme justifie cette extraction. Nous rejetons ce modèle — non pas comme stratégie juridique, mais parce qu\'il contredit ce qu\'est 1love.works.',
+    p1_p2: 'Un détenteur de PNC est un nœud fondateur dans le réseau de mesure de la plateforme souveraine européenne. Un nœud n\'est pas un enregistrement d\'utilisateur dans une base de données. C\'est un participant souverain — propriétaire de son propre code, de sa propre fraction de la plateforme, de ses propres données. Le réseau est l\'agrégat des nœuds. La plateforme lit depuis les nœuds. Elle ne les possède pas.',
+    p1_quote: '"La souveraineté des données n\'est pas une fonctionnalité de confidentialité. C\'est l\'expression physico-juridique de ce qu\'est un nœud : une unité souveraine de mesure, détenue par la personne qui la possède, ancrée à aucune autorité que les mathématiques du réseau."',
+    p1_p3: 'C\'est la direction de l\'architecture. Une partie est déjà active. Une partie — ancrage on-chain complet de l\'identité du nœud, stockage décentralisé, authentification par wallet — est en cours de construction. Ce document est honnête sur les deux.',
+    p2_num: 'II · Ce qui vit où',
+    p2_h2: 'Votre appareil.<br/>Votre serveur.<br/><em>Personne d\'autre.</em>',
+    p2_intro: 'Voici un compte rendu précis de chaque donnée que cette plateforme traite, où elle vit et qui peut y accéder.',
+    th_data: 'Donnée', th_where: 'Où elle vit', th_who: 'Qui peut y accéder', th_why: 'Pourquoi',
+    tag_device: 'Votre appareil', tag_server: 'Serveur de recherche', tag_processor: 'Stripe', tag_chain: 'On-chain (à venir)',
+    td1_data: 'Déclaration de nœud<br/>(nom, rôle, juridiction, bio, lien)',
+    td1_who: 'Vous uniquement. Jamais transmis.',
+    td1_why: 'localStorage — le registre vit dans votre navigateur. Aucun serveur ne le reçoit jamais.',
+    td2_data: 'Formulaire de manifestation d\'intérêt<br/>(email, pays, région, ville, intérêts)',
+    td2_who: 'Avv. Dr. Gian Marco Solas · Supabase (sous-traitant)',
+    td2_why: 'Carte de recherche empirique. Soumis volontairement et explicitement. Utilisé uniquement pour identifier les territoires prioritaires pour la codification. Jamais vendu, jamais profilé, jamais partagé.',
+    td3_data: 'Données de paiement<br/>(carte, adresse de facturation)',
+    td3_who: 'Stripe uniquement. Nous ne voyons jamais les données de carte.',
+    td3_why: 'Traitement des paiements. Stripe est conforme au RGPD et agit comme responsable du traitement indépendant pour les données de paiement selon sa propre politique.',
+    td4_data: 'Certificat PNC<br/>(ID nœud, adresse wallet)',
+    td4_who: 'Public — par conception.',
+    td4_why: 'Le PNC est une preuve publique de participation au réseau de mesure. Son enregistrement on-chain est lisible par le réseau. L\'identité derrière l\'adresse est à vous de divulguer ou non.',
+    p3_num: 'III · Le formulaire de manifestation d\'intérêt',
+    p3_h2: 'Le seul endroit où les données<br/>atteignent un <em>serveur.</em>',
+    p3_p1: 'Lorsque vous soumettez le formulaire de manifestation d\'intérêt, votre adresse email, pays, région, ville et domaines d\'intérêt sont transmis à une base de données de recherche hébergée par Supabase (région UE). C\'est le seul point de la plateforme où des données personnelles quittent votre appareil.',
+    p3_p2: '<strong>La base juridique est votre consentement explicite,</strong> donné en soumettant le formulaire après avoir lu ce document. L\'objectif est unique : construire une carte empirique des territoires où la codification est nécessaire. Les données ne sont pas utilisées à des fins de marketing, de profilage, de publicité, ou à toute fin au-delà de cette carte.',
+    p3_p3: '<strong>Supabase</strong> agit comme sous-traitant dans le cadre d\'un Accord de Traitement des Données. Les données sont stockées dans l\'UE. Supabase ne traite pas vos données à ses propres fins.',
+    p3_p4: 'Vous pouvez demander la suppression de vos données soumises à tout moment en envoyant un email à <a href="mailto:gmsolas@sustainab-law.eu" style="color:var(--gold);">gmsolas@sustainab-law.eu</a> avec l\'objet "Demande de suppression de données". Votre enregistrement sera supprimé dans les 30 jours.',
+    p4_num: 'IV · Ce que nous ne ferons jamais',
+    p4_h2: 'Les <em>limites absolues.</em>',
+    never1: 'Vendre, louer ou partager vos données avec des tiers à des fins commerciales — jamais. Cela corromprait le réseau de mesure et contredirait la logique fondatrice de la phénographie©.',
+    never2: 'Utiliser vos données pour la publicité, le profilage comportemental ou le ciblage algorithmique de quelque nature que ce soit.',
+    never3: 'Conserver vos données au-delà de l\'objectif pour lequel elles ont été soumises. La carte empirique est un instrument de recherche, pas un CRM.',
+    never4: 'Créer des flux de données cachés. Chaque donnée est comptabilisée dans le tableau ci-dessus. Si ce tableau change, ce document est mis à jour avec une date de version.',
+    never5: 'Revendiquer la propriété de votre nœud. Votre PNC, votre identité de nœud, vos données déclarées — elles sont les vôtres. La plateforme est l\'instrument de mesure. Elle ne possède pas les nœuds qu\'elle mesure.',
+    p5_num: 'V · L\'architecture Web3 — où nous allons',
+    p5_h2: 'Chaque nœud souverain.<br/><em>Aucune plateforme ne détient le réseau.</em>',
+    p5_p1: 'L\'architecture actuelle est un état transitoire. La direction est une identité de nœud entièrement décentralisée : chaque détenteur de PNC s\'authentifie via un wallet cryptographique, son certificat est ancré on-chain, et ses données de nœud sont stockées sur une infrastructure qu\'il contrôle — pas sur un serveur opéré par ou pour le compte de 1love.works.',
+    p5_p2: 'Dans cette architecture, la conformité au RGPD n\'est pas une question de politique — c\'est un fait mathématique. Les données qui n\'atteignent jamais un responsable du traitement ne peuvent pas être traitées par lui. Le réseau lit l\'agrégat des mesures des nœuds. Il ne détient aucun enregistrement individuel. Le protocole phénographie© définit ce qui est mesuré. Les nœuds décident de ce qu\'ils déclarent.',
+    p5_p3: 'Ce document sera mis à jour au fur et à mesure que chaque couche de cette architecture est implémentée. La transition du stockage centralisé au stockage décentralisé sera communiquée à tous les participants enregistrés avant qu\'elle se produise.',
+    p5_quote: '"Un système juridique qui mesure l\'entropie doit lui-même être à faible entropie. Cela signifie aucune donnée inutile, aucun intermédiaire inutile, aucune autorité inutile. La plateforme est l\'instrument. Les nœuds sont les souverains."',
+    p6_num: 'VI · Vos droits',
+    p6_h2: 'Droits RGPD —<br/>et au-delà du <em>RGPD.</em>',
+    p6_intro: 'En vertu du RGPD (Règlement UE 2016/679), vous disposez des droits suivants concernant toute donnée personnelle traitée par cette plateforme :',
+    right1: '<strong>Accès.</strong> Vous pouvez demander une copie de toutes les données personnelles que nous détenons sur vous.',
+    right2: '<strong>Rectification.</strong> Vous pouvez demander la correction de toute donnée inexacte.',
+    right3: '<strong>Effacement.</strong> Vous pouvez demander la suppression de vos données à tout moment, sans condition.',
+    right4: '<strong>Portabilité.</strong> Vous pouvez demander vos données dans un format structuré et lisible par machine.',
+    right5: '<strong>Opposition.</strong> Vous pouvez vous opposer à tout traitement à tout moment.',
+    right6: '<strong>Réclamation.</strong> Vous avez le droit de déposer une réclamation auprès de votre autorité nationale de protection des données.',
+    p6_beyond: 'Au-delà du RGPD : l\'architecture de cette plateforme est conçue pour que la plupart de vos données n\'atteignent jamais un responsable du traitement. Le registre des nœuds vit sur votre appareil. Votre PNC vous appartient. Ce ne sont pas des promesses de confidentialité — ce sont des faits architecturaux.',
+    contact_block: 'Pour exercer tout droit, ou pour toute question sur le traitement des données sur cette plateforme :<br/><br/><strong>Avv. Dr. Gian Marco Solas</strong><br/>Responsable du traitement · 1love.works<br/><a href="mailto:gmsolas@sustainab-law.eu" style="color:var(--gold);">gmsolas@sustainab-law.eu</a><br/><br/>Objet : <em>"Demande de données — [votre nom]"</em><br/>Réponse dans les 30 jours. Suppression dans les 30 jours suivant la demande.',
+    version_note: 'Version 1.0 · Mai 2026 · Ce document est mis à jour à chaque modification de l\'architecture des données. La version actuelle est toujours sur 1love.works/privacy. · De Lege et Amore.',
+    footer_rights: 'Tous droits réservés',
+    footer_note: 'Le PNC n\'est pas un instrument financier. Non échangeable. Émis uniquement dans le cadre de la prestation de services. · De Lege et Amore.',
+  },
+  es: {
+    overline: '1love.works · Soberanía de Datos',
+    h1: 'Sus datos.<br/><em>Su nodo.<br/>Su derecho.</em>',
+    hero_sub: 'Esta no es una política de privacidad en el sentido convencional. Es una declaración de arquitectura. En esta plataforma, la soberanía de datos no es una promesa que hacemos — es el diseño. Usted es propietario de su nodo. Usted es propietario de sus datos. La red lee desde nodos que nunca retiene.',
+    p1_num: 'I · El principio',
+    p1_h2: 'No es un usuario.<br/>Es un <em>nodo.</em>',
+    p1_p1: 'Las plataformas convencionales tratan los datos personales como un recurso que extraen, almacenan y monetizan. El usuario es el producto. La política de privacidad es el contrato mediante el cual la plataforma justifica esa extracción. Rechazamos este modelo — no como estrategia jurídica, sino porque contradice lo que es 1love.works.',
+    p1_p2: 'Un titular de PNC es un nodo fundador en la red de medición de la plataforma soberana europea. Un nodo no es un registro de usuario en una base de datos. Es un participante soberano — propietario de su propio código, de su propia fracción de la plataforma, de sus propios datos. La red es el agregado de nodos. La plataforma lee desde los nodos. No los posee.',
+    p1_quote: '"La soberanía de datos no es una función de privacidad. Es la expresión físico-jurídica de lo que es un nodo: una unidad soberana de medición, de propiedad de la persona que la posee, anclada a ninguna autoridad salvo las matemáticas de la red."',
+    p1_p3: 'Esta es la dirección de la arquitectura. Parte de ella ya está activa. Parte de ella — anclaje on-chain completo de la identidad del nodo, almacenamiento descentralizado, autenticación por wallet — está siendo construida. Este documento es honesto sobre ambas.',
+    p2_num: 'II · Qué vive dónde',
+    p2_h2: 'Su dispositivo.<br/>Su servidor.<br/><em>De nadie más.</em>',
+    p2_intro: 'Aquí hay un relato preciso de cada dato que toca esta plataforma, dónde vive y quién puede acceder a él.',
+    th_data: 'Dato', th_where: 'Dónde vive', th_who: 'Quién puede acceder', th_why: 'Por qué',
+    tag_device: 'Su dispositivo', tag_server: 'Servidor de investigación', tag_processor: 'Stripe', tag_chain: 'On-chain (próximamente)',
+    td1_data: 'Declaración del nodo<br/>(nombre, cargo, jurisdicción, bio, enlace)',
+    td1_who: 'Solo usted. Nunca transmitido.',
+    td1_why: 'localStorage — el registro vive en su navegador. Ningún servidor lo recibe jamás.',
+    td2_data: 'Formulario de manifestación de interés<br/>(email, país, región, ciudad, intereses)',
+    td2_who: 'Avv. Dr. Gian Marco Solas · Supabase (encargado)',
+    td2_why: 'Mapa de investigación empírica. Enviado voluntaria y explícitamente. Usado solo para identificar territorios para prioridad de codificación. Nunca vendido, nunca perfilado, nunca compartido.',
+    td3_data: 'Datos de pago<br/>(tarjeta, dirección de facturación)',
+    td3_who: 'Solo Stripe. Nunca vemos datos de tarjeta.',
+    td3_why: 'Procesamiento de pagos. Stripe cumple con el RGPD y actúa como responsable independiente para los datos de pago según su propia política.',
+    td4_data: 'Certificado PNC<br/>(ID nodo, dirección wallet)',
+    td4_who: 'Público — por diseño.',
+    td4_why: 'El PNC es una prueba pública de participación en la red de medición. Su registro on-chain es legible por la red. La identidad detrás de la dirección es suya para revelar o no.',
+    p3_num: 'III · El formulario de manifestación de interés',
+    p3_h2: 'El único lugar donde los datos<br/>llegan a un <em>servidor.</em>',
+    p3_p1: 'Cuando envía el formulario de manifestación de interés, su dirección de email, país, región, ciudad y áreas de interés se transmiten a una base de datos de investigación alojada por Supabase (región UE). Este es el único punto de la plataforma donde los datos personales abandonan su dispositivo.',
+    p3_p2: '<strong>La base jurídica es su consentimiento explícito,</strong> dado al enviar el formulario tras leer este documento. El propósito es único: construir un mapa empírico de territorios donde se necesita codificación. Los datos no se utilizan para marketing, perfilado, publicidad, ni para ningún fin más allá de ese mapa.',
+    p3_p3: '<strong>Supabase</strong> actúa como encargado del tratamiento bajo un Acuerdo de Tratamiento de Datos. Los datos se almacenan en la UE. Supabase no trata sus datos para sus propios fines.',
+    p3_p4: 'Puede solicitar la eliminación de sus datos enviados en cualquier momento enviando un email a <a href="mailto:gmsolas@sustainab-law.eu" style="color:var(--gold);">gmsolas@sustainab-law.eu</a> con el asunto "Solicitud de eliminación de datos". Su registro será eliminado en 30 días.',
+    p4_num: 'IV · Lo que nunca haremos',
+    p4_h2: 'Los <em>límites absolutos.</em>',
+    never1: 'Vender, alquilar o compartir sus datos con terceros con fines comerciales — jamás. Esto corrompería la red de medición y contradiría la lógica fundadora de la fenografía©.',
+    never2: 'Usar sus datos para publicidad, perfilado conductual o segmentación algorítmica de ningún tipo.',
+    never3: 'Conservar sus datos más allá del propósito para el que fueron enviados. El mapa empírico es un instrumento de investigación, no un CRM.',
+    never4: 'Crear flujos de datos ocultos. Cada dato está contabilizado en la tabla anterior. Si esa tabla cambia, este documento se actualiza con una fecha de versión.',
+    never5: 'Reclamar la propiedad de su nodo. Su PNC, su identidad de nodo, sus datos declarados — son suyos. La plataforma es el instrumento de medición. No posee los nodos que mide.',
+    p5_num: 'V · La arquitectura Web3 — hacia dónde vamos',
+    p5_h2: 'Cada nodo soberano.<br/><em>Ninguna plataforma retiene la red.</em>',
+    p5_p1: 'La arquitectura actual es un estado transitorio. La dirección es una identidad de nodo completamente descentralizada: cada titular de PNC se autentica mediante un wallet criptográfico, su certificado está anclado on-chain, y sus datos de nodo se almacenan en infraestructura que controla — no en ningún servidor operado por o en nombre de 1love.works.',
+    p5_p2: 'En esta arquitectura, el cumplimiento del RGPD no es una cuestión de política — es un hecho matemático. Los datos que nunca llegan a un responsable no pueden ser tratados por uno. La red lee el agregado de las mediciones de los nodos. No retiene registros individuales. El protocolo fenografía© define qué se mide. Los nodos deciden qué declaran.',
+    p5_p3: 'Este documento se actualizará a medida que se implemente cada capa de esta arquitectura. La transición del almacenamiento centralizado al descentralizado se comunicará a todos los participantes registrados antes de que ocurra.',
+    p5_quote: '"Un sistema jurídico que mide la entropía debe ser él mismo de baja entropía. Eso significa ningún dato innecesario, ningún intermediario innecesario, ninguna autoridad innecesaria. La plataforma es el instrumento. Los nodos son los soberanos."',
+    p6_num: 'VI · Sus derechos',
+    p6_h2: 'Derechos RGPD —<br/>y más allá del <em>RGPD.</em>',
+    p6_intro: 'En virtud del RGPD (Reglamento UE 2016/679), tiene los siguientes derechos con respecto a cualquier dato personal tratado por esta plataforma:',
+    right1: '<strong>Acceso.</strong> Puede solicitar una copia de todos los datos personales que tenemos sobre usted.',
+    right2: '<strong>Rectificación.</strong> Puede solicitar la corrección de cualquier dato inexacto.',
+    right3: '<strong>Supresión.</strong> Puede solicitar la eliminación de sus datos en cualquier momento, sin condición.',
+    right4: '<strong>Portabilidad.</strong> Puede solicitar sus datos en un formato estructurado y legible por máquina.',
+    right5: '<strong>Oposición.</strong> Puede oponerse a cualquier tratamiento en cualquier momento.',
+    right6: '<strong>Reclamación.</strong> Tiene derecho a presentar una reclamación ante su autoridad nacional de protección de datos.',
+    p6_beyond: 'Más allá del RGPD: la arquitectura de esta plataforma está diseñada para que la mayor parte de sus datos nunca lleguen a un responsable del tratamiento. El registro de nodos vive en su dispositivo. Su PNC es suyo. Estas no son promesas de privacidad — son hechos arquitectónicos.',
+    contact_block: 'Para ejercer cualquier derecho, o para cualquier pregunta sobre el tratamiento de datos en esta plataforma:<br/><br/><strong>Avv. Dr. Gian Marco Solas</strong><br/>Responsable del tratamiento · 1love.works<br/><a href="mailto:gmsolas@sustainab-law.eu" style="color:var(--gold);">gmsolas@sustainab-law.eu</a><br/><br/>Asunto: <em>"Solicitud de datos — [su nombre]"</em><br/>Respuesta en 30 días. Eliminación en 30 días desde la solicitud.',
+    version_note: 'Versión 1.0 · Mayo 2026 · Este documento se actualiza cada vez que cambia la arquitectura de datos. La versión actual está siempre en 1love.works/privacy. · De Lege et Amore.',
+    footer_rights: 'Todos los derechos reservados',
+    footer_note: 'El PNC no es un instrumento financiero. No negociable. Emitido solo como parte de la prestación del servicio. · De Lege et Amore.',
+  }
+};
+
+let currentLang = localStorage.getItem('1lw_lang') || 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('1lw_lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (T[lang] && T[lang][k] !== undefined) el.innerHTML = T[lang][k];
+  });
+  document.documentElement.lang = lang;
+}
+
+setLang(currentLang);
+</script>
+
+</body>
+</html>
