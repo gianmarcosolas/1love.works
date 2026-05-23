@@ -96,14 +96,17 @@
       .hero-images { grid-template-columns: repeat(2, 1fr); padding-left: 24px; padding-right: 24px; }
       .hero-images .hero-img-item:last-child { grid-column: span 2; }
     }
+    
     @media (max-width: 720px) {
-      nav { padding: 12px 20px; }
-      .hide-mobile { display: none; }
-      .hero, .section, .cta-section { padding-left: 24px; padding-right: 24px; }
-      .metrics { grid-template-columns: 1fr 1fr; }
-      .metrics-bottom { grid-template-columns: 1fr; }
-      .timeline-item { grid-template-columns: 70px 1fr; }
-      footer { flex-direction: column; padding: 24px 20px; }
+      #nav-toggle { display: block !important; }
+      nav { padding: 12px 20px; grid-template-columns: 1fr auto; }
+      .nav-links { display: none; }
+      .hero, .section, .wrap { padding-left: 20px; padding-right: 20px; }
+      .hero { padding-top: 48px; padding-bottom: 40px; }
+      .hero h1 { font-size: clamp(28px, 8vw, 44px); }
+      .hero-intro { font-size: 16px; }
+      footer { flex-direction: column; padding: 24px 20px; gap: 12px; }
+      .footer-right { flex-wrap: wrap; gap: 16px; }
     }
   </style>
 </head>
@@ -125,6 +128,7 @@
       <button class="lang-btn" onclick="setLang('es')">ES</button>
     </div>
   </div>
+  <button id="nav-toggle" style="display:none; font-size:18px; background:none; border:none; cursor:pointer; color:var(--ink); padding:4px;" aria-label="Menu">☰</button>
 </nav>
 
 <div class="hero">
@@ -684,5 +688,28 @@ fetchImpliedValue();
 setInterval(fetchImpliedValue, 60000);
 </script>
 
+<script>
+// Mobile nav toggle
+document.addEventListener('DOMContentLoaded', function() {
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.querySelector('.nav-links');
+  if (toggle && links) {
+    toggle.addEventListener('click', function() {
+      const open = links.style.display === 'flex';
+      links.style.display = open ? 'none' : 'flex';
+      links.style.flexDirection = 'column';
+      links.style.position = 'absolute';
+      links.style.top = '52px';
+      links.style.left = '0';
+      links.style.right = '0';
+      links.style.background = 'rgba(245,242,234,0.98)';
+      links.style.padding = '16px 20px';
+      links.style.borderBottom = '1px solid rgba(15,15,13,0.12)';
+      links.style.zIndex = '99';
+      toggle.textContent = open ? '☰' : '✕';
+    });
+  }
+});
+</script>
 </body>
 </html>
