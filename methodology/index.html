@@ -16,7 +16,7 @@
     }
     body { font-family: var(--serif); background: var(--parchment); color: var(--ink); line-height: 1.75; font-size: 17px; }
 
-    nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(245,242,234,0.96); backdrop-filter: blur(8px); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 14px 48px; }
+    nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(253,252,248,0.96); backdrop-filter: blur(8px); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 14px 48px; }
     .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; font-weight: 500; }
     .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; justify-content: center; }
     .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
@@ -136,11 +136,11 @@
 <nav>
   <a class="nav-logo" href="/">1love.works</a>
   <ul class="nav-links">
-    <li class="hide-mobile"><a href="/problem">The Problem</a></li>
-    <li class="hide-mobile"><a href="/solutions">The Proposed Solutions</a></li>
-    <li class="hide-mobile"><a href="/pnc">PNC</a></li>
-    <li class="hide-mobile"><a href="/methodology" style="color: var(--ink); border-bottom: 1.5px solid var(--gold);">About &amp; Methodology</a></li>
-    <li class="hide-mobile"><a href="/participate">Participate</a></li>
+    <li class="hide-mobile"><a href="/problem" data-i18n="nav_problem">The Problem</a></li>
+    <li class="hide-mobile"><a href="/solutions" data-i18n="nav_solutions">The Proposed Solutions</a></li>
+    <li class="hide-mobile"><a href="/pnc" data-i18n="nav_pnc">PNC</a></li>
+    <li class="hide-mobile"><a href="/methodology" style="color: var(--ink); border-bottom: 1.5px solid var(--gold);" data-i18n="nav_methodology">About &amp; Methodology</a></li>
+    <li class="hide-mobile"><a href="/participate" data-i18n="nav_participate">Participate</a></li>
   </ul>
   <div style="display: flex; justify-content: flex-end;">
     <div class="lang-switcher">
@@ -573,6 +573,7 @@ function toggle(btn) {
 
 const T = {
   en: {
+    nav_problem: 'The Problem', nav_solutions: 'The Proposed Solutions', nav_pnc: 'PNC', nav_methodology: 'About &amp; Methodology', nav_participate: 'Participate',
     overline: '1love.works · Theory of Interrelation',
     h1: 'The Problem &<br/><em>Methodology to solve it</em>',
     header_p: 'Bureaucracy. Legal weight. Entropy. The invisible tax on everything. €5.2 trillion of unexpressed economic value trapped in EU-27 legal systems. The legal-physics framework is the first scientific instrument designed to measure it — and the first step toward reducing it.',
@@ -647,6 +648,7 @@ const T = {
     footer_rights: 'All rights reserved', footer_note: 'Proprietary instruments. Methodology: public scientific contribution. · De Lege et Amore.',
   },
   it: {
+    nav_problem: 'Il Problema', nav_solutions: 'Le Soluzioni Proposte', nav_pnc: 'PNC', nav_methodology: 'Informazioni &amp; Metodologia', nav_participate: 'Partecipa',
     overline: '1love.works · Teoria dell\'Interrelazione',
     h1: 'Il Problema &<br/><em>la Metodologia per risolverlo</em>',
     header_p: 'Burocrazia. Peso normativo. Entropia. La tassa invisibile su tutto. 5,2 trilioni di € di valore economico non espresso intrappolati nei sistemi giuridici UE-27. Il framework di fisica giuridica è il primo strumento scientifico progettato per misurarla — e il primo passo verso la sua riduzione.',
@@ -721,6 +723,7 @@ const T = {
     footer_rights: 'Tutti i diritti riservati', footer_note: 'Strumenti proprietari. Metodologia: contributo scientifico pubblico. · De Lege et Amore.',
   },
   fr: {
+    nav_problem: 'Le Problème', nav_solutions: 'Les Solutions Proposées', nav_pnc: 'PNC', nav_methodology: 'À Propos &amp; Méthodologie', nav_participate: 'Participer',
     overline: '1love.works · Théorie de l\'Interrelation',
     h1: 'Le Problème &<br/><em>la Méthodologie pour le résoudre</em>',
     header_p: 'Bureaucratie. Poids juridique. Entropie. La taxe invisible sur tout. 5,2 billions d\'€ de valeur économique non exprimée piégée dans les systèmes juridiques de l\'UE-27. Le cadre de physique juridique est le premier instrument scientifique conçu pour la mesurer — et le premier pas vers sa réduction.',
@@ -795,6 +798,7 @@ const T = {
     footer_rights: 'Tous droits réservés', footer_note: 'Instruments propriétaires. Méthodologie : contribution scientifique publique. · De Lege et Amore.',
   },
   es: {
+    nav_problem: 'El Problema', nav_solutions: 'Las Soluciones Propuestas', nav_pnc: 'PNC', nav_methodology: 'Acerca &amp; Metodología', nav_participate: 'Participar',
     overline: '1love.works · Teoría de la Interrelación',
     h1: 'El Problema &<br/><em>la Metodología para resolverlo</em>',
     header_p: 'Burocracia. Peso jurídico. Entropía. El impuesto invisible sobre todo. 5,2 billones de € de valor económico no expresado atrapado en los sistemas jurídicos de la UE-27. El marco de física jurídica es el primer instrumento científico diseñado para medirlo — y el primer paso hacia su reducción.',
