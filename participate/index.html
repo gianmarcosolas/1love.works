@@ -18,9 +18,9 @@
     body { font-family: var(--serif); background: var(--white); color: var(--ink); line-height: 1.75; font-size: 17px; }
 
     /* ── nav ── */
-    nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(253,252,248,0.96); backdrop-filter: blur(8px); display: flex; justify-content: space-between; align-items: center; padding: 14px 48px; }
+    nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(253,252,248,0.96); backdrop-filter: blur(8px); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 14px 48px; }
     .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; font-weight: 500; }
-    .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
+    .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; justify-content: center; }
     .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--ink); }
     .lang-switcher { display: flex; border: 1px solid var(--rule-med); overflow: hidden; }
@@ -147,23 +147,20 @@
 <nav>
   <a class="nav-logo" href="/">1love.works</a>
   <ul class="nav-links">
-    <li class="hide-mobile"><a href="https://eulawscanner.eu" target="_blank">EU Law Meter ↗</a></li>
-    <li class="hide-mobile"><a href="https://corporate-scanner.com" target="_blank">Corporate Meter ↗</a></li>
-    <li class="hide-mobile"><a href="/codification">Codification</a></li>
-    <li class="hide-mobile"><a href="/methodology">Methodology</a></li>
-    <li class="hide-mobile"><a href="/pnc">Why PNC</a></li>
-    <li class="hide-mobile"><a href="/participate" class="active">Participate</a></li>
-    <li class="hide-mobile"><a href="/criticisms">Criticisms</a></li>
-    <li class="hide-mobile"><a href="https://calendly.com/gmsolas-sustainab-law/legal-consultation-public-entity" target="_blank">Consultation</a></li>
-    <li>
-      <div class="lang-switcher">
-        <button class="lang-btn active" onclick="setLang('en')">EN</button>
-        <button class="lang-btn" onclick="setLang('it')">IT</button>
-        <button class="lang-btn" onclick="setLang('fr')">FR</button>
-        <button class="lang-btn" onclick="setLang('es')">ES</button>
-      </div>
-    </li>
+    <li class="hide-mobile"><a href="/problem" data-i18n="nav_problem">The Problem</a></li>
+    <li class="hide-mobile"><a href="/solutions" data-i18n="nav_solutions">The Proposed Solutions</a></li>
+    <li class="hide-mobile"><a href="/pnc" data-i18n="nav_pnc">PNC</a></li>
+    <li class="hide-mobile"><a href="/methodology" data-i18n="nav_methodology">About &amp; Methodology</a></li>
+    <li class="hide-mobile"><a href="/participate" style="color: var(--ink); border-bottom: 1.5px solid var(--gold);" data-i18n="nav_participate">Participate</a></li>
   </ul>
+  <div style="display: flex; justify-content: flex-end;">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('it')">IT</button>
+      <button class="lang-btn" onclick="setLang('fr')">FR</button>
+      <button class="lang-btn" onclick="setLang('es')">ES</button>
+    </div>
+  </div>
 </nav>
 
 <!-- ═══════════════ HERO ═══════════════ -->
@@ -355,6 +352,7 @@
 <script>
 const T = {
   en: {
+    nav_problem: 'The Problem', nav_solutions: 'The Proposed Solutions', nav_pnc: 'PNC', nav_methodology: 'About &amp; Methodology', nav_participate: 'Participate',
     overline:'1love.works · Nodes & Participate',
     h1:'The people and institutions<br/>building <em>optimal Europe.</em>',
     hero_sub:'Every PNC holder is a founding node in the measurement network of the European sovereign platform, owning his or her own code / fraction of the platform, representative of all his/her rights. This is the public record of those who have declared their participation — citizens, professionals, institutions — each a proof that the network is real, growing, and doing work.',
@@ -404,6 +402,7 @@ const T = {
     lbl_nodes:'nodes',
   },
   it: {
+    nav_problem: 'Il Problema', nav_solutions: 'Le Soluzioni Proposte', nav_pnc: 'PNC', nav_methodology: 'Informazioni &amp; Metodologia', nav_participate: 'Partecipa',
     overline:'1love.works · Nodi & Partecipa',
     h1:'Le persone e le istituzioni<br/>che costruiscono l\'<em>Europa ottimale.</em>',
     hero_sub:'Ogni detentore di PNC è un nodo fondatore nella rete di misurazione della piattaforma sovrana europea, proprietario del proprio codice / quota della piattaforma, rappresentativo di tutti i suoi diritti. Questo è il registro pubblico di chi ha dichiarato la propria partecipazione — cittadini, professionisti, istituzioni — ognuno una prova che la rete è reale, cresce e produce lavoro.',
@@ -453,6 +452,7 @@ const T = {
     lbl_nodes:'nodi',
   },
   fr: {
+    nav_problem: 'Le Problème', nav_solutions: 'Les Solutions Proposées', nav_pnc: 'PNC', nav_methodology: 'À Propos &amp; Méthodologie', nav_participate: 'Participer',
     overline:'1love.works · Nœuds & Participer',
     h1:'Les personnes et institutions<br/>qui construisent l\'<em>Europe optimale.</em>',
     hero_sub:'Chaque détenteur de PNC est un nœud fondateur dans le réseau de mesure de la plateforme souveraine européenne, propriétaire de son propre code / fraction de la plateforme, représentatif de tous ses droits. Voici le registre public de ceux qui ont déclaré leur participation — citoyens, professionnels, institutions — chacun une preuve que le réseau est réel, en croissance, et effectue un vrai travail.',
@@ -502,6 +502,7 @@ const T = {
     lbl_nodes:'nœuds',
   },
   es: {
+    nav_problem: 'El Problema', nav_solutions: 'Las Soluciones Propuestas', nav_pnc: 'PNC', nav_methodology: 'Acerca &amp; Metodología', nav_participate: 'Participar',
     overline:'1love.works · Nodos & Participar',
     h1:'Las personas e instituciones<br/>que construyen la <em>Europa óptima.</em>',
     hero_sub:'Cada titular de PNC es un nodo fundador en la red de medición de la plataforma soberana europea, propietario de su propio código / fracción de la plataforma, representativo de todos sus derechos. Este es el registro público de quienes han declarado su participación — ciudadanos, profesionales, instituciones — cada uno una prueba de que la red es real, crece y realiza trabajo.',
