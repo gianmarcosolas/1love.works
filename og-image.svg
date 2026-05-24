@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&amp;family=DM+Mono:wght@400;500&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#eef4fb"/>
+
+  <!-- Grid lines -->
+  <line x1="80" y1="0" x2="80" y2="630" stroke="rgba(13,31,56,0.06)" stroke-width="1"/>
+  <line x1="160" y1="0" x2="160" y2="630" stroke="rgba(13,31,56,0.06)" stroke-width="1"/>
+  <line x1="240" y1="0" x2="240" y2="630" stroke="rgba(13,31,56,0.06)" stroke-width="1"/>
+  <line x1="320" y1="0" x2="320" y2="630" stroke="rgba(13,31,56,0.06)" stroke-width="1"/>
+  <line x1="0" y1="80" x2="1200" y2="80" stroke="rgba(13,31,56,0.06)" stroke-width="1"/>
+  <line x1="0" y1="160" x2="1200" y2="160" stroke="rgba(13,31,56,0.06)" stroke-width="1"/>
+  <line x1="0" y1="240" x2="1200" y2="240" stroke="rgba(13,31,56,0.06)" stroke-width="1"/>
+  <line x1="0" y1="320" x2="1200" y2="320" stroke="rgba(13,31,56,0.06)" stroke-width="1"/>
+  <line x1="0" y1="400" x2="1200" y2="400" stroke="rgba(13,31,56,0.06)" stroke-width="1"/>
+  <line x1="0" y1="480" x2="1200" y2="480" stroke="rgba(13,31,56,0.06)" stroke-width="1"/>
+  <line x1="0" y1="560" x2="1200" y2="560" stroke="rgba(13,31,56,0.06)" stroke-width="1"/>
+
+  <!-- Dark left panel -->
+  <rect x="0" y="0" width="380" height="630" fill="#0d1f38"/>
+
+  <!-- Gold divider -->
+  <line x1="380" y1="0" x2="380" y2="630" stroke="#b8860b" stroke-width="2"/>
+
+  <!-- Logo (inverted in dark panel) -->
+  <image href="data:image/jpeg;base64,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" x="110" y="80" width="160" height="160" style="filter: invert(1) brightness(2);"/>
+
+  <!-- Left panel: site name -->
+  <text x="110" y="300" font-family="Georgia, serif" font-size="24" font-weight="400" fill="#eef4fb">1love.works</text>
+  <text x="110" y="326" font-family="monospace" font-size="11" letter-spacing="1" fill="#b8860b">DE LEGE ET AMORE</text>
+
+  <!-- Right panel content -->
+
+  <!-- Tradition → Innovation -->
+  <text x="440" y="78" font-family="monospace" font-size="11" letter-spacing="2" fill="#b8860b">TRADITION  →  INNOVATION</text>
+
+  <!-- Main title -->
+  <text x="440" y="140" font-family="Georgia, serif" font-size="52" font-weight="400" fill="#0d1f38">The Legal System Meter</text>
+  <text x="440" y="182" font-family="Georgia, serif" font-size="28" font-style="italic" fill="#2a7fc0">in phenography©</text>
+
+  <!-- Equation -->
+  <text x="440" y="232" font-family="monospace" font-size="14" letter-spacing="1" fill="#2a7fc0">E = MC²  →  Λ = C²  →  Λ = E / M</text>
+  <text x="440" y="252" font-family="monospace" font-size="11" fill="#5a7490">(JLMI 2/25)</text>
+
+  <!-- Divider -->
+  <line x1="440" y1="278" x2="1150" y2="278" stroke="rgba(13,31,56,0.12)" stroke-width="1"/>
+
+  <!-- Stats row -->
+  <!-- Entropy -->
+  <text x="440" y="302" font-family="monospace" font-size="10" letter-spacing="1" fill="#5a7490">TOTAL ENTROPY (ΣS)</text>
+  <text x="440" y="328" font-family="Georgia, serif" font-size="26" font-weight="500" fill="#8b0000">1,557</text>
+
+  <!-- PNC circulation -->
+  <text x="680" y="302" font-family="monospace" font-size="10" letter-spacing="1" fill="#5a7490">⬡ PNC IN CIRCULATION</text>
+  <text x="680" y="328" font-family="Georgia, serif" font-size="26" font-weight="500" fill="#0d1f38">10,101</text>
+
+  <!-- PNC value -->
+  <rect x="920" y="278" width="230" height="70" fill="#ddeaf8"/>
+  <line x1="920" y1="278" x2="920" y2="348" stroke="#b8860b" stroke-width="2"/>
+  <text x="934" y="302" font-family="monospace" font-size="10" letter-spacing="1" fill="#5a7490">⬡ PNC VALUE</text>
+  <text x="934" y="328" font-family="Georgia, serif" font-size="26" font-weight="500" fill="#b8860b">€253</text>
+
+  <!-- Bottom divider -->
+  <line x1="440" y1="368" x2="1150" y2="368" stroke="rgba(13,31,56,0.08)" stroke-width="1"/>
+
+  <!-- Tagline -->
+  <text x="440" y="394" font-family="monospace" font-size="11" fill="#5a7490">A technological framework to measure legal entropy</text>
+  <text x="440" y="412" font-family="monospace" font-size="11" fill="#5a7490">and optimise European legal systems.</text>
+
+  <!-- URL bottom -->
+  <text x="440" y="590" font-family="monospace" font-size="13" letter-spacing="1" fill="#0d1f38">1love.works</text>
+</svg>
