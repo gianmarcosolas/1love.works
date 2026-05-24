@@ -117,7 +117,7 @@
 
 <!-- EUROPEAN LEGAL SYSTEMS VALUE header -->
 <div style="border-bottom: 1px solid var(--rule); padding: 18px 24px; text-align: center;">
-  <div style="font-family: var(--mono); font-size: 20px; font-weight: 500; letter-spacing: 0.08em; color: var(--ink); margin-bottom: 5px;">EUROPEAN LEGAL SYSTEMS&#8217; VALUE</div>
+  <div style="font-family: var(--mono); font-size: 28px; font-weight: 700; letter-spacing: 0.06em; color: var(--ink); margin-bottom: 5px;">EUROPEAN LEGAL SYSTEMS&#8217; VALUE</div>
   <div style="font-family: var(--serif, Georgia, serif); font-size: 13px; color: var(--muted);" data-i18n="sub">Engineering legal processes for &#8220;perpetual motion&#8221; and competitiveness of European legal systems.</div>
 </div>
 
@@ -144,17 +144,7 @@
       </div>
       <div style="background: var(--cream); padding: 16px 20px; border: 1px solid rgba(184,134,11,0.2);">
         <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 10px;" data-i18n="metric_value">⬡ PNC Value</div>
-        <div style="display: flex; align-items: baseline; gap: 16px;">
-          <div>
-            <div style="font-family: var(--mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 3px;" data-i18n="metric_founding">Founding</div>
-            <div style="font-family: var(--mono); font-size: 20px; font-weight: 500; color: var(--muted);">€99</div>
-          </div>
-          <div style="width: 1px; height: 36px; background: rgba(184,134,11,0.25);"></div>
-          <div>
-            <div style="font-family: var(--mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 3px;" data-i18n="metric_current">Current</div>
-            <div style="font-family: var(--mono); font-size: 26px; font-weight: 500; color: var(--gold);" id="lp-value">€99</div>
-          </div>
-        </div>
+        <div style="font-family: var(--mono); font-size: 26px; font-weight: 500; color: var(--gold);" id="lp-value">€99</div>
       </div>
       <a href="/solutions" style="background: var(--ink); padding: 16px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 8px; text-decoration: none;">
         <div style="font-family: var(--serif, Georgia, serif); font-size: 15px; font-weight: 500; color: var(--parchment); line-height: 1.35; letter-spacing: 0.01em;" data-i18n="box_entropy_label">How to measure entropy — legal weight and increase PNC value</div>
@@ -170,8 +160,8 @@
     <!-- Cartesian graph -->
     <div style="background: rgba(13,31,56,0.97); padding: 24px 24px 16px; margin-bottom: 0;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-        <div style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(245,242,234,0.4);" data-i18n="chart_label">Entropy - Legal Weight Identified (ΣS) vs Implied PNC Value</div>
-        <div style="font-family: var(--mono); font-size: 9px; color: rgba(184,134,11,0.6); letter-spacing: 0.12em; margin-top: 3px;" data-i18n="chart_sub">EU Legal Systems' Value</div>
+        <div style="font-family: var(--mono); font-size: 10px; font-variant: small-caps; letter-spacing: 0.12em; color: rgba(245,242,234,0.5);" data-i18n="chart_label">Entropy — Legal Weight Identified (ΣS) vs PNC Value</div>
+        <div style="font-family: var(--mono); font-size: 10px; font-weight: 700; color: rgba(184,134,11,0.8); letter-spacing: 0.1em; margin-top: 3px;" data-i18n="chart_sub">EU Legal Systems' Value</div>
         <div style="display: flex; gap: 16px;">
           <div style="display: flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 9px; color: rgba(245,242,234,0.35);"><div style="width:16px;height:2px;background:#b8860b;"></div><span data-i18n="legend_pnc">PNC Value</span></div>
           <div style="display: flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 9px; color: rgba(245,242,234,0.35);"><div style="width:16px;height:2px;background:rgba(74,222,128,0.6);"></div><span data-i18n="legend_entropy">Entropy (ΣS)</span></div>
@@ -221,7 +211,7 @@ const T = {
     metric_founding: 'Founding',
     metric_current: 'Current',
     metric_value: '⬡ PNC Value',
-    chart_label: 'Entropy - Legal Weight Identified (ΣS) vs Implied PNC Value',
+    chart_label: 'Entropy — Legal Weight Identified (ΣS) vs PNC Value',
     chart_sub: 'EU Legal Systems\' Value',
     legend_pnc: 'PNC Value',
     legend_entropy: 'Entropy (ΣS)',
@@ -257,8 +247,8 @@ const T = {
     metric_founding: 'Fondazione',
     metric_current: 'Attuale',
     metric_value: '⬡ Valore implicito PNC',
-    chart_label: 'Entropia / Peso normativo identificato (ΣS) vs Valore implicito PNC',
-    chart_sub: 'Valore dei sistemi giuridici UE',
+    chart_label: 'Entropia — Peso Normativo Identificato (ΣS) vs Valore PNC',
+    chart_sub: 'Valore dei Sistemi Giuridici UE',
     legend_pnc: 'Valore implicito PNC',
     legend_entropy: 'Entropia (ΣS)',
     legend_projected: 'Proiettato',
@@ -293,7 +283,7 @@ const T = {
     metric_founding: 'Fondation',
     metric_current: 'Actuel',
     metric_value: '⬡ Valeur implicite PNC',
-    chart_label: 'Entropie - Poids juridique identifié (ΣS) vs Valeur implicite PNC',
+    chart_label: 'Entropie — Poids Juridique Identifié (ΣS) vs Valeur PNC',
     chart_sub: 'Valeur des systèmes juridiques UE',
     legend_pnc: 'Valeur implicite PNC',
     legend_entropy: 'Entropie (ΣS)',
@@ -329,7 +319,7 @@ const T = {
     metric_founding: 'Fundación',
     metric_current: 'Actual',
     metric_value: '⬡ Valor implícito PNC',
-    chart_label: 'Entropía - Peso jurídico identificado (ΣS) vs Valor implícito PNC',
+    chart_label: 'Entropía — Peso Jurídico Identificado (ΣS) vs Valor PNC',
     chart_sub: 'Valor de los sistemas jurídicos UE',
     legend_pnc: 'Valor implícito PNC',
     legend_entropy: 'Entropía (ΣS)',
