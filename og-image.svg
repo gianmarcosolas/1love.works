@@ -69,7 +69,7 @@
   <line x1="440" y1="368" x2="1150" y2="368" stroke="rgba(13,31,56,0.08)" stroke-width="1"/>
 
   <!-- Tagline -->
-  <text x="440" y="394" font-family="monospace" font-size="11" fill="#5a7490">A technological framework to measure legal entropy</text>
+  <text x="440" y="394" font-family="monospace" font-size="11" fill="#5a7490">A technological framework to measure legal entropy and weight in</text>
   <text x="440" y="412" font-family="monospace" font-size="11" fill="#5a7490">and optimise European legal systems.</text>
 
   <!-- URL bottom -->
