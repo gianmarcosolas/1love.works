@@ -9,14 +9,14 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --ink: #0f0f0d; --parchment: #f5f2ea; --cream: #ede9df;
-      --gold: #b8860b; --blue: #1a4e8a; --green: #2d6a2d;
-      --muted: #6b6860; --rule: rgba(15,15,13,0.12);
+      --ink: #0d1f38; --parchment: #eef4fb; --cream: #ddeaf8; --white: #f5f9fd;
+      --gold: #b8860b; --blue: #2a7fc0; --flow: #5bb8e8; --green: #2d6a2d; --red: #8b0000;
+      --muted: #5a7490; --rule: rgba(13,31,56,0.10); --rule-med: rgba(13,31,56,0.18);
       --serif: 'EB Garamond', Georgia, serif; --mono: 'DM Mono', monospace;
     }
     html { scroll-behavior: smooth; }
     body { font-family: var(--serif); background: var(--parchment); color: var(--ink); line-height: 1.75; font-size: 18px; }
-    nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(253,252,248,0.96); backdrop-filter: blur(8px); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 14px 48px; }
+    nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(238,244,251,0.97); backdrop-filter: blur(8px); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 14px 48px; }
     .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; font-weight: 500; }
     .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; justify-content: center; }
     .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
@@ -81,7 +81,7 @@
     .btn { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 28px; text-decoration: none; display: inline-block; transition: opacity 0.2s; }
     .btn-dark { background: var(--ink); color: var(--parchment); }
     .btn-dark:hover { opacity: 0.82; }
-    .btn-outline { background: transparent; color: var(--ink); border: 1px solid rgba(15,15,13,0.3); }
+    .btn-outline { background: transparent; color: var(--ink); border: 1px solid rgba(13,31,56,0.25); }
     .btn-outline:hover { background: var(--cream); }
     footer { border-top: 2px solid var(--ink); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
     .footer-left { font-family: var(--mono); font-size: 11px; color: var(--muted); line-height: 1.7; }
@@ -109,7 +109,7 @@
   </style>
   <style>
     .step { display: grid; grid-template-columns: 160px 1fr; gap: 32px; align-items: start; margin-bottom: 48px; }
-    .step img { width: 160px; height: 120px; object-fit: cover; border: 0.5px solid var(--rule); }
+    .step img { width: 160px; height: 120px; object-fit: contain; background: #ffffff; border: 0.5px solid var(--rule); }
     .step-meta { font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
     .step-title { font-size: clamp(22px, 3vw, 32px); font-weight: 400; line-height: 1.15; margin-bottom: 10px; }
     .step-title em { font-style: italic; color: var(--gold); }
@@ -120,7 +120,7 @@
     
     @media (max-width: 720px) {
       nav { padding: 12px 20px; grid-template-columns: 1fr auto; }
-      .nav-links { display: none; }
+      .nav-links { display: none; }  .nav-links.open { display: flex; }
       .hero, .section { padding-left: 20px; padding-right: 20px; }
       .hero { padding-top: 48px; padding-bottom: 40px; }
       .hero h1 { font-size: clamp(28px, 8vw, 44px); }
@@ -132,6 +132,15 @@
       footer { flex-direction: column; padding: 24px 20px; }
     }
   </style>
+  <meta property="og:title" content="The Problem — 1love.works" />
+  <meta property="og:description" content="Bureaucracy. Legal weight. Entropy. The invisible tax on everything. €5.2 trillion trapped in EU-27 legal systems." />
+  <meta property="og:url" content="https://1love.works/problem" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://1love.works/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Problem — 1love.works" />
+  <meta name="twitter:description" content="Bureaucracy. Legal weight. Entropy. The invisible tax on everything. €5.2 trillion trapped in EU-27 legal systems." />
+  <meta name="description" content="Bureaucracy. Legal weight. Entropy. The invisible tax on everything. €5.2 trillion trapped in EU-27 legal systems." />
 </head>
 <body>
 
