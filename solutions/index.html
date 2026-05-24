@@ -73,6 +73,18 @@
     .no-trading-icon { font-size: 28px; flex-shrink: 0; }
     .no-trading-title { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 8px; }
     .no-trading p { font-size: 15px; color: #3a3a36; line-height: 1.8; margin: 0; }
+    .arch-split { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin: 36px 0; background: var(--rule); }
+    .arch-col { padding: 32px 28px; background: var(--parchment); }
+    .arch-col.arch-col--fixed { background: var(--cream); }
+    .arch-col-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+    .arch-col-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+    .arch-col-heading { font-size: 20px; font-weight: 400; line-height: 1.25; margin-bottom: 14px; color: var(--ink); }
+    .arch-col-heading em { font-style: italic; color: var(--gold); }
+    .arch-col p { font-size: 15px; color: #3a3a36; line-height: 1.85; margin: 0; }
+    .arch-analogy { border-top: 1px solid var(--rule); margin-top: 32px; padding-top: 24px; }
+    .arch-analogy-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 12px; }
+    .arch-analogy p { font-size: 16px; font-style: italic; color: #3a3a36; line-height: 1.85; }
+    @media (max-width: 720px) { .arch-split { grid-template-columns: 1fr; } }
     .cta-section { max-width: 760px; margin: 0 auto; padding: 64px 48px 80px; text-align: center; }
     .cta-section h2 { font-size: 38px; font-weight: 400; line-height: 1.2; margin-bottom: 16px; }
     .cta-section h2 em { font-style: italic; color: var(--gold); }
@@ -189,6 +201,32 @@
   <p data-i18n="p5_desc">The conversion of legal entropy into sustainable assets is the final step of the framework. Every abandoned liability, every stranded regulatory obligation, every unresolved legal weight carries embedded value. Smart legal claims convert that entropy into quantifiable, tradeable, sustainable assets.</p>
 </div>
 
+<div class="section">
+  <div class="section-num" data-i18n="arch_label">Architecture — Separation of layers</div>
+  <h2 data-i18n="arch_title">Certificate and claim<br/><em>are not the same instrument</em></h2>
+  <p data-i18n="arch_intro">The framework produces two distinct outputs. Their separation is not incidental — it is the load-bearing joint of the architecture. Conflating them would destroy both.</p>
+
+  <div class="arch-split">
+    <div class="arch-col arch-col--fixed">
+      <div class="arch-col-label" data-i18n="arch_pnc_label">PNC — Measurement certificate</div>
+      <div class="arch-col-heading" data-i18n="arch_pnc_heading">Non-tradeable<br/><em>by design</em></div>
+      <p data-i18n="arch_pnc_body">PNC is a scientific record — a phenographic certificate of the legal entropy measured at a given point in time. Its value derives entirely from its integrity as an instrument of measurement. Trading it would introduce an incentive to distort the measurement. The certificate therefore does not move. It is issued, recorded, and held. Its non-tradeability is not a limitation; it is what makes it credible.</p>
+    </div>
+    <div class="arch-col">
+      <div class="arch-col-label" data-i18n="arch_claim_label">Legal claims — Measurement output</div>
+      <div class="arch-col-heading" data-i18n="arch_claim_heading">Tradeable,<br/><em>assignable, financeable</em></div>
+      <p data-i18n="arch_claim_body">Legal claims are what the instrument finds when it scans a legal system: identified violations, quantified liabilities, recoverable value. They are the output of the measurement, not the measurement itself. As legal assets, they can be assigned, traded, securitised, or used as collateral. This is standard legal finance — third-party litigation funding applied to a systematically identified claim set. Capital can form around the recovery layer without touching the certificate layer.</p>
+    </div>
+  </div>
+
+  <div class="arch-analogy">
+    <div class="arch-analogy-label" data-i18n="arch_analogy_label">Analogy</div>
+    <p data-i18n="arch_analogy_body">A geologist's survey stays with the geologist. The mining rights the survey identified can be licensed and traded. The report does not move — because the moment it does, it is no longer a report: it is a position. The same principle governs this framework. The measurement certificate remains with the instrument. The value it locates enters the market through the claims it produces.</p>
+  </div>
+
+  <p style="margin-top: 32px;" data-i18n="arch_implication">The institutional consequence is deliberate: investors who would not — or could not — hold PNC can take positions in the legal claims. The network is funded at the recovery layer. The measurement layer stays clean.</p>
+</div>
+
 <footer>
   <div class="footer-left">
     <strong>1love.works</strong> · © 2019–2026 Avv. Dr. Gian Marco Solas · <span data-i18n="footer_rights">All rights reserved</span><br/>
@@ -226,6 +264,18 @@ var T = {
     p5_label: 'V &mdash; Asset conversion instrument', p5_tag: 'In development',
     p5_title: 'Legal claims for<br/><em>sustainable assets</em>',
     p5_desc: 'The conversion of legal entropy into sustainable assets. Smart legal claims convert that entropy into quantifiable, tradeable, sustainable assets.',
+    arch_label: 'Architecture &mdash; Separation of layers',
+    arch_title: 'Certificate and claim<br/><em>are not the same instrument</em>',
+    arch_intro: 'The framework produces two distinct outputs. Their separation is not incidental &mdash; it is the load-bearing joint of the architecture. Conflating them would destroy both.',
+    arch_pnc_label: 'PNC &mdash; Measurement certificate',
+    arch_pnc_heading: 'Non-tradeable<br/><em>by design</em>',
+    arch_pnc_body: 'PNC is a scientific record &mdash; a phenographic certificate of the legal entropy measured at a given point in time. Its value derives entirely from its integrity as an instrument of measurement. Trading it would introduce an incentive to distort the measurement. The certificate therefore does not move. It is issued, recorded, and held. Its non-tradeability is not a limitation; it is what makes it credible.',
+    arch_claim_label: 'Legal claims &mdash; Measurement output',
+    arch_claim_heading: 'Tradeable,<br/><em>assignable, financeable</em>',
+    arch_claim_body: 'Legal claims are what the instrument finds when it scans a legal system: identified violations, quantified liabilities, recoverable value. They are the output of the measurement, not the measurement itself. As legal assets, they can be assigned, traded, securitised, or used as collateral. This is standard legal finance &mdash; third-party litigation funding applied to a systematically identified claim set. Capital can form around the recovery layer without touching the certificate layer.',
+    arch_analogy_label: 'Analogy',
+    arch_analogy_body: 'A geologist\'s survey stays with the geologist. The mining rights the survey identified can be licensed and traded. The report does not move &mdash; because the moment it does, it is no longer a report: it is a position. The same principle governs this framework. The measurement certificate remains with the instrument. The value it locates enters the market through the claims it produces.',
+    arch_implication: 'The institutional consequence is deliberate: investors who would not &mdash; or could not &mdash; hold PNC can take positions in the legal claims. The network is funded at the recovery layer. The measurement layer stays clean.',
   },
   it: {
     nav_problem: 'Il Problema', nav_solutions: 'Le Soluzioni Proposte', nav_pnc: 'PNC', nav_methodology: 'Informazioni &amp; Metodologia', nav_participate: 'Partecipa',
@@ -249,6 +299,18 @@ var T = {
     p5_label: 'V &mdash; Strumento di conversione degli attivi', p5_tag: 'In sviluppo',
     p5_title: 'Azioni legali per<br/><em>attivi sostenibili</em>',
     p5_desc: 'La conversione dell\'entropia giuridica in attivi sostenibili attraverso azioni legali intelligenti strutturate con la metodologia legale-fisica.',
+    arch_label: 'Architettura &mdash; Separazione dei livelli',
+    arch_title: 'Certificato e azione legale<br/><em>non sono lo stesso strumento</em>',
+    arch_intro: 'Il framework produce due output distinti. La loro separazione non è accidentale &mdash; è il nodo portante dell\'architettura. Confonderli distruggerebbe entrambi.',
+    arch_pnc_label: 'PNC &mdash; Certificato di misurazione',
+    arch_pnc_heading: 'Non negoziabile<br/><em>per scelta progettuale</em>',
+    arch_pnc_body: 'Il PNC è un registro scientifico &mdash; un certificato fenografico dell\'entropia giuridica misurata in un dato momento. Il suo valore deriva interamente dalla sua integrità come strumento di misurazione. Renderlo negoziabile introdurrebbe un incentivo a distorcere la misurazione. Il certificato pertanto non si muove: viene emesso, registrato e conservato. La sua non negoziabilità non è un limite; è ciò che lo rende credibile.',
+    arch_claim_label: 'Azioni legali &mdash; Output della misurazione',
+    arch_claim_heading: 'Negoziabili,<br/><em>cedibili, finanziabili</em>',
+    arch_claim_body: 'Le azioni legali sono ciò che lo strumento rileva quando scansiona un sistema giuridico: violazioni identificate, passività quantificate, valore recuperabile. Sono l\'output della misurazione, non la misurazione stessa. In quanto attivi legali, possono essere cedute, negoziate, cartolarizzate o utilizzate come garanzia. Si tratta di finanza legale standard &mdash; finanziamento da terzi di contenziosi applicato a un insieme di azioni sistematicamente identificate. Il capitale può formarsi attorno al livello di recupero senza toccare il livello del certificato.',
+    arch_analogy_label: 'Analogia',
+    arch_analogy_body: 'Il rapporto di un geologo rimane al geologo. I diritti minerari che il rapporto ha individuato possono essere concessi in licenza e negoziati. Il rapporto non si muove &mdash; perché nel momento in cui lo facesse, non sarebbe più un rapporto: sarebbe una posizione. Lo stesso principio governa questo framework. Il certificato di misurazione rimane con lo strumento. Il valore che individua entra nel mercato attraverso le azioni che produce.',
+    arch_implication: 'La conseguenza istituzionale è deliberata: gli investitori che non potrebbero &mdash; o non vorrebbero &mdash; detenere PNC possono assumere posizioni nelle azioni legali. La rete viene finanziata al livello di recupero. Il livello di misurazione rimane integro.',
   },
   fr: {
     nav_problem: 'Le Problème', nav_solutions: 'Les Solutions Proposées', nav_pnc: 'PNC', nav_methodology: 'À Propos &amp; Méthodologie', nav_participate: 'Participer',
@@ -272,6 +334,18 @@ var T = {
     p5_label: 'V &mdash; Instrument de conversion d\'actifs', p5_tag: 'En développement',
     p5_title: 'Actions juridiques pour<br/><em>actifs durables</em>',
     p5_desc: 'La conversion de l\'entropie juridique en actifs durables grâce à des actions juridiques intelligentes structurées selon la méthodologie juridico-physique.',
+    arch_label: 'Architecture &mdash; Séparation des couches',
+    arch_title: 'Certificat et action en justice<br/><em>ne sont pas le même instrument</em>',
+    arch_intro: 'Le cadre produit deux résultats distincts. Leur séparation n\'est pas fortuite &mdash; c\'est le joint porteur de l\'architecture. Les confondre détruirait les deux.',
+    arch_pnc_label: 'PNC &mdash; Certificat de mesure',
+    arch_pnc_heading: 'Non négociable<br/><em>par conception</em>',
+    arch_pnc_body: 'Le PNC est un enregistrement scientifique &mdash; un certificat phénographique de l\'entropie juridique mesurée à un moment donné. Sa valeur découle entièrement de son intégrité en tant qu\'instrument de mesure. Le rendre négociable introduirait une incitation à fausser la mesure. Le certificat ne se déplace donc pas. Il est émis, enregistré et conservé. Sa non-négociabilité n\'est pas une limitation ; c\'est ce qui lui confère sa crédibilité.',
+    arch_claim_label: 'Actions juridiques &mdash; Résultat de la mesure',
+    arch_claim_heading: 'Négociables,<br/><em>cessibles, finançables</em>',
+    arch_claim_body: 'Les actions juridiques sont ce que l\'instrument détecte lorsqu\'il analyse un système juridique : violations identifiées, passifs quantifiés, valeur recouvrable. Elles sont le résultat de la mesure, non la mesure elle-même. En tant qu\'actifs juridiques, elles peuvent être cédées, négociées, titrisées ou utilisées comme garantie. Il s\'agit de finance juridique standard &mdash; le financement de litiges par des tiers appliqué à un ensemble de créances identifiées systématiquement. Le capital peut se former autour de la couche de recouvrement sans toucher à la couche certificat.',
+    arch_analogy_label: 'Analogie',
+    arch_analogy_body: 'Le rapport d\'un géologue reste au géologue. Les droits miniers que le rapport a identifiés peuvent être concédés sous licence et négociés. Le rapport ne bouge pas &mdash; car dès qu\'il le ferait, ce ne serait plus un rapport : ce serait une position. Le même principe régit ce cadre. Le certificat de mesure reste avec l\'instrument. La valeur qu\'il localise entre sur le marché par les actions qu\'il produit.',
+    arch_implication: 'La conséquence institutionnelle est délibérée : les investisseurs qui ne pourraient pas &mdash; ou ne voudraient pas &mdash; détenir du PNC peuvent prendre des positions dans les actions juridiques. Le réseau est financé au niveau du recouvrement. La couche de mesure reste intacte.',
   },
   es: {
     nav_problem: 'El Problema', nav_solutions: 'Las Soluciones Propuestas', nav_pnc: 'PNC', nav_methodology: 'Acerca &amp; Metodología', nav_participate: 'Participar',
@@ -295,6 +369,18 @@ var T = {
     p5_label: 'V &mdash; Instrumento de conversión de activos', p5_tag: 'En desarrollo',
     p5_title: 'Reclamaciones jurídicas para<br/><em>activos sostenibles</em>',
     p5_desc: 'La conversión de la entropía jurídica en activos sostenibles mediante reclamaciones jurídicas inteligentes estructuradas con la metodología jurídico-física.',
+    arch_label: 'Arquitectura &mdash; Separación de capas',
+    arch_title: 'Certificado y reclamación<br/><em>no son el mismo instrumento</em>',
+    arch_intro: 'El marco produce dos resultados distintos. Su separación no es accidental &mdash; es la junta de carga de la arquitectura. Confundirlos destruiría ambos.',
+    arch_pnc_label: 'PNC &mdash; Certificado de medición',
+    arch_pnc_heading: 'No negociable<br/><em>por diseño</em>',
+    arch_pnc_body: 'El PNC es un registro científico &mdash; un certificado fenográfico de la entropía jurídica medida en un momento dado. Su valor deriva íntegramente de su integridad como instrumento de medición. Hacerlo negociable introduciría un incentivo para distorsionar la medición. El certificado, por tanto, no se mueve. Se emite, registra y conserva. Su no negociabilidad no es una limitación; es lo que lo hace creíble.',
+    arch_claim_label: 'Reclamaciones jurídicas &mdash; Resultado de la medición',
+    arch_claim_heading: 'Negociables,<br/><em>cedibles, financiables</em>',
+    arch_claim_body: 'Las reclamaciones jurídicas son lo que el instrumento detecta al analizar un sistema jurídico: infracciones identificadas, pasivos cuantificados, valor recuperable. Son el resultado de la medición, no la medición en sí. Como activos jurídicos, pueden cederse, negociarse, titulizarse o utilizarse como garantía. Se trata de finanzas jurídicas estándar &mdash; la financiación de litigios por terceros aplicada a un conjunto de reclamaciones identificadas sistemáticamente. El capital puede formarse en torno a la capa de recuperación sin tocar la capa del certificado.',
+    arch_analogy_label: 'Analogía',
+    arch_analogy_body: 'El informe de un geólogo permanece con el geólogo. Los derechos mineros que el informe identificó pueden licenciarse y negociarse. El informe no se mueve &mdash; porque en el momento en que lo hiciera, dejaría de ser un informe: se convertiría en una posición. El mismo principio rige este marco. El certificado de medición permanece con el instrumento. El valor que localiza entra en el mercado a través de las reclamaciones que produce.',
+    arch_implication: 'La consecuencia institucional es deliberada: los inversores que no podrían &mdash; o no querrían &mdash; mantener PNC pueden tomar posiciones en las reclamaciones jurídicas. La red se financia en la capa de recuperación. La capa de medición permanece intacta.',
   },
 };
 
