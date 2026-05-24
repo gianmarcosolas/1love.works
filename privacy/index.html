@@ -9,15 +9,15 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --ink: #0f0f0d; --parchment: #f5f2ea; --cream: #ede9df; --white: #fdfcf8;
-      --gold: #b8860b; --muted: #6b6860; --rule: rgba(15,15,13,0.10);
-      --rule-med: rgba(15,15,13,0.18);
+      --ink: #0d1f38; --parchment: #eef4fb; --cream: #ddeaf8; --white: #f5f9fd;
+      --gold: #b8860b; --blue: #2a7fc0; --flow: #5bb8e8; --green: #2d6a2d; --red: #8b0000;
+      --muted: #5a7490; --rule: rgba(13,31,56,0.10); --rule-med: rgba(13,31,56,0.18);
       --serif: 'EB Garamond', Georgia, serif; --mono: 'DM Mono', monospace;
     }
     html { scroll-behavior: smooth; }
     body { font-family: var(--serif); background: var(--white); color: var(--ink); line-height: 1.75; font-size: 18px; }
 
-    nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(253,252,248,0.96); backdrop-filter: blur(8px); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 14px 48px; }
+    nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(238,244,251,0.97); backdrop-filter: blur(8px); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 14px 48px; }
     .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; font-weight: 500; }
     .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; justify-content: center; }
     .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
@@ -53,8 +53,8 @@
     .data-table td:first-child { font-family: var(--mono); font-size: 11px; color: var(--ink); white-space: nowrap; }
     .tag { display: inline-block; font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; padding: 3px 8px; border: 1px solid var(--rule-med); color: var(--muted); margin-right: 4px; }
     .tag.device { border-color: rgba(184,134,11,0.3); color: var(--gold); }
-    .tag.server { border-color: rgba(15,15,13,0.2); color: var(--muted); }
-    .tag.processor { border-color: rgba(15,15,13,0.15); color: var(--muted); }
+    .tag.server { border-color: rgba(13,31,56,0.18); color: var(--muted); }
+    .tag.processor { border-color: rgba(13,31,56,0.12); color: var(--muted); }
 
     .pull-quote { border-left: 4px solid var(--gold); padding: 20px 28px; margin: 32px 0; background: rgba(184,134,11,0.03); }
     .pull-quote p { font-size: 19px; font-style: italic; color: var(--ink); line-height: 1.7; margin: 0; }
@@ -81,7 +81,7 @@
     @media (max-width: 720px) {
       #nav-toggle { display: block !important; }
       nav { padding: 12px 20px; grid-template-columns: 1fr auto; }
-      .nav-links { display: none; }
+      .nav-links { display: none; }  .nav-links.open { display: flex; }
       .hero, .section, .wrap { padding-left: 20px; padding-right: 20px; }
       .hero { padding-top: 48px; padding-bottom: 40px; }
       .hero h1 { font-size: clamp(28px, 8vw, 44px); }
@@ -90,6 +90,15 @@
       .footer-right { flex-wrap: wrap; gap: 16px; }
     }
   </style>
+  <meta property="og:title" content="Data Sovereignty — 1love.works" />
+  <meta property="og:description" content="Your data. Your node. Your right. Your inalienable property. How 1love.works handles data — by architecture, not policy." />
+  <meta property="og:url" content="https://1love.works/privacy" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://1love.works/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Data Sovereignty — 1love.works" />
+  <meta name="twitter:description" content="Your data. Your node. Your right. Your inalienable property. How 1love.works handles data — by architecture, not policy." />
+  <meta name="description" content="Your data. Your node. Your right. Your inalienable property. How 1love.works handles data — by architecture, not policy." />
 </head>
 <body>
 
@@ -523,28 +532,40 @@ function setLang(lang) {
 setLang(currentLang);
 </script>
 
+
 <script>
 // Mobile nav toggle
-document.addEventListener('DOMContentLoaded', function() {
-  const toggle = document.getElementById('nav-toggle');
-  const links = document.querySelector('.nav-links');
-  if (toggle && links) {
-    toggle.addEventListener('click', function() {
-      const open = links.style.display === 'flex';
-      links.style.display = open ? 'none' : 'flex';
-      links.style.flexDirection = 'column';
-      links.style.position = 'absolute';
-      links.style.top = '52px';
-      links.style.left = '0';
-      links.style.right = '0';
-      links.style.background = 'rgba(245,242,234,0.98)';
-      links.style.padding = '16px 20px';
-      links.style.borderBottom = '1px solid rgba(15,15,13,0.12)';
-      links.style.zIndex = '99';
-      toggle.textContent = open ? '☰' : '✕';
+(function() {
+  function initNav() {
+    var toggle = document.getElementById('nav-toggle');
+    var links = document.querySelector('.nav-links');
+    if (!toggle || !links) return;
+    var isOpen = false;
+    toggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      isOpen = !isOpen;
+      if (isOpen) {
+        links.style.cssText = 'display:flex!important;flex-direction:column;position:fixed;top:52px;left:0;right:0;background:rgba(238,244,251,0.99);padding:16px 20px 24px;border-bottom:1px solid rgba(13,31,56,0.12);z-index:9999;gap:0;';
+        toggle.textContent = '✕';
+      } else {
+        links.style.cssText = '';
+        toggle.textContent = '☰';
+      }
+    });
+    document.addEventListener('click', function() {
+      if (isOpen) {
+        isOpen = false;
+        links.style.cssText = '';
+        toggle.textContent = '☰';
+      }
     });
   }
-});
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNav);
+  } else {
+    initNav();
+  }
+})();
 </script>
 </body>
 </html>
