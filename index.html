@@ -118,7 +118,7 @@
 <!-- EUROPEAN LEGAL SYSTEMS VALUE header -->
 <div style="border-bottom: 1px solid var(--rule); padding: 18px 24px; text-align: center;">
   <div style="font-family: var(--mono); font-size: 28px; font-weight: 700; letter-spacing: 0.06em; color: var(--ink); margin-bottom: 5px;">EUROPEAN LEGAL SYSTEMS&#8217; VALUE</div>
-  <div style="font-family: var(--serif, Georgia, serif); font-size: 13px; color: var(--muted);" data-i18n="sub">Engineering legal processes for &#8220;perpetual motion&#8221; and competitiveness of European legal systems.</div>
+  <div style="font-family: var(--serif, Georgia, serif); font-size: 13px; color: var(--muted);" data-i18n="sub">Engineering legal processes for &#8220;perpetual motion&#8221; and competitiveness of European legal systems.<br/><span style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--gold);">The Legal Systems&#8217; Meter &#8212; Currently in calibration</span></div>
 </div>
 
 
@@ -216,7 +216,7 @@ const T = {
     stake_title: 'YOUR STAKE IN OPTIMAL EUROPE 🇪🇺',
     overline: 'LAW IS LOVE',
     overline_sub: 'Experimental proposal',
-    sub: 'A technological framework to measure legal weight and entropy in, codify and optimise legal systems with smart legal claims. Engineering legal processes for "perpetual motion" and competitiveness of European legal systems (and more).',
+    sub: 'A technological framework to measure legal weight and entropy in, codify and optimise legal systems with smart legal claims. Engineering legal processes for "perpetual motion" and competitiveness of European legal systems (and more).<br/><span style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--gold);">The Legal Systems\' Meter — Currently in calibration</span>',
     metric_scans: 'Documents scanned',
     metric_entropy: 'Total legal weight - entropy (ΣS)',
     metric_pnc: '⬡ PNC available in Phase 1 at fixed price of €99',
@@ -224,7 +224,7 @@ const T = {
     metric_current: 'Current',
     metric_value: '⬡ PNC Value',
     chart_label: 'Entropy — Legal Weight Identified (ΣS) vs PNC Value',
-    chart_sub: 'EU Legal Systems\' Value',
+    chart_sub: 'EU Legal Systems\'s Value',
     legend_pnc: 'PNC Value',
     legend_entropy: 'Entropy (ΣS)',
     legend_projected: 'Projected',
@@ -252,7 +252,7 @@ const T = {
     stake_title: 'LA TUA QUOTA NELL&#8217;EUROPA OTTIMALE 🇪🇺',
     overline: 'LEGGE È AMORE',
     overline_sub: 'Proposta sperimentale',
-    sub: 'Un framework tecnologico per misurare il peso normativo e l\'entropia, codificare e ottimizzare i sistemi giuridici con azioni legali intelligenti. Ingegnerizzare i processi giuridici per il "moto perpetuo" e la competitività dei sistemi giuridici europei (e non solo).',
+    sub: 'Un framework tecnologico per misurare il peso normativo e l\'entropia, codificare e ottimizzare i sistemi giuridici con azioni legali intelligenti. Ingegnerizzare i processi giuridici per il "moto perpetuo" e la competitività dei sistemi giuridici europei (e non solo).<br/><span style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--gold);">The Legal Systems\' Meter — Attualmente in calibrazione</span>',
     metric_scans: 'Documenti analizzati',
     metric_entropy: 'Peso normativo - entropia totale (ΣS)',
     metric_pnc: '⬡ PNC disponibili per la prima fase di calibrazione a prezzo fisso di €99',
@@ -288,7 +288,7 @@ const T = {
     stake_title: 'VOTRE PART DANS L&#8217;EUROPE OPTIMALE 🇪🇺',
     overline: 'LA LOI EST AMOUR',
     overline_sub: 'Proposition expérimentale',
-    sub: 'Un cadre technologique pour mesurer le poids juridique et l\'entropie, codifier et optimiser les systèmes juridiques avec des actions juridiques intelligentes. Ingénierie des processus juridiques pour le "mouvement perpétuel" et la compétitivité des systèmes juridiques européens (et plus).',
+    sub: 'Un cadre technologique pour mesurer le poids juridique et l\'entropie, codifier et optimiser les systèmes juridiques avec des actions juridiques intelligentes. Ingénierie des processus juridiques pour le "mouvement perpétuel" et la compétitivité des systèmes juridiques européens (et plus).<br/><span style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--gold);">The Legal Systems\' Meter — Actuellement en calibration</span>',
     metric_scans: 'Documents analysés',
     metric_entropy: 'Poids juridique - entropie totale (ΣS)',
     metric_pnc: '⬡ PNC disponibles en Phase 1 au prix fixe de 99 €',
@@ -324,7 +324,7 @@ const T = {
     stake_title: 'SU PARTICIPACIÓN EN LA EUROPA ÓPTIMA 🇪🇺',
     overline: 'LA LEY ES AMOR',
     overline_sub: 'Propuesta experimental',
-    sub: 'Un marco tecnológico para medir el peso jurídico y la entropía, codificar y optimizar los sistemas jurídicos con acciones jurídicas inteligentes. Ingeniería de procesos jurídicos para el "movimiento perpetuo" y la competitividad de los sistemas jurídicos europeos (y más).',
+    sub: 'Un marco tecnológico para medir el peso jurídico y la entropía, codificar y optimizar los sistemas jurídicos con acciones jurídicas inteligentes. Ingeniería de procesos jurídicos para el "movimiento perpetuo" y la competitividad de los sistemas jurídicos europeos (y más).<br/><span style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--gold);">The Legal Systems\' Meter — Actualmente en calibración</span>',
     metric_scans: 'Documentos analizados',
     metric_entropy: 'Peso jurídico - entropía total (ΣS)',
     metric_pnc: '⬡ PNC disponibles en Fase 1 a precio fijo de €99',
@@ -485,12 +485,10 @@ function drawLPChart(realStats) {
   ctx.stroke();
   ctx.setLineDash([]);
 
-  // ── Real data: solid gold line from actual scans ──────────────────────────
   const timeSeries = realStats && realStats.time_series;
   const REAL_X_FRACTION = 0.30;
 
   if (timeSeries && timeSeries.length >= 1) {
-    // Shaded area under real curve
     ctx.beginPath();
     timeSeries.forEach((d, i) => {
       const x = PAD.left + (i / Math.max(timeSeries.length - 1, 1)) * cW * REAL_X_FRACTION;
@@ -504,7 +502,6 @@ function drawLPChart(realStats) {
     ctx.fillStyle = 'rgba(184,134,11,0.06)';
     ctx.fill();
 
-    // Solid gold line — real growth scan by scan
     ctx.beginPath();
     ctx.strokeStyle = '#b8860b';
     ctx.lineWidth = 2.5;
@@ -515,7 +512,6 @@ function drawLPChart(realStats) {
     });
     ctx.stroke();
 
-    // Dot for each scan
     timeSeries.forEach((d, i) => {
       const x = PAD.left + (i / Math.max(timeSeries.length - 1, 1)) * cW * REAL_X_FRACTION;
       const y = PAD.top + cH - (d.implied_value / maxVal) * cH;
@@ -525,7 +521,6 @@ function drawLPChart(realStats) {
       ctx.fill();
     });
 
-    // Formula annotation at mid-point scan
     const midIdx = Math.floor(timeSeries.length / 2);
     const midD = timeSeries[midIdx];
     const midX = PAD.left + (midIdx / Math.max(timeSeries.length - 1, 1)) * cW * REAL_X_FRACTION;
@@ -535,7 +530,6 @@ function drawLPChart(realStats) {
     ctx.textAlign = 'left';
     ctx.fillText('scan #' + midD.scan + ': €99\u00d7(1+' + midD.cumulative_entropy + '/1k)=\u20ac' + midD.implied_value, midX + 6, midY - 4);
   } else {
-    // Fallback: flat €99 line
     ctx.beginPath();
     ctx.strokeStyle = '#b8860b';
     ctx.lineWidth = 2.5;
@@ -545,7 +539,6 @@ function drawLPChart(realStats) {
     ctx.stroke();
   }
 
-  // ── Phase 1 boundary ──────────────────────────────────────────────────────
   const phase1X = PAD.left + cW * REAL_X_FRACTION;
   ctx.fillStyle = 'rgba(184,134,11,0.03)';
   ctx.fillRect(PAD.left, PAD.top, phase1X - PAD.left, cH);
@@ -555,20 +548,17 @@ function drawLPChart(realStats) {
   ctx.beginPath(); ctx.moveTo(phase1X, PAD.top); ctx.lineTo(phase1X, PAD.top + cH); ctx.stroke();
   ctx.setLineDash([]);
 
-  // ── €99 floor label ───────────────────────────────────────────────────────
   const foundingY = PAD.top + cH - (FOUNDING_PRICE / maxVal) * cH;
   ctx.fillStyle = 'rgba(184,134,11,0.7)';
   ctx.font = '9px DM Mono, monospace';
   ctx.textAlign = 'left';
   ctx.fillText('\u20ac99 floor', PAD.left + 6, foundingY - 5);
 
-  // ── Formula label top-left ────────────────────────────────────────────────
   ctx.fillStyle = 'rgba(184,134,11,0.4)';
   ctx.font = '8px DM Mono, monospace';
   ctx.textAlign = 'left';
   ctx.fillText('implied_value = \u20ac99 \u00d7 (1 + \u03a3S / 1,000)', PAD.left + 6, PAD.top + 14);
 
-  // ── Perpetual motion asymptote ────────────────────────────────────────────
   ctx.strokeStyle = 'rgba(245,242,234,0.06)';
   ctx.lineWidth = 1;
   ctx.setLineDash([2, 6]);
@@ -579,7 +569,6 @@ function drawLPChart(realStats) {
   ctx.textAlign = 'right';
   ctx.fillText('perpetual motion', PAD.left + cW - 4, asymY - 4);
 
-  // ── YOU ARE HERE dot — real current position ──────────────────────────────
   const currentValue = (realStats && realStats.implied_value) || FOUNDING_PRICE;
   const curX = timeSeries && timeSeries.length >= 1
     ? PAD.left + cW * REAL_X_FRACTION
@@ -614,7 +603,6 @@ window.addEventListener('resize', () => drawLPChart(null));
 </script>
 
 <script>
-// Mobile nav toggle
 (function() {
   function initNav() {
     var toggle = document.getElementById('nav-toggle');
