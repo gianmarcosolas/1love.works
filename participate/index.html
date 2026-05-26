@@ -221,543 +221,6 @@
     </div>
   </div>
 
-  <div class="columns">
-    <div class="column">
-      <div class="column-head">
-        <span class="column-icon">⚖️</span>
-        <span class="column-title" data-i18n="col_pro_title">Professional & Legal Order</span>
-        <span class="column-count" id="pro-count"></span>
-      </div>
-      <div class="node-list" id="pro-list"></div>
-      <div class="empty-state" id="pro-empty"><p data-i18n="empty_pro">No professional nodes yet.<br/>Be the first.</p></div>
-    </div>
-    <div class="column">
-      <div class="column-head">
-        <span class="column-icon">⬡</span>
-        <span class="column-title" data-i18n="col_citizen_title">Citizens</span>
-        <span class="column-count" id="citizen-count"></span>
-      </div>
-      <div class="node-list" id="citizen-list"></div>
-      <div class="empty-state" id="citizen-empty"><p data-i18n="empty_citizen">No citizen nodes yet.<br/>Be the first.</p></div>
-    </div>
-  </div>
-
-  <!-- ═══════════════ DECLARE NODE ═══════════════ -->
-  <div class="section-head" data-i18n="sec_declare">Declare your node</div>
-
-  <div class="declare-wrap">
-    <p class="declare-intro" data-i18n="declare_intro">If you hold a PNC — through a service, codification work, or founding participation — declare your node here. Voluntary public record.</p>
-
-    <div style="margin-bottom:6px;"><p style="font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.11em;color:var(--muted);margin-bottom:10px;" data-i18n="reg_type_label">I am registering as</p>
-      <div class="form-type-toggle">
-        <button class="type-btn active" id="btn-type-pro" onclick="setNodeType('pro')" data-i18n="type_pro">Professional / Institution</button>
-        <button class="type-btn" id="btn-type-citizen" onclick="setNodeType('citizen')" data-i18n="type_citizen">Citizen</button>
-      </div>
-    </div>
-
-    <div class="form-grid">
-      <div class="form-group"><label data-i18n="field_name">Full name / institution</label><input type="text" id="nd-name" /></div>
-      <div class="form-group"><label data-i18n="field_jurisdiction">Jurisdiction (country / region)</label><input type="text" id="nd-jurisdiction" /></div>
-      <div class="form-group" id="nd-role-group">
-        <label data-i18n="field_role">Role / profession</label>
-        <select id="nd-role">
-          <option value="" data-i18n="role_select">— select —</option>
-          <option value="Lawyer" data-i18n="role_lawyer">Lawyer</option>
-          <option value="Notary" data-i18n="role_notary">Notary</option>
-          <option value="Accountant" data-i18n="role_accountant">Accountant</option>
-          <option value="Professor" data-i18n="role_professor">Professor (law / physics)</option>
-          <option value="Judge" data-i18n="role_judge">Judge / Magistrate</option>
-          <option value="Public servant" data-i18n="role_public">Public servant</option>
-          <option value="Municipality" data-i18n="role_municipality">Municipality / Institution</option>
-          <option value="Other" data-i18n="role_other">Other certified professional</option>
-        </select>
-      </div>
-      <div class="form-group"><label data-i18n="field_pnc">PNC held</label><input type="number" id="nd-pnc" min="0.1" step="0.1" placeholder="e.g. 1" /></div>
-      <div class="form-group form-full"><label data-i18n="field_bio">Short statement (optional)</label><textarea id="nd-bio"></textarea></div>
-      <div class="form-group"><label data-i18n="field_link">Public link (optional)</label><input type="url" id="nd-link" placeholder="https://" /></div>
-    </div>
-    <button class="btn-submit" onclick="registerNode()" data-i18n="reg_btn">Declare node →</button>
-    <div class="success-flash" id="nd-success"><p data-i18n="nd_success">⬡ &nbsp;Node declared. Your entry has been added to the founding record. Thank you for being part of the measurement.</p></div>
-    <p style="font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.7;margin-top:14px;max-width:560px;" data-i18n="nd_note">By submitting, you self-declare that you hold at least 1 PNC. Professional nodes are subject to counter-verification against public registers. This record is public.</p>
-  </div>
-
-  <hr class="section-divider" />
-
-  <!-- ═══════════════ PARTICIPATE ═══════════════ -->
-  <div class="section-head" data-i18n="sec_participate">Support the idea — participate and own the results</div>
-
-  <p class="honest-note" data-i18n="honest_note">The book is real and ready to ship upon success of the experiment. The PNC is a founding certificate in an active research and entropy transformation programme — not a financial instrument, but participation in a serious experiment with a publication record behind it (<a href="/methodology" style="color:var(--gold);">see methodology</a>), and five instruments already working to solve real legal problems (<a href="https://www.1love.works/solutions" style="color:var(--gold);">see all solutions</a>).</p>
-
-  <div class="offer-grid">
-    <div class="offer-card primary">
-      <div class="offer-label" data-i18n="offer_label">⬡ Pre-order</div>
-      <div class="offer-price">€99</div>
-      <div class="offer-price-note" data-i18n="offer_price_note">one-time</div>
-      <ul class="offer-includes">
-        <li data-i18n="offer_li1">Your unique, private and proprietary code — representative of all your EU rights, including the predictive model for Big Tech damages at <a href="https://bigtechclaim.eu" target="_blank" style="color:var(--gold);">bigtechclaim.eu</a> and the right to request the codification of your sustainable legal system at <a href="https://www.1love.works/codification" target="_blank" style="color:var(--gold);">1love.works/codification</a></li>
-        <li data-i18n="offer_li2">1 PNC — Phenocurrency Certificate (founding)</li>
-        <li data-i18n="offer_li3">3 free legal document scans — EU Law Meter (upon successful calibration of <a href="https://eulawscanner.eu" target="_blank" style="color:var(--gold);">eulawscanner.eu</a>)</li>
-        <li data-i18n="offer_li4">Free scans — Corporate Meter (upon successful calibration of <a href="https://corporate-scanner.com" target="_blank" style="color:var(--gold);">corporate-scanner.com</a>)</li>
-        <li data-i18n="offer_li5"><em>De Lege et Amore</em> — full book, upon successful experimentation and validation</li>
-      </ul>
-      <div class="offer-caveat" data-i18n="offer_caveat">PNC is not a financial instrument. It is a founding certificate in a legal-physics research programme. Its implied value is mathematical, not speculative. Subject to experimentation.</div>
-      <a href="https://buy.stripe.com/00waEXbDe4AvghJgyngUM00" class="btn btn-gold" data-i18n="offer_btn">Pre-order — €99 →</a>
-
-      <div style="border-top:1px solid rgba(184,134,11,0.2);margin-top:24px;padding-top:20px;">
-        <div style="font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:0.14em;color:var(--gold);margin-bottom:14px;" data-i18n="extra_pnc_label">Additional PNC at founding price</div>
-        <div style="display:flex;align-items:center;gap:0;margin-bottom:14px;">
-          <button onclick="stepPNC(-1)" style="font-family:var(--mono);font-size:16px;width:36px;height:36px;border:1px solid rgba(184,134,11,0.35);background:transparent;color:var(--gold);cursor:pointer;line-height:1;">−</button>
-          <div style="font-family:var(--mono);font-size:20px;font-weight:500;color:var(--gold);width:48px;text-align:center;border-top:1px solid rgba(184,134,11,0.35);border-bottom:1px solid rgba(184,134,11,0.35);height:36px;line-height:36px;" id="pnc-qty">0</div>
-          <button onclick="stepPNC(1)" style="font-family:var(--mono);font-size:16px;width:36px;height:36px;border:1px solid rgba(184,134,11,0.35);background:transparent;color:var(--gold);cursor:pointer;line-height:1;">+</button>
-          <div style="font-family:var(--mono);font-size:13px;color:var(--muted);margin-left:16px;" id="pnc-total"></div>
-        </div>
-        <a id="extra-pnc-btn" href="https://buy.stripe.com/00waEXbDe4AvghJgyngUM00" class="btn btn-gold" style="display:none;opacity:0.92;" data-i18n="extra_pnc_btn">Order additional PNC →</a>
-        <p style="font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.65;margin-top:10px;" data-i18n="extra_pnc_note">Each additional PNC = €99 founding price. Max 99. Select quantity on Stripe checkout. Founding price valid while founding phase lasts.</p>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- ═══════════════ INTEREST FORM ═══════════════ -->
-  <hr class="section-divider" />
-  <div class="section-head" data-i18n="form_head">Manifest interest — free</div>
-
-  <div style="max-width:620px;">
-    <p style="font-size:16px;color:#3a3a36;line-height:1.85;margin-bottom:28px;" data-i18n="form_intro">Not ready to pre-order? Manifest your interest in the codification of your territory — free. This data goes directly into the empirical research map. Every territory matters.</p>
-
-    <form id="freeForm">
-      <div class="form-group" style="margin-bottom:18px;"><label for="f-email" data-i18n="label_email">Email</label><input type="email" id="f-email" name="email" placeholder="your@email.com" /></div>
-      <div class="form-group" style="margin-bottom:18px;">
-        <label for="f-language" data-i18n="label_language">Preferred language</label>
-        <select id="f-language" name="language">
-          <option value="" disabled selected data-i18n="lang_select">Select language</option>
-          <option value="en">English</option>
-          <option value="it">Italiano</option>
-          <option value="fr">Français</option>
-          <option value="es">Español</option>
-          <option value="other" data-i18n="lang_other">Other — specify in notes</option>
-        </select>
-        <p class="form-note" data-i18n="lang_note">Additional languages available based on demand.</p>
-      </div>
-      <div class="form-group" style="margin-bottom:18px;">
-        <label for="f-country" data-i18n="label_country">Country</label>
-        <select id="f-country" name="country">
-          <option value="" disabled selected data-i18n="country_select">Select country</option>
-          <option value="IT">Italy</option><option value="DE">Germany</option><option value="FR">France</option><option value="ES">Spain</option><option value="PT">Portugal</option><option value="NL">Netherlands</option><option value="BE">Belgium</option><option value="AT">Austria</option><option value="CH">Switzerland</option><option value="PL">Poland</option><option value="CZ">Czech Republic</option><option value="SK">Slovakia</option><option value="HU">Hungary</option><option value="RO">Romania</option><option value="BG">Bulgaria</option><option value="HR">Croatia</option><option value="SI">Slovenia</option><option value="GR">Greece</option><option value="CY">Cyprus</option><option value="MT">Malta</option><option value="LU">Luxembourg</option><option value="IE">Ireland</option><option value="DK">Denmark</option><option value="SE">Sweden</option><option value="FI">Finland</option><option value="EE">Estonia</option><option value="LV">Latvia</option><option value="LT">Lithuania</option><option value="GB">United Kingdom</option><option value="US">United States</option><option value="CA">Canada</option><option value="AU">Australia</option><option value="BR">Brazil</option><option value="AR">Argentina</option><option value="MX">Mexico</option><option value="JP">Japan</option><option value="SG">Singapore</option><option value="AE">UAE</option><option value="ZA">South Africa</option>
-          <option value="OTHER" data-i18n="country_other">Other</option>
-        </select>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px;">
-        <div class="form-group"><label for="f-region" data-i18n="label_region">Region / State</label><input type="text" id="f-region" data-i18n-placeholder="placeholder_region" placeholder="e.g. Sardinia, Bavaria" /></div>
-        <div class="form-group"><label for="f-city" data-i18n="label_city">City / Municipality</label><input type="text" id="f-city" data-i18n-placeholder="placeholder_city" placeholder="e.g. Cagliari, Munich" /></div>
-      </div>
-      <div class="form-group" style="margin-bottom:18px;">
-        <label data-i18n="label_interest">Interest in codification of</label>
-        <div class="check-grid" style="margin-top:8px;">
-          <label class="check-item"><input type="checkbox" name="f-interest" value="municipal_law" /><span data-i18n="interest_municipal">Municipal / local law</span></label>
-          <label class="check-item"><input type="checkbox" name="f-interest" value="regional_law" /><span data-i18n="interest_regional">Regional law</span></label>
-          <label class="check-item"><input type="checkbox" name="f-interest" value="national_law" /><span data-i18n="interest_national">National law</span></label>
-          <label class="check-item"><input type="checkbox" name="f-interest" value="eu_law" /><span data-i18n="interest_eu">EU law</span></label>
-          <label class="check-item"><input type="checkbox" name="f-interest" value="corporate" /><span data-i18n="interest_corporate">Corporate / company law</span></label>
-          <label class="check-item"><input type="checkbox" name="f-interest" value="research" /><span data-i18n="interest_research">Academic research</span></label>
-        </div>
-      </div>
-      <div class="form-group"><label for="f-notes" data-i18n="label_notes">Notes / language request</label><input type="text" id="f-notes" data-i18n-placeholder="placeholder_notes" placeholder="Any context, language requests, or message" /></div>
-      <div class="form-group" style="margin-bottom:4px;">
-        <label class="check-item" style="border:none;padding:0;gap:12px;cursor:pointer;">
-          <input type="checkbox" id="f-consent" required style="width:15px;height:15px;flex-shrink:0;accent-color:var(--gold);cursor:pointer;" />
-          <span style="font-size:13px;color:#3a3a36;line-height:1.6;" data-i18n="consent_label">I have read the <a href="/privacy" style="color:var(--gold);">data sovereignty statement</a> and consent to my submitted data being used solely for the empirical territory research map.</span>
-        </label>
-      </div>
-      <button type="submit" class="btn-submit" id="freeSubmitBtn" data-i18n="btn_submit">Manifest interest →</button>
-      <div class="error-flash" id="freeErrorMsg" data-i18n="error_msg">Something went wrong. Please email gmsolas@sustainab-law.eu directly.</div>
-    </form>
-    <div class="success-flash" id="freeSuccessMsg"><p data-i18n="success_msg">✓ Registered. Your territory has been added to the empirical map. <em>De Lege et Amore.</em></p></div>
-  </div>
-
-</div>
-
-<footer>
-  <div class="footer-left">
-    <strong>1love.works</strong> · © 2019–2026 Avv. Dr. Gian Marco Solas · <span data-i18n="footer_rights">All rights reserved</span><br/>
-    <em style="font-size:10px;" data-i18n="footer_note">PNC is not a financial instrument. Not tradeable. Issued as part of service delivery only. · De Lege et Amore.</em>
-  </div>
-  <div class="footer-right">
-    <a href="/">Home</a><a href="/methodology">Methodology</a><a href="/pnc">Why PNC</a><a href="/privacy">Privacy</a><a href="https://eulawscanner.eu" target="_blank">EU Scanner</a>
-  </div>
-</footer>
-
-<script>
-const T = {
-  en: {
-    nav_problem: 'The Problem', nav_solutions: 'The Proposed Solutions', nav_pnc: 'PNC', nav_methodology: 'About &amp; Methodology', nav_participate: 'Participate',
-    overline:'1love.works · Nodes & Participate',
-    h1:'The people and institutions<br/>building <em>optimal Europe.</em>',
-    hero_sub:'Every PNC holder is a founding node in the measurement network of the European sovereign platform, owning his or her own code / fraction of the platform, representative of all his/her rights. This is the public record of those who have declared their participation — citizens, professionals, institutions — each a proof that the network is real, growing, and doing work.',
-    stat_total:'Total nodes', stat_pro:'Professional & Legal Order', stat_citizen:'Citizens', stat_countries:'Jurisdictions',
-    sec_registry:'⬡ Founding node registry',
-    col_pro_title:'Professional & Legal Order', col_citizen_title:'Citizens',
-    empty_pro:'No professional nodes yet.<br/>Be the first.', empty_citizen:'No citizen nodes yet.<br/>Be the first.',
-    sec_declare:'Declare your node',
-    declare_intro:'If you hold a PNC — through a service, codification work, or founding participation — declare your node here. Voluntary public record.',
-    reg_type_label:'I am registering as', type_pro:'Professional / Institution', type_citizen:'Citizen',
-    field_name:'Full name / institution', field_jurisdiction:'Jurisdiction (country / region)',
-    field_role:'Role / profession', field_pnc:'PNC held', field_bio:'Short statement (optional)', field_link:'Public link (optional)',
-    role_select:'— select —', role_lawyer:'Lawyer', role_notary:'Notary', role_accountant:'Accountant',
-    role_professor:'Professor (law / physics)', role_judge:'Judge / Magistrate', role_public:'Public servant',
-    role_municipality:'Municipality / Institution', role_other:'Other certified professional',
-    reg_btn:'Declare node →',
-    nd_success:'⬡ &nbsp;Node declared. Your entry has been added to the founding record. Thank you for being part of the measurement.',
-    nd_note:'By submitting, you self-declare that you hold at least 1 PNC. Professional nodes are subject to counter-verification against public registers. This record is public.',
-    sec_participate:'Support the idea — participate and own the results',
-    honest_note:'The book is real and ready to ship upon success of the experiment. The PNC is a founding certificate in an active research and entropy transformation programme — not a financial instrument, but participation in a serious experiment with a publication record behind it (<a href="/methodology" style="color:var(--gold);">see methodology</a>), and five instruments already working to solve real legal problems (<a href="https://www.1love.works/solutions" style="color:var(--gold);">see all solutions</a>).',
-    offer_label:'⬡ Pre-order', offer_price_note:'one-time',
-    offer_li1:'Your unique, private and proprietary code — representative of all your EU rights, including the predictive model for Big Tech damages at <a href="https://bigtechclaim.eu" target="_blank" style="color:var(--gold);">bigtechclaim.eu</a> and the right to request the codification of your sustainable legal system at <a href="https://www.1love.works/codification" target="_blank" style="color:var(--gold);">1love.works/codification</a>',
-    offer_li2:'1 PNC — Phenocurrency Certificate (founding)',
-    offer_li3:'3 free legal document scans — EU Law Meter (upon successful calibration of <a href="https://eulawscanner.eu" target="_blank" style="color:var(--gold);">eulawscanner.eu</a>)',
-    offer_li4:'Free scans — Corporate Meter (upon successful calibration of <a href="https://corporate-scanner.com" target="_blank" style="color:var(--gold);">corporate-scanner.com</a>)',
-    offer_li5:'<em>De Lege et Amore</em> — full book, upon successful experimentation and validation',
-    offer_caveat:'PNC is not a financial instrument. It is a founding certificate in a legal-physics research programme. Its implied value is mathematical, not speculative. Subject to experimentation.',
-    offer_btn:'Pre-order — €99 →',
-    form_head:'Manifest interest — free',
-    form_intro:'Not ready to pre-order? Manifest your interest in the codification of your territory — free. This data goes directly into the empirical research map. Every territory matters.',
-    label_email:'Email', label_language:'Preferred language', lang_select:'Select language', lang_other:'Other — specify in notes', lang_note:'Additional languages available based on demand.',
-    label_country:'Country', country_select:'Select country', country_other:'Other',
-    label_region:'Region / State', placeholder_region:'e.g. Sardinia, Bavaria',
-    label_city:'City / Municipality', placeholder_city:'e.g. Cagliari, Munich',
-    label_interest:'Interest in codification of',
-    interest_municipal:'Municipal / local law', interest_regional:'Regional law', interest_national:'National law',
-    interest_eu:'EU law', interest_corporate:'Corporate / company law', interest_research:'Academic research',
-    label_notes:'Notes / language request', placeholder_notes:'Any context, language requests, or message',
-    consent_label:'I have read the <a href="/privacy" style="color:var(--gold);">data sovereignty statement</a> and consent to my submitted data being used solely for the empirical territory research map.',
-    btn_submit:'Manifest interest →',
-    error_msg:'Something went wrong. Please email gmsolas@sustainab-law.eu directly.',
-    success_msg:'✓ Registered. Your territory has been added to the empirical map. <em>De Lege et Amore.</em>',
-    extra_pnc_label:'Additional PNC at founding price',
-    extra_pnc_btn:'Order additional PNC →',
-    extra_pnc_note:'Each additional PNC = €99 founding price. Max 99. Select quantity on Stripe checkout. Founding price valid while founding phase lasts.',
-    founding_label: '⬡ Founding partnership — the originary substrate',
-    founding_role: 'Family founding partnership',
-    founding_jurisdiction: 'Masullas &amp; Cagliari, Sardinia',
-    founding_bio: 'The founding partnership of the project — originary investment of capital, trust and work that made the measurement possible. <em>De Lege et Amore.</em>',
-    founding_ronnie: 'And Ronnie — who kept us going.',
-    footer_rights:'All rights reserved', footer_note:'PNC is not a financial instrument. Not tradeable. Issued as part of service delivery only. · De Lege et Amore.',
-    lbl_nodes:'nodes',
-  },
-  it: {
-    nav_problem: 'Il Problema', nav_solutions: 'Le Soluzioni Proposte', nav_pnc: 'PNC', nav_methodology: 'Informazioni &amp; Metodologia', nav_participate: 'Partecipa',
-    overline:'1love.works · Nodi & Partecipa',
-    h1:'Le persone e le istituzioni<br/>che costruiscono l\'<em>Europa ottimale.</em>',
-    hero_sub:'Ogni detentore di PNC è un nodo fondatore nella rete di misurazione della piattaforma sovrana europea, proprietario del proprio codice / quota della piattaforma, rappresentativo di tutti i suoi diritti. Questo è il registro pubblico di chi ha dichiarato la propria partecipazione — cittadini, professionisti, istituzioni — ognuno una prova che la rete è reale, cresce e produce lavoro.',
-    stat_total:'Nodi totali', stat_pro:'Professionale e Ordine Giuridico', stat_citizen:'Cittadini', stat_countries:'Giurisdizioni',
-    sec_registry:'⬡ Registro dei nodi fondatori',
-    col_pro_title:'Professionale e Ordine Giuridico', col_citizen_title:'Cittadini',
-    empty_pro:'Nessun nodo professionale ancora.<br/>Sii il primo.', empty_citizen:'Nessun nodo cittadino ancora.<br/>Sii il primo.',
-    sec_declare:'Dichiara il tuo nodo',
-    declare_intro:'Se detieni un PNC — tramite un servizio, lavoro di codificazione o partecipazione fondatrice — dichiara il tuo nodo qui. Registro pubblico volontario.',
-    reg_type_label:'Mi registro come', type_pro:'Professionista / Istituzione', type_citizen:'Cittadino',
-    field_name:'Nome completo / istituzione', field_jurisdiction:'Giurisdizione (paese / regione)',
-    field_role:'Ruolo / professione', field_pnc:'PNC detenuti', field_bio:'Breve dichiarazione (opzionale)', field_link:'Link pubblico (opzionale)',
-    role_select:'— seleziona —', role_lawyer:'Avvocato', role_notary:'Notaio', role_accountant:'Commercialista',
-    role_professor:'Professore (diritto / fisica)', role_judge:'Giudice / Magistrato', role_public:'Funzionario pubblico',
-    role_municipality:'Comune / Istituzione', role_other:'Altro professionista certificato',
-    reg_btn:'Dichiara nodo →',
-    nd_success:'⬡ &nbsp;Nodo dichiarato. La tua voce è stata aggiunta al registro fondatore. Grazie per far parte della misurazione.',
-    nd_note:'Inviando, autodichiari di detenere almeno 1 PNC. I nodi professionali sono soggetti a verifica incrociata. Questo registro è pubblico.',
-    sec_participate:'Sostieni l\'idea — partecipa e possiedi i risultati',
-    honest_note:'Il libro è reale e pronto per la spedizione al successo dell\'esperimento. Il PNC è un certificato fondatore in un programma di ricerca e trasformazione attiva dell\'entropia — non uno strumento finanziario, ma la partecipazione a un esperimento serio con un registro di pubblicazioni alle spalle (<a href="/methodology" style="color:var(--gold);">vedi metodologia</a>), e cinque strumenti già al lavoro per risolvere problemi giuridici reali (<a href="https://www.1love.works/solutions" style="color:var(--gold);">vedi tutte le soluzioni</a>).',
-    offer_label:'⬡ Pre-ordine', offer_price_note:'una tantum',
-    offer_li1:'Il tuo codice unico, privato e proprietario — rappresentativo di tutti i tuoi diritti UE, incluso il modello predittivo per il risarcimento danni da Big Tech su <a href="https://bigtechclaim.eu" target="_blank" style="color:var(--gold);">bigtechclaim.eu</a> e il diritto di richiedere la codificazione del tuo sistema giuridico sostenibile su <a href="https://www.1love.works/codification" target="_blank" style="color:var(--gold);">1love.works/codification</a>',
-    offer_li2:'1 PNC — Certificato Phenomoneta (fondatore)',
-    offer_li3:'3 scansioni gratuite di documenti giuridici — EU Law Meter (al completamento della calibrazione di <a href="https://eulawscanner.eu" target="_blank" style="color:var(--gold);">eulawscanner.eu</a>)',
-    offer_li4:'Scansioni gratuite — Corporate Meter (al completamento della calibrazione di <a href="https://corporate-scanner.com" target="_blank" style="color:var(--gold);">corporate-scanner.com</a>)',
-    offer_li5:'<em>De Lege et Amore</em> — libro completo, al successo della sperimentazione e validazione',
-    offer_caveat:'Il PNC non è uno strumento finanziario. È un certificato fondatore in un programma di ricerca di fisica giuridica. Il suo valore implicito è matematico, non speculativo. Soggetto a sperimentazione.',
-    offer_btn:'Pre-ordina — €99 →',
-    form_head:'Manifesta interesse — gratuito',
-    form_intro:'Non sei pronto per il pre-ordine? Manifesta il tuo interesse nella codificazione del tuo territorio — gratuitamente. Questi dati vanno direttamente nella mappa di ricerca empirica. Ogni territorio conta.',
-    label_email:'Email', label_language:'Lingua preferita', lang_select:'Seleziona lingua', lang_other:'Altra — specifica nelle note', lang_note:'Lingue aggiuntive disponibili in base alla domanda.',
-    label_country:'Paese', country_select:'Seleziona paese', country_other:'Altro',
-    label_region:'Regione / Stato', placeholder_region:'es. Sardegna, Baviera',
-    label_city:'Città / Comune', placeholder_city:'es. Cagliari, Monaco',
-    label_interest:'Interesse nella codificazione di',
-    interest_municipal:'Diritto municipale / locale', interest_regional:'Diritto regionale', interest_national:'Diritto nazionale',
-    interest_eu:'Diritto UE', interest_corporate:'Diritto societario / aziendale', interest_research:'Ricerca accademica',
-    label_notes:'Note / richiesta di lingua', placeholder_notes:'Qualsiasi contesto, richiesta di lingua, o messaggio',
-    consent_label:'Ho letto la <a href="/privacy" style="color:var(--gold);">dichiarazione di sovranità dei dati</a> e consento che i miei dati inviati vengano utilizzati esclusivamente per la mappa empirica di ricerca territoriale.',
-    btn_submit:'Manifesta interesse →',
-    error_msg:'Qualcosa è andato storto. Per favore scrivi direttamente a gmsolas@sustainab-law.eu.',
-    success_msg:'✓ Registrato. Il tuo territorio è stato aggiunto alla mappa empirica. <em>De Lege et Amore.</em>',
-    extra_pnc_label:'PNC aggiuntivi al prezzo di lancio',
-    extra_pnc_btn:'Ordina PNC aggiuntivi →',
-    extra_pnc_note:'Ogni PNC aggiuntivo = €99 prezzo di lancio. Max 99. Seleziona la quantità su Stripe. Prezzo di lancio valido finché dura la fase fondatrice.',
-    founding_label: '⬡ Partnership fondatrice — il substrato originario',
-    founding_role: 'Partnership familiare fondatrice',
-    founding_jurisdiction: 'Masullas &amp; Cagliari, Sardegna',
-    founding_bio: 'La partnership fondatrice del progetto — investimento originario di capitale, fiducia e lavoro che ha reso possibile la misurazione. <em>De Lege et Amore.</em>',
-    founding_ronnie: 'E Ronnie — che ci ha tenuti in piedi.',
-    footer_rights:'Tutti i diritti riservati', footer_note:'Il PNC non è uno strumento finanziario. Non negoziabile. Emesso solo come parte della fornitura del servizio. · De Lege et Amore.',
-    lbl_nodes:'nodi',
-  },
-  fr: {
-    nav_problem: 'Le Problème', nav_solutions: 'Les Solutions Proposées', nav_pnc: 'PNC', nav_methodology: 'À Propos &amp; Méthodologie', nav_participate: 'Participer',
-    overline:'1love.works · Nœuds & Participer',
-    h1:'Les personnes et institutions<br/>qui construisent l\'<em>Europe optimale.</em>',
-    hero_sub:'Chaque détenteur de PNC est un nœud fondateur dans le réseau de mesure de la plateforme souveraine européenne, propriétaire de son propre code / fraction de la plateforme, représentatif de tous ses droits. Voici le registre public de ceux qui ont déclaré leur participation — citoyens, professionnels, institutions — chacun une preuve que le réseau est réel, en croissance, et effectue un vrai travail.',
-    stat_total:'Nœuds totaux', stat_pro:'Professionnel & Ordre juridique', stat_citizen:'Citoyens', stat_countries:'Juridictions',
-    sec_registry:'⬡ Registre des nœuds fondateurs',
-    col_pro_title:'Professionnel & Ordre juridique', col_citizen_title:'Citoyens',
-    empty_pro:'Aucun nœud professionnel encore.<br/>Soyez le premier.', empty_citizen:'Aucun nœud citoyen encore.<br/>Soyez le premier.',
-    sec_declare:'Déclarez votre nœud',
-    declare_intro:'Si vous détenez un PNC — via un service, un travail de codification ou une participation fondatrice — déclarez votre nœud ici. Registre public volontaire.',
-    reg_type_label:'Je m\'inscris en tant que', type_pro:'Professionnel / Institution', type_citizen:'Citoyen',
-    field_name:'Nom complet / institution', field_jurisdiction:'Juridiction (pays / région)',
-    field_role:'Rôle / profession', field_pnc:'PNC détenus', field_bio:'Courte déclaration (optionnel)', field_link:'Lien public (optionnel)',
-    role_select:'— sélectionner —', role_lawyer:'Avocat', role_notary:'Notaire', role_accountant:'Comptable',
-    role_professor:'Professeur (droit / physique)', role_judge:'Juge / Magistrat', role_public:'Fonctionnaire',
-    role_municipality:'Municipalité / Institution', role_other:'Autre professionnel certifié',
-    reg_btn:'Déclarer le nœud →',
-    nd_success:'⬡ &nbsp;Nœud déclaré. Votre entrée a été ajoutée au registre fondateur. Merci de faire partie de la mesure.',
-    nd_note:'En soumettant, vous autodéclarez détenir au moins 1 PNC. Les nœuds professionnels sont soumis à contre-vérification. Ce registre est public.',
-    sec_participate:'Soutenez l\'idée — participez et possédez les résultats',
-    honest_note:'Le livre est réel et prêt à être expédié en cas de succès de l\'expérience. Le PNC est un certificat fondateur dans un programme de recherche et de transformation active de l\'entropie — pas un instrument financier, mais la participation à une expérience sérieuse avec un historique de publications (<a href="/methodology" style="color:var(--gold);">voir méthodologie</a>), et cinq instruments déjà au travail pour résoudre de vrais problèmes juridiques (<a href="https://www.1love.works/solutions" style="color:var(--gold);">voir toutes les solutions</a>).',
-    offer_label:'⬡ Pré-commande', offer_price_note:'paiement unique',
-    offer_li1:'Votre code unique, privé et propriétaire — représentatif de tous vos droits UE, incluant le modèle prédictif pour les dommages Big Tech sur <a href="https://bigtechclaim.eu" target="_blank" style="color:var(--gold);">bigtechclaim.eu</a> et le droit de demander la codification de votre système juridique durable sur <a href="https://www.1love.works/codification" target="_blank" style="color:var(--gold);">1love.works/codification</a>',
-    offer_li2:'1 PNC — Certificat Phénomonnaie (fondateur)',
-    offer_li3:'3 analyses gratuites de documents juridiques — EU Law Meter (après calibration réussie de <a href="https://eulawscanner.eu" target="_blank" style="color:var(--gold);">eulawscanner.eu</a>)',
-    offer_li4:'Analyses gratuites — Corporate Meter (après calibration réussie de <a href="https://corporate-scanner.com" target="_blank" style="color:var(--gold);">corporate-scanner.com</a>)',
-    offer_li5:'<em>De Lege et Amore</em> — livre complet, après succès de l\'expérimentation et validation',
-    offer_caveat:'Le PNC n\'est pas un instrument financier. C\'est un certificat fondateur dans un programme de recherche de physique juridique. Sa valeur implicite est mathématique, non spéculative. Soumis à expérimentation.',
-    offer_btn:'Pré-commander — €99 →',
-    form_head:'Manifester son intérêt — gratuit',
-    form_intro:'Pas encore prêt à pré-commander ? Manifestez votre intérêt pour la codification de votre territoire — gratuitement. Ces données vont directement dans la carte de recherche empirique. Chaque territoire compte.',
-    label_email:'Email', label_language:'Langue préférée', lang_select:'Sélectionner la langue', lang_other:'Autre — préciser dans les notes', lang_note:'Langues supplémentaires disponibles selon la demande.',
-    label_country:'Pays', country_select:'Sélectionner le pays', country_other:'Autre',
-    label_region:'Région / État', placeholder_region:'ex. Sardaigne, Bavière',
-    label_city:'Ville / Municipalité', placeholder_city:'ex. Cagliari, Munich',
-    label_interest:'Intérêt pour la codification de',
-    interest_municipal:'Droit municipal / local', interest_regional:'Droit régional', interest_national:'Droit national',
-    interest_eu:'Droit UE', interest_corporate:'Droit des sociétés / des entreprises', interest_research:'Recherche académique',
-    label_notes:'Notes / demande de langue', placeholder_notes:'Tout contexte, demande de langue, ou message',
-    consent_label:'J\'ai lu la <a href="/privacy" style="color:var(--gold);">déclaration de souveraineté des données</a> et je consens à ce que mes données soumises soient utilisées uniquement pour la carte de recherche empirique des territoires.',
-    btn_submit:'Manifester son intérêt →',
-    error_msg:'Une erreur s\'est produite. Veuillez écrire directement à gmsolas@sustainab-law.eu.',
-    success_msg:'✓ Enregistré. Votre territoire a été ajouté à la carte empirique. <em>De Lege et Amore.</em>',
-    extra_pnc_label:'PNC supplémentaires au prix fondateur',
-    extra_pnc_btn:'Commander des PNC supplémentaires →',
-    extra_pnc_note:'Chaque PNC supplémentaire = €99 prix fondateur. Max 99. Sélectionnez la quantité sur Stripe. Prix fondateur valable tant que la phase fondatrice dure.',
-    founding_label: '⬡ Partenariat fondateur — le substrat originel',
-    founding_role: 'Partenariat familial fondateur',
-    founding_jurisdiction: 'Masullas &amp; Cagliari, Sardaigne',
-    founding_bio: 'Le partenariat fondateur du projet — investissement originel de capital, de confiance et de travail qui a rendu la mesure possible. <em>De Lege et Amore.</em>',
-    founding_ronnie: 'Et Ronnie — qui nous a gardés debout.',
-    footer_rights:'Tous droits réservés', footer_note:'Le PNC n\'est pas un instrument financier. Non échangeable. Émis uniquement dans le cadre de la prestation de services. · De Lege et Amore.',
-    lbl_nodes:'nœuds',
-  },
-    founding_label: '⬡ Asociación fundadora — el sustrato originario',
-    founding_role: 'Asociación familiar fundadora',
-    founding_jurisdiction: 'Masullas &amp; Cagliari, Cerdeña',
-    founding_bio: 'La asociación fundadora del proyecto — inversión originaria de capital, confianza y trabajo que hizo posible la medición. <em>De Lege et Amore.</em>',
-    founding_ronnie: 'Y Ronnie — que nos mantuvo en pie.',
-TYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nodes & Participate — 1love.works</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --ink: #0d1f38; --parchment: #eef4fb; --cream: #ddeaf8; --white: #f5f9fd;
-      --gold: #b8860b; --blue: #2a7fc0; --flow: #5bb8e8; --green: #2d6a2d; --red: #8b0000;
-      --muted: #5a7490; --rule: rgba(13,31,56,0.10); --rule-med: rgba(13,31,56,0.18);
-      --serif: 'EB Garamond', Georgia, serif; --mono: 'DM Mono', monospace;
-    }
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--serif); background: var(--white); color: var(--ink); line-height: 1.75; font-size: 17px; }
-
-    /* ── nav ── */
-    nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(238,244,251,0.97); backdrop-filter: blur(8px); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 14px 48px; }
-    .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; font-weight: 500; }
-    .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; justify-content: center; }
-    .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--ink); }
-    .lang-switcher { display: flex; border: 1px solid var(--rule-med); overflow: hidden; }
-    .lang-btn { font-family: var(--mono); font-size: 10px; padding: 5px 9px; border: none; background: transparent; color: var(--muted); cursor: pointer; border-right: 1px solid var(--rule-med); transition: all 0.15s; }
-    .lang-btn:last-child { border-right: none; }
-    .lang-btn.active { background: var(--ink); color: var(--white); }
-    .lang-btn:hover:not(.active) { background: var(--cream); }
-
-    /* ── layout ── */
-    .hero { max-width: 860px; margin: 0 auto; padding: 72px 48px 56px; border-bottom: 1px solid var(--rule); }
-    .hero-overline { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
-    .hero h1 { font-size: clamp(36px, 5vw, 60px); font-weight: 400; line-height: 1.12; margin-bottom: 20px; }
-    .hero h1 em { font-style: italic; color: var(--gold); }
-    .hero-sub { font-size: 18px; color: #4a4a46; line-height: 1.85; max-width: 620px; }
-
-    .stats-bar { max-width: 860px; margin: 0 auto; padding: 28px 48px; display: flex; gap: 48px; border-bottom: 1px solid var(--rule); flex-wrap: wrap; }
-    .stat { display: flex; flex-direction: column; gap: 4px; }
-    .stat-value { font-family: var(--mono); font-size: 26px; font-weight: 500; color: var(--gold); }
-    .stat-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); }
-
-    .wrap { max-width: 860px; margin: 0 auto; padding: 48px 48px 80px; }
-
-    .section-divider { border: none; border-top: 1px solid var(--rule-med); margin: 56px 0; }
-    .section-head { font-family: var(--mono); font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); margin-bottom: 32px; display: flex; align-items: center; gap: 12px; }
-    .section-head::after { content: ''; flex: 1; height: 1px; background: var(--rule-med); }
-
-    /* ── node registry ── */
-    .columns { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--rule-med); margin-bottom: 48px; }
-    .column { background: var(--white); padding: 36px 32px; }
-    .column-head { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; padding-bottom: 18px; border-bottom: 1px solid var(--rule); }
-    .column-icon { font-size: 16px; }
-    .column-title { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); }
-    .column-count { font-family: var(--mono); font-size: 10px; color: var(--gold); margin-left: auto; }
-    .node-list { display: flex; flex-direction: column; }
-    .node { padding: 14px 0; border-bottom: 1px solid var(--rule); display: flex; flex-direction: column; gap: 5px; }
-    .node:last-child { border-bottom: none; }
-    .node-header { display: flex; align-items: baseline; gap: 8px; }
-    .node-name { font-size: 15px; font-weight: 500; color: var(--ink); }
-    .node-pnc { font-family: var(--mono); font-size: 9px; color: var(--gold); letter-spacing: 0.08em; margin-left: auto; white-space: nowrap; }
-    .node-meta { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
-    .node-role { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
-    .node-jurisdiction { font-size: 12px; color: var(--muted); font-style: italic; }
-    .node-date { font-family: var(--mono); font-size: 9px; color: rgba(107,104,96,0.5); margin-left: auto; }
-    .node-bio { font-size: 13px; color: #5a5a56; line-height: 1.6; }
-    .node-link { font-family: var(--mono); font-size: 9px; color: var(--gold); text-decoration: none; }
-    .node-link:hover { text-decoration: underline; }
-    .empty-state { padding: 24px 0; }
-    .empty-state p { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.05em; line-height: 1.9; }
-
-    /* ── declare node form ── */
-    .declare-wrap { max-width: 680px; }
-    .declare-intro { font-size: 16px; color: #3a3a36; line-height: 1.85; margin-bottom: 24px; }
-    .form-type-toggle { display: flex; border: 1px solid var(--rule-med); overflow: hidden; width: fit-content; margin-bottom: 20px; }
-    .type-btn { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 8px 20px; border: none; background: transparent; color: var(--muted); cursor: pointer; border-right: 1px solid var(--rule-med); transition: all 0.15s; }
-    .type-btn:last-child { border-right: none; }
-    .type-btn.active { background: var(--ink); color: var(--white); }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 28px; margin-bottom: 20px; }
-    .form-full { grid-column: 1 / -1; }
-    .form-group { display: flex; flex-direction: column; gap: 6px; }
-    .form-group label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.11em; color: var(--muted); }
-    .form-group input, .form-group select, .form-group textarea { font-family: var(--serif); font-size: 15px; color: var(--ink); background: var(--white); border: 1px solid var(--rule-med); padding: 10px 13px; outline: none; transition: border-color 0.15s; border-radius: 0; width: 100%; }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
-    .form-group textarea { resize: vertical; min-height: 72px; line-height: 1.6; }
-    .form-group select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236b6860'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 13px center; padding-right: 32px; cursor: pointer; }
-
-    /* ── participate section ── */
-    .honest-note { font-family: var(--mono); font-size: 11px; color: var(--muted); line-height: 1.7; margin-bottom: 36px; padding: 14px 18px; border-left: 3px solid rgba(184,134,11,0.3); background: rgba(184,134,11,0.03); }
-    .offer-grid { display: grid; grid-template-columns: minmax(0,560px); gap: 24px; margin-bottom: 48px; }
-    .offer-card { border: 1px solid rgba(184,134,11,0.3); background: rgba(184,134,11,0.04); padding: 32px; }
-    .offer-card.primary { border-color: var(--gold); }
-    .offer-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 16px; }
-    .offer-price { font-family: var(--mono); font-size: 36px; font-weight: 500; color: var(--gold); margin: 16px 0 4px; line-height: 1; }
-    .offer-price-note { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-bottom: 20px; }
-    .offer-includes { list-style: none; margin-bottom: 24px; }
-    .offer-includes li { font-size: 14px; color: #3a3a36; padding: 7px 0; border-bottom: 1px solid rgba(184,134,11,0.1); display: flex; align-items: baseline; gap: 10px; line-height: 1.5; }
-    .offer-includes li:last-child { border-bottom: none; }
-    .offer-includes li::before { content: '⬡'; color: var(--gold); font-size: 10px; flex-shrink: 0; }
-    .offer-caveat { font-family: var(--mono); font-size: 10px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; padding: 10px 14px; background: rgba(15,15,13,0.04); border: 1px solid var(--rule); }
-
-
-    /* ── interest form ── */
-    .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .check-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border: 1px solid var(--rule-med); background: var(--white); cursor: pointer; transition: border-color 0.2s; }
-    .check-item:hover { border-color: rgba(184,134,11,0.4); }
-    .check-item input[type="checkbox"] { width: 15px; height: 15px; flex-shrink: 0; accent-color: var(--gold); cursor: pointer; }
-    .check-item span { font-size: 13px; color: var(--ink); line-height: 1.4; }
-    .form-note { font-size: 12px; color: var(--muted); line-height: 1.6; margin-top: 5px; font-style: italic; }
-
-    /* ── buttons ── */
-    .btn { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 24px; display: inline-block; text-decoration: none; transition: opacity 0.2s; width: 100%; text-align: center; }
-    .btn-gold { background: var(--gold); color: white; }
-    .btn-gold:hover { opacity: 0.88; }
-    .btn-dark { background: var(--ink); color: var(--white); }
-    .btn-dark:hover { opacity: 0.82; }
-    .btn-submit { background: var(--ink); color: var(--white); font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 28px; border: none; cursor: pointer; margin-top: 20px; transition: opacity 0.2s; }
-    .btn-submit:hover { opacity: 0.85; }
-    .btn-submit:disabled { opacity: 0.4; cursor: not-allowed; }
-
-    /* ── messages ── */
-    .success-flash { display: none; padding: 16px 20px; background: rgba(45,106,45,0.06); border: 1px solid rgba(45,106,45,0.25); margin-top: 16px; }
-    .success-flash.show { display: block; }
-    .success-flash p { font-size: 14px; color: var(--green); line-height: 1.75; }
-    .error-flash { display: none; font-family: var(--mono); font-size: 10px; color: var(--red); margin-top: 10px; }
-    .error-flash.show { display: block; }
-
-    footer { border-top: 2px solid var(--ink); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-    .footer-left { font-family: var(--mono); font-size: 11px; color: var(--muted); line-height: 1.7; }
-    .footer-right { font-family: var(--mono); font-size: 10px; display: flex; gap: 24px; }
-    .footer-right a { color: var(--muted); text-decoration: none; }
-    .footer-right a:hover { color: var(--ink); }
-
-    
-    @media (max-width: 720px) {
-      #nav-toggle { display: block !important; }
-      nav { padding: 12px 20px; grid-template-columns: 1fr auto; }
-      .nav-links { display: none; }  .nav-links.open { display: flex; }
-      .hero, .section, .wrap { padding-left: 20px; padding-right: 20px; }
-      .hero { padding-top: 48px; padding-bottom: 40px; }
-      .hero h1 { font-size: clamp(28px, 8vw, 44px); }
-      .hero-intro { font-size: 16px; }
-      footer { flex-direction: column; padding: 24px 20px; gap: 12px; }
-      .footer-right { flex-wrap: wrap; gap: 16px; }
-    }
-  </style>
-  <meta property="og:title" content="Participate — 1love.works" />
-  <meta property="og:description" content="Join the project. Acquire a PNC at the founding price of €99 and become a node in the European legal measurement network." />
-  <meta property="og:url" content="https://1love.works/participate" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://1love.works/og-image.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Participate — 1love.works" />
-  <meta name="twitter:description" content="Join the project. Acquire a PNC at the founding price of €99 and become a node in the European legal measurement network." />
-  <meta name="description" content="Join the project. Acquire a PNC at the founding price of €99 and become a node in the European legal measurement network." />
-</head>
-<body>
-
-<nav>
-  <a class="nav-logo" href="/">1love.works</a>
-  <ul class="nav-links">
-    <li class="hide-mobile"><a href="/problem" data-i18n="nav_problem">The Problem</a></li>
-    <li class="hide-mobile"><a href="/solutions" data-i18n="nav_solutions">The Proposed Solutions</a></li>
-    <li class="hide-mobile"><a href="/pnc" data-i18n="nav_pnc">PNC</a></li>
-    <li class="hide-mobile"><a href="/methodology" data-i18n="nav_methodology">About &amp; Methodology</a></li>
-    <li class="hide-mobile"><a href="/participate" style="color: var(--ink); border-bottom: 1.5px solid var(--gold);" data-i18n="nav_participate">Participate</a></li>
-  </ul>
-  <div style="display: flex; justify-content: flex-end;">
-    <div class="lang-switcher">
-      <button class="lang-btn active" onclick="setLang('en')">EN</button>
-      <button class="lang-btn" onclick="setLang('it')">IT</button>
-      <button class="lang-btn" onclick="setLang('fr')">FR</button>
-      <button class="lang-btn" onclick="setLang('es')">ES</button>
-    </div>
-  </div>
-  <button id="nav-toggle" style="display:none; font-size:18px; background:none; border:none; cursor:pointer; color:var(--ink); padding:4px;" aria-label="Menu">☰</button>
-</nav>
-
-<!-- ═══════════════ HERO ═══════════════ -->
-<div class="hero">
-  <p class="hero-overline" data-i18n="overline">1love.works · Nodes & Participate</p>
-  <h1 data-i18n="h1">The people and institutions<br/>building <em>optimal Europe.</em></h1>
-  <p class="hero-sub" data-i18n="hero_sub">Every PNC holder is a founding node in the measurement network of the European sovereign platform, owning his or her own code / fraction of the platform, representative of all his/her rights. This is the public record of those who have declared their participation — citizens, professionals, institutions — each a proof that the network is real, growing, and doing work.</p>
-</div>
-
-<!-- ═══════════════ STATS ═══════════════ -->
-<div class="stats-bar">
-  <div class="stat"><span class="stat-value" id="stat-total">—</span><span class="stat-label" data-i18n="stat_total">Total nodes</span></div>
-  <div class="stat"><span class="stat-value" id="stat-pro">—</span><span class="stat-label" data-i18n="stat_pro">Professional & Legal Order</span></div>
-  <div class="stat"><span class="stat-value" id="stat-citizen">—</span><span class="stat-label" data-i18n="stat_citizen">Citizens</span></div>
-  <div class="stat"><span class="stat-value" id="stat-countries">—</span><span class="stat-label" data-i18n="stat_countries">Jurisdictions</span></div>
-</div>
-
-<div class="wrap">
-
-  <!-- ═══════════════ REGISTRY ═══════════════ -->
-  <div class="section-head" data-i18n="sec_registry">⬡ Founding node registry</div>
-
   <!-- Originary founding nodes — hardcoded -->
   <div style="border: 1px solid rgba(184,134,11,0.25); background: rgba(184,134,11,0.03); padding: 28px 32px; margin-bottom: 2px;">
     <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 24px; display: flex; align-items: center; gap: 12px;" data-i18n="founding_label">⬡ Founding partnership — the originary substrate<div style="flex:1;height:1px;background:rgba(184,134,11,0.2);"></div></div>
@@ -948,6 +411,8 @@ TYPE html>
   </div>
 </footer>
 
+<script
+
 <script>
 const T = {
   en: {
@@ -997,6 +462,11 @@ const T = {
     extra_pnc_label:'Additional PNC at founding price',
     extra_pnc_btn:'Order additional PNC →',
     extra_pnc_note:'Each additional PNC = €99 founding price. Max 99. Select quantity on Stripe checkout. Founding price valid while founding phase lasts.',
+    founding_label: '⬡ Founding partnership — the originary substrate',
+    founding_role: 'Family founding partnership',
+    founding_jurisdiction: 'Masullas &amp; Cagliari, Sardinia',
+    founding_bio: 'The founding partnership of the project — originary investment of capital, trust and work that made the measurement possible. <em>De Lege et Amore.</em>',
+    founding_ronnie: 'And Ronnie — who kept us going.',
     founding_label: '⬡ Founding partnership — the originary substrate',
     founding_role: 'Family founding partnership',
     founding_jurisdiction: 'Masullas &amp; Cagliari, Sardinia',
@@ -1057,6 +527,11 @@ const T = {
     founding_jurisdiction: 'Masullas &amp; Cagliari, Sardegna',
     founding_bio: 'La partnership fondatrice del progetto — investimento originario di capitale, fiducia e lavoro che ha reso possibile la misurazione. <em>De Lege et Amore.</em>',
     founding_ronnie: 'E Ronnie — che ci ha tenuti in piedi.',
+    founding_label: '⬡ Partnership fondatrice — il substrato originario',
+    founding_role: 'Partnership familiare fondatrice',
+    founding_jurisdiction: 'Masullas &amp; Cagliari, Sardegna',
+    founding_bio: 'La partnership fondatrice del progetto — investimento originario di capitale, fiducia e lavoro che ha reso possibile la misurazione. <em>De Lege et Amore.</em>',
+    founding_ronnie: 'E Ronnie — che ci ha tenuti in piedi.',
     footer_rights:'Tutti i diritti riservati', footer_note:'Il PNC non è uno strumento finanziario. Non negoziabile. Emesso solo come parte della fornitura del servizio. · De Lege et Amore.',
     lbl_nodes:'nodi',
   },
@@ -1112,6 +587,11 @@ const T = {
     founding_jurisdiction: 'Masullas &amp; Cagliari, Sardaigne',
     founding_bio: 'Le partenariat fondateur du projet — investissement originel de capital, de confiance et de travail qui a rendu la mesure possible. <em>De Lege et Amore.</em>',
     founding_ronnie: 'Et Ronnie — qui nous a gardés debout.',
+    founding_label: '⬡ Partenariat fondateur — le substrat originel',
+    founding_role: 'Partenariat familial fondateur',
+    founding_jurisdiction: 'Masullas &amp; Cagliari, Sardaigne',
+    founding_bio: 'Le partenariat fondateur du projet — investissement originel de capital, de confiance et de travail qui a rendu la mesure possible. <em>De Lege et Amore.</em>',
+    founding_ronnie: 'Et Ronnie — qui nous a gardés debout.',
     footer_rights:'Tous droits réservés', footer_note:'Le PNC n\'est pas un instrument financier. Non échangeable. Émis uniquement dans le cadre de la prestation de services. · De Lege et Amore.',
     lbl_nodes:'nœuds',
   },
@@ -1162,6 +642,11 @@ const T = {
     extra_pnc_label:'PNC adicionales al precio fundador',
     extra_pnc_btn:'Pedir PNC adicionales →',
     extra_pnc_note:'Cada PNC adicional = €99 precio fundador. Máx 99. Seleccione la cantidad en Stripe. Precio fundador válido mientras dure la fase fundadora.',
+    founding_label: '⬡ Asociación fundadora — el sustrato originario',
+    founding_role: 'Asociación familiar fundadora',
+    founding_jurisdiction: 'Masullas &amp; Cagliari, Cerdeña',
+    founding_bio: 'La asociación fundadora del proyecto — inversión originaria de capital, confianza y trabajo que hizo posible la medición. <em>De Lege et Amore.</em>',
+    founding_ronnie: 'Y Ronnie — que nos mantuvo en pie.',
     footer_rights:'Todos los derechos reservados', footer_note:'El PNC no es un instrumento financiero. No negociable. Emitido solo como parte de la prestación del servicio. · De Lege et Amore.',
     lbl_nodes:'nodos',
   }
@@ -1300,7 +785,6 @@ document.getElementById('freeForm').addEventListener('submit',async function(e){
   }
 });
 </script>
-
 
 <script>
 // Mobile nav toggle
