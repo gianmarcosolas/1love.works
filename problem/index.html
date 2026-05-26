@@ -343,4 +343,38 @@ const T = {
     step5_num: '05 — El Legal System Meter', step5_title: '<em>Plataforma gamificada</em> propia para cada sistema jurídico', step5_body: "El Legal Systems Meter es el instrumento que hace legible todo el marco — para instituciones, inversores y ciudadanos.",
   },
 };
->
+
+function setLang(lang) {
+  const t = T[lang];
+  if (!t) return;
+  // Update active button
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.textContent.trim().toLowerCase() === lang);
+  });
+  // Update all translated elements
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.documentElement.lang = lang;
+  try { localStorage.setItem('1lw_lang', lang); } catch(e) {}
+}
+
+// Mobile nav toggle
+var navToggle = document.getElementById('nav-toggle');
+var navLinks = document.querySelector('.nav-links');
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', function() {
+    navLinks.classList.toggle('open');
+  });
+}
+
+// On load, restore saved language
+(function() {
+  var saved;
+  try { saved = localStorage.getItem('1lw_lang'); } catch(e) {}
+  setLang(saved || 'en');
+})();
+</script>
+</body>
+</html>
