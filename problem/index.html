@@ -287,6 +287,8 @@ const T = {
     step5_num: '05 — The Legal System Meter',
     step5_title: '<em>Gamified platform</em> proprietary for each legal system',
     step5_body: "The Legal Systems Meter is the instrument that makes the whole framework legible — to institutions, to investors, to citizens. It tracks entropy in real time, maps it against the equilibrium point, and certifies progress toward optimum. PNC is what the meter issues when a system — or a claim within one — has demonstrably converted entropy into flow. It is not a compliance certificate. It is a mathematical proof that the system is moving towards equilibrium.",
+    footer_rights: 'All rights reserved',
+    footer_note: 'PNC is not a financial instrument. Not tradeable. Issued as part of service delivery only. \u00b7 De Lege et Amore.',
   },
   it: {
     nav_problem: 'Il Problema', nav_solutions: 'Le Soluzioni Proposte', nav_pnc: 'PNC', nav_methodology: 'Informazioni &amp; Metodologia', nav_participate: 'Partecipa',
@@ -305,6 +307,8 @@ const T = {
     step3_num: '03 — Equilibrio', step3_title: 'Trovare il <em>punto di equilibrio</em>', step3_body: "Ogni sistema giuridico ha un equilibrio — un punto in cui il peso della regolamentazione è esattamente compensato dal valore che produce. Il framework individua quell'equilibrio per ogni giurisdizione: non come un'opinione politica, ma come un output matematico.",
     step4_num: '04 — Ottimo', step4_title: 'Ingegnerizzare verso il <em>moto perpetuo</em>', step4_body: "L'ottimo non è la perfezione. È lo stato in cui un sistema giuridico converte continuamente l'entropia in valore. I reclami giuridici intelligenti — codificati attraverso il framework — sono lo strumento. Ognuno riduce ΣS.",
     step5_num: '05 — Il Legal System Meter', step5_title: '<em>Piattaforma gamificata</em> proprietaria per ogni sistema giuridico', step5_body: "Il Legal Systems Meter è lo strumento che rende l'intero framework leggibile — per le istituzioni, gli investitori, i cittadini. Il PNC è ciò che il metro emette quando un sistema ha dimostrabilmente convertito l'entropia in flusso.",
+    footer_rights: 'Tutti i diritti riservati',
+    footer_note: 'PNC non è uno strumento finanziario. Non negoziabile. Emesso solo nell’ambito della prestazione del servizio. \u00b7 De Lege et Amore.',
   },
   fr: {
     nav_problem: 'Le Problème', nav_solutions: 'Les Solutions Proposées', nav_pnc: 'PNC', nav_methodology: 'À Propos &amp; Méthodologie', nav_participate: 'Participer',
@@ -323,6 +327,8 @@ const T = {
     step3_num: '03 — Équilibre', step3_title: 'Trouver le <em>point d'équilibre</em>', step3_body: "Chaque système juridique a un équilibre — un point où le poids de la réglementation est exactement compensé par la valeur qu'il produit.",
     step4_num: '04 — Optimum', step4_title: 'Ingénier vers le <em>mouvement perpétuel</em>', step4_body: "L'optimum n'est pas la perfection. C'est l'état dans lequel un système juridique convertit continuellement l'entropie en valeur.",
     step5_num: '05 — Le Legal System Meter', step5_title: '<em>Plateforme gamifiée</em> propriétaire pour chaque système juridique', step5_body: "Le Legal Systems Meter est l'instrument qui rend l'ensemble du cadre lisible — pour les institutions, les investisseurs, les citoyens.",
+    footer_rights: 'Tous droits réservés',
+    footer_note: 'PNC n’est pas un instrument financier. Non négociable. Émis uniquement dans le cadre de la prestation de services. \u00b7 De Lege et Amore.',
   },
   es: {
     nav_problem: 'El Problema', nav_solutions: 'Las Soluciones Propuestas', nav_pnc: 'PNC', nav_methodology: 'Acerca &amp; Metodología', nav_participate: 'Participar',
@@ -341,17 +347,17 @@ const T = {
     step3_num: '03 — Equilibrio', step3_title: 'Encontrar el <em>punto de equilibrio</em>', step3_body: "Cada sistema jurídico tiene un equilibrio — un punto en el que el peso de la regulación se compensa exactamente con el valor que produce.",
     step4_num: '04 — Óptimo', step4_title: 'Ingeniería hacia el <em>movimiento perpetuo</em>', step4_body: "El óptimo no es la perfección. Es el estado en el que un sistema jurídico convierte continuamente la entropía en valor.",
     step5_num: '05 — El Legal System Meter', step5_title: '<em>Plataforma gamificada</em> propia para cada sistema jurídico', step5_body: "El Legal Systems Meter es el instrumento que hace legible todo el marco — para instituciones, inversores y ciudadanos.",
+    footer_rights: 'Todos los derechos reservados',
+    footer_note: 'PNC no es un instrumento financiero. No negociable. Emitido solo como parte de la prestación del servicio. \u00b7 De Lege et Amore.',
   },
 };
 
 function setLang(lang) {
-  const t = T[lang];
+  var t = T[lang];
   if (!t) return;
-  // Update active button
   document.querySelectorAll('.lang-btn').forEach(function(btn) {
     btn.classList.toggle('active', btn.textContent.trim().toLowerCase() === lang);
   });
-  // Update all translated elements
   document.querySelectorAll('[data-i18n]').forEach(function(el) {
     var key = el.getAttribute('data-i18n');
     if (t[key] !== undefined) el.innerHTML = t[key];
@@ -360,21 +366,16 @@ function setLang(lang) {
   try { localStorage.setItem('1lw_lang', lang); } catch(e) {}
 }
 
-// Mobile nav toggle
+(function() {
+  var saved; try { saved = localStorage.getItem('1lw_lang'); } catch(e) {}
+  setLang(saved && T[saved] ? saved : 'en');
+})();
+
 var navToggle = document.getElementById('nav-toggle');
 var navLinks = document.querySelector('.nav-links');
 if (navToggle && navLinks) {
-  navToggle.addEventListener('click', function() {
-    navLinks.classList.toggle('open');
-  });
+  navToggle.addEventListener('click', function() { navLinks.classList.toggle('open'); });
 }
-
-// On load, restore saved language
-(function() {
-  var saved;
-  try { saved = localStorage.getItem('1lw_lang'); } catch(e) {}
-  setLang(saved || 'en');
-})();
 </script>
 </body>
 </html>
