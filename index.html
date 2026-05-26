@@ -927,8 +927,8 @@ window.addEventListener('load', () => {
           const total = s.phase1_pnc_max || 101010;
           document.getElementById('lp-pnc').textContent = total.toLocaleString();
           if (document.getElementById('lp-pnc-available')) {
-            const avail = s.pnc_available !== undefined ? s.pnc_available : total;
-            document.getElementById('lp-pnc-available').textContent = avail.toLocaleString() + ' available';
+            const avail = s.pnc_available !== undefined ? s.pnc_available : (total - s.pnc_in_circulation);
+            document.getElementById('lp-pnc-available').textContent = avail.toLocaleString() + ' still available for Phase 1';
           }
         }
         if (s.implied_value && document.getElementById('lp-value')) document.getElementById('lp-value').textContent = '€' + s.implied_value.toLocaleString();
