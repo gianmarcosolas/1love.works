@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>1love.works — The Legal System Meter</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -82,6 +82,66 @@
     @media (max-width: 720px) {
       [style*="grid-template-columns: 1fr 1fr 1fr 1fr 1fr"] { grid-template-columns: 1fr 1fr !important; }
     }
+  
+    /* ── ADDITIONAL MOBILE ENHANCEMENTS ────────────────── */
+    @media (max-width: 720px) {
+      /* Prevent horizontal overflow */
+      body { overflow-x: hidden; }
+      
+      /* Better hero typography scaling */
+      .hero-overline { font-size: clamp(26px, 8.5vw, 44px) !important; }
+      .hero-overline-sub { font-size: clamp(16px, 5vw, 26px) !important; }
+      .hero h1 { font-size: clamp(14px, 4vw, 20px) !important; }
+      .hero-equation { font-size: 14px !important; overflow-x: auto; white-space: nowrap; }
+      .hero-sub { font-size: 13px !important; }
+      
+      /* Buttons: full-width, thumb-friendly */
+      .btn-primary, .btn-outline { 
+        padding: 14px 20px !important; 
+        display: block !important; 
+        width: 100% !important; 
+        box-sizing: border-box !important; 
+        text-align: center !important;
+        min-height: 48px !important;
+      }
+      
+      /* Dashboard: add horizontal scroll hint on metrics */
+      #dashboard-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      
+      /* Chart canvas: constrain height on small screens */
+      #lp-chart { height: 180px !important; }
+      
+      /* Stake title: responsive */
+      .stake-title-text { font-size: clamp(15px, 4.8vw, 30px) !important; line-height: 1.25 !important; padding: 10px 14px !important; }
+      
+      /* Footer: better spacing */
+      .footer-left { font-size: 10px !important; line-height: 1.8 !important; }
+      .footer-right { font-size: 9px !important; }
+      
+      /* Product cards: tighter */
+      .product-card { padding: 20px 16px !important; }
+      .product-card h3 { font-size: 18px !important; }
+      .product-card p { font-size: 14px !important; }
+      
+      /* Nav: tighter padding */
+      nav { padding: 10px 14px !important; }
+      
+      /* What section panels */
+      .what-section { padding: 32px 14px 40px !important; }
+    }
+    
+    /* ── TOUCH-FRIENDLY TAP TARGETS ────────────────────── */
+    @media (max-width: 720px) {
+      .product-link { 
+        display: inline-block !important; 
+        min-height: 44px !important; 
+        line-height: 44px !important;
+        padding-bottom: 0 !important;
+      }
+      .lang-btn { min-height: 36px !important; }
+      footer a { min-height: 36px !important; display: inline-flex !important; align-items: center !important; }
+    }
+
   </style>
   <meta property="og:title" content="The Legal System Meter in phenography©" />
   <meta property="og:description" content="A technological framework to measure legal entropy and optimise European legal systems. Your stake in optimal Europe." />
@@ -124,11 +184,11 @@
 
 <!-- YOUR STAKE IN OPTIMAL EUROPE -->
 <div style="border-bottom: 1px solid var(--rule); padding: 16px 24px 14px; text-align: center;">
-  <div style="font-family: var(--serif, Georgia, serif); font-size: 36px; font-weight: 500; letter-spacing: 0.01em; color: var(--ink);" data-i18n="stake_title">YOUR STAKE IN OPTIMAL EUROPE 🇪🇺</div>
+  <div style="font-family: var(--serif, Georgia, serif); font-size: clamp(15px, 4.8vw, 36px); font-weight: 500; letter-spacing: 0.01em; color: var(--ink); line-height: 1.2;" class="stake-title-text" data-i18n="stake_title">YOUR STAKE IN OPTIMAL EUROPE 🇪🇺</div>
 </div>
 
 <!-- Live entropy dashboard -->
-  <div style="border-top: 1px solid var(--rule); padding: 0;">
+  <div id="dashboard-scroll" style="border-top: 1px solid var(--rule); padding: 0;">
 
     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; gap: 1px; background: var(--rule); margin-bottom: 1px;">
 
@@ -178,7 +238,7 @@
           <div style="display: flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 9px; color: rgba(245,242,234,0.35);"><div style="width:16px;height:1px;border-top:1px dashed rgba(184,134,11,0.3);"></div><span data-i18n="legend_projected">Projected</span></div>
         </div>
       </div>
-      <canvas id="lp-chart" style="display:block;width:100%;height:280px;"></canvas>
+      <canvas id="lp-chart" style="display:block;width:100%;height:280px;max-width:100%;"></canvas>
       <div style="display:flex;justify-content:space-between;margin-top:8px;">
         <div style="font-family:var(--mono);font-size:9px;color:rgba(184,134,11,0.6);">YOU ARE HERE</div>
         <a href="/dashboard" style="font-family:var(--mono);font-size:9px;color:rgba(184,134,11,0.6);text-decoration:none;letter-spacing:0.1em;">FULL DASHBOARD →</a>
@@ -267,8 +327,9 @@
 
   <style>
     @media (max-width: 720px) {
-      .what-section { padding: 48px 20px 56px !important; }
+      .what-section { padding: 32px 14px 40px !important; }
       .what-grid { grid-template-columns: 1fr !important; }
+      .what-grid > div { border-radius: 0 !important; }
     }
   </style>
 
@@ -764,7 +825,21 @@ window.addEventListener('load', () => {
   }, 100);
 });
 
-window.addEventListener('resize', () => drawLPChart(null));
+window.addEventListener('resize', () => {
+  const canvas = document.getElementById('lp-chart');
+  if (canvas && window.innerWidth <= 720) {
+    canvas.style.height = '180px';
+  }
+  drawLPChart(null);
+});
+// Initial mobile height
+(function() {
+  const canvas = document.getElementById('lp-chart');
+  if (canvas && window.innerWidth <= 720) {
+    canvas.style.height = '180px';
+    canvas.setAttribute('height', '180');
+  }
+})();
 </script>
 
 <script>
