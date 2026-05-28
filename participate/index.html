@@ -100,7 +100,6 @@
     .offer-includes li::before { content: '⬡'; color: var(--gold); font-size: 10px; flex-shrink: 0; }
     .offer-caveat { font-family: var(--mono); font-size: 10px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; padding: 10px 14px; background: rgba(15,15,13,0.04); border: 1px solid var(--rule); }
 
-
     /* ── interest form ── */
     .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .check-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border: 1px solid var(--rule-med); background: var(--white); cursor: pointer; transition: border-color 0.2s; }
@@ -132,7 +131,6 @@
     .footer-right a { color: var(--muted); text-decoration: none; }
     .footer-right a:hover { color: var(--ink); }
 
-    
     @media (max-width: 720px) {
       #nav-toggle { display: block !important; }
       nav { padding: 12px 20px; grid-template-columns: 1fr auto; }
@@ -221,7 +219,24 @@
     </div>
   </div>
 
-    <div class="columns">
+  <!-- ── First buyer — Michele Ardu — hardcoded ── -->
+  <div style="border: 1px solid rgba(91,184,232,0.22); background: rgba(91,184,232,0.03); padding: 28px 32px; margin-bottom: 2px;">
+    <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 20px; display: flex; align-items: center; gap: 12px;" data-i18n="first_buyer_label">⬡ First buyer — before the website existed<div style="flex:1;height:1px;background:rgba(91,184,232,0.15);"></div></div>
+    <div class="node">
+      <div class="node-header">
+        <span class="node-name">Michele Ardu</span>
+        <span class="node-pnc" style="font-family:var(--mono);font-size:9px;color:var(--muted);">⬡ 20 PNC</span>
+      </div>
+      <div class="node-meta">
+        <span class="node-role" data-i18n="first_buyer_role">Citizen · Artist</span>
+        <span class="node-jurisdiction" style="font-size:12px;color:var(--muted);font-style:italic;">Oristano — Sardegna / Italia</span>
+      </div>
+      <p class="node-bio" style="font-size:13px;color:#5a5a56;line-height:1.6;margin-top:5px;" data-i18n="first_buyer_bio">Una collaborazione sulla collezione <em>Musica</em> non andata come speravamo — ma la legge e l'amore continuano. <em>De Lege et Amore.</em></p>
+      <a class="node-link" href="https://www.micheleardu.com" target="_blank" rel="noopener">micheleardu.com ↗</a>
+    </div>
+  </div>
+
+  <div class="columns">
     <div class="column">
       <div class="column-head">
         <span class="column-icon">⚖️</span>
@@ -317,7 +332,6 @@
         <p style="font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.65;margin-top:10px;" data-i18n="extra_pnc_note">Each additional PNC = €99 founding price. Max 99. Select quantity on Stripe checkout. Founding price valid while founding phase lasts.</p>
       </div>
     </div>
-
   </div>
 
   <!-- ═══════════════ INTEREST FORM ═══════════════ -->
@@ -443,6 +457,9 @@ const T = {
     founding_jurisdiction: 'Masullas (OR), San Sperate (CA) — Sardegna / Italia &amp; Amsterdam',
     founding_bio: 'The founding partnership of the project — originary investment of capital, trust and work that made the measurement possible. <em>De Lege et Amore.</em>',
     founding_ronnie: 'And Ronnie — who kept us going.',
+    first_buyer_label: '⬡ First buyer — before the website existed',
+    first_buyer_role: 'Citizen · Artist',
+    first_buyer_bio: 'A collaboration on the <em>Musica</em> collection that did not go as hoped — but law and love continue. <em>De Lege et Amore.</em>',
     footer_rights:'All rights reserved', footer_note:'PNC is not a financial instrument. Not tradeable. Issued as part of service delivery only. · De Lege et Amore.',
     lbl_nodes:'nodes',
   },
@@ -498,6 +515,9 @@ const T = {
     founding_jurisdiction: 'Masullas (OR), San Sperate (CA) — Sardegna / Italia &amp; Amsterdam',
     founding_bio: 'La partnership fondatrice del progetto — investimento originario di capitale, fiducia e lavoro che ha reso possibile la misurazione. <em>De Lege et Amore.</em>',
     founding_ronnie: 'E Ronnie — che ci ha tenuti in piedi.',
+    first_buyer_label: '⬡ Primo acquirente — prima che il sito esistesse',
+    first_buyer_role: 'Cittadino · Artista',
+    first_buyer_bio: 'Una collaborazione sulla collezione <em>Musica</em> non andata come speravamo — ma la legge e l\'amore continuano. <em>De Lege et Amore.</em>',
     footer_rights:'Tutti i diritti riservati', footer_note:'Il PNC non è uno strumento finanziario. Non negoziabile. Emesso solo come parte della fornitura del servizio. · De Lege et Amore.',
     lbl_nodes:'nodi',
   },
@@ -553,6 +573,9 @@ const T = {
     founding_jurisdiction: 'Masullas (OR), San Sperate (CA) — Sardegna / Italia &amp; Amsterdam',
     founding_bio: 'Le partenariat fondateur du projet — investissement originel de capital, de confiance et de travail qui a rendu la mesure possible. <em>De Lege et Amore.</em>',
     founding_ronnie: 'Et Ronnie — qui nous a gardés debout.',
+    first_buyer_label: '⬡ Premier acheteur — avant que le site existe',
+    first_buyer_role: 'Citoyen · Artiste',
+    first_buyer_bio: 'Une collaboration sur la collection <em>Musica</em> qui ne s\'est pas déroulée comme espéré — mais la loi et l\'amour continuent. <em>De Lege et Amore.</em>',
     footer_rights:'Tous droits réservés', footer_note:'Le PNC n\'est pas un instrument financier. Non échangeable. Émis uniquement dans le cadre de la prestation de services. · De Lege et Amore.',
     lbl_nodes:'nœuds',
   },
@@ -608,6 +631,9 @@ const T = {
     founding_jurisdiction: 'Masullas (OR), San Sperate (CA) — Sardegna / Italia &amp; Amsterdam',
     founding_bio: 'La asociación fundadora del proyecto — inversión originaria de capital, confianza y trabajo que hizo posible la medición. <em>De Lege et Amore.</em>',
     founding_ronnie: 'Y Ronnie — que nos mantuvo en pie.',
+    first_buyer_label: '⬡ Primer comprador — antes de que el sitio existiera',
+    first_buyer_role: 'Ciudadano · Artista',
+    first_buyer_bio: 'Una colaboración en la colección <em>Musica</em> que no salió como esperábamos — pero la ley y el amor continúan. <em>De Lege et Amore.</em>',
     footer_rights:'Todos los derechos reservados', footer_note:'El PNC no es un instrumento financiero. No negociable. Emitido solo como parte de la prestación del servicio. · De Lege et Amore.',
     lbl_nodes:'nodos',
   }
@@ -748,7 +774,6 @@ document.getElementById('freeForm').addEventListener('submit',async function(e){
 </script>
 
 <script>
-// Mobile nav toggle
 (function() {
   function initNav() {
     var toggle = document.getElementById('nav-toggle');
