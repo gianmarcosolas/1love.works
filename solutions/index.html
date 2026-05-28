@@ -95,6 +95,63 @@
     .btn-dark:hover { opacity: 0.82; }
     .btn-outline { background: transparent; color: var(--ink); border: 1px solid rgba(13,31,56,0.25); }
     .btn-outline:hover { background: var(--cream); }
+
+    /* ── Closing quote block ── */
+    .closing-quote-block {
+      background: var(--ink);
+      padding: 80px 48px 72px;
+      text-align: center;
+      border-top: 2px solid var(--gold);
+      position: relative;
+    }
+    .closing-quote-block::before {
+      content: '\201C';
+      font-family: var(--serif);
+      font-size: 180px;
+      color: rgba(184,134,11,0.08);
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .closing-quote-text {
+      font-family: var(--serif);
+      font-size: clamp(22px, 3vw, 36px);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--gold);
+      line-height: 1.5;
+      max-width: 860px;
+      margin: 0 auto 28px;
+      position: relative;
+    }
+    .closing-quote-attr {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(238,244,251,0.35);
+      margin-top: 28px;
+      position: relative;
+    }
+    .closing-quote-attr::before {
+      content: '—';
+      margin-right: 10px;
+      color: rgba(184,134,11,0.5);
+    }
+    .closing-quote-attr a {
+      color: rgba(184,134,11,0.65);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(184,134,11,0.25);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .closing-quote-attr a:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
     footer { border-top: 2px solid var(--ink); padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
     .footer-left { font-family: var(--mono); font-size: 11px; color: var(--muted); line-height: 1.7; }
     .footer-right { font-family: var(--mono); font-size: 10px; display: flex; gap: 24px; }
@@ -108,7 +165,6 @@
       .hero-images { grid-template-columns: repeat(2, 1fr); padding-left: 24px; padding-right: 24px; }
       .hero-images .hero-img-item:last-child { grid-column: span 2; }
     }
-    
     @media (max-width: 720px) {
       #nav-toggle { display: block !important; }
       nav { padding: 12px 20px; grid-template-columns: 1fr auto; }
@@ -119,6 +175,8 @@
       .hero-intro { font-size: 16px; }
       footer { flex-direction: column; padding: 24px 20px; gap: 12px; }
       .footer-right { flex-wrap: wrap; gap: 16px; }
+      .closing-quote-block { padding: 56px 24px 52px; }
+      .closing-quote-block::before { font-size: 120px; }
     }
   </style>
   <meta property="og:title" content="The Proposed Solutions — 1love.works" />
@@ -227,6 +285,16 @@
   <p style="margin-top: 32px;" data-i18n="arch_implication">The institutional consequence is deliberate: investors who would not — or could not — hold PNC can take positions in the legal claims. The network is funded at the recovery layer. The measurement layer stays clean.</p>
 </div>
 
+<!-- ── Closing quote block ── -->
+<div class="closing-quote-block">
+  <p class="closing-quote-text" data-i18n="closing_quote">
+    &#8220;It is mathematically impossible to build a just world without measuring and representing human laws like the other laws of nature.&#8221;
+  </p>
+  <p class="closing-quote-attr">
+    <a href="https://ojs.unito.it/index.php/JLMI/article/view/12266/10016" target="_blank" data-i18n="closing_citation">JLMI 1/25 &middot; Interrelation of Human Laws and Laws of Nature</a>
+  </p>
+</div>
+
 <footer>
   <div class="footer-left">
     <strong>1love.works</strong> · © 2019–2026 Avv. Dr. Gian Marco Solas · <span data-i18n="footer_rights">All rights reserved</span><br/>
@@ -276,6 +344,10 @@ var T = {
     arch_analogy_label: 'Analogy',
     arch_analogy_body: 'A geologist\'s survey stays with the geologist. The mining rights the survey identified can be licensed and traded. The report does not move &mdash; because the moment it does, it is no longer a report: it is a position. The same principle governs this framework. The measurement certificate remains with the instrument. The value it locates enters the market through the claims it produces.',
     arch_implication: 'The institutional consequence is deliberate: investors who would not &mdash; or could not &mdash; hold PNC can take positions in the legal claims. The network is funded at the recovery layer. The measurement layer stays clean.',
+    closing_quote: '&#8220;It is mathematically impossible to build a just world without measuring and representing human laws like the other laws of nature.&#8221;',
+    closing_citation: 'JLMI 1/25 &middot; Interrelation of Human Laws and Laws of Nature',
+    footer_rights: 'All rights reserved',
+    footer_note: 'PNC is not a financial instrument. Not tradeable. Issued as part of service delivery only. · De Lege et Amore.',
   },
   it: {
     nav_problem: 'Il Problema', nav_solutions: 'Le Soluzioni Proposte', nav_pnc: 'PNC', nav_methodology: 'Informazioni &amp; Metodologia', nav_participate: 'Partecipa',
@@ -298,7 +370,7 @@ var T = {
     p4_desc: 'Uno strumento di azione legale collettiva che prende di mira l\'entropia normativa generata dalle piattaforme tecnologiche dominanti nei mercati europei.',
     p5_label: 'V &mdash; Strumento di conversione degli attivi', p5_tag: 'In sviluppo',
     p5_title: 'Azioni legali per<br/><em>attivi sostenibili</em>',
-    p5_desc: 'La conversione dell\'entropia giuridica in attivi sostenibili. Le azioni legali intelligenti convertono quella entropia in attivi quantificabili, negoziabili e sostenibili. Qualsiasi tipo di azione — da sanzioni ad ambientale, da immobiliare a concorrenza e così via. Le azioni saranno elencate in modo trasparente in una pagina da costruire e misurate in fenografia© per la massima trasparenza.',
+    p5_desc: 'La conversione dell\'entropia giuridica in attivi sostenibili. Le azioni legali intelligenti convertono quella entropia in attivi quantificabili, negoziabili e sostenibili. Qualsiasi tipo di azione — da sanzioni ad ambientale, da immobiliare a concorrenza e così via.',
     arch_label: 'Architettura &mdash; Separazione dei livelli',
     arch_title: 'Certificato e azione legale<br/><em>non sono lo stesso strumento</em>',
     arch_intro: 'Il framework produce due output distinti. La loro separazione non è accidentale &mdash; è il nodo portante dell\'architettura. Confonderli distruggerebbe entrambi.',
@@ -307,10 +379,14 @@ var T = {
     arch_pnc_body: 'Il PNC è un registro scientifico &mdash; un certificato fenografico dell\'entropia giuridica misurata in un dato momento. Il suo valore deriva interamente dalla sua integrità come strumento di misurazione. Renderlo negoziabile introdurrebbe un incentivo a distorcere la misurazione. Il certificato pertanto non si muove: viene emesso, registrato e conservato. La sua non negoziabilità non è un limite; è ciò che lo rende credibile.',
     arch_claim_label: 'Azioni legali &mdash; Output della misurazione',
     arch_claim_heading: 'Negoziabili,<br/><em>cedibili, finanziabili</em>',
-    arch_claim_body: 'Le azioni legali sono ciò che lo strumento rileva quando scansiona un sistema giuridico: violazioni identificate, passività quantificate, valore recuperabile. Sono l\'output della misurazione, non la misurazione stessa. In quanto attivi legali, possono essere cedute, negoziate, cartolarizzate o utilizzate come garanzia. Si tratta di finanza legale standard &mdash; finanziamento da terzi di contenziosi applicato a un insieme di azioni sistematicamente identificate. Il capitale può formarsi attorno al livello di recupero senza toccare il livello del certificato.',
+    arch_claim_body: 'Le azioni legali sono ciò che lo strumento rileva quando scansiona un sistema giuridico: violazioni identificate, passività quantificate, valore recuperabile. Sono l\'output della misurazione, non la misurazione stessa. In quanto attivi legali, possono essere cedute, negoziate, cartolarizzate o utilizzate come garanzia.',
     arch_analogy_label: 'Analogia',
-    arch_analogy_body: 'Il rapporto di un geologo rimane al geologo. I diritti minerari che il rapporto ha individuato possono essere concessi in licenza e negoziati. Il rapporto non si muove &mdash; perché nel momento in cui lo facesse, non sarebbe più un rapporto: sarebbe una posizione. Lo stesso principio governa questo framework. Il certificato di misurazione rimane con lo strumento. Il valore che individua entra nel mercato attraverso le azioni che produce.',
+    arch_analogy_body: 'Il rapporto di un geologo rimane al geologo. I diritti minerari che il rapporto ha individuato possono essere concessi in licenza e negoziati. Il rapporto non si muove &mdash; perché nel momento in cui lo facesse, non sarebbe più un rapporto: sarebbe una posizione.',
     arch_implication: 'La conseguenza istituzionale è deliberata: gli investitori che non potrebbero &mdash; o non vorrebbero &mdash; detenere PNC possono assumere posizioni nelle azioni legali. La rete viene finanziata al livello di recupero. Il livello di misurazione rimane integro.',
+    closing_quote: '&#8220;È matematicamente impossibile costruire un mondo giusto senza misurare e rappresentare le leggi umane come le altre leggi della natura.&#8221;',
+    closing_citation: 'JLMI 1/25 &middot; Interrelazione tra Leggi Umane e Leggi della Natura',
+    footer_rights: 'Tutti i diritti riservati',
+    footer_note: 'Il PNC non è uno strumento finanziario. Non negoziabile. Emesso esclusivamente nell\'ambito della prestazione del servizio. · De Lege et Amore.',
   },
   fr: {
     nav_problem: 'Le Problème', nav_solutions: 'Les Solutions Proposées', nav_pnc: 'PNC', nav_methodology: 'À Propos &amp; Méthodologie', nav_participate: 'Participer',
@@ -333,19 +409,23 @@ var T = {
     p4_desc: 'Un instrument d\'action juridique collective ciblant l\'entropie réglementaire générée par les plateformes technologiques dominantes dans les marchés européens.',
     p5_label: 'V &mdash; Instrument de conversion d\'actifs', p5_tag: 'En développement',
     p5_title: 'Actions juridiques pour<br/><em>actifs durables</em>',
-    p5_desc: 'La conversion de l\'entropie juridique en actifs durables. Des actions juridiques intelligentes convertissent cette entropie en actifs quantifiables, négociables et durables. N\'importe quelle action — des sanctions à l\'environnement, de l\'immobilier à la concurrence et ainsi de suite. Les actions seront répertoriées de manière transparente dans une page à construire et mesurées en phénographie© pour une transparence maximale.',
+    p5_desc: 'La conversion de l\'entropie juridique en actifs durables par des actions juridiques intelligentes structurées selon la méthodologie juridico-physique.',
     arch_label: 'Architecture &mdash; Séparation des couches',
     arch_title: 'Certificat et action en justice<br/><em>ne sont pas le même instrument</em>',
     arch_intro: 'Le cadre produit deux résultats distincts. Leur séparation n\'est pas fortuite &mdash; c\'est le joint porteur de l\'architecture. Les confondre détruirait les deux.',
     arch_pnc_label: 'PNC &mdash; Certificat de mesure',
     arch_pnc_heading: 'Non négociable<br/><em>par conception</em>',
-    arch_pnc_body: 'Le PNC est un enregistrement scientifique &mdash; un certificat phénographique de l\'entropie juridique mesurée à un moment donné. Sa valeur découle entièrement de son intégrité en tant qu\'instrument de mesure. Le rendre négociable introduirait une incitation à fausser la mesure. Le certificat ne se déplace donc pas. Il est émis, enregistré et conservé. Sa non-négociabilité n\'est pas une limitation ; c\'est ce qui lui confère sa crédibilité.',
+    arch_pnc_body: 'Le PNC est un enregistrement scientifique &mdash; un certificat phénographique de l\'entropie juridique mesurée à un moment donné. Sa valeur découle entièrement de son intégrité en tant qu\'instrument de mesure.',
     arch_claim_label: 'Actions juridiques &mdash; Résultat de la mesure',
     arch_claim_heading: 'Négociables,<br/><em>cessibles, finançables</em>',
-    arch_claim_body: 'Les actions juridiques sont ce que l\'instrument détecte lorsqu\'il analyse un système juridique : violations identifiées, passifs quantifiés, valeur recouvrable. Elles sont le résultat de la mesure, non la mesure elle-même. En tant qu\'actifs juridiques, elles peuvent être cédées, négociées, titrisées ou utilisées comme garantie. Il s\'agit de finance juridique standard &mdash; le financement de litiges par des tiers appliqué à un ensemble de créances identifiées systématiquement. Le capital peut se former autour de la couche de recouvrement sans toucher à la couche certificat.',
+    arch_claim_body: 'Les actions juridiques sont ce que l\'instrument détecte lorsqu\'il analyse un système juridique : violations identifiées, passifs quantifiés, valeur recouvrable.',
     arch_analogy_label: 'Analogie',
-    arch_analogy_body: 'Le rapport d\'un géologue reste au géologue. Les droits miniers que le rapport a identifiés peuvent être concédés sous licence et négociés. Le rapport ne bouge pas &mdash; car dès qu\'il le ferait, ce ne serait plus un rapport : ce serait une position. Le même principe régit ce cadre. Le certificat de mesure reste avec l\'instrument. La valeur qu\'il localise entre sur le marché par les actions qu\'il produit.',
-    arch_implication: 'La conséquence institutionnelle est délibérée : les investisseurs qui ne pourraient pas &mdash; ou ne voudraient pas &mdash; détenir du PNC peuvent prendre des positions dans les actions juridiques. Le réseau est financé au niveau du recouvrement. La couche de mesure reste intacte.',
+    arch_analogy_body: 'Le rapport d\'un géologue reste au géologue. Les droits miniers que le rapport a identifiés peuvent être concédés sous licence et négociés. Le rapport ne bouge pas &mdash; car dès qu\'il le ferait, ce ne serait plus un rapport : ce serait une position.',
+    arch_implication: 'La conséquence institutionnelle est délibérée : les investisseurs qui ne pourraient pas &mdash; ou ne voudraient pas &mdash; détenir du PNC peuvent prendre des positions dans les actions juridiques.',
+    closing_quote: '&#8220;Il est mathématiquement impossible de construire un monde juste sans mesurer et représenter les lois humaines comme les autres lois de la nature.&#8221;',
+    closing_citation: 'JLMI 1/25 &middot; Interrelation des Lois Humaines et des Lois de la Nature',
+    footer_rights: 'Tous droits réservés',
+    footer_note: 'Le PNC n\'est pas un instrument financier. Non négociable. Émis uniquement dans le cadre de la prestation de services. · De Lege et Amore.',
   },
   es: {
     nav_problem: 'El Problema', nav_solutions: 'Las Soluciones Propuestas', nav_pnc: 'PNC', nav_methodology: 'Acerca &amp; Metodología', nav_participate: 'Participar',
@@ -374,13 +454,17 @@ var T = {
     arch_intro: 'El marco produce dos resultados distintos. Su separación no es accidental &mdash; es la junta de carga de la arquitectura. Confundirlos destruiría ambos.',
     arch_pnc_label: 'PNC &mdash; Certificado de medición',
     arch_pnc_heading: 'No negociable<br/><em>por diseño</em>',
-    arch_pnc_body: 'El PNC es un registro científico &mdash; un certificado fenográfico de la entropía jurídica medida en un momento dado. Su valor deriva íntegramente de su integridad como instrumento de medición. Hacerlo negociable introduciría un incentivo para distorsionar la medición. El certificado, por tanto, no se mueve. Se emite, registra y conserva. Su no negociabilidad no es una limitación; es lo que lo hace creíble.',
+    arch_pnc_body: 'El PNC es un registro científico &mdash; un certificado fenográfico de la entropía jurídica medida en un momento dado. Su valor deriva íntegramente de su integridad como instrumento de medición.',
     arch_claim_label: 'Reclamaciones jurídicas &mdash; Resultado de la medición',
     arch_claim_heading: 'Negociables,<br/><em>cedibles, financiables</em>',
-    arch_claim_body: 'Las reclamaciones jurídicas son lo que el instrumento detecta al analizar un sistema jurídico: infracciones identificadas, pasivos cuantificados, valor recuperable. Son el resultado de la medición, no la medición en sí. Como activos jurídicos, pueden cederse, negociarse, titulizarse o utilizarse como garantía. Se trata de finanzas jurídicas estándar &mdash; la financiación de litigios por terceros aplicada a un conjunto de reclamaciones identificadas sistemáticamente. El capital puede formarse en torno a la capa de recuperación sin tocar la capa del certificado.',
+    arch_claim_body: 'Las reclamaciones jurídicas son lo que el instrumento detecta al analizar un sistema jurídico: infracciones identificadas, pasivos cuantificados, valor recuperable.',
     arch_analogy_label: 'Analogía',
-    arch_analogy_body: 'El informe de un geólogo permanece con el geólogo. Los derechos mineros que el informe identificó pueden licenciarse y negociarse. El informe no se mueve &mdash; porque en el momento en que lo hiciera, dejaría de ser un informe: se convertiría en una posición. El mismo principio rige este marco. El certificado de medición permanece con el instrumento. El valor que localiza entra en el mercado a través de las reclamaciones que produce.',
-    arch_implication: 'La consecuencia institucional es deliberada: los inversores que no podrían &mdash; o no querrían &mdash; mantener PNC pueden tomar posiciones en las reclamaciones jurídicas. La red se financia en la capa de recuperación. La capa de medición permanece intacta.',
+    arch_analogy_body: 'El informe de un geólogo permanece con el geólogo. Los derechos mineros que el informe identificó pueden licenciarse y negociarse. El informe no se mueve &mdash; porque en el momento en que lo hiciera, dejaría de ser un informe: se convertiría en una posición.',
+    arch_implication: 'La consecuencia institucional es deliberada: los inversores que no podrían &mdash; o no querrían &mdash; mantener PNC pueden tomar posiciones en las reclamaciones jurídicas.',
+    closing_quote: '&#8220;Es matemáticamente imposible construir un mundo justo sin medir y representar las leyes humanas como las demás leyes de la naturaleza.&#8221;',
+    closing_citation: 'JLMI 1/25 &middot; Interrelación de las Leyes Humanas y las Leyes de la Naturaleza',
+    footer_rights: 'Todos los derechos reservados',
+    footer_note: 'El PNC no es un instrumento financiero. No negociable. Emitido únicamente como parte de la prestación del servicio. · De Lege et Amore.',
   },
 };
 
@@ -400,9 +484,7 @@ function setLang(lang) {
 setLang(currentLang);
 </script>
 
-
 <script>
-// Mobile nav toggle
 (function() {
   function initNav() {
     var toggle = document.getElementById('nav-toggle');
