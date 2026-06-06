@@ -275,6 +275,42 @@
   </div>
 
   <!-- ═══════════════ DECLARE NODE ═══════════════ -->
+  <!-- ═══════════════ USEFUL WORK ═══════════════ -->
+  <div class="section-head" data-i18n="sec_work">⬡ What counts as useful work</div>
+
+  <div style="max-width: 680px; margin-bottom: 48px;">
+    <p style="font-size: 18px; color: #3a3a36; line-height: 1.9; margin-bottom: 20px;" data-i18n="work_intro">Anything that reduces entropy in the system. The measurement is legal-physical — but the work is human and concrete. PNC circulates between nodes as payment for this work. All of it.</p>
+
+    <div style="border-left: 4px solid rgba(184,134,11,0.35); padding: 20px 28px; background: rgba(184,134,11,0.03); margin-bottom: 24px;">
+      <p style="font-size: 17px; font-style: italic; color: var(--ink); line-height: 1.8; margin: 0;" data-i18n="work_quote">The system does not rank work by prestige or credential. A lawyer codifying a statute and a person clearing an abandoned lot both reduce entropy. Both can be paid in PNC. Both become nodes.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--rule-med); margin-bottom: 20px;">
+      <div style="background: var(--white); padding: 20px 22px;">
+        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--gold); margin-bottom: 14px;" data-i18n="work_col_legal">⬡ Legal & intellectual</div>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px;">
+          <li style="font-size: 14px; color: #3a3a36; line-height: 1.5; display: flex; gap: 8px;"><span style="color: var(--gold); flex-shrink:0;">⬡</span><span data-i18n="work_li_1">Codification of a municipal or regional legal system</span></li>
+          <li style="font-size: 14px; color: #3a3a36; line-height: 1.5; display: flex; gap: 8px;"><span style="color: var(--gold); flex-shrink:0;">⬡</span><span data-i18n="work_li_2">Scanning and measuring a legal document or corporate structure</span></li>
+          <li style="font-size: 14px; color: #3a3a36; line-height: 1.5; display: flex; gap: 8px;"><span style="color: var(--gold); flex-shrink:0;">⬡</span><span data-i18n="work_li_3">Translation of a regulation into a language its subjects actually speak</span></li>
+          <li style="font-size: 14px; color: #3a3a36; line-height: 1.5; display: flex; gap: 8px;"><span style="color: var(--gold); flex-shrink:0;">⬡</span><span data-i18n="work_li_4">Research and empirical data that calibrates the measurement</span></li>
+          <li style="font-size: 14px; color: #3a3a36; line-height: 1.5; display: flex; gap: 8px;"><span style="color: var(--gold); flex-shrink:0;">⬡</span><span data-i18n="work_li_5">Legal education — making rights legible to citizens</span></li>
+        </ul>
+      </div>
+      <div style="background: var(--white); padding: 20px 22px;">
+        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--gold); margin-bottom: 14px;" data-i18n="work_col_physical">⬡ Physical & territorial</div>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px;">
+          <li style="font-size: 14px; color: #3a3a36; line-height: 1.5; display: flex; gap: 8px;"><span style="color: var(--gold); flex-shrink:0;">⬡</span><span data-i18n="work_li_6">Mapping and cataloguing abandoned land or unused public assets</span></li>
+          <li style="font-size: 14px; color: #3a3a36; line-height: 1.5; display: flex; gap: 8px;"><span style="color: var(--gold); flex-shrink:0;">⬡</span><span data-i18n="work_li_7">Ordering and maintaining a public archive or municipal record</span></li>
+          <li style="font-size: 14px; color: #3a3a36; line-height: 1.5; display: flex; gap: 8px;"><span style="color: var(--gold); flex-shrink:0;">⬡</span><span data-i18n="work_li_8">Cleaning and maintaining a public or institutional space</span></li>
+          <li style="font-size: 14px; color: #3a3a36; line-height: 1.5; display: flex; gap: 8px;"><span style="color: var(--gold); flex-shrink:0;">⬡</span><span data-i18n="work_li_9">Purchasing or recovering abandoned land for the territory</span></li>
+          <li style="font-size: 14px; color: #3a3a36; line-height: 1.5; display: flex; gap: 8px;"><span style="color: var(--gold); flex-shrink:0;">⬡</span><span data-i18n="work_li_10">Any act that moves a territory closer to its optimal state</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="font-family: var(--mono); font-size: 10px; color: var(--muted); line-height: 1.8;" data-i18n="work_note">PNC paid for work circulates — it does not disappear. The worker becomes a node, holds their stake, and can in turn commission more work. Phase 2 introduces lawyer verification before transfer. <a href="/pnc" style="color: var(--gold);">Learn more about PNC →</a></p>
+  </div>
+
   <div class="section-head" data-i18n="sec_declare">Declare your node</div>
 
   <div class="declare-wrap">
@@ -308,6 +344,7 @@
       </div>
       <div class="form-group"><label data-i18n="field_pnc">PNC held</label><input type="number" id="nd-pnc" min="0.1" step="0.1" placeholder="e.g. 1" /></div>
       <div class="form-group form-full"><label data-i18n="field_bio">Short statement (optional)</label><textarea id="nd-bio"></textarea></div>
+      <div class="form-group form-full"><label data-i18n="field_work">Work you intend to contribute (optional)</label><textarea id="nd-work" style="min-height:60px;" data-i18n-placeholder="placeholder_work"></textarea></div>
       <div class="form-group"><label data-i18n="field_link">Public link (optional)</label><input type="url" id="nd-link" placeholder="https://" /></div>
     </div>
     <button class="btn-submit" onclick="registerNode()" data-i18n="reg_btn">Declare node →</button>
@@ -431,6 +468,24 @@ const T = {
     sec_registry:'⬡ Founding node registry',
     col_pro_title:'Professional & Legal Order', col_citizen_title:'Citizens',
     empty_pro:'No professional nodes yet.<br/>Be the first.', empty_citizen:'No citizen nodes yet.<br/>Be the first.',
+    sec_work:'⬡ What counts as useful work',
+    work_intro:'Anything that reduces entropy in the system. The measurement is legal-physical — but the work is human and concrete. PNC circulates between nodes as payment for this work. All of it.',
+    work_quote:'The system does not rank work by prestige or credential. A lawyer codifying a statute and a person clearing an abandoned lot both reduce entropy. Both can be paid in PNC. Both become nodes.',
+    work_col_legal:'⬡ Legal & intellectual',
+    work_col_physical:'⬡ Physical & territorial',
+    work_li_1:'Codification of a municipal or regional legal system',
+    work_li_2:'Scanning and measuring a legal document or corporate structure',
+    work_li_3:'Translation of a regulation into a language its subjects actually speak',
+    work_li_4:'Research and empirical data that calibrates the measurement',
+    work_li_5:'Legal education — making rights legible to citizens',
+    work_li_6:'Mapping and cataloguing abandoned land or unused public assets',
+    work_li_7:'Ordering and maintaining a public archive or municipal record',
+    work_li_8:'Cleaning and maintaining a public or institutional space',
+    work_li_9:'Purchasing or recovering abandoned land for the territory',
+    work_li_10:'Any act that moves a territory closer to its optimal state',
+    work_note:'PNC paid for work circulates — it does not disappear. The worker becomes a node, holds their stake, and can in turn commission more work. Phase 2 introduces lawyer verification before transfer. <a href="/pnc" style="color:var(--gold);">Learn more about PNC →</a>',
+    field_work:'Work you intend to contribute (optional)',
+    placeholder_work:'Describe the work you plan to do or are already doing for the system — legal, physical, territorial, or other.',
     sec_declare:'Declare your node',
     declare_intro:'If you hold a PNC — through a service, codification work, or founding participation — declare your node here. Voluntary public record.',
     reg_type_label:'I am registering as', type_pro:'Professional / Institution', type_citizen:'Citizen',
@@ -493,6 +548,24 @@ const T = {
     sec_registry:'⬡ Registro dei nodi fondatori',
     col_pro_title:'Professionale e Ordine Giuridico', col_citizen_title:'Cittadini',
     empty_pro:'Nessun nodo professionale ancora.<br/>Sii il primo.', empty_citizen:'Nessun nodo cittadino ancora.<br/>Sii il primo.',
+    sec_work:'⬡ Cosa conta come lavoro utile',
+    work_intro:'Qualsiasi cosa che riduca l\'entropia nel sistema. La misurazione è fisico-giuridica — ma il lavoro è umano e concreto. Il PNC circola tra i nodi come pagamento per questo lavoro. Tutto.',
+    work_quote:'Il sistema non classifica il lavoro per prestigio o credenziali. Un avvocato che codifica uno statuto e una persona che ripulisce un terreno abbandonato riducono entrambi l\'entropia. Entrambi possono essere pagati in PNC. Entrambi diventano nodi.',
+    work_col_legal:'⬡ Legale & intellettuale',
+    work_col_physical:'⬡ Fisico & territoriale',
+    work_li_1:'Codificazione di un sistema giuridico municipale o regionale',
+    work_li_2:'Scansione e misurazione di un documento legale o struttura aziendale',
+    work_li_3:'Traduzione di un regolamento nella lingua dei suoi destinatari',
+    work_li_4:'Ricerca e dati empirici che calibrano la misurazione',
+    work_li_5:'Educazione giuridica — rendere i diritti leggibili ai cittadini',
+    work_li_6:'Mappatura e catalogazione di terreni abbandonati o beni pubblici inutilizzati',
+    work_li_7:'Ordinamento e manutenzione di un archivio pubblico o registro comunale',
+    work_li_8:'Pulizia e manutenzione di uno spazio pubblico o istituzionale',
+    work_li_9:'Acquisto o recupero di terreni abbandonati per il territorio',
+    work_li_10:'Qualsiasi atto che avvicini un territorio al suo stato ottimale',
+    work_note:'Il PNC pagato per il lavoro circola — non scompare. Il lavoratore diventa un nodo, mantiene la sua quota e può a sua volta commissionare altro lavoro. La Fase 2 introduce la verifica legale prima del trasferimento. <a href="/pnc" style="color:var(--gold);">Scopri di più sul PNC →</a>',
+    field_work:'Lavoro che intendi contribuire (opzionale)',
+    placeholder_work:'Descrivi il lavoro che hai intenzione di fare o che stai già svolgendo per il sistema — legale, fisico, territoriale o altro.',
     sec_declare:'Dichiara il tuo nodo',
     declare_intro:'Se detieni un PNC — tramite un servizio, lavoro di codificazione o partecipazione fondatrice — dichiara il tuo nodo qui. Registro pubblico volontario.',
     reg_type_label:'Mi registro come', type_pro:'Professionista / Istituzione', type_citizen:'Cittadino',
@@ -555,6 +628,24 @@ const T = {
     sec_registry:'⬡ Registre des nœuds fondateurs',
     col_pro_title:'Professionnel & Ordre juridique', col_citizen_title:'Citoyens',
     empty_pro:'Aucun nœud professionnel encore.<br/>Soyez le premier.', empty_citizen:'Aucun nœud citoyen encore.<br/>Soyez le premier.',
+    sec_work:'⬡ Ce qui compte comme travail utile',
+    work_intro:'Tout ce qui réduit l\'entropie dans le système. La mesure est physico-juridique — mais le travail est humain et concret. Le PNC circule entre les nœuds comme paiement pour ce travail. Tout.',
+    work_quote:'Le système ne classe pas le travail par prestige ou diplôme. Un avocat qui codifie un statut et une personne qui défriche un terrain abandonné réduisent tous deux l\'entropie. Tous deux peuvent être payés en PNC. Tous deux deviennent des nœuds.',
+    work_col_legal:'⬡ Juridique & intellectuel',
+    work_col_physical:'⬡ Physique & territorial',
+    work_li_1:'Codification d\'un système juridique municipal ou régional',
+    work_li_2:'Analyse et mesure d\'un document juridique ou d\'une structure d\'entreprise',
+    work_li_3:'Traduction d\'un règlement dans la langue de ses destinataires',
+    work_li_4:'Recherche et données empiriques qui calibrent la mesure',
+    work_li_5:'Éducation juridique — rendre les droits lisibles aux citoyens',
+    work_li_6:'Cartographie et catalogage des terres abandonnées ou des actifs publics inutilisés',
+    work_li_7:'Organisation et maintenance d\'une archive publique ou d\'un registre municipal',
+    work_li_8:'Nettoyage et entretien d\'un espace public ou institutionnel',
+    work_li_9:'Achat ou récupération de terres abandonnées pour le territoire',
+    work_li_10:'Tout acte qui rapproche un territoire de son état optimal',
+    work_note:'Le PNC payé pour le travail circule — il ne disparaît pas. Le travailleur devient un nœud, conserve sa part et peut à son tour commander d\'autres travaux. La phase 2 introduit la vérification juridique avant le transfert. <a href="/pnc" style="color:var(--gold);">En savoir plus sur le PNC →</a>',
+    field_work:'Travail que vous comptez apporter (optionnel)',
+    placeholder_work:'Décrivez le travail que vous prévoyez de faire ou faites déjà pour le système — juridique, physique, territorial ou autre.',
     sec_declare:'Déclarez votre nœud',
     declare_intro:'Si vous détenez un PNC — via un service, un travail de codification ou une participation fondatrice — déclarez votre nœud ici. Registre public volontaire.',
     reg_type_label:'Je m\'inscris en tant que', type_pro:'Professionnel / Institution', type_citizen:'Citoyen',
@@ -617,6 +708,24 @@ const T = {
     sec_registry:'⬡ Registro de nodos fundadores',
     col_pro_title:'Profesional y Orden Jurídico', col_citizen_title:'Ciudadanos',
     empty_pro:'No hay nodos profesionales aún.<br/>Sea el primero.', empty_citizen:'No hay nodos ciudadanos aún.<br/>Sea el primero.',
+    sec_work:'⬡ Qué cuenta como trabajo útil',
+    work_intro:'Todo lo que reduce la entropía en el sistema. La medición es físico-jurídica — pero el trabajo es humano y concreto. El PNC circula entre nodos como pago por este trabajo. Todo.',
+    work_quote:'El sistema no clasifica el trabajo por prestigio o credenciales. Un abogado que codifica un estatuto y una persona que despeja un terreno abandonado reducen ambos la entropía. Ambos pueden ser pagados en PNC. Ambos se convierten en nodos.',
+    work_col_legal:'⬡ Jurídico & intelectual',
+    work_col_physical:'⬡ Físico & territorial',
+    work_li_1:'Codificación de un sistema jurídico municipal o regional',
+    work_li_2:'Análisis y medición de un documento jurídico o estructura empresarial',
+    work_li_3:'Traducción de un reglamento al idioma de sus destinatarios',
+    work_li_4:'Investigación y datos empíricos que calibran la medición',
+    work_li_5:'Educación jurídica — hacer los derechos legibles para los ciudadanos',
+    work_li_6:'Mapeo y catalogación de terrenos abandonados o activos públicos no utilizados',
+    work_li_7:'Ordenación y mantenimiento de un archivo público o registro municipal',
+    work_li_8:'Limpieza y mantenimiento de un espacio público o institucional',
+    work_li_9:'Compra o recuperación de terrenos abandonados para el territorio',
+    work_li_10:'Cualquier acto que acerque un territorio a su estado óptimo',
+    work_note:'El PNC pagado por el trabajo circula — no desaparece. El trabajador se convierte en nodo, conserva su participación y puede a su vez encargar más trabajo. La Fase 2 introduce verificación jurídica antes de la transferencia. <a href="/pnc" style="color:var(--gold);">Más sobre el PNC →</a>',
+    field_work:'Trabajo que pretende aportar (opcional)',
+    placeholder_work:'Describa el trabajo que planea hacer o ya está haciendo para el sistema — jurídico, físico, territorial u otro.',
     sec_declare:'Declare su nodo',
     declare_intro:'Si posee un PNC — a través de un servicio, trabajo de codificación o participación fundadora — declare su nodo aquí. Registro público voluntario.',
     reg_type_label:'Me registro como', type_pro:'Profesional / Institución', type_citizen:'Ciudadano',
@@ -698,6 +807,7 @@ function renderNodes() {
         `${nd.jurisdiction?`<span class="node-jurisdiction">${esc(nd.jurisdiction)}</span>`:''}`+
         `<span class="node-date">${fmtDate(nd.date)}</span></div>`+
         (nd.bio?`<p class="node-bio">${esc(nd.bio)}</p>`:'')+
+        (nd.work?`<p class="node-bio" style="font-style:italic;color:#7a7a76;">⬡ Work: ${esc(nd.work)}</p>`:'')+
         (nd.link?`<a class="node-link" href="${esc(nd.link)}" target="_blank" rel="noopener">${esc(nd.link.replace(/^https?:\/\//,''))} ↗</a>`:'');
       listEl.appendChild(el);
     });
@@ -724,10 +834,12 @@ function registerNode() {
   const nd={ type:currentNodeType, name, jurisdiction:document.getElementById('nd-jurisdiction').value.trim(),
     role:currentNodeType==='pro'?document.getElementById('nd-role').value:'',
     pnc:parseFloat(document.getElementById('nd-pnc').value)||null,
-    bio:document.getElementById('nd-bio').value.trim(), link:document.getElementById('nd-link').value.trim(),
+    bio:document.getElementById('nd-bio').value.trim(),
+    work:document.getElementById('nd-work').value.trim(),
+    link:document.getElementById('nd-link').value.trim(),
     date:new Date().toISOString() };
   const nodes=loadNodes(); nodes.unshift(nd); saveNodes(nodes);
-  ['nd-name','nd-jurisdiction','nd-bio','nd-link'].forEach(id=>document.getElementById(id).value='');
+  ['nd-name','nd-jurisdiction','nd-bio','nd-work','nd-link'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('nd-role').value=''; document.getElementById('nd-pnc').value='';
   const msg=document.getElementById('nd-success'); msg.classList.add('show');
   setTimeout(()=>msg.classList.remove('show'),5000);
