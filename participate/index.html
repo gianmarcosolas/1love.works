@@ -15,6 +15,7 @@
       --serif: 'EB Garamond', Georgia, serif; --mono: 'DM Mono', monospace;
     }
     html { scroll-behavior: smooth; }
+    @keyframes lpulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
     body { font-family: var(--serif); background: var(--white); color: var(--ink); line-height: 1.75; font-size: 17px; }
 
     /* ── nav ── */
@@ -188,6 +189,8 @@
   <div class="stat"><span class="stat-value" id="stat-pro">—</span><span class="stat-label" data-i18n="stat_pro">Professional & Legal Order</span></div>
   <div class="stat"><span class="stat-value" id="stat-citizen">—</span><span class="stat-label" data-i18n="stat_citizen">Citizens</span></div>
   <div class="stat"><span class="stat-value" id="stat-countries">—</span><span class="stat-label" data-i18n="stat_countries">Jurisdictions</span></div>
+  <div class="stat"><span class="stat-value" id="stat-implied">€99</span><span class="stat-label" data-i18n="stat_implied">Implied value / PNC</span></div>
+  <div class="stat"><span class="stat-value" id="stat-scans">—</span><span class="stat-label" data-i18n="stat_scans">Total scans</span></div>
 </div>
 
 <div class="wrap">
@@ -201,7 +204,7 @@
     <div class="node">
       <div class="node-header">
         <span class="node-name">Antioco Solas, Lorena Troncia &amp; Gian Marco Solas</span>
-        <span class="node-pnc" style="font-family:var(--mono);font-size:9px;color:var(--gold);">⬡ 10,101 PNC</span>
+        <span class="node-pnc" style="font-family:var(--mono);font-size:9px;color:var(--gold);">⬡ 10,101 PNC · €999,999 founding · <span id="founding-implied">€999,999</span> implied</span>
       </div>
       <div class="node-meta">
         <span class="node-role" data-i18n="founding_role">Family founding partnership</span>
@@ -225,7 +228,7 @@
     <div class="node">
       <div class="node-header">
         <span class="node-name">Michele Ardu</span>
-        <span class="node-pnc" style="font-family:var(--mono);font-size:9px;color:var(--muted);">⬡ 20 PNC</span>
+        <span class="node-pnc" style="font-family:var(--mono);font-size:9px;color:var(--muted);">⬡ 20 PNC · €1,980 founding · <span id="michele-implied">€1,980</span> implied</span>
       </div>
       <div class="node-meta">
         <span class="node-role" data-i18n="first_supporter_role">Citizen · Artist</span>
@@ -242,7 +245,7 @@
     <div class="node">
       <div class="node-header">
         <span class="node-name">Francesca Cabitza</span>
-        <span class="node-pnc" style="font-family:var(--mono);font-size:9px;color:var(--muted);">⬡ 1 PNC</span>
+        <span class="node-pnc" style="font-family:var(--mono);font-size:9px;color:var(--muted);">⬡ 1 PNC · 1 node · €99 founding · <span id="francesca-implied">€99</span> implied</span>
       </div>
       <div class="node-meta">
         <span class="node-role" data-i18n="francesca_role">Avvocato</span>
@@ -362,8 +365,22 @@
   <div class="offer-grid">
     <div class="offer-card primary">
       <div class="offer-label" data-i18n="offer_label">⬡ Pre-order</div>
-      <div class="offer-price">€99</div>
-      <div class="offer-price-note" data-i18n="offer_price_note">one-time</div>
+      <div style="font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:6px;" data-i18n="offer_founding_label">Founding price — fixed permanently</div>
+      <div class="offer-price" id="offer-founding-price">€99</div>
+      <div class="offer-price-note" data-i18n="offer_price_note">one-time · founding holders only</div>
+      <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:20px;flex-wrap:wrap;">
+        <div>
+          <div style="font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:4px;" data-i18n="offer_current_label">Current phase price</div>
+          <div style="font-family:var(--mono);font-size:22px;font-weight:500;color:var(--gold);" id="offer-current-price">€99</div>
+        </div>
+        <div>
+          <div style="font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:4px;" data-i18n="offer_implied_label">Implied value <span style="font-size:8px;">●</span> live</div>
+          <div style="font-family:var(--mono);font-size:22px;font-weight:500;color:var(--gold);display:flex;align-items:center;gap:6px;">
+            <span id="offer-implied-value">€99</span>
+            <span style="width:6px;height:6px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:lpulse 2s ease-in-out infinite;"></span>
+          </div>
+        </div>
+      </div>
       <ul class="offer-includes">
         <li data-i18n="offer_li1">Your unique, private and proprietary code — representative of all your EU rights, including the predictive model for Big Tech damages at <a href="https://bigtechclaim.eu" target="_blank" style="color:var(--gold);">bigtechclaim.eu</a> and the right to request the codification of your sustainable legal system at <a href="https://www.1love.works/codification" target="_blank" style="color:var(--gold);">1love.works/codification</a></li>
         <li data-i18n="offer_li2">1 PNC — Phenocurrency Certificate (founding)</li>
@@ -371,7 +388,7 @@
         <li data-i18n="offer_li4">Free scans — Corporate Meter (upon successful calibration of <a href="https://corporate-scanner.com" target="_blank" style="color:var(--gold);">corporate-scanner.com</a>)</li>
         <li data-i18n="offer_li5"><em>De Lege et Amore</em> — full book, upon successful experimentation and validation</li>
       </ul>
-      <div class="offer-caveat" data-i18n="offer_caveat">PNC is not a financial instrument. It is a founding certificate in a legal-physics research programme. Its implied value is mathematical, not speculative. Subject to experimentation.</div>
+      <div class="offer-caveat" data-i18n="offer_caveat">PNC is not a financial instrument. It is a founding certificate in a legal-physics research programme. Three prices apply: the founding price (€99, fixed permanently — what early holders paid), the current phase price (€99 in Phase 1, rises in Phase 2), and the implied value (mathematical, live, not a market price). None are realisable through sale. Subject to experimentation.</div>
       <a href="https://buy.stripe.com/00waEXbDe4AvghJgyngUM00" class="btn btn-gold" data-i18n="offer_btn">Pre-order — €99 →</a>
 
       <div style="border-top:1px solid rgba(184,134,11,0.2);margin-top:24px;padding-top:20px;">
@@ -499,13 +516,17 @@ const T = {
     nd_note:'By submitting, you self-declare that you hold at least 1 PNC. Professional nodes are subject to counter-verification against public registers. This record is public.',
     sec_participate:'Support the idea — participate and own the results',
     honest_note:'The book is real and ready to ship upon success of the experiment. The PNC is a founding certificate in an active research and entropy transformation programme — not a financial instrument, but participation in a serious experiment with a publication record behind it (<a href="/methodology" style="color:var(--gold);">see methodology</a>), and five instruments already working to solve real legal problems (<a href="https://www.1love.works/solutions" style="color:var(--gold);">see all solutions</a>).',
+    stat_implied:'Implied value / PNC', stat_scans:'Total scans',
+    offer_founding_label:'Founding price — fixed permanently',
+    offer_current_label:'Current phase price',
+    offer_implied_label:'Implied value · live',
     offer_label:'⬡ Pre-order', offer_price_note:'one-time',
     offer_li1:'Your unique, private and proprietary code — representative of all your EU rights, including the predictive model for Big Tech damages at <a href="https://bigtechclaim.eu" target="_blank" style="color:var(--gold);">bigtechclaim.eu</a> and the right to request the codification of your sustainable legal system at <a href="https://www.1love.works/codification" target="_blank" style="color:var(--gold);">1love.works/codification</a>',
     offer_li2:'1 PNC — Phenocurrency Certificate (founding)',
     offer_li3:'3 free legal document scans — EU Law Meter (upon successful calibration of <a href="https://eulawscanner.eu" target="_blank" style="color:var(--gold);">eulawscanner.eu</a>)',
     offer_li4:'Free scans — Corporate Meter (upon successful calibration of <a href="https://corporate-scanner.com" target="_blank" style="color:var(--gold);">corporate-scanner.com</a>)',
     offer_li5:'<em>De Lege et Amore</em> — full book, upon successful experimentation and validation',
-    offer_caveat:'PNC is not a financial instrument. It is a founding certificate in a legal-physics research programme. Its implied value is mathematical, not speculative. Subject to experimentation.',
+    offer_caveat:'PNC is not a financial instrument. It is a founding certificate in a legal-physics research programme. Three prices apply: the founding price (€99, fixed permanently — what early holders paid), the current phase price (€99 in Phase 1, rises in Phase 2), and the implied value (mathematical, live, not a market price). None are realisable through sale. Subject to experimentation.',
     offer_btn:'Pre-order — €99 →',
     form_head:'Manifest interest — free',
     form_intro:'Not ready to pre-order? Manifest your interest in the codification of your territory — free. This data goes directly into the empirical research map. Every territory matters.',
@@ -579,13 +600,17 @@ const T = {
     nd_note:'Inviando, autodichiari di detenere almeno 1 PNC. I nodi professionali sono soggetti a verifica incrociata. Questo registro è pubblico.',
     sec_participate:'Sostieni l\'idea — partecipa e possiedi i risultati',
     honest_note:'Il libro è reale e pronto per la spedizione al successo dell\'esperimento. Il PNC è un certificato fondatore in un programma di ricerca e trasformazione attiva dell\'entropia — non uno strumento finanziario, ma la partecipazione a un esperimento serio con un registro di pubblicazioni alle spalle (<a href="/methodology" style="color:var(--gold);">vedi metodologia</a>), e cinque strumenti già al lavoro per risolvere problemi giuridici reali (<a href="https://www.1love.works/solutions" style="color:var(--gold);">vedi tutte le soluzioni</a>).',
+    stat_implied:'Valore implicito / PNC', stat_scans:'Scansioni totali',
+    offer_founding_label:'Prezzo fondatore — fisso permanentemente',
+    offer_current_label:'Prezzo fase corrente',
+    offer_implied_label:'Valore implicito · live',
     offer_label:'⬡ Pre-ordine', offer_price_note:'una tantum',
     offer_li1:'Il tuo codice unico, privato e proprietario — rappresentativo di tutti i tuoi diritti UE, incluso il modello predittivo per il risarcimento danni da Big Tech su <a href="https://bigtechclaim.eu" target="_blank" style="color:var(--gold);">bigtechclaim.eu</a> e il diritto di richiedere la codificazione del tuo sistema giuridico sostenibile su <a href="https://www.1love.works/codification" target="_blank" style="color:var(--gold);">1love.works/codification</a>',
     offer_li2:'1 PNC — Certificato Phenomoneta (fondatore)',
     offer_li3:'3 scansioni gratuite di documenti giuridici — EU Law Meter (al completamento della calibrazione di <a href="https://eulawscanner.eu" target="_blank" style="color:var(--gold);">eulawscanner.eu</a>)',
     offer_li4:'Scansioni gratuite — Corporate Meter (al completamento della calibrazione di <a href="https://corporate-scanner.com" target="_blank" style="color:var(--gold);">corporate-scanner.com</a>)',
     offer_li5:'<em>De Lege et Amore</em> — libro completo, al successo della sperimentazione e validazione',
-    offer_caveat:'Il PNC non è uno strumento finanziario. È un certificato fondatore in un programma di ricerca di fisica giuridica. Il suo valore implicito è matematico, non speculativo. Soggetto a sperimentazione.',
+    offer_caveat:'Il PNC non è uno strumento finanziario. È un certificato fondatore in un programma di ricerca di fisica giuridica. Si applicano tre prezzi: il prezzo fondatore (€99, fisso permanentemente — ciò che i primi detentori hanno pagato), il prezzo della fase corrente (€99 nella Fase 1, aumenta nella Fase 2) e il valore implicito (matematico, in tempo reale, non un prezzo di mercato). Nessuno è realizzabile tramite vendita. Soggetto a sperimentazione.',
     offer_btn:'Pre-ordina — €99 →',
     form_head:'Manifesta interesse — gratuito',
     form_intro:'Non sei pronto per il pre-ordine? Manifesta il tuo interesse nella codificazione del tuo territorio — gratuitamente. Questi dati vanno direttamente nella mappa di ricerca empirica. Ogni territorio conta.',
@@ -659,13 +684,17 @@ const T = {
     nd_note:'En soumettant, vous autodéclarez détenir au moins 1 PNC. Les nœuds professionnels sont soumis à contre-vérification. Ce registre est public.',
     sec_participate:'Soutenez l\'idée — participez et possédez les résultats',
     honest_note:'Le livre est réel et prêt à être expédié en cas de succès de l\'expérience. Le PNC est un certificat fondateur dans un programme de recherche et de transformation active de l\'entropie — pas un instrument financier, mais la participation à une expérience sérieuse avec un historique de publications (<a href="/methodology" style="color:var(--gold);">voir méthodologie</a>), et cinq instruments déjà au travail pour résoudre de vrais problèmes juridiques (<a href="https://www.1love.works/solutions" style="color:var(--gold);">voir toutes les solutions</a>).',
+    stat_implied:'Valeur implicite / PNC', stat_scans:'Analyses totales',
+    offer_founding_label:'Prix fondateur — fixe définitivement',
+    offer_current_label:'Prix phase actuelle',
+    offer_implied_label:'Valeur implicite · live',
     offer_label:'⬡ Pré-commande', offer_price_note:'paiement unique',
     offer_li1:'Votre code unique, privé et propriétaire — représentatif de tous vos droits UE, incluant le modèle prédictif pour les dommages Big Tech sur <a href="https://bigtechclaim.eu" target="_blank" style="color:var(--gold);">bigtechclaim.eu</a> et le droit de demander la codification de votre système juridique durable sur <a href="https://www.1love.works/codification" target="_blank" style="color:var(--gold);">1love.works/codification</a>',
     offer_li2:'1 PNC — Certificat Phénomonnaie (fondateur)',
     offer_li3:'3 analyses gratuites de documents juridiques — EU Law Meter (après calibration réussie de <a href="https://eulawscanner.eu" target="_blank" style="color:var(--gold);">eulawscanner.eu</a>)',
     offer_li4:'Analyses gratuites — Corporate Meter (après calibration réussie de <a href="https://corporate-scanner.com" target="_blank" style="color:var(--gold);">corporate-scanner.com</a>)',
     offer_li5:'<em>De Lege et Amore</em> — livre complet, après succès de l\'expérimentation et validation',
-    offer_caveat:'Le PNC n\'est pas un instrument financier. C\'est un certificat fondateur dans un programme de recherche de physique juridique. Sa valeur implicite est mathématique, non spéculative. Soumis à expérimentation.',
+    offer_caveat:'Le PNC n\'est pas un instrument financier. C\'est un certificat fondateur dans un programme de recherche de physique juridique. Trois prix s\'appliquent : le prix fondateur (€99, fixe définitivement — ce que les premiers détenteurs ont payé), le prix de la phase actuelle (€99 en Phase 1, augmente en Phase 2) et la valeur implicite (mathématique, en temps réel, pas un prix de marché). Aucun n\'est réalisable par la vente. Soumis à expérimentation.',
     offer_btn:'Pré-commander — €99 →',
     form_head:'Manifester son intérêt — gratuit',
     form_intro:'Pas encore prêt à pré-commander ? Manifestez votre intérêt pour la codification de votre territoire — gratuitement. Ces données vont directement dans la carte de recherche empirique. Chaque territoire compte.',
@@ -739,13 +768,17 @@ const T = {
     nd_note:'Al enviar, autodeclara que posee al menos 1 PNC. Los nodos profesionales están sujetos a verificación cruzada. Este registro es público.',
     sec_participate:'Apoye la idea — participe y posea los resultados',
     honest_note:'El libro es real y listo para enviarse tras el éxito del experimento. El PNC es un certificado fundador en un programa de investigación y transformación activa de la entropía — no un instrumento financiero, sino la participación en un experimento serio con un historial de publicaciones (<a href="/methodology" style="color:var(--gold);">ver metodología</a>), y cinco instrumentos ya trabajando para resolver problemas jurídicos reales (<a href="https://www.1love.works/solutions" style="color:var(--gold);">ver todas las soluciones</a>).',
+    stat_implied:'Valor implícito / PNC', stat_scans:'Análisis totales',
+    offer_founding_label:'Precio fundador — fijo permanentemente',
+    offer_current_label:'Precio fase actual',
+    offer_implied_label:'Valor implícito · live',
     offer_label:'⬡ Pre-pedido', offer_price_note:'pago único',
     offer_li1:'Su código único, privado y propietario — representativo de todos sus derechos UE, incluyendo el modelo predictivo para daños de Big Tech en <a href="https://bigtechclaim.eu" target="_blank" style="color:var(--gold);">bigtechclaim.eu</a> y el derecho a solicitar la codificación de su sistema jurídico sostenible en <a href="https://www.1love.works/codification" target="_blank" style="color:var(--gold);">1love.works/codification</a>',
     offer_li2:'1 PNC — Certificado Fenomoneda (fundador)',
     offer_li3:'3 análisis gratuitos de documentos jurídicos — EU Law Meter (tras calibración exitosa de <a href="https://eulawscanner.eu" target="_blank" style="color:var(--gold);">eulawscanner.eu</a>)',
     offer_li4:'Análisis gratuitos — Corporate Meter (tras calibración exitosa de <a href="https://corporate-scanner.com" target="_blank" style="color:var(--gold);">corporate-scanner.com</a>)',
     offer_li5:'<em>De Lege et Amore</em> — libro completo, tras éxito de la experimentación y validación',
-    offer_caveat:'El PNC no es un instrumento financiero. Es un certificado fundador en un programa de investigación de física jurídica. Su valor implícito es matemático, no especulativo. Sujeto a experimentación.',
+    offer_caveat:'El PNC no es un instrumento financiero. Es un certificado fundador en un programa de investigación de física jurídica. Se aplican tres precios: el precio fundador (€99, fijo permanentemente — lo que pagaron los primeros titulares), el precio de la fase actual (€99 en la Fase 1, sube en la Fase 2) y el valor implícito (matemático, en tiempo real, no un precio de mercado). Ninguno es realizable mediante venta. Sujeto a experimentación.',
     offer_btn:'Pre-pedir — €99 →',
     form_head:'Manifestar interés — gratuito',
     form_intro:'¿No está listo para pre-pedir? Manifieste su interés en la codificación de su territorio — gratuitamente. Estos datos van directamente al mapa de investigación empírica. Cada territorio importa.',
@@ -802,7 +835,7 @@ function renderNodes() {
     countEl.textContent=list.length+' '+t.lbl_nodes;
     list.forEach(nd=>{
       const el=document.createElement('div'); el.className='node';
-      el.innerHTML=`<div class="node-header"><span class="node-name">${esc(nd.name)}</span>${nd.pnc?`<span class="node-pnc">⬡ ${nd.pnc} PNC</span>`:''}</div>`+
+      el.innerHTML=`<div class="node-header"><span class="node-name">${esc(nd.name)}</span>${nd.pnc?`<span class="node-pnc">⬡ ${nd.pnc} PNC${nd.pnc < 1 ? ` · 1/${Math.round(1/nd.pnc)} of a node` : ''} · €${(nd.pnc*99).toFixed(nd.pnc<1?2:0)} founding</span>`:''}</div>`+
         `<div class="node-meta">${nd.role?`<span class="node-role">${esc(nd.role)}</span>`:''}`+
         `${nd.jurisdiction?`<span class="node-jurisdiction">${esc(nd.jurisdiction)}</span>`:''}`+
         `<span class="node-date">${fmtDate(nd.date)}</span></div>`+
@@ -866,12 +899,13 @@ function stepPNC(delta) {
   const totalEl = document.getElementById('pnc-total');
   const btn = document.getElementById('extra-pnc-btn');
   const t = T[currentLang];
+  const price = window._currentPNCPrice || 99;
   if (pncQty === 0) {
     totalEl.textContent = '';
     btn.style.display = 'none';
   } else {
-    const total = pncQty * 99;
-    totalEl.textContent = pncQty + ' PNC = €' + total;
+    const total = pncQty * price;
+    totalEl.textContent = pncQty + ' PNC = €' + total.toLocaleString('de-DE', {minimumFractionDigits:2,maximumFractionDigits:2});
     btn.style.display = 'block';
     btn.href = 'https://buy.stripe.com/00waEXbDe4AvghJgyngUM00?quantity=' + pncQty;
     if (t && t.extra_pnc_btn) btn.innerHTML = t.extra_pnc_btn;
@@ -951,5 +985,78 @@ document.getElementById('freeForm').addEventListener('submit',async function(e){
   }
 })();
 </script>
+<script>
+// ── Live stats from API ───────────────────────────────────────────────────
+// Fetches from the same stats API used by the home page and dashboard.
+// Updates implied value, current price, and scan count live.
+const STATS_URL = 'https://eulawscanner.eu/api/stats';
+
+function fmtEurPart(n) {
+  return '€' + n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+async function loadStats() {
+  try {
+    const res = await fetch(STATS_URL);
+    if (!res.ok) return;
+    const d = await res.json();
+
+    // Implied value
+    if (d.implied_value) {
+      const iv = d.implied_value;
+      const ivFmt = fmtEurPart(iv);
+      const el = document.getElementById('offer-implied-value');
+      if (el) el.textContent = ivFmt;
+      const statEl = document.getElementById('stat-implied');
+      if (statEl) statEl.textContent = ivFmt;
+
+      // Hardcoded node implied values
+      const founding = document.getElementById('founding-implied');
+      if (founding) founding.textContent = fmtEurPart(10101 * iv);
+      const michele = document.getElementById('michele-implied');
+      if (michele) michele.textContent = fmtEurPart(20 * iv);
+      const francesca = document.getElementById('francesca-implied');
+      if (francesca) francesca.textContent = fmtEurPart(1 * iv);
+    }
+
+    // Current price (may differ from founding in Phase 2)
+    if (d.current_price) {
+      const cp = fmtEurPart(d.current_price);
+      const el = document.getElementById('offer-current-price');
+      if (el) el.textContent = cp;
+      // Update Stripe button text if price changed
+      if (d.current_price !== d.founding_price) {
+        document.querySelectorAll('[data-i18n="offer_btn"]').forEach(btn => {
+          btn.textContent = 'Pre-order — ' + cp + ' →';
+        });
+      }
+    }
+
+    // Founding price (always fixed, but confirm)
+    if (d.founding_price) {
+      const fp = fmtEurPart(d.founding_price);
+      const el = document.getElementById('offer-founding-price');
+      if (el) el.textContent = fp;
+    }
+
+    // Total scans
+    if (d.total_scans !== undefined) {
+      const el = document.getElementById('stat-scans');
+      if (el) el.textContent = d.total_scans.toLocaleString('de-DE') || '—';
+    }
+
+    // PNC stepper — update total calculation with current price
+    if (d.current_price) {
+      window._currentPNCPrice = d.current_price;
+    }
+
+  } catch(e) { /* silent — static fallback €99 remains */ }
+}
+
+// Load on page start, refresh every 60s
+loadStats();
+setInterval(loadStats, 60000);
+</script>
+
 </body>
 </html>
