@@ -128,6 +128,7 @@
     <li class="hide-mobile"><a href="/pnc" style="color: var(--ink); border-bottom: 1.5px solid var(--gold);" data-i18n="nav_pnc">PNC</a></li>
     <li class="hide-mobile"><a href="/methodology" data-i18n="nav_methodology">About &amp; Methodology</a></li>
     <li class="hide-mobile"><a href="/participate" data-i18n="nav_participate">Participate</a></li>
+    <li class="hide-mobile"><a href="#my-pnc" style="color: var(--ink); border-bottom: 1.5px solid var(--gold);" data-i18n="nav_mypnc">My PNC</a></li>
   </ul>
   <div style="display: flex; justify-content: flex-end;">
     <div class="lang-switcher">
@@ -331,6 +332,227 @@
   <p data-i18n="s7_p4">This scales across the EU. A village of 1,000 issues 100 PNC to citizens. A city of 100,000 issues 10,000. A region of 1,000,000 issues 100,000 — a genuine mass civic stake in the optimisation of a legal system. <strong>Fractal cross-pollination©</strong> means that each municipality's measurement makes every comparable municipality smarter. The network of civic nodes compounds in intelligence and value as it grows.</p>
 </div>
 
+
+<!-- ═══════════════ MY PNC ═══════════════ -->
+<div class="section" id="my-pnc" style="background: var(--ink); color: var(--parchment); max-width: 100%; padding: 0;">
+  <div style="max-width: 760px; margin: 0 auto; padding: 64px 48px;">
+
+    <p style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,242,234,0.4); margin-bottom: 28px; display: flex; align-items: center; gap: 12px;">⬡ Access your PNC <span style="flex:1; height:1px; background:rgba(245,242,234,0.1);"></span></p>
+
+    <!-- Lookup form -->
+    <div id="pnc-lookup-wrap">
+      <h2 style="font-size: clamp(28px, 4vw, 42px); font-weight: 400; line-height: 1.15; margin-bottom: 12px; color: var(--parchment);">Your node. <em style="font-style:italic; color:var(--gold);">Your stake.</em></h2>
+      <p style="font-size: 16px; color: rgba(245,242,234,0.55); line-height: 1.75; margin-bottom: 32px; max-width: 520px;">Enter your email and PNC code from your confirmation to see your personal dashboard.</p>
+      <div style="display: flex; flex-direction: column; gap: 14px; max-width: 440px;">
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <label style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.11em; color: rgba(245,242,234,0.4);" data-i18n="label_email">Email</label>
+          <input id="pnc-email" type="email" placeholder="your@email.com"
+            style="font-family: var(--serif); font-size: 16px; color: var(--ink); background: var(--parchment); border: 1px solid rgba(245,242,234,0.2); padding: 11px 14px; outline: none; width: 100%;" />
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <label style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.11em; color: rgba(245,242,234,0.4);" data-i18n="label_code">PNC Code</label>
+          <input id="pnc-code" type="text" placeholder="PNC-00001"
+            style="font-family: var(--mono); font-size: 16px; letter-spacing: 0.08em; color: var(--ink); background: var(--parchment); border: 1px solid rgba(245,242,234,0.2); padding: 11px 14px; outline: none; width: 100%;" />
+        </div>
+        <button id="pnc-login-btn" onclick="pncLogin()"
+          style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 28px; background: var(--gold); color: white; border: none; cursor: pointer; margin-top: 4px; transition: opacity 0.2s; text-align: center;"
+          data-i18n="btn_access">Access my PNC →</button>
+        <p id="pnc-login-error" style="font-family: var(--mono); font-size: 10px; color: #f87171; display: none; margin-top: 4px;"></p>
+      </div>
+      <p style="font-family: var(--mono); font-size: 10px; color: rgba(245,242,234,0.3); margin-top: 20px; line-height: 1.7;">
+        <span data-i18n="note_nopnc">Don't have a PNC yet?</span> <a href="/participate" style="color: var(--gold);" data-i18n="note_preorder">Pre-order at €99 →</a><br/>
+        <span data-i18n="note_lost">Lost your code? Email</span> <a href="mailto:gmsolas@sustainab-law.eu" style="color: var(--gold);">gmsolas@sustainab-law.eu</a>
+      </p>
+    </div>
+
+    <!-- Dashboard (shown after login) -->
+    <div id="pnc-dashboard-wrap" style="display:none;">
+
+      <!-- PNC description -->
+      <div id="pnc-desc-block" style="font-size: 14px; color: rgba(245,242,234,0.65); line-height: 1.85; margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid rgba(245,242,234,0.1); max-width: 680px;"></div>
+
+      <!-- Holder header -->
+      <div style="margin-bottom: 32px;">
+        <h2 id="pnc-holder-name" style="font-size: clamp(22px, 3vw, 36px); font-weight: 400; color: var(--parchment); margin-bottom: 6px;"></h2>
+        <div id="pnc-holder-code" style="font-family: var(--mono); font-size: 11px; color: var(--gold); letter-spacing: 0.1em;"></div>
+        <div id="pnc-holder-meta" style="font-family: var(--mono); font-size: 10px; color: rgba(245,242,234,0.4); margin-top: 4px;"></div>
+        <div id="pnc-holder-issued" style="font-family: var(--mono); font-size: 10px; color: rgba(245,242,234,0.4); margin-top: 2px;"></div>
+      </div>
+
+      <!-- Metrics -->
+      <div class="metrics" style="margin-bottom: 2px;">
+        <div class="metric">
+          <div class="metric-label" data-i18n="lbl_pnc_held">PNC held</div>
+          <div class="metric-value gold" id="pnc-dash-amount">—</div>
+          <div class="metric-desc" id="pnc-dash-fraction"></div>
+          <div class="metric-desc" id="pnc-dash-founding" style="margin-top:4px;"></div>
+        </div>
+        <div class="metric">
+          <div class="metric-label" data-i18n="lbl_implied">Implied value / PNC</div>
+          <div class="metric-value gold" id="pnc-dash-implied">—</div>
+          <div class="metric-desc" id="pnc-dash-scans"></div>
+        </div>
+        <div class="metric highlight">
+          <div class="metric-label" data-i18n="lbl_total_implied">Total implied value</div>
+          <div class="metric-value gold" id="pnc-dash-total">—</div>
+          <div class="metric-desc" id="pnc-dash-gain" style="color:#4ade80; margin-top:6px;"></div>
+        </div>
+      </div>
+      <div class="metrics-bottom" style="margin-bottom: 24px;">
+        <div class="metric">
+          <div class="metric-label" data-i18n="lbl_circulation">PNC in circulation</div>
+          <div class="metric-value gold" id="pnc-dash-circ">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label" data-i18n="lbl_available">PNC available</div>
+          <div class="metric-value gold" id="pnc-dash-avail">—</div>
+        </div>
+      </div>
+
+      <!-- Entitlements summary -->
+      <div style="border: 1px solid rgba(184,134,11,0.25); background: rgba(184,134,11,0.05); padding: 24px 28px; margin-bottom: 24px;">
+        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--gold); margin-bottom: 16px;" data-i18n="sec_entitlements">⬡ Your entitlements</div>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
+          <li style="font-size: 14px; color: rgba(245,242,234,0.75); line-height: 1.5; display: flex; gap: 10px; align-items: baseline;">
+            <span style="color: var(--gold); flex-shrink:0;">⬡</span>
+            <span id="pnc-ent-scans" data-i18n="ent_eu_desc"></span>
+          </li>
+          <li style="font-size: 14px; color: rgba(245,242,234,0.75); line-height: 1.5; display: flex; gap: 10px; align-items: baseline;">
+            <span style="color: var(--gold); flex-shrink:0;">⬡</span>
+            <span data-i18n="ent_book_desc_short">De Lege et Amore — full book upon validation</span>
+          </li>
+          <li style="font-size: 14px; color: rgba(245,242,234,0.75); line-height: 1.5; display: flex; gap: 10px; align-items: baseline;">
+            <span style="color: var(--gold); flex-shrink:0;">⬡</span>
+            <a href="https://bigtechclaim.eu" target="_blank" style="color: var(--gold);">bigtechclaim.eu</a>
+            <span data-i18n="ent_claim_short"> — activate your Big Tech damages claim</span>
+          </li>
+          <li style="font-size: 14px; color: rgba(245,242,234,0.75); line-height: 1.5; display: flex; gap: 10px; align-items: baseline;">
+            <span style="color: var(--gold); flex-shrink:0;">⬡</span>
+            <span data-i18n="ent_cod_desc_short">Right to request codification of your territory's legal system</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Commission work link -->
+      <div style="border: 1px solid rgba(245,242,234,0.1); padding: 20px 24px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+        <div>
+          <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(245,242,234,0.4); margin-bottom: 6px;" data-i18n="sec_work">⬡ Commission work — pay in PNC</div>
+          <p style="font-size: 14px; color: rgba(245,242,234,0.6); line-height: 1.6; max-width: 460px;" data-i18n="work_short">Direct your PNC toward useful work that reduces entropy in the system — legal, physical, territorial, or other.</p>
+        </div>
+        <a href="https://eulawscanner.eu/my-pnc" style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 11px 22px; background: var(--gold); color: white; text-decoration: none; white-space: nowrap;" data-i18n="btn_full_dashboard">Full dashboard →</a>
+      </div>
+
+      <button onclick="pncLogout()"
+        style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; padding: 7px 14px; border: 1px solid rgba(245,242,234,0.15); background: transparent; color: rgba(245,242,234,0.4); cursor: pointer;"
+        data-i18n="btn_exit">Exit dashboard</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── My PNC embedded dashboard ──────────────────────────────────────────────
+const SUPABASE_URL = 'https://pwrcqepqhtuesoximmoj.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB3cmNxZXBxaHR1ZXNveGltbW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwNjg2MTMsImV4cCI6MjA5MTY0NDYxM30.tO5SFloOfMZULDHtFII2dilE10fUk8SLCpmyHiCNidE';
+const STATS_URL = 'https://eulawscanner.eu/api/stats';
+
+function pncFmt(n, d) { return n.toLocaleString('de-DE', {minimumFractionDigits:d||0,maximumFractionDigits:d||0}); }
+function pncEur(n) { return '€' + pncFmt(n, 2); }
+function pncFmtDate(iso) { return new Date(iso).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}); }
+function pncFraction(a) {
+  if (a >= 1) return a === 1 ? '1 node' : pncFmt(a) + ' nodes';
+  const d = Math.round(1/a);
+  return Number.isInteger(1/a) ? '1/'+d+' of a node' : a+' of a node';
+}
+
+async function pncLogin() {
+  const email = document.getElementById('pnc-email').value.trim().toLowerCase();
+  const code  = document.getElementById('pnc-code').value.trim().toUpperCase();
+  const err   = document.getElementById('pnc-login-error');
+  const btn   = document.getElementById('pnc-login-btn');
+  if (!email || !code) return;
+  btn.disabled = true; btn.textContent = '…';
+  err.style.display = 'none';
+  try {
+    const res = await fetch(
+      SUPABASE_URL+'/rest/v1/pnc_holders?email=eq.'+encodeURIComponent(email)+'&pnc_code=eq.'+encodeURIComponent(code)+'&select=*',
+      { headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer '+SUPABASE_KEY } }
+    );
+    const data = await res.json();
+    if (!Array.isArray(data) || !data.length) {
+      err.textContent = currentLang === 'it' ? 'Nessun PNC trovato. Controlla email e codice.' :
+                        currentLang === 'fr' ? 'Aucun PNC trouvé. Vérifiez email et code.' :
+                        currentLang === 'es' ? 'No se encontró PNC. Comprueba email y código.' :
+                        'No PNC found. Check your email and code.';
+      err.style.display = 'block';
+      btn.disabled = false; btn.textContent = document.getElementById('pnc-login-btn').getAttribute('data-orig') || 'Access my PNC →';
+      return;
+    }
+    renderPNCDashboard(data[0]);
+  } catch(e) {
+    err.textContent = 'Connection error. Please try again.';
+    err.style.display = 'block';
+    btn.disabled = false;
+  }
+}
+
+async function renderPNCDashboard(holder) {
+  // Show dashboard, hide form
+  document.getElementById('pnc-lookup-wrap').style.display = 'none';
+  document.getElementById('pnc-dashboard-wrap').style.display = 'block';
+
+  // PNC description
+  const descEl = document.getElementById('pnc-desc-block');
+  const descKey = 'pnc_description';
+  if (T[currentLang] && T[currentLang][descKey]) descEl.innerHTML = T[currentLang][descKey];
+
+  // Holder info
+  document.getElementById('pnc-holder-name').textContent = holder.holder_name || holder.email;
+  document.getElementById('pnc-holder-code').textContent = '⬡ ' + holder.pnc_code;
+  const meta = holder.holder_role ? holder.holder_role + (holder.jurisdiction ? ' · ' + holder.jurisdiction : '') : '';
+  document.getElementById('pnc-holder-meta').textContent = meta;
+  document.getElementById('pnc-holder-issued').textContent = (holder.source === 'work' ? 'Earned · ' : 'Issued ') + pncFmtDate(holder.issued_at);
+
+  // Metrics
+  document.getElementById('pnc-dash-amount').textContent = holder.pnc_amount;
+  document.getElementById('pnc-dash-fraction').textContent = pncFraction(holder.pnc_amount);
+  document.getElementById('pnc-dash-founding').textContent = pncEur(holder.pnc_amount * 99) + ' founding';
+  document.getElementById('pnc-ent-scans').textContent = pncFmt(holder.pnc_amount * 3) + ' free EU legal document scans · upon calibration of eulawscanner.eu';
+
+  // Fetch stats
+  try {
+    const sr = await fetch(STATS_URL);
+    const stats = await sr.json();
+    const iv = stats.implied_value || 99;
+    const total = holder.pnc_amount * iv;
+    const gain  = total - (holder.pnc_amount * 99);
+    document.getElementById('pnc-dash-implied').textContent = pncEur(iv);
+    document.getElementById('pnc-dash-scans').textContent = 'Based on ' + pncFmt(stats.total_scans) + ' scans · live';
+    document.getElementById('pnc-dash-total').textContent = pncEur(total);
+    document.getElementById('pnc-dash-gain').textContent = gain > 0 ? '+'+pncEur(gain)+' (+'+(((gain/(holder.pnc_amount*99))*100).toFixed(2))+'%)' : 'At founding price';
+    document.getElementById('pnc-dash-circ').textContent = pncFmt(stats.pnc_in_circulation);
+    document.getElementById('pnc-dash-avail').textContent = pncFmt(stats.pnc_available);
+    // Also update the existing implied value on the page
+    const ivEl = document.getElementById('implied-live-num');
+    if (ivEl) ivEl.textContent = pncEur(iv);
+  } catch(e) { /* silent */ }
+}
+
+function pncLogout() {
+  document.getElementById('pnc-lookup-wrap').style.display = 'block';
+  document.getElementById('pnc-dashboard-wrap').style.display = 'none';
+  document.getElementById('pnc-email').value = '';
+  document.getElementById('pnc-code').value = '';
+}
+
+// Enter key support
+document.addEventListener('DOMContentLoaded', function() {
+  ['pnc-email','pnc-code'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('keydown', function(e) { if (e.key === 'Enter') pncLogin(); });
+  });
+});
+</script>
+
 <div class="cta-section">
   <h2 data-i18n="cta_h2">Be a founding node.<br/>Hold your stake in <em>optimal Europe.</em></h2>
   <p data-i18n="cta_p">1 PNC = €99 founding price. Issued for free with every service package. Not tradeable. Defined as a protocol in phenography© — the legal-physics methodology for codification of sustainable legal systems. A perpetual mathematical proof that you were part of the measurement. Holdable in perpetuity, inheritable by your family, and — if financial institutions accept — usable as collateral without being sold. A stake in something that works like a forest.</p>
@@ -351,10 +573,27 @@
 <script>
 const T = {
   en: {
-    nav_problem: 'The Problem', nav_solutions: 'The Proposed Solutions', nav_pnc: 'PNC', nav_methodology: 'About &amp; Methodology', nav_participate: 'Participate',
+    nav_problem: 'The Problem', nav_solutions: 'The Proposed Solutions', nav_pnc: 'PNC', nav_methodology: 'About &amp; Methodology', nav_participate: 'Participate', nav_mypnc: 'My PNC',
+    label_email: 'Email', label_code: 'PNC Code',
+    btn_access: 'Access my PNC →',
+    note_nopnc: "Don't have a PNC yet?", note_preorder: 'Pre-order at €99 →',
+    note_lost: 'Lost your code? Email',
+    lbl_pnc_held: 'PNC held', lbl_implied: 'Implied value / PNC',
+    lbl_total_implied: 'Total implied value',
+    lbl_circulation: 'PNC in circulation', lbl_available: 'PNC available',
+    sec_entitlements: '⬡ Your entitlements',
+    ent_eu_desc: 'free EU legal document scans · upon calibration of eulawscanner.eu',
+    ent_book_desc_short: 'De Lege et Amore — full book upon validation',
+    ent_claim_short: '— activate your Big Tech damages claim',
+    ent_cod_desc_short: "Right to request codification of your territory's legal system",
+    sec_work: '⬡ Commission work — pay in PNC',
+    work_short: 'Direct your PNC toward useful work that reduces entropy in the system — legal, physical, territorial, or other.',
+    btn_full_dashboard: 'Full dashboard →',
+    btn_exit: 'Exit dashboard',
+    pnc_description: 'PNC is not a financial or speculative instrument. It is a mathematical certificate of <a href="https://1love.works/problem" style="color:var(--gold);">entropy / legal weight reduction</a> in the EU legal system, measured through the instruments codified at <a href="https://1love.works/solutions" style="color:var(--gold);">1love.works</a>. The more legal chaos is reduced — the closer the EU legal system approaches an ideal equilibrium state — the higher the implied value of the PNC. This is value that already exists but is unexpressed in official calculations (<a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank" style="color:var(--gold);">see JLMI paper ↗</a>). Two primary uses: <strong>1)</strong> as a saving available to any EU citizen, usable as collateral without being sold; <strong>2)</strong> to pay for useful work for the system.',
     overline: '1love.works · PNC — Perpetual Node Certificate',
     h1: 'A stake in <em>optimal Europe.</em><br/>For you.<br/>And your children.',
-    hero_intro: 'PNC is not a token you trade. It is a perpetual stake in the only scientific instrument designed to measure and remunerate the useful work in the system, specifically to reduce European legal entropy created by regulatory weight — defined as a protocol in <strong>phenography©</strong>, the legal-physics technology for the codification of sustainable legal systems. Held for life, inherited by your family, to be used to pay for useful work for the system and — if financial institutions accept — available as collateral without ever being sold.'
+    hero_intro: 'PNC is not a token you trade. It is a perpetual stake in the only scientific instrument designed to measure and remunerate the useful work in the system, specifically to reduce European legal entropy created by regulatory weight — defined as a protocol in <strong>phenography©</strong>, the legal-physics technology for the codification of sustainable legal systems. Held for life, inherited by your family, to be used to pay for useful work for the system and — if financial institutions accept — available as collateral without ever being sold.',
     s2_num: 'I · The collective goal',
     s2_h2: 'Europe at <em>optimum.</em><br/>The social market economy<br/>as it was designed to be.',
     s2_p1: 'The European Union was built on a radical idea: that competition and solidarity are not opposites. That efficiency and justice can coexist. That a market economy can have a social dimension. The social market economy is the most ambitious political project in human history — and it is still unfinished.',
@@ -434,7 +673,24 @@ const T = {
     footer_note: 'PNC is not a financial instrument. Not tradeable. Issued as part of service delivery only. · De Lege et Amore.',
   },
   it: {
-    nav_problem: 'Il Problema', nav_solutions: 'Le Soluzioni Proposte', nav_pnc: 'PNC', nav_methodology: 'Informazioni &amp; Metodologia', nav_participate: 'Partecipa',
+    nav_problem: 'Il Problema', nav_solutions: 'Le Soluzioni Proposte', nav_pnc: 'PNC', nav_methodology: 'Informazioni &amp; Metodologia', nav_participate: 'Partecipa', nav_mypnc: 'Il mio PNC',
+    label_email: 'Email', label_code: 'Codice PNC',
+    btn_access: 'Accedi al mio PNC →',
+    note_nopnc: 'Non hai ancora un PNC?', note_preorder: 'Pre-ordina a €99 →',
+    note_lost: 'Codice smarrito? Scrivi a',
+    lbl_pnc_held: 'PNC detenuti', lbl_implied: 'Valore implicito / PNC',
+    lbl_total_implied: 'Valore implicito totale',
+    lbl_circulation: 'PNC in circolazione', lbl_available: 'PNC disponibili',
+    sec_entitlements: '⬡ I tuoi diritti',
+    ent_eu_desc: 'scansioni gratuite di documenti giuridici UE · al completamento della calibrazione',
+    ent_book_desc_short: 'De Lege et Amore — libro completo al completamento della validazione',
+    ent_claim_short: '— attiva il tuo reclamo danni Big Tech',
+    ent_cod_desc_short: 'Diritto di richiedere la codificazione del sistema giuridico del tuo territorio',
+    sec_work: '⬡ Commissiona lavoro — paga in PNC',
+    work_short: 'Dirigi il tuo PNC verso lavoro utile che riduce l'entropia nel sistema — giuridico, fisico, territoriale o altro.',
+    btn_full_dashboard: 'Dashboard completo →',
+    btn_exit: 'Esci dal pannello',
+    pnc_description: 'Il PNC non è uno strumento finanziario o speculativo. È un certificato matematico di <a href="https://1love.works/problem" style="color:var(--gold);">riduzione dell'entropia / peso giuridico</a> nel sistema giuridico dell'UE, misurato attraverso gli strumenti codificati su <a href="https://1love.works/solutions" style="color:var(--gold);">1love.works</a>. Più il caos giuridico viene ridotto — più il sistema giuridico europeo si avvicina a uno stato di equilibrio ideale — più alto è il valore implicito del PNC. È un valore che esiste già ma non è espresso nei calcoli ufficiali (<a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank" style="color:var(--gold);">vedi paper JLMI ↗</a>). Due usi principali: <strong>1)</strong> come risparmio disponibile per ogni cittadino UE, utilizzabile come garanzia senza essere venduto; <strong>2)</strong> per pagare il lavoro utile per il sistema.',
     overline: '1love.works · PNC — Certificato Nodo Perpetuo',
     h1: "Una quota nell'<em>Europa ottimale.</em><br/>Per te.<br/>E per i tuoi figli.",
     hero_intro: "Il PNC non è un token che si scambia. È una quota perpetua nell'unico strumento scientifico progettato per misurare il lavoro utile al sistema, segnatamente a ridurre l'entropia giuridica europea creata dal peso normativo — definito come protocollo nella <strong>phenografia©</strong>, la tecnologia di fisica giuridica per la codificazione di sistemi giuridici sostenibili. Detenuto per tutta la vita, ereditato dalla tua famiglia, e — se gli istituti finanziari lo accettano — disponibile come garanzia senza mai essere venduto.",
@@ -517,7 +773,24 @@ const T = {
     footer_note: 'Il PNC non è uno strumento finanziario. Non negoziabile. Emesso solo come parte della fornitura del servizio. · De Lege et Amore.',
   },
   fr: {
-    nav_problem: 'Le Problème', nav_solutions: 'Les Solutions Proposées', nav_pnc: 'PNC', nav_methodology: 'À Propos &amp; Méthodologie', nav_participate: 'Participer',
+    nav_problem: 'Le Problème', nav_solutions: 'Les Solutions Proposées', nav_pnc: 'PNC', nav_methodology: 'À Propos &amp; Méthodologie', nav_participate: 'Participer', nav_mypnc: 'Mon PNC',
+    label_email: 'Email', label_code: 'Code PNC',
+    btn_access: 'Accéder à mon PNC →',
+    note_nopnc: "Vous n'avez pas encore de PNC ?", note_preorder: 'Pré-commander à €99 →',
+    note_lost: 'Code perdu ? Écrivez à',
+    lbl_pnc_held: 'PNC détenus', lbl_implied: 'Valeur implicite / PNC',
+    lbl_total_implied: 'Valeur implicite totale',
+    lbl_circulation: 'PNC en circulation', lbl_available: 'PNC disponibles',
+    sec_entitlements: '⬡ Vos droits',
+    ent_eu_desc: 'analyses gratuites de documents juridiques UE · après calibration',
+    ent_book_desc_short: 'De Lege et Amore — livre complet après validation',
+    ent_claim_short: '— activez votre réclamation dommages Big Tech',
+    ent_cod_desc_short: 'Droit de demander la codification du système juridique de votre territoire',
+    sec_work: '⬡ Commander du travail — payer en PNC',
+    work_short: 'Dirigez votre PNC vers un travail utile qui réduit l'entropie dans le système — juridique, physique, territorial ou autre.',
+    btn_full_dashboard: 'Tableau de bord complet →',
+    btn_exit: 'Quitter le tableau de bord',
+    pnc_description: 'Le PNC n'est pas un instrument financier ou spéculatif. C'est un certificat mathématique de <a href="https://1love.works/problem" style="color:var(--gold);">réduction de l'entropie / du poids juridique</a> dans le système juridique de l'UE, mesuré à travers les instruments codifiés sur <a href="https://1love.works/solutions" style="color:var(--gold);">1love.works</a>. Plus le chaos juridique est réduit — plus le système juridique européen se rapproche d'un état d'équilibre idéal — plus la valeur implicite du PNC est élevée. Valeur déjà existante mais non exprimée dans les calculs officiels (<a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank" style="color:var(--gold);">voir article JLMI ↗</a>). Deux usages principaux : <strong>1)</strong> comme épargne pour tout citoyen UE, utilisable comme garantie sans être vendue ; <strong>2)</strong> pour payer un travail utile au système.',
     overline: '1love.works · PNC — Certificat de Nœud Perpétuel',
     h1: "Une participation dans l'<em>Europe optimale.</em><br/>Pour vous.<br/>Et vos enfants.",
     hero_intro: "Le PNC n'est pas un jeton que l'on échange. C'est une participation perpétuelle dans le seul instrument scientifique conçu pour mesurer le travail utile au système, notamment à réduire l'entropie juridique européenne créée par le poids réglementaire — défini comme un protocole dans la <strong>phénographie©</strong>, la technologie de physique juridique pour la codification de systèmes juridiques durables. Détenu à vie, hérité par votre famille, et — si les institutions financières l'acceptent — disponible comme garantie sans jamais être vendu.",
@@ -600,7 +873,24 @@ const T = {
     footer_note: "Le PNC n'est pas un instrument financier. Non échangeable. Émis uniquement dans le cadre de la prestation de services. · De Lege et Amore.",
   },
   es: {
-    nav_problem: 'El Problema', nav_solutions: 'Las Soluciones Propuestas', nav_pnc: 'PNC', nav_methodology: 'Acerca &amp; Metodología', nav_participate: 'Participar',
+    nav_problem: 'El Problema', nav_solutions: 'Las Soluciones Propuestas', nav_pnc: 'PNC', nav_methodology: 'Acerca &amp; Metodología', nav_participate: 'Participar', nav_mypnc: 'Mi PNC',
+    label_email: 'Email', label_code: 'Código PNC',
+    btn_access: 'Acceder a mi PNC →',
+    note_nopnc: '¿Aún no tienes PNC?', note_preorder: 'Pre-pedir a €99 →',
+    note_lost: '¿Código perdido? Escribe a',
+    lbl_pnc_held: 'PNC en posesión', lbl_implied: 'Valor implícito / PNC',
+    lbl_total_implied: 'Valor implícito total',
+    lbl_circulation: 'PNC en circulación', lbl_available: 'PNC disponibles',
+    sec_entitlements: '⬡ Tus derechos',
+    ent_eu_desc: 'análisis gratuitos de documentos jurídicos UE · tras calibración',
+    ent_book_desc_short: 'De Lege et Amore — libro completo tras validación',
+    ent_claim_short: '— activa tu reclamación de daños Big Tech',
+    ent_cod_desc_short: 'Derecho a solicitar la codificación del sistema jurídico de tu territorio',
+    sec_work: '⬡ Encargar trabajo — pagar en PNC',
+    work_short: 'Dirige tu PNC hacia trabajo útil que reduce la entropía en el sistema — jurídico, físico, territorial u otro.',
+    btn_full_dashboard: 'Panel completo →',
+    btn_exit: 'Salir del panel',
+    pnc_description: 'El PNC no es un instrumento financiero ni especulativo. Es un certificado matemático de <a href="https://1love.works/problem" style="color:var(--gold);">reducción de entropía / peso jurídico</a> en el sistema jurídico de la UE, medido a través de los instrumentos codificados en <a href="https://1love.works/solutions" style="color:var(--gold);">1love.works</a>. Cuanto más se reduce el caos jurídico — cuanto más se acerca el sistema jurídico europeo a un estado de equilibrio ideal — mayor es el valor implícito del PNC. Valor que ya existe pero no está expresado en los cálculos oficiales (<a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank" style="color:var(--gold);">ver artículo JLMI ↗</a>). Dos usos principales: <strong>1)</strong> como ahorro para cualquier ciudadano UE, utilizable como garantía sin ser vendido; <strong>2)</strong> para pagar trabajo útil para el sistema.',
     overline: '1love.works · PNC — Certificado de Nodo Perpetuo',
     h1: 'Una participación en la <em>Europa óptima.</em><br/>Para usted.<br/>Y sus hijos.',
     hero_intro: 'El PNC no es un token que se intercambia. Es una participación perpetua en el único instrumento científico diseñado para medir el trabajo útil al sistema, concretamente a reducir la entropía jurídica europea creada por el peso normativo — definido como protocolo en la <strong>fenografía©</strong>, la tecnología de física jurídica para la codificación de sistemas jurídicos sostenibles. Conservado de por vida, heredado por su familia, y — si las instituciones financieras lo aceptan — disponible como garantía sin ser jamás vendido.',
