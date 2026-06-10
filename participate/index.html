@@ -405,6 +405,37 @@
     </div>
   </div>
 
+
+  <!-- ═══════════════ WHERE THE MONEY GOES ═══════════════ -->
+  <hr class="section-divider" />
+  <div class="section-head" data-i18n="proceeds_head">⬡ Where the proceeds go</div>
+  <div style="max-width:680px;">
+    <p style="font-size:17px;color:#3a3a36;line-height:1.9;margin-bottom:24px;" data-i18n="proceeds_intro">The proceeds from PNC sales go to whoever participates in building the perpetual motion machine — the legal-physics infrastructure that makes the measurement possible and the value real.</p>
+    <div style="background:var(--cream);border:1px solid rgba(184,134,11,0.2);padding:28px 32px;margin-bottom:24px;">
+      <div style="font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:0.14em;color:var(--gold);margin-bottom:16px;" data-i18n="proceeds_example_label">⬡ Example — first 10 million</div>
+      <p style="font-size:15px;color:#3a3a36;line-height:1.85;margin-bottom:20px;" data-i18n="proceeds_example">Imagine 30 city-coins activated. 10 million raised from 30 cities. That capital funds the process of building the legal system meter in each territory: one general IT architect, one general lawyer, local IT, local lawyers, local engineers, local surveyors — everyone who does useful work for that system. The machine does not extract value from territories. It distributes it back to the people who build it.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div style="border-left:3px solid var(--gold);padding:12px 16px;background:white;">
+          <div style="font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);margin-bottom:8px;" data-i18n="proceeds_col1_label">General infrastructure</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+            <li style="font-size:13px;color:#3a3a36;display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">⬡</span><span data-i18n="proceeds_li1">General IT architect</span></li>
+            <li style="font-size:13px;color:#3a3a36;display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">⬡</span><span data-i18n="proceeds_li2">General legal physicist / lawyer</span></li>
+            <li style="font-size:13px;color:#3a3a36;display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">⬡</span><span data-i18n="proceeds_li3">Platform and measurement tools</span></li>
+          </ul>
+        </div>
+        <div style="border-left:3px solid var(--gold);padding:12px 16px;background:white;">
+          <div style="font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);margin-bottom:8px;" data-i18n="proceeds_col2_label">Per territory</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+            <li style="font-size:13px;color:#3a3a36;display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">⬡</span><span data-i18n="proceeds_li4">Local IT engineer</span></li>
+            <li style="font-size:13px;color:#3a3a36;display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">⬡</span><span data-i18n="proceeds_li5">Local lawyers and legal analysts</span></li>
+            <li style="font-size:13px;color:#3a3a36;display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">⬡</span><span data-i18n="proceeds_li6">Local engineers, surveyors, translators</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p style="font-family:var(--mono);font-size:12px;color:var(--muted);line-height:1.75;" data-i18n="proceeds_note">This is not a fund, not an investment vehicle, not a private profit. The capital flows to the people who do useful work for the system — paid in PNC or in euros depending on the agreement. Every node that participates in building a territory gets a stake in what it builds. <em>De Lege et Amore.</em></p>
+  </div>
+
   <!-- ═══════════════ INTEREST FORM ═══════════════ -->
   <hr class="section-divider" />
   <div class="section-head" data-i18n="form_head">Manifest interest — free</div>
@@ -557,6 +588,20 @@ const T = {
     francesca_role: 'Avvocato',
     francesca_bio: 'Believed in this before most. Love transforms into different forms. <em>De Lege et Amore.</em>',
     francesca_father: '† In memory of her father Francesco — one of my role models. May his example continue in this work.',
+
+    proceeds_head: '⬡ Where the proceeds go',
+    proceeds_intro: 'The proceeds from PNC sales go to whoever participates in building the perpetual motion machine — the legal-physics infrastructure that makes the measurement possible and the value real.',
+    proceeds_example_label: '⬡ Example — first 10 million',
+    proceeds_example: 'Imagine 30 city-coins activated. 10 million raised from 30 cities. That capital funds the process of building the legal system meter in each territory: one general IT architect, one general lawyer, local IT, local lawyers, local engineers, local surveyors — everyone who does useful work for that system. The machine does not extract value from territories. It distributes it back to the people who build it.',
+    proceeds_col1_label: 'General infrastructure',
+    proceeds_col2_label: 'Per territory',
+    proceeds_li1: 'General IT architect',
+    proceeds_li2: 'General legal physicist / lawyer',
+    proceeds_li3: 'Platform and measurement tools',
+    proceeds_li4: 'Local IT engineer',
+    proceeds_li5: 'Local lawyers and legal analysts',
+    proceeds_li6: 'Local engineers, surveyors, translators',
+    proceeds_note: 'This is not a fund, not an investment vehicle, not a private profit. The capital flows to the people who do useful work for the system — paid in PNC or in euros depending on the agreement. Every node that participates in building a territory gets a stake in what it builds. <em>De Lege et Amore.</em>',
     footer_rights:'All rights reserved', footer_note:'PNC is not a financial instrument. Not tradeable. Issued as part of service delivery only. · De Lege et Amore.',
     lbl_nodes:'nodes',
   },
@@ -641,6 +686,20 @@ const T = {
     francesca_role: 'Avvocato',
     francesca_bio: 'Ha creduto in questo prima di molti. L\'amore si trasforma in forme diverse. <em>De Lege et Amore.</em>',
     francesca_father: '† In memoria di suo padre Francesco — uno dei miei modelli. Che il suo esempio continui in questo lavoro.',
+
+    proceeds_head: '⬡ Dove vanno i proventi',
+    proceeds_intro: 'I proventi delle vendite di PNC vanno a chiunque partecipi alla costruzione del perpetuo moto — l\'infrastruttura di fisica giuridica che rende possibile la misurazione e reale il valore.',
+    proceeds_example_label: '⬡ Esempio — primi 10 milioni',
+    proceeds_example: 'Immagina 30 city-coin attivate. 10 milioni raccolti da 30 città. Quel capitale finanzia il processo di costruzione del misuratore del sistema giuridico in ogni territorio: un architetto IT generale, un avvocato generale, IT locale, avvocati locali, ingegneri locali, geometri locali — chiunque svolga un lavoro utile per quel sistema. La macchina non estrae valore dai territori. Lo distribuisce alle persone che la costruiscono.',
+    proceeds_col1_label: 'Infrastruttura generale',
+    proceeds_col2_label: 'Per territorio',
+    proceeds_li1: 'Architetto IT generale',
+    proceeds_li2: 'Fisico giuridico / avvocato generale',
+    proceeds_li3: 'Piattaforma e strumenti di misurazione',
+    proceeds_li4: 'Ingegnere IT locale',
+    proceeds_li5: 'Avvocati e analisti legali locali',
+    proceeds_li6: 'Ingegneri, geometri, traduttori locali',
+    proceeds_note: 'Questo non è un fondo, non è uno strumento di investimento, non è un profitto privato. Il capitale va alle persone che svolgono un lavoro utile per il sistema — pagate in PNC o in euro a seconda dell\'accordo. Ogni nodo che partecipa alla costruzione di un territorio ottiene una quota in ciò che costruisce. <em>De Lege et Amore.</em>',
     footer_rights:'Tutti i diritti riservati', footer_note:'Il PNC non è uno strumento finanziario. Non negoziabile. Emesso solo come parte della fornitura del servizio. · De Lege et Amore.',
     lbl_nodes:'nodi',
   },
@@ -725,6 +784,20 @@ const T = {
     francesca_role: 'Avvocato',
     francesca_bio: 'A cru en ceci avant la plupart. L\'amour se transforme en formes différentes. <em>De Lege et Amore.</em>',
     francesca_father: '† À la mémoire de son père Francesco — l\'un de mes modèles. Que son exemple continue dans ce travail.',
+
+    proceeds_head: '⬡ Où vont les produits',
+    proceeds_intro: 'Les produits des ventes de PNC vont à quiconque participe à la construction de la machine à mouvement perpétuel — l\'infrastructure de physique juridique qui rend la mesure possible et la valeur réelle.',
+    proceeds_example_label: '⬡ Exemple — premiers 10 millions',
+    proceeds_example: 'Imaginez 30 city-coins activées. 10 millions collectés auprès de 30 villes. Ce capital finance le processus de construction du compteur du système juridique dans chaque territoire : un architecte IT général, un avocat général, IT local, avocats locaux, ingénieurs locaux, géomètres locaux — tous ceux qui font un travail utile pour ce système. La machine n\'extrait pas la valeur des territoires. Elle la redistribue aux personnes qui la construisent.',
+    proceeds_col1_label: 'Infrastructure générale',
+    proceeds_col2_label: 'Par territoire',
+    proceeds_li1: 'Architecte IT général',
+    proceeds_li2: 'Physicien juridique / avocat général',
+    proceeds_li3: 'Plateforme et outils de mesure',
+    proceeds_li4: 'Ingénieur IT local',
+    proceeds_li5: 'Avocats et analystes juridiques locaux',
+    proceeds_li6: 'Ingénieurs, géomètres, traducteurs locaux',
+    proceeds_note: 'Ce n\'est pas un fonds, ni un véhicule d\'investissement, ni un profit privé. Le capital va aux personnes qui font un travail utile pour le système — payées en PNC ou en euros selon l\'accord. Chaque nœud qui participe à la construction d\'un territoire obtient une part dans ce qu\'il construit. <em>De Lege et Amore.</em>',
     footer_rights:'Tous droits réservés', footer_note:'Le PNC n\'est pas un instrument financier. Non échangeable. Émis uniquement dans le cadre de la prestation de services. · De Lege et Amore.',
     lbl_nodes:'nœuds',
   },
@@ -809,6 +882,20 @@ const T = {
     francesca_role: 'Avvocato',
     francesca_bio: 'Creyó en esto antes que la mayoría. El amor se transforma en diferentes formas. <em>De Lege et Amore.</em>',
     francesca_father: '† En memoria de su padre Francesco — uno de mis modelos. Que su ejemplo continúe en este trabajo.',
+
+    proceeds_head: '⬡ Adónde van los ingresos',
+    proceeds_intro: 'Los ingresos de las ventas de PNC van a quienes participan en la construcción de la máquina de movimiento perpetuo — la infraestructura de física jurídica que hace posible la medición y real el valor.',
+    proceeds_example_label: '⬡ Ejemplo — primeros 10 millones',
+    proceeds_example: 'Imagina 30 city-coins activadas. 10 millones recaudados de 30 ciudades. Ese capital financia el proceso de construcción del medidor del sistema jurídico en cada territorio: un arquitecto IT general, un abogado general, IT local, abogados locales, ingenieros locales, topógrafos locales — todos los que hacen un trabajo útil para ese sistema. La máquina no extrae valor de los territorios. Lo distribuye de vuelta a las personas que la construyen.',
+    proceeds_col1_label: 'Infraestructura general',
+    proceeds_col2_label: 'Por territorio',
+    proceeds_li1: 'Arquitecto IT general',
+    proceeds_li2: 'Físico jurídico / abogado general',
+    proceeds_li3: 'Plataforma y herramientas de medición',
+    proceeds_li4: 'Ingeniero IT local',
+    proceeds_li5: 'Abogados y analistas jurídicos locales',
+    proceeds_li6: 'Ingenieros, topógrafos, traductores locales',
+    proceeds_note: 'Esto no es un fondo, ni un vehículo de inversión, ni un beneficio privado. El capital va a las personas que hacen un trabajo útil para el sistema — pagadas en PNC o en euros según el acuerdo. Cada nodo que participa en la construcción de un territorio obtiene una participación en lo que construye. <em>De Lege et Amore.</em>',
     footer_rights:'Todos los derechos reservados', footer_note:'El PNC no es un instrumento financiero. No negociable. Emitido solo como parte de la prestación del servicio. · De Lege et Amore.',
     lbl_nodes:'nodos',
   }
