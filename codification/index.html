@@ -1,188 +1,391 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>CODIFICATION — Live Territory Map</title>
-<meta name="description" content="Every EU municipality has frozen value. Scan the map, find your territory, claim it.">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Codification — Live Territory Map — 1love.works</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
-:root{
-  --bg:#07090e;--sf:#0d1520;--sf2:#121d2b;--bd:#1a2738;--bd2:#233348;
-  --ac:#c9a55a;--b1:#3d8ef5;--b2:#3dbf9a;--b3:#c9a55a;
-  --rd:#d94f4f;--am:#d4844a;--gn:#42a872;
-  --tx:#e5e0d5;--mu:#5e7585;--dm:#253545;
-  --fd:system-ui,sans-serif;--fm:ui-monospace,monospace;
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #0d1f38; --parchment: #eef4fb; --cream: #ddeaf8; --white: #f5f9fd;
+  --gold: #b8860b; --blue: #2a7fc0; --flow: #5bb8e8; --green: #2d6a2d; --red: #8b0000;
+  --muted: #5a7490; --rule: rgba(13,31,56,0.10); --rule-med: rgba(13,31,56,0.18);
+  --serif: 'EB Garamond', Georgia, serif; --mono: 'DM Mono', monospace;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--tx);font-family:var(--fm);min-height:100vh}
-a{color:inherit}
-.topbar{padding:2rem 3rem 1.5rem;border-bottom:1px solid var(--bd);background:linear-gradient(160deg,#07090e,#0c1828,#07090e)}
-h1{font-family:var(--fd);font-size:clamp(1.6rem,4vw,2.8rem);font-weight:800;color:var(--ac);margin-bottom:.3rem}
-.sub{font-size:.75rem;color:var(--mu);max-width:680px;line-height:1.7;margin-top:.5rem}
-.sub b{color:var(--b2)}
-.lang-toggle{position:absolute;top:1.5rem;right:2rem;display:flex;gap:.4rem}
-.lang-toggle button{background:var(--sf);border:1px solid var(--bd2);color:var(--mu);font-family:var(--fm);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .7rem;cursor:pointer}
-.lang-toggle button.active{color:var(--b2);border-color:var(--b2)}
-.wrap{padding:1.6rem 3rem 4rem;max-width:1200px;margin:0 auto}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.8rem;margin:1.4rem 0}
-.kpi-box{background:var(--sf);border:1px solid var(--bd);padding:.8rem 1rem}
-.kpi-box .l{font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);margin-bottom:.3rem}
-.kpi-box .v{font-family:var(--fd);font-size:1.2rem;font-weight:800;color:var(--ac)}
-.toolbar{display:flex;gap:.8rem;flex-wrap:wrap;align-items:center;margin:1.4rem 0 1rem}
-.toolbar input{flex:1;min-width:200px;background:var(--bg);border:2px solid var(--bd2);color:var(--tx);padding:.6rem .9rem;font-family:var(--fd);font-size:.85rem;outline:none}
-.toolbar input:focus{border-color:var(--b2)}
-.toolbar select{background:var(--bg);border:2px solid var(--bd2);color:var(--tx);padding:.6rem .9rem;font-family:var(--fm);font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;outline:none}
-.legend{display:flex;gap:1.2rem;flex-wrap:wrap;font-size:.6rem;color:var(--mu);margin-bottom:1rem}
-.legend span{display:inline-flex;align-items:center;gap:.35rem}
-.grid{border:1px solid var(--bd)}
-.grow{display:grid;grid-template-columns:32px 1fr 50px 90px 70px 100px 60px;align-items:center;padding:.55rem .8rem;border-bottom:1px solid var(--bd);cursor:pointer;text-decoration:none;color:var(--tx);font-size:.72rem;transition:background .1s}
-.grow:hover{background:var(--sf)}
-.grow.head{cursor:default;background:var(--sf2);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);font-weight:700}
-.grow.head:hover{background:var(--sf2)}
-.grow.featured{background:linear-gradient(135deg,#142a1f,#0a1812);border-left:3px solid var(--gn)}
-.rk{color:var(--mu);font-size:.62rem}
-.nm{font-family:var(--fd);font-weight:700}
-.nm .badge{display:inline-block;margin-left:.5rem;font-size:.5rem;letter-spacing:.08em;text-transform:uppercase;padding:.12rem .4rem;border-radius:2px;vertical-align:middle}
-.badge.claimed{background:rgba(66,168,114,.18);color:var(--gn);border:1px solid rgba(66,168,114,.4)}
-.badge.open{background:rgba(201,165,90,.12);color:var(--ac);border:1px solid rgba(201,165,90,.3)}
-.prov{color:var(--mu);text-align:center}
-.pop{color:var(--mu);text-align:right}
-.val{color:var(--ac);text-align:right;font-weight:700}
-.status{text-align:center}
-.arrow{color:var(--mu);text-align:right;font-size:.85rem}
-.empty{padding:1.5rem .8rem;font-size:.7rem;color:var(--mu);text-align:center}
-.section{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--bd)}
-.section h2{font-family:var(--fd);font-size:1.1rem;color:var(--ac);margin-bottom:.6rem}
-.section p{font-size:.72rem;color:var(--mu);line-height:1.7;max-width:680px;margin-bottom:1rem}
-.cta-row{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1rem}
-.cta-row a,.cta-row button{display:inline-block;background:var(--b2);color:#07090e;border:none;padding:.7rem 1.4rem;font-family:var(--fd);font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:pointer}
-.cta-row a.secondary{background:transparent;color:var(--ac);border:1px solid var(--ac)}
-.req-form{background:var(--sf);border:1px solid var(--bd);padding:1.2rem;max-width:520px;margin-top:1rem}
-.req-form label{display:block;font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);margin-bottom:.3rem;margin-top:.8rem}
-.req-form label:first-child{margin-top:0}
-.req-form input,.req-form textarea{width:100%;background:var(--bg);border:2px solid var(--bd2);color:var(--tx);padding:.55rem .8rem;font-family:var(--fd);font-size:.8rem;outline:none}
-.req-form input:focus,.req-form textarea:focus{border-color:var(--b2)}
-.req-form button{margin-top:1.1rem}
-.req-msg{font-size:.65rem;margin-top:.8rem;line-height:1.6}
-.req-msg.ok{color:var(--gn)}
-.req-msg.err{color:var(--rd)}
-[data-it]{display:none}
-.it [data-en]{display:none}
-.it [data-it]{display:block}
-.it [data-it].inline{display:inline}
-@media(max-width:700px){
-  .topbar{padding:1.4rem 1.2rem}
-  .wrap{padding:1.2rem 1.2rem 3rem}
-  .lang-toggle{position:static;margin-top:.8rem}
-  .grow{grid-template-columns:26px 1fr 60px 50px;font-size:.65rem;gap:.3rem}
-  .grow .prov,.grow .pop{display:none}
-  .grow.head .prov,.grow.head .pop{display:none}
+html { scroll-behavior: smooth; }
+body { font-family: var(--serif); background: var(--parchment); color: var(--ink); line-height: 1.75; font-size: 18px; }
+
+nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(238,244,251,0.97); backdrop-filter: blur(8px); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 14px 48px; }
+.nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; font-weight: 500; }
+.nav-links { display: flex; gap: 24px; list-style: none; align-items: center; justify-content: center; }
+.nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--ink); }
+.lang-switcher { display: flex; border: 1px solid var(--rule); overflow: hidden; }
+.lang-btn { font-family: var(--mono); font-size: 10px; padding: 5px 9px; border: none; background: transparent; color: var(--muted); cursor: pointer; border-right: 1px solid var(--rule); transition: all 0.15s; }
+.lang-btn:last-child { border-right: none; }
+.lang-btn.active { background: var(--ink); color: var(--parchment); }
+.lang-btn:hover:not(.active) { background: var(--cream); }
+
+.hero { max-width: 760px; margin: 0 auto; padding: 64px 48px 48px; border-bottom: 1px solid var(--rule); }
+.hero-overline { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; }
+.hero h1 { font-size: clamp(38px, 5.5vw, 62px); font-weight: 400; line-height: 1.15; margin-bottom: 24px; }
+.hero h1 em { font-style: italic; color: var(--gold); }
+.hero-intro { font-size: 20px; color: #3a3a36; line-height: 1.85; }
+.hero-intro a { color: var(--gold); }
+
+.section { max-width: 900px; margin: 0 auto; padding: 56px 48px; border-bottom: 1px solid var(--rule); }
+.section.narrow { max-width: 760px; }
+.section-num { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+.section-num::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.section h2 { font-size: clamp(26px, 4vw, 40px); font-weight: 400; line-height: 1.15; margin-bottom: 22px; }
+.section h2 em { font-style: italic; color: var(--gold); }
+.section p { font-size: 18px; color: #3a3a36; line-height: 1.9; margin-bottom: 20px; max-width: 760px; }
+.section p:last-of-type { margin-bottom: 0; }
+.section p a { color: var(--gold); }
+.pull-quote { border-left: 4px solid var(--gold); padding: 20px 28px; margin: 32px 0; background: var(--cream); max-width: 760px; }
+.pull-quote p { font-size: 19px; font-style: italic; color: var(--ink); line-height: 1.7; margin: 0; }
+
+/* dark inset "dashboard" block hosting the data tools */
+.dashboard { background: var(--ink); color: var(--parchment); padding: 32px; margin: 36px 0 0; }
+.dashboard-title { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(245,242,234,0.5); margin-bottom: 20px; }
+.dashboard-note { font-family: var(--mono); font-size: 11px; color: rgba(245,242,234,0.4); margin-top: 16px; font-style: italic; }
+
+/* KPI strip inside dashboard */
+.d-kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; background: rgba(245,242,234,0.1); margin-bottom: 20px; }
+.d-kpi { background: var(--ink); padding: 14px 16px; }
+.d-kpi .l { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(245,242,234,0.4); margin-bottom: 6px; }
+.d-kpi .v { font-family: var(--mono); font-size: 20px; font-weight: 500; color: var(--gold); }
+.d-kpi .v.measured { color: #8fd18f; }
+
+/* toolbar */
+.d-toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.d-toolbar input, .d-toolbar select {
+  background: rgba(245,242,234,0.06); border: 1px solid rgba(245,242,234,0.18); color: var(--parchment);
+  padding: 8px 12px; font-family: var(--mono); font-size: 12px; outline: none; border-radius: 2px;
+}
+.d-toolbar input { flex: 1; min-width: 180px; }
+.d-toolbar input::placeholder { color: rgba(245,242,234,0.35); }
+.d-toolbar select { cursor: pointer; }
+.d-toolbar input:focus, .d-toolbar select:focus { border-color: var(--gold); }
+
+/* legend */
+.d-legend { display: flex; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: 10px; color: rgba(245,242,234,0.5); margin-bottom: 14px; }
+.d-legend span { display: inline-flex; align-items: center; gap: 5px; }
+.d-badge { display: inline-block; font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; }
+.d-badge.claimed { background: rgba(45,106,45,0.25); color: #8fd18f; border: 1px solid rgba(143,209,143,0.4); }
+.d-badge.open { background: rgba(184,134,11,0.15); color: var(--gold); border: 1px solid rgba(184,134,11,0.35); }
+
+/* grid */
+.d-grid { border: 1px solid rgba(245,242,234,0.12); max-height: 480px; overflow-y: auto; }
+.d-row { display: grid; grid-template-columns: 30px 1fr 46px 78px 70px 90px 22px; align-items: center; gap: 6px; padding: 9px 12px; border-bottom: 1px solid rgba(245,242,234,0.08); text-decoration: none; color: var(--parchment); font-family: var(--mono); font-size: 12px; transition: background .12s; }
+.d-row:hover { background: rgba(245,242,234,0.05); }
+.d-row.head { cursor: default; background: rgba(245,242,234,0.04); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,242,234,0.4); font-weight: 700; position: sticky; top: 0; z-index: 1; }
+.d-row.head:hover { background: rgba(245,242,234,0.04); }
+.d-row.featured { background: rgba(45,106,45,0.12); border-left: 3px solid #8fd18f; }
+.d-rk { color: rgba(245,242,234,0.35); font-size: 10px; }
+.d-nm { font-family: var(--serif); font-weight: 500; font-size: 14px; }
+.d-prov, .d-pop { color: rgba(245,242,234,0.45); text-align: right; }
+.d-val { color: var(--gold); text-align: right; font-weight: 600; }
+.d-status { text-align: center; }
+.d-arrow { color: rgba(245,242,234,0.35); text-align: right; font-size: 13px; }
+.d-empty { padding: 20px; font-size: 12px; color: rgba(245,242,234,0.45); text-align: center; font-family: var(--mono); }
+
+/* EU27 list */
+.eu-row { display: grid; grid-template-columns: 28px 1fr 70px 70px 70px 36px; align-items: center; gap: 8px; padding: 9px 12px; border-bottom: 1px solid rgba(245,242,234,0.08); font-family: var(--mono); font-size: 12px; }
+.eu-row.head { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,242,234,0.4); font-weight: 700; }
+.eu-rk { color: rgba(245,242,234,0.35); font-size: 10px; }
+.eu-nm { font-family: var(--serif); font-size: 14px; }
+.eu-v { color: var(--gold); text-align: right; font-weight: 600; }
+.eu-v.net { color: rgba(245,242,234,0.55); font-weight: 400; }
+.eu-v.measured { color: #8fd18f; }
+.eu-sc { text-align: center; }
+
+/* request form */
+.req-form { margin-top: 28px; max-width: 480px; }
+.req-form label { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 14px 0 6px; }
+.req-form label:first-child { margin-top: 0; }
+.req-form input, .req-form textarea {
+  width: 100%; background: var(--white); border: 1px solid var(--rule-med); color: var(--ink);
+  padding: 10px 12px; font-family: var(--serif); font-size: 16px; outline: none;
+}
+.req-form input:focus, .req-form textarea:focus { border-color: var(--gold); }
+.req-form button {
+  margin-top: 20px; background: var(--ink); color: var(--parchment); border: none;
+  padding: 12px 24px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; cursor: pointer;
+}
+.req-form button:disabled { opacity: 0.5; cursor: default; }
+.req-msg { font-family: var(--mono); font-size: 12px; margin-top: 14px; line-height: 1.7; display: none; }
+.req-msg.ok { color: var(--green); display: block; }
+.req-msg.err { color: var(--red); display: block; }
+
+/* CTA */
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+.cta-row a {
+  display: inline-block; font-family: var(--mono); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 24px; text-decoration: none;
+}
+.cta-row a.primary { background: var(--ink); color: var(--parchment); }
+.cta-row a.secondary { background: transparent; color: var(--ink); border: 1px solid var(--rule-med); }
+
+/* territory claim flow */
+.claim-estimate { background: rgba(245,242,234,0.05); border: 1px solid rgba(245,242,234,0.12); padding: 14px 16px; margin: 14px 0; }
+.claim-estimate .l { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(245,242,234,0.4); margin-bottom: 6px; }
+.claim-estimate .v { font-family: var(--mono); font-size: 24px; font-weight: 500; color: var(--gold); margin-bottom: 6px; }
+.claim-estimate .note { font-family: var(--mono); font-size: 11px; color: rgba(245,242,234,0.45); line-height: 1.6; font-style: italic; }
+.claim-found { font-family: var(--mono); font-size: 11px; color: #8fd18f; margin: -4px 0 10px; }
+.claim-btn {
+  width: 100%; margin-top: 16px; background: var(--gold); color: var(--ink); border: none;
+  padding: 14px 24px; font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; cursor: pointer;
+}
+.claim-btn:disabled { opacity: 0.35; cursor: default; }
+.claim-msg { font-family: var(--mono); font-size: 12px; margin-top: 14px; line-height: 1.7; display: none; }
+.claim-msg.ok { color: #8fd18f; display: block; }
+.claim-msg.err { color: #e0a0a0; display: block; }
+.claim-msg.taken { color: var(--gold); display: block; }
+
+footer { max-width: 900px; margin: 0 auto; padding: 32px 48px 56px; font-family: var(--mono); font-size: 11px; color: var(--muted); }
+
+@media (max-width: 680px) {
+  body { font-size: 16px; }
+  nav { padding: 12px 20px; grid-template-columns: 1fr auto; }
+  .nav-links { display: none; }
+  .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 52px; left: 0; right: 0; background: rgba(238,244,251,0.99); padding: 16px 20px 24px; border-bottom: 1px solid var(--rule-med); z-index: 9999; gap: 0; }
+  #nav-toggle { display: block !important; }
+  .hero, .section, footer { padding-left: 20px; padding-right: 20px; }
+  .hero h1 { font-size: 34px; }
+  .d-kpis { grid-template-columns: repeat(2, 1fr); }
+  .d-row { grid-template-columns: 24px 1fr 60px 22px; }
+  .d-row .d-prov, .d-row .d-pop { display: none; }
+  .eu-row { grid-template-columns: 24px 1fr 70px 22px; }
+  .eu-row .eu-v.net, .eu-row .eu-v.measured { display: none; }
+  .dashboard { padding: 18px; }
 }
 </style>
 </head>
 <body>
 
-<div class="topbar" style="position:relative">
-  <div class="lang-toggle">
-    <button class="active" id="lang-en" onclick="setLang('en')">EN</button>
-    <button id="lang-it" onclick="setLang('it')">IT</button>
-  </div>
-  <h1 data-en>CODIFICATION — Live Territory Map</h1>
-  <h1 data-it>CODIFICAZIONE — Mappa Live dei Territori</h1>
-  <p class="sub" data-en>Every municipality below has measurable frozen value — entropy that can be released through codification. <b>Click your municipality</b> to see its λ valuation and claim the first territorial PNC. Don't see your municipality? <a href="#request" style="color:var(--b2);text-decoration:underline">Request it</a>.</p>
-  <p class="sub" data-it>Ogni comune qui sotto ha valore congelato misurabile — entropia che può essere liberata tramite la codificazione. <b>Clicca sul tuo comune</b> per vedere la sua valutazione λ e rivendicare il primo PNC territoriale. Non trovi il tuo comune? <a href="#request" style="color:var(--b2);text-decoration:underline">Richiedilo</a>.</p>
-</div>
-
-<div class="wrap">
-
-  <div class="kpis">
-    <div class="kpi-box"><div class="l" data-en>Territories</div><div class="l" data-it>Territori</div><div class="v" id="kpi-count">271</div></div>
-    <div class="kpi-box"><div class="l" data-en>Claimed</div><div class="l" data-it>Rivendicati</div><div class="v" id="kpi-claimed">—</div></div>
-    <div class="kpi-box"><div class="l" data-en>λ Net Unexpressed Potential</div><div class="l" data-it>Potenziale Netto Inespresso λ</div><div class="v" id="kpi-net">€21.65B</div></div>
-    <div class="kpi-box"><div class="l" data-en>🔴 High entropy</div><div class="l" data-it>🔴 Alta entropia</div><div class="v" id="kpi-red">—</div></div>
-  </div>
-
-  <div class="toolbar">
-    <input type="text" id="search" placeholder="Search municipality / cerca comune…" oninput="render()">
-    <select id="provFilter" onchange="render()">
-      <option value="">All provinces / Tutte</option>
-      <option value="CA">CA — Cagliari</option>
-      <option value="SS">SS — Sassari</option>
-      <option value="NU">NU — Nuoro</option>
-      <option value="OR">OR — Oristano</option>
-      <option value="SU">SU — Sud Sardegna</option>
-    </select>
-    <select id="sortBy" onchange="render()">
-      <option value="val">Sort by value / Ordina per valore</option>
-      <option value="name">Sort A–Z</option>
-      <option value="pop">Sort by population / popolazione</option>
-    </select>
-  </div>
-
-  <div class="legend">
-    <span>🔴 <span data-en>High entropy — biggest opportunity</span><span data-it>Alta entropia — opportunità maggiore</span></span>
-    <span>🟡 <span data-en>Medium entropy</span><span data-it>Entropia media</span></span>
-    <span>🟢 <span data-en>Low entropy — already efficient</span><span data-it>Bassa entropia — già efficiente</span></span>
-    <span class="badge claimed" style="display:inline">✓ <span data-en>claimed</span><span data-it>rivendicato</span></span>
-    <span class="badge open" style="display:inline"><span data-en>open</span><span data-it>aperto</span></span>
-  </div>
-
-  <div class="grid">
-    <div class="grow head">
-      <div>#</div>
-      <div><span data-en>Municipality</span><span data-it>Comune</span></div>
-      <div class="prov" data-en>Prov</div><div class="prov" data-it>Prov</div>
-      <div class="pop"><span data-en>Pop.</span><span data-it>Pop.</span></div>
-      <div class="val">λ NUP</div>
-      <div class="status"><span data-en>Status</span><span data-it>Stato</span></div>
-      <div></div>
-    </div>
-    <div id="rows"></div>
-  </div>
-
-  <div class="section" id="request">
-    <h2 data-en>🌍 Don't see your municipality?</h2>
-    <h2 data-it>🌍 Non vedi il tuo comune?</h2>
-    <p data-en>This map currently covers the 271 municipalities of Sardinia — the pilot dataset for the λ model. Every EU municipality has the same frozen value waiting to be measured. If you don't see yours, request it: we'll calculate its λ score and add it to the map.</p>
-    <p data-it>Questa mappa copre attualmente i 271 comuni della Sardegna — il dataset pilota del modello λ. Ogni comune dell'UE ha lo stesso valore congelato in attesa di essere misurato. Se non vedi il tuo, richiedilo: calcoleremo il suo punteggio λ e lo aggiungeremo alla mappa.</p>
-
-    <form class="req-form" id="reqForm" onsubmit="return submitRequest(event)">
-      <label data-en>Municipality name</label>
-      <label data-it>Nome del comune</label>
-      <input type="text" id="req-name" required>
-
-      <label data-en>Country / Region</label>
-      <label data-it>Paese / Regione</label>
-      <input type="text" id="req-region" required placeholder="e.g. France, Brittany / es. Francia, Bretagna">
-
-      <label data-en>Your email</label>
-      <label data-it>La tua email</label>
-      <input type="email" id="req-email" required>
-
-      <label data-en>Notes (optional)</label>
-      <label data-it>Note (opzionale)</label>
-      <textarea id="req-notes" rows="2"></textarea>
-
-      <button type="submit" id="req-btn"><span data-en>Request this territory</span><span data-it>Richiedi questo territorio</span></button>
-      <div class="req-msg" id="req-msg" style="display:none"></div>
-    </form>
-  </div>
-
-  <div class="section">
-    <h2 data-en>How does this work?</h2>
-    <h2 data-it>Come funziona?</h2>
-    <p data-en>The λ model, the PNC method and the full walkthrough — with a worked example — live on the simulation page.</p>
-    <p data-it>Il modello λ, il metodo PNC e la spiegazione completa — con un esempio pratico — si trovano nella pagina di simulazione.</p>
-    <div class="cta-row">
-      <a href="/codification/simulation" class="secondary"><span data-en>→ Full simulation & walkthrough</span><span data-it>→ Simulazione completa</span></a>
-      <a href="/pnc"><span data-en>→ My PNC</span><span data-it>→ Il mio PNC</span></a>
+<nav>
+  <a class="nav-logo" href="/">1love.works</a>
+  <ul class="nav-links">
+    <li class="hide-mobile"><a href="/problem" data-i18n="nav_problem">The Problem</a></li>
+    <li class="hide-mobile"><a href="/solutions" data-i18n="nav_solutions">The Proposed Solutions</a></li>
+    <li class="hide-mobile"><a href="/pnc" data-i18n="nav_pnc">PNC</a></li>
+    <li class="hide-mobile"><a href="/methodology" data-i18n="nav_methodology">About &amp; Methodology</a></li>
+    <li class="hide-mobile"><a href="/participate" data-i18n="nav_participate">Participate</a></li>
+  </ul>
+  <div style="display: flex; justify-content: flex-end;">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('it')">IT</button>
+      <button class="lang-btn" onclick="setLang('fr')">FR</button>
+      <button class="lang-btn" onclick="setLang('es')">ES</button>
     </div>
   </div>
+  <button id="nav-toggle" style="display:none; font-size:18px; background:none; border:none; cursor:pointer; color:var(--ink); padding:4px;" aria-label="Menu">☰</button>
+</nav>
 
+<div class="hero">
+  <p class="hero-overline" data-i18n="overline">1love.works · Codification — Live Territory Map</p>
+  <h1 data-i18n="h1">Every territory has<br/><em>frozen value.</em><br/>We measure it. You release it.</h1>
+  <p class="hero-intro" data-i18n="hero_intro">Below is the live map of the λ model — the instrument that measures unexpressed economic value inside the legal systems of European territories. The pilot dataset covers all 271 municipalities of Sardinia. Each one already has a calculated λ Net Unexpressed Potential. Find yours, see what it's worth, and be the first to codify it. The full mathematical walkthrough — with a worked example — is on the <a href="/codification/simulation">simulation page</a>.</p>
 </div>
+
+<section class="section">
+  <p class="section-num" data-i18n="s1_num">I · The pilot — Sardinia</p>
+  <h2 data-i18n="s1_h2">271 municipalities.<br/>One <em>live</em> board.</h2>
+  <p data-i18n="s1_p1">The board below works like a stock exchange ticker. Every row is a Sardinian comune, ranked by its λ Net Unexpressed Potential — the value the territory already has, but cannot yet convert into real economy. Colour marks entropy level: <strong>red</strong> means high entropy and the biggest opportunity, <strong>yellow</strong> medium, <strong>green</strong> low — a territory already running efficiently.</p>
+  <p data-i18n="s1_p2"><strong>Masullas</strong> is the first comune being actively codified — its full case study, with the worked λ calculation, lives on the simulation page. Every other municipality below is open: click through to see its number, and be the first to claim it.</p>
+
+  <div class="dashboard">
+    <div class="dashboard-title" data-i18n="dash1_title">Sardinia — 271 comuni — λ model</div>
+
+    <div class="d-kpis">
+      <div class="d-kpi"><div class="l" data-i18n="kpi_territories">Territories</div><div class="v" id="kpi-count">271</div></div>
+      <div class="d-kpi"><div class="l" data-i18n="kpi_claimed">Claimed</div><div class="v" id="kpi-claimed">—</div></div>
+      <div class="d-kpi"><div class="l" data-i18n="kpi_net">λ Potential (net)</div><div class="v" id="kpi-net">€21.65B</div></div>
+      <div class="d-kpi"><div class="l" data-i18n="kpi_measured">λ Measured (net)</div><div class="v measured" id="kpi-measured">€0</div></div>
+      <div class="d-kpi"><div class="l" data-i18n="kpi_red">🔴 High entropy</div><div class="v" id="kpi-red">—</div></div>
+    </div>
+
+    <div class="d-toolbar">
+      <input type="text" id="search" data-i18n-ph="dash_search" placeholder="Search municipality…">
+      <select id="provFilter">
+        <option value="" data-i18n="dash_allprov">All provinces</option>
+        <option value="CA">CA — Cagliari</option>
+        <option value="SS">SS — Sassari</option>
+        <option value="NU">NU — Nuoro</option>
+        <option value="OR">OR — Oristano</option>
+        <option value="SU">SU — Sud Sardegna</option>
+      </select>
+      <select id="sortBy">
+        <option value="val" data-i18n="dash_sort_val">Sort by λ value</option>
+        <option value="name" data-i18n="dash_sort_name">Sort A–Z</option>
+        <option value="pop" data-i18n="dash_sort_pop">Sort by population</option>
+      </select>
+    </div>
+
+    <div class="d-legend">
+      <span>🔴 <span data-i18n="legend_red">high entropy</span></span>
+      <span>🟡 <span data-i18n="legend_yellow">medium</span></span>
+      <span>🟢 <span data-i18n="legend_green">low entropy</span></span>
+      <span class="d-badge claimed">✓ <span data-i18n="legend_claimed">claimed</span></span>
+      <span class="d-badge open"><span data-i18n="legend_open">open</span></span>
+    </div>
+
+    <div class="d-grid">
+      <div class="d-row head">
+        <div>#</div>
+        <div data-i18n="col_name">Municipality</div>
+        <div class="d-prov" data-i18n="col_prov">Prov</div>
+        <div class="d-pop" data-i18n="col_pop">Pop.</div>
+        <div class="d-val">λ NUP</div>
+        <div class="d-status" data-i18n="col_status">Status</div>
+        <div></div>
+      </div>
+      <div id="rows"></div>
+    </div>
+
+    <div class="dashboard-note" data-i18n="dash1_note">λ model estimate — predictive, not official cadastral data. Methodology on the simulation page.</div>
+  </div>
+</section>
+
+<section class="section">
+  <p class="section-num" data-i18n="s2_num">II · Beyond Sardinia — EU-27</p>
+  <h2 data-i18n="s2_h2">27 member states.<br/>One <em>untapped</em> market.</h2>
+  <p data-i18n="s2_p1">The same λ model, applied at member-state scale, gives a first estimate of the unexpressed economic value held inside each EU country's legal and territorial systems. This is the same kind of value found in Sardinia — frozen, unmeasured, waiting to be codified — but at the scale of an entire nation.</p>
+  <p data-i18n="s2_p2">Across the 27 member states, this dataset's own self-consistent total comes to roughly <strong>€2.68 trillion gross</strong>, or <strong>€2.06 trillion net</strong> at the same 0.77 conversion factor used for Sardinia. <strong>Potential</strong> is the size of each country's internal market once its legal entropy approaches zero; <strong>measured</strong> is what has actually been claimed and codified so far. The gap between them is the work still to do — and the market still to unlock.</p>
+
+  <div class="dashboard">
+    <div class="dashboard-title" data-i18n="dash2_title">EU-27 — potential vs. measured (€B)</div>
+    <div class="d-grid" style="max-height:420px">
+      <div class="eu-row head">
+        <div data-i18n="eu_col_rank">#</div>
+        <div data-i18n="eu_col_country">Country</div>
+        <div class="eu-v" data-i18n="eu_col_gross">Potential</div>
+        <div class="eu-v net" data-i18n="eu_col_net">Net</div>
+        <div class="eu-v measured" data-i18n="eu_col_measured">Measured</div>
+        <div class="eu-sc" data-i18n="eu_col_risk">λ</div>
+      </div>
+      <div id="eu-rows"></div>
+    </div>
+    <div class="dashboard-note" data-i18n="dash2_note">€B = billions of euro. Net = potential × 0.77, the same conversion factor applied to the Sardinia dataset. Measured = λ value of territories actually claimed and being codified — live, starts at €0 and grows as Founding Codification Agents come online.</div>
+  </div>
+</section>
+
+<section class="section narrow" id="claim">
+  <p class="section-num" data-i18n="s3_num">III · Any EU city can start here</p>
+  <h2 data-i18n="s3_h2">Become its <em>founding</em><br/>Codification Agent.</h2>
+  <p data-i18n="s3_p1">This map currently covers the 271 municipalities of Sardinia, but the λ model applies to every municipality, region and country in the EU. Any of them can start today. Type yours below — if it's a major city we already have a population estimate; if not, you provide it. The figure that appears is <strong>approximate, based on public population data, and is to be confirmed empirically</strong> once codification begins.</p>
+  <p data-i18n="s3_p2">Acquiring one PNC begins the codification of that territory and makes you its <strong>Founding Codification Agent</strong> — holder #1 of the PNC tranche anchored to it, informally its own "[City]Coin." Per the <a href="/pnc">PNC framework</a>, this isn't a separate token or a speculative purchase: it's the same mathematical certificate of entropy reduction, anchored to your territory, and the proceeds fund the same codification work described there.</p>
+
+  <div class="dashboard">
+    <div class="dashboard-title" data-i18n="claim_title">Start a new territory</div>
+
+    <div class="d-toolbar">
+      <input type="text" id="claim-city" list="claim-city-list" data-i18n-ph="claim_city_ph" placeholder="City or municipality name" autocomplete="off">
+    </div>
+    <datalist id="claim-city-list"></datalist>
+    <div class="claim-found" id="claim-found" style="display:none"></div>
+
+    <div class="d-toolbar" id="claim-manual-row" style="display:none">
+      <select id="claim-country"></select>
+      <input type="text" id="claim-region" data-i18n-ph="claim_region_ph" placeholder="Region">
+      <input type="number" id="claim-pop" min="1" data-i18n-ph="claim_pop_ph" placeholder="Population">
+    </div>
+
+    <div class="claim-estimate" id="claim-estimate" style="display:none">
+      <div class="l" data-i18n="claim_estimate_label">Estimated λ Net Unexpressed Potential</div>
+      <div class="v" id="claim-estimate-value">—</div>
+      <div class="note" id="claim-estimate-note" data-i18n="claim_estimate_note_dataset">Approximate — based on public population data. To be confirmed empirically by the Codification Agent.</div>
+    </div>
+
+    <div class="d-toolbar" style="margin-top:14px">
+      <input type="text" id="claim-agent" data-i18n-ph="claim_agent_ph" placeholder="Your name (optional)">
+      <input type="email" id="claim-email" required data-i18n-ph="claim_email_ph" placeholder="Your email">
+    </div>
+
+    <button id="claim-btn" class="claim-btn" data-i18n="claim_btn" disabled>Become the Founding Codification Agent — €99 →</button>
+    <div class="claim-msg" id="claim-msg"></div>
+
+    <div class="dashboard-note" data-i18n="claim_note">€99 acquires one PNC anchored to this territory. You'll be redirected to complete payment; your claim is recorded first, so the territory is marked as yours from this moment.</div>
+  </div>
+</section>
+
+<section class="section narrow">
+  <p class="section-num" data-i18n="s4_num">IV · Go deeper</p>
+  <h2 data-i18n="cta_h2">See the <em>math.</em><br/>Hold the proof.</h2>
+  <p data-i18n="cta_p">The simulation page walks through the full λ model with a real worked example, the EU-27 overview, and the territorial PNC framework. Or jump straight to your own PNC.</p>
+  <div class="cta-row">
+    <a href="/codification/simulation" class="primary" data-i18n="cta_btn1">→ Full simulation &amp; walkthrough</a>
+    <a href="/pnc" class="secondary" data-i18n="cta_btn2">→ My PNC</a>
+  </div>
+</section>
+
+<footer>
+  <span data-i18n="footer_note">λ model and Fractal Cross-Pollination methodology · 1love.works — De Lege et Amore.</span>
+</footer>
 
 <script>
-// ── Data: SRAW = [province, name, population, trend%] — identical to the simulation page dataset ──
+const T = {
+  en: {
+    nav_problem: `The Problem`,nav_solutions: `The Proposed Solutions`,nav_pnc: `PNC`,nav_codification: `Codification`,nav_methodology: `About &amp; Methodology`,nav_participate: `Participate`,overline: `1love.works · Codification — Live Territory Map`,h1: `Every territory has<br/><em>frozen value.</em><br/>We measure it. You release it.`,hero_intro: `Below is the live map of the λ model — the instrument that measures unexpressed economic value inside the legal systems of European territories. The pilot dataset covers all 271 municipalities of Sardinia. Each one already has a calculated λ Net Unexpressed Potential. Find yours, see what it's worth, and be the first to codify it. The full mathematical walkthrough — with a worked example — is on the <a href="/codification/simulation">simulation page</a>.`,s1_num: `I · The pilot — Sardinia`,s1_h2: `271 municipalities.<br/>One <em>live</em> board.`,s1_p1: `The board below works like a stock exchange ticker. Every row is a Sardinian comune, ranked by its λ Net Unexpressed Potential — the value the territory already has, but cannot yet convert into real economy. Colour marks entropy level: <strong>red</strong> means high entropy and the biggest opportunity, <strong>yellow</strong> medium, <strong>green</strong> low — a territory already running efficiently.`,s1_p2: `<strong>Masullas</strong> is the first comune being actively codified — its full case study, with the worked λ calculation, lives on the simulation page. Every other municipality below is open: click through to see its number, and be the first to claim it.`,dash1_title: `Sardinia — 271 comuni — λ model`,dash1_note: `λ model estimate — predictive, not official cadastral data. Methodology on the simulation page.`,dash_empty: `No municipalities match your search.`,kpi_territories: `Territories`,kpi_claimed: `Claimed`,kpi_net: `λ Potential (net)`,kpi_measured: `λ Measured (net)`,kpi_red: `🔴 High entropy`,dash_search: `Search municipality…`,dash_allprov: `All provinces`,dash_sort_val: `Sort by λ value`,dash_sort_name: `Sort A–Z`,dash_sort_pop: `Sort by population`,legend_red: `high entropy`,legend_yellow: `medium`,legend_green: `low entropy`,legend_claimed: `claimed`,legend_open: `open`,col_name: `Municipality`,col_prov: `Prov`,col_pop: `Pop.`,col_status: `Status`,s2_num: `II · Beyond Sardinia — EU-27`,s2_h2: `27 member states.<br/>One <em>untapped</em> market.`,s2_p1: `The same λ model, applied at member-state scale, gives a first estimate of the unexpressed economic value held inside each EU country's legal and territorial systems. This is the same kind of value found in Sardinia — frozen, unmeasured, waiting to be codified — but at the scale of an entire nation.`,s2_p2: `Across the 27 member states, this dataset's own self-consistent total comes to roughly <strong>€2.68 trillion gross</strong>, or <strong>€2.06 trillion net</strong> at the same 0.77 conversion factor used for Sardinia. <strong>Potential</strong> is the size of each country's internal market once its legal entropy approaches zero; <strong>measured</strong> is what has actually been claimed and codified so far. The gap between them is the work still to do — and the market still to unlock.`,dash2_title: `EU-27 — potential vs. measured (€B)`,dash2_note: `€B = billions of euro. Net = potential × 0.77, the same conversion factor applied to the Sardinia dataset. Measured = λ value of territories actually claimed and being codified — live, starts at €0 and grows as Founding Codification Agents come online.`,eu_col_rank: `#`,eu_col_country: `Country`,eu_col_gross: `Potential`,eu_col_net: `Net`,eu_col_measured: `Measured`,eu_col_risk: `λ`,s3_num: `III · Any EU city can start here`,s3_h2: `Become its <em>founding</em><br/>Codification Agent.`,s3_p1: `This map currently covers the 271 municipalities of Sardinia, but the λ model applies to every municipality, region and country in the EU. Any of them can start today. Type yours below — if it's a major city we already have a population estimate; if not, you provide it. The figure that appears is <strong>approximate, based on public population data, and is to be confirmed empirically</strong> once codification begins.`,s3_p2: `Acquiring one PNC begins the codification of that territory and makes you its <strong>Founding Codification Agent</strong> — holder #1 of the PNC tranche anchored to it, informally its own "[City]Coin." Per the <a href="/pnc">PNC framework</a>, this isn't a separate token or a speculative purchase: it's the same mathematical certificate of entropy reduction, anchored to your territory, and the proceeds fund the same codification work described there.`,claim_title: `Start a new territory`,claim_city_ph: `City or municipality name`,claim_region_ph: `Region`,claim_pop_ph: `Population`,claim_estimate_label: `Estimated λ Net Unexpressed Potential`,claim_estimate_note_dataset: `Approximate — based on public population data. To be confirmed empirically by the Codification Agent.`,claim_estimate_note_self: `Approximate — based on the population you entered. To be confirmed empirically by the Codification Agent.`,claim_found_label: `Found in our dataset:`,claim_agent_ph: `Your name (optional)`,claim_email_ph: `Your email`,claim_btn: `Become the Founding Codification Agent — €99 →`,claim_note: `€99 acquires one PNC anchored to this territory. You'll be redirected to complete payment; your claim is recorded first, so the territory is marked as yours from this moment.`,claim_msg_taken: `This territory was already claimed — try another, or check the board above.`,claim_msg_err: `Something went wrong. Please try again or email us directly.`,claim_msg_redirect: `Claim recorded. Redirecting you to complete payment…`,claim_err_email: `Please enter a valid email address.`,req_label_name: `Municipality name`,req_label_region: `Country / Region`,req_region_ph: `e.g. France, Brittany`,req_label_email: `Your email`,req_label_notes: `Notes (optional)`,req_btn: `Request this territory`,req_ok: `Thank you! We have logged your request — we will be in touch at `,req_err_submit: `Submission error. Please try again or email us directly.`,req_err_network: `Network error. Please try again later.`,s4_num: `IV · Go deeper`,cta_h2: `See the <em>math.</em><br/>Hold the proof.`,cta_p: `The simulation page walks through the full λ model with a real worked example, the EU-27 overview, and the territorial PNC framework. Or jump straight to your own PNC.`,cta_btn1: `→ Full simulation &amp; walkthrough`,cta_btn2: `→ My PNC`,footer_note: `λ model and Fractal Cross-Pollination methodology · 1love.works — De Lege et Amore.`,
+  },
+  it: {
+    nav_problem: `Il Problema`,nav_solutions: `Le Soluzioni Proposte`,nav_pnc: `PNC`,nav_codification: `Codificazione`,nav_methodology: `Chi Siamo e Metodologia`,nav_participate: `Partecipa`,overline: `1love.works · Codificazione — Mappa Live dei Territori`,h1: `Ogni territorio ha<br/><em>valore congelato.</em><br/>Noi lo misuriamo. Tu lo liberi.`,hero_intro: `Qui sotto trovi la mappa live del modello λ — lo strumento che misura il valore economico inespresso nei sistemi giuridici dei territori europei. Il dataset pilota copre tutti i 271 comuni della Sardegna. Ognuno ha già un Potenziale Netto Inespresso λ calcolato. Trova il tuo, scopri quanto vale, e sii il primo a codificarlo. La spiegazione matematica completa — con un esempio pratico — è nella <a href="/codification/simulation">pagina di simulazione</a>.`,s1_num: `I · Il pilota — Sardegna`,s1_h2: `271 comuni.<br/>Una board <em>live</em>.`,s1_p1: `La board qui sotto funziona come un ticker di borsa. Ogni riga è un comune sardo, classificato per Potenziale Netto Inespresso λ — il valore che il territorio possiede già, ma non può ancora convertire in economia reale. Il colore indica il livello di entropia: <strong>rosso</strong> significa alta entropia e opportunità maggiore, <strong>giallo</strong> media, <strong>verde</strong> bassa — un territorio già efficiente.`,s1_p2: `<strong>Masullas</strong> è il primo comune in fase di codificazione attiva — il suo caso studio completo, con il calcolo λ svolto, è nella pagina di simulazione. Ogni altro comune qui sotto è aperto: clicca per vedere il suo valore, e sii il primo a rivendicarlo.`,dash1_title: `Sardegna — 271 comuni — modello λ`,dash1_note: `Stima del modello λ — dati predittivi, non output catastali ufficiali. Metodologia nella pagina di simulazione.`,dash_empty: `Nessun comune corrisponde alla ricerca.`,kpi_territories: `Territori`,kpi_claimed: `Rivendicati`,kpi_net: `Potenziale Netto λ`,kpi_measured: `Misurato Netto λ`,kpi_red: `🔴 Alta entropia`,dash_search: `Cerca comune…`,dash_allprov: `Tutte le provincie`,dash_sort_val: `Ordina per valore λ`,dash_sort_name: `Ordina A–Z`,dash_sort_pop: `Ordina per popolazione`,legend_red: `alta entropia`,legend_yellow: `media`,legend_green: `bassa entropia`,legend_claimed: `rivendicato`,legend_open: `aperto`,col_name: `Comune`,col_prov: `Prov`,col_pop: `Pop.`,col_status: `Stato`,s2_num: `II · Oltre la Sardegna — EU-27`,s2_h2: `27 stati membri.<br/>Un mercato <em>inesplorato</em>.`,s2_p1: `Lo stesso modello λ, applicato alla scala degli stati membri, dà una prima stima del valore economico inespresso contenuto nei sistemi giuridici e territoriali di ciascun paese dell'UE. È lo stesso tipo di valore trovato in Sardegna — congelato, non misurato, in attesa di essere codificato — ma alla scala di un'intera nazione.`,s2_p2: `Sui 27 stati membri, il totale autoconsistente di questo dataset è di circa <strong>€2,68 trilioni gross</strong>, o <strong>€2,06 trilioni net</strong> con lo stesso fattore di conversione 0,77 usato per la Sardegna. Il <strong>potenziale</strong> è la dimensione del mercato interno di ciascun paese una volta che la sua entropia legale si avvicina a zero; il <strong>misurato</strong> è ciò che è stato effettivamente rivendicato e codificato finora. Il divario tra i due è il lavoro che resta da fare — e il mercato ancora da liberare.`,dash2_title: `EU-27 — potenziale vs. misurato (€B)`,dash2_note: `€B = miliardi di euro. Netto = potenziale × 0,77, lo stesso fattore di conversione applicato al dataset della Sardegna. Misurato = valore λ dei territori effettivamente rivendicati e in fase di codificazione — dato live, parte da €0 e cresce con l'arrivo di nuovi Agenti di Codificazione Fondatori.`,eu_col_rank: `#`,eu_col_country: `Paese`,eu_col_gross: `Potenziale`,eu_col_net: `Netto`,eu_col_measured: `Misurato`,eu_col_risk: `λ`,s3_num: `III · Ogni città UE può iniziare qui`,s3_h2: `Diventane l'<em>Agente</em><br/>di Codificazione fondatore.`,s3_p1: `Questa mappa copre attualmente i 271 comuni della Sardegna, ma il modello λ si applica a ogni comune, regione e paese dell'UE. Ognuno di essi può iniziare oggi. Scrivi il tuo qui sotto — se è una grande città abbiamo già una stima della popolazione; altrimenti la fornisci tu. Il valore mostrato è <strong>approssimativo, basato su dati di popolazione pubblici, e va confermato empiricamente</strong> una volta avviata la codificazione.`,s3_p2: `Acquisire un PNC avvia la codificazione di quel territorio e ti rende il suo <strong>Agente di Codificazione Fondatore</strong> — primo detentore della tranche di PNC ancorata a esso, informalmente il suo "[Città]Coin". Secondo il <a href="/pnc">framework PNC</a>, non si tratta di un token separato né di un acquisto speculativo: è lo stesso certificato matematico di riduzione dell'entropia, ancorato al tuo territorio, e i proventi finanziano lo stesso lavoro di codificazione descritto lì.`,claim_title: `Avvia un nuovo territorio`,claim_city_ph: `Nome della città o del comune`,claim_region_ph: `Regione`,claim_pop_ph: `Popolazione`,claim_estimate_label: `Potenziale Netto Inespresso λ stimato`,claim_estimate_note_dataset: `Approssimativo — basato su dati di popolazione pubblici. Da confermare empiricamente dall'Agente di Codificazione.`,claim_estimate_note_self: `Approssimativo — basato sulla popolazione che hai inserito. Da confermare empiricamente dall'Agente di Codificazione.`,claim_found_label: `Trovato nel nostro dataset:`,claim_agent_ph: `Il tuo nome (opzionale)`,claim_email_ph: `La tua email`,claim_btn: `Diventa l'Agente di Codificazione Fondatore — €99 →`,claim_note: `€99 acquista un PNC ancorato a questo territorio. Verrai reindirizzato per completare il pagamento; la tua richiesta viene registrata prima, così il territorio è tuo da questo momento.`,claim_msg_taken: `Questo territorio è già stato rivendicato — provane un altro, o controlla la tabella sopra.`,claim_msg_err: `Qualcosa è andato storto. Riprova o scrivici direttamente.`,claim_msg_redirect: `Richiesta registrata. Reindirizzamento al pagamento…`,claim_err_email: `Inserisci un indirizzo email valido.`,req_label_name: `Nome del comune`,req_label_region: `Paese / Regione`,req_region_ph: `es. Francia, Bretagna`,req_label_email: `La tua email`,req_label_notes: `Note (opzionale)`,req_btn: `Richiedi questo territorio`,req_ok: `Grazie! Abbiamo registrato la tua richiesta — ti contatteremo a `,req_err_submit: `Errore di invio. Riprova o scrivici direttamente.`,req_err_network: `Errore di rete. Riprova più tardi.`,s4_num: `IV · Vai più a fondo`,cta_h2: `Guarda la <em>matematica.</em><br/>Tieni la prova.`,cta_p: `La pagina di simulazione mostra il modello λ completo con un esempio pratico reale, la panoramica EU-27 e il framework del PNC territoriale. Oppure vai direttamente al tuo PNC.`,cta_btn1: `→ Simulazione completa`,cta_btn2: `→ Il mio PNC`,footer_note: `Modello λ e metodologia Fractal Cross-Pollination · 1love.works — De Lege et Amore.`,
+  },
+  fr: {
+    nav_problem: `Le Problème`,nav_solutions: `Les Solutions Proposées`,nav_pnc: `PNC`,nav_codification: `Codification`,nav_methodology: `À Propos et Méthodologie`,nav_participate: `Participer`,overline: `1love.works · Codification — Carte des Territoires en Direct`,h1: `Chaque territoire a<br/><em>une valeur gelée.</em><br/>Nous la mesurons. Vous la libérez.`,hero_intro: `Ci-dessous, la carte en direct du modèle λ — l'instrument qui mesure la valeur économique inexprimée à l'intérieur des systèmes juridiques des territoires européens. Le jeu de données pilote couvre les 271 communes de Sardaigne. Chacune dispose déjà d'un Potentiel Net Inexprimé λ calculé. Trouvez la vôtre, découvrez sa valeur, et soyez les premiers à la codifier. L'explication mathématique complète — avec un exemple concret — se trouve sur la <a href="/codification/simulation">page de simulation</a>.`,s1_num: `I · Le pilote — Sardaigne`,s1_h2: `271 communes.<br/>Un tableau <em>en direct</em>.`,s1_p1: `Le tableau ci-dessous fonctionne comme un ticker de bourse. Chaque ligne est une commune sarde, classée par Potentiel Net Inexprimé λ — la valeur que le territoire possède déjà, mais qu'il ne peut pas encore convertir en économie réelle. La couleur indique le niveau d'entropie : <strong>rouge</strong> signifie une entropie élevée et la plus grande opportunité, <strong>jaune</strong> moyenne, <strong>vert</strong> faible — un territoire déjà efficace.`,s1_p2: `<strong>Masullas</strong> est la première commune en cours de codification active — son étude de cas complète, avec le calcul λ détaillé, se trouve sur la page de simulation. Toutes les autres communes ci-dessous sont ouvertes : cliquez pour voir leur valeur, et soyez les premiers à la revendiquer.`,dash1_title: `Sardaigne — 271 communes — modèle λ`,dash1_note: `Estimation du modèle λ — données prédictives, non issues du cadastre officiel. Méthodologie sur la page de simulation.`,dash_empty: `Aucune commune ne correspond à votre recherche.`,kpi_territories: `Territoires`,kpi_claimed: `Revendiqués`,kpi_net: `Potentiel Net λ`,kpi_measured: `Mesuré Net λ`,kpi_red: `🔴 Entropie élevée`,dash_search: `Rechercher une commune…`,dash_allprov: `Toutes les provinces`,dash_sort_val: `Trier par valeur λ`,dash_sort_name: `Trier A–Z`,dash_sort_pop: `Trier par population`,legend_red: `entropie élevée`,legend_yellow: `moyenne`,legend_green: `entropie faible`,legend_claimed: `revendiqué`,legend_open: `ouvert`,col_name: `Commune`,col_prov: `Prov`,col_pop: `Pop.`,col_status: `Statut`,s2_num: `II · Au-delà de la Sardaigne — EU-27`,s2_h2: `27 États membres.<br/>Un marché <em>inexploité</em>.`,s2_p1: `Le même modèle λ, appliqué à l'échelle des États membres, donne une première estimation de la valeur économique inexprimée contenue dans les systèmes juridiques et territoriaux de chaque pays de l'UE. C'est le même type de valeur trouvé en Sardaigne — gelée, non mesurée, en attente de codification — mais à l'échelle d'une nation entière.`,s2_p2: `Sur les 27 États membres, le total propre et cohérent de ce jeu de données atteint environ <strong>2,68 billions d'euros bruts</strong>, soit <strong>2,06 billions d'euros nets</strong> avec le même facteur de conversion de 0,77 utilisé pour la Sardaigne. Le <strong>potentiel</strong> est la taille du marché intérieur de chaque pays une fois son entropie juridique proche de zéro ; le <strong>mesuré</strong> est ce qui a été effectivement revendiqué et codifié à ce jour. L'écart entre les deux est le travail restant — et le marché encore à libérer.`,dash2_title: `EU-27 — potentiel vs. mesuré (€Md)`,dash2_note: `€Md = milliards d'euros. Net = potentiel × 0,77, le même facteur de conversion appliqué au jeu de données de Sardaigne. Mesuré = valeur λ des territoires effectivement revendiqués et en cours de codification — donnée live, part de €0 et augmente avec l'arrivée de nouveaux Agents de Codification Fondateurs.`,eu_col_rank: `#`,eu_col_country: `Pays`,eu_col_gross: `Potentiel`,eu_col_net: `Net`,eu_col_measured: `Mesuré`,eu_col_risk: `λ`,s3_num: `III · Toute ville de l'UE peut commencer ici`,s3_h2: `Devenez son <em>Agent</em><br/>de Codification fondateur.`,s3_p1: `Cette carte couvre actuellement les 271 communes de Sardaigne, mais le modèle λ s'applique à chaque commune, région et pays de l'UE. Chacun peut commencer dès aujourd'hui. Indiquez la vôtre ci-dessous — si c'est une grande ville, nous avons déjà une estimation de population ; sinon, vous la fournissez. Le chiffre affiché est <strong>approximatif, basé sur des données de population publiques, et sera confirmé empiriquement</strong> une fois la codification commencée.`,s3_p2: `Acquérir un PNC démarre la codification de ce territoire et vous rend son <strong>Agent de Codification fondateur</strong> — premier détenteur de la tranche de PNC ancrée à celui-ci, informellement son propre "[Ville]Coin". Selon le <a href="/pnc">cadre PNC</a>, ce n'est ni un jeton séparé ni un achat spéculatif : c'est le même certificat mathématique de réduction d'entropie, ancré à votre territoire, et les revenus financent le même travail de codification décrit là-bas.`,claim_title: `Démarrer un nouveau territoire`,claim_city_ph: `Nom de la ville ou commune`,claim_region_ph: `Région`,claim_pop_ph: `Population`,claim_estimate_label: `Potentiel Net Inexprimé λ estimé`,claim_estimate_note_dataset: `Approximatif — basé sur des données de population publiques. À confirmer empiriquement par l'Agent de Codification.`,claim_estimate_note_self: `Approximatif — basé sur la population que vous avez indiquée. À confirmer empiriquement par l'Agent de Codification.`,claim_found_label: `Trouvé dans notre jeu de données :`,claim_agent_ph: `Votre nom (facultatif)`,claim_email_ph: `Votre email`,claim_btn: `Devenir l'Agent de Codification fondateur — €99 →`,claim_note: `€99 permet d'acquérir un PNC ancré à ce territoire. Vous serez redirigé pour finaliser le paiement ; votre demande est enregistrée d'abord, le territoire est donc vôtre dès cet instant.`,claim_msg_taken: `Ce territoire a déjà été revendiqué — essayez-en un autre, ou consultez le tableau ci-dessus.`,claim_msg_err: `Une erreur est survenue. Réessayez ou écrivez-nous directement.`,claim_msg_redirect: `Demande enregistrée. Redirection vers le paiement…`,claim_err_email: `Veuillez saisir une adresse email valide.`,req_label_name: `Nom de la commune`,req_label_region: `Pays / Région`,req_region_ph: `ex. France, Bretagne`,req_label_email: `Votre email`,req_label_notes: `Notes (facultatif)`,req_btn: `Demander ce territoire`,req_ok: `Merci ! Votre demande a été enregistrée — nous vous contacterons à `,req_err_submit: `Erreur d'envoi. Veuillez réessayer ou nous écrire directement.`,req_err_network: `Erreur réseau. Veuillez réessayer plus tard.`,s4_num: `IV · Aller plus loin`,cta_h2: `Voir les <em>calculs.</em><br/>Avoir la preuve.`,cta_p: `La page de simulation présente le modèle λ complet avec un exemple concret, la vue d'ensemble EU-27 et le cadre du PNC territorial. Ou allez directement à votre PNC.`,cta_btn1: `→ Simulation complète`,cta_btn2: `→ Mon PNC`,footer_note: `Modèle λ et méthodologie Fractal Cross-Pollination · 1love.works — De Lege et Amore.`,
+  },
+  es: {
+    nav_problem: `El Problema`,nav_solutions: `Las Soluciones Propuestas`,nav_pnc: `PNC`,nav_codification: `Codificación`,nav_methodology: `Sobre Nosotros y Metodología`,nav_participate: `Participar`,overline: `1love.works · Codificación — Mapa de Territorios en Vivo`,h1: `Cada territorio tiene<br/><em>valor congelado.</em><br/>Nosotros lo medimos. Tú lo liberas.`,hero_intro: `Abajo está el mapa en vivo del modelo λ — el instrumento que mide el valor económico inexpresado dentro de los sistemas jurídicos de los territorios europeos. El conjunto de datos piloto cubre los 271 municipios de Cerdeña. Cada uno ya tiene un Potencial Neto Inexpresado λ calculado. Encuentra el tuyo, descubre cuánto vale, y sé el primero en codificarlo. La explicación matemática completa — con un ejemplo práctico — está en la <a href="/codification/simulation">página de simulación</a>.`,s1_num: `I · El piloto — Cerdeña`,s1_h2: `271 municipios.<br/>Un panel <em>en vivo</em>.`,s1_p1: `El panel de abajo funciona como un ticker bursátil. Cada fila es un municipio sardo, clasificado por su Potencial Neto Inexpresado λ — el valor que el territorio ya posee, pero que aún no puede convertir en economía real. El color indica el nivel de entropía: <strong>rojo</strong> significa alta entropía y la mayor oportunidad, <strong>amarillo</strong> media, <strong>verde</strong> baja — un territorio que ya funciona eficientemente.`,s1_p2: `<strong>Masullas</strong> es el primer municipio en codificación activa — su caso de estudio completo, con el cálculo λ desarrollado, está en la página de simulación. Cualquier otro municipio de abajo está abierto: haz clic para ver su valor, y sé el primero en reclamarlo.`,dash1_title: `Cerdeña — 271 municipios — modelo λ`,dash1_note: `Estimación del modelo λ — datos predictivos, no datos catastrales oficiales. Metodología en la página de simulación.`,dash_empty: `Ningún municipio coincide con tu búsqueda.`,kpi_territories: `Territorios`,kpi_claimed: `Reclamados`,kpi_net: `Potencial Neto λ`,kpi_measured: `Medido Neto λ`,kpi_red: `🔴 Alta entropía`,dash_search: `Buscar municipio…`,dash_allprov: `Todas las provincias`,dash_sort_val: `Ordenar por valor λ`,dash_sort_name: `Ordenar A–Z`,dash_sort_pop: `Ordenar por población`,legend_red: `alta entropía`,legend_yellow: `media`,legend_green: `baja entropía`,legend_claimed: `reclamado`,legend_open: `abierto`,col_name: `Municipio`,col_prov: `Prov`,col_pop: `Pob.`,col_status: `Estado`,s2_num: `II · Más allá de Cerdeña — EU-27`,s2_h2: `27 estados miembros.<br/>Un mercado <em>sin explotar</em>.`,s2_p1: `El mismo modelo λ, aplicado a la escala de los estados miembros, ofrece una primera estimación del valor económico inexpresado dentro de los sistemas jurídicos y territoriales de cada país de la UE. Es el mismo tipo de valor encontrado en Cerdeña — congelado, sin medir, esperando ser codificado — pero a escala de una nación entera.`,s2_p2: `En los 27 estados miembros, el total autoconsistente de este conjunto de datos asciende a aproximadamente <strong>2,68 billones de euros brutos</strong>, o <strong>2,06 billones de euros netos</strong> con el mismo factor de conversión de 0,77 usado para Cerdeña. El <strong>potencial</strong> es el tamaño del mercado interior de cada país una vez que su entropía legal se acerca a cero; lo <strong>medido</strong> es lo que realmente se ha reclamado y codificado hasta ahora. La diferencia entre ambos es el trabajo que queda — y el mercado aún por liberar.`,dash2_title: `EU-27 — potencial vs. medido (€B)`,dash2_note: `€B = miles de millones de euros. Neto = potencial × 0,77, el mismo factor de conversión aplicado al conjunto de datos de Cerdeña. Medido = valor λ de los territorios efectivamente reclamados y en codificación — dato en vivo, empieza en €0 y crece con la llegada de nuevos Agentes de Codificación Fundadores.`,eu_col_rank: `#`,eu_col_country: `País`,eu_col_gross: `Potencial`,eu_col_net: `Neto`,eu_col_measured: `Medido`,eu_col_risk: `λ`,s3_num: `III · Cualquier ciudad de la UE puede empezar aquí`,s3_h2: `Conviértete en su <em>Agente</em><br/>de Codificación fundador.`,s3_p1: `Este mapa cubre actualmente los 271 municipios de Cerdeña, pero el modelo λ se aplica a cada municipio, región y país de la UE. Cualquiera de ellos puede empezar hoy. Escribe el tuyo abajo — si es una ciudad importante ya tenemos una estimación de población; si no, la proporcionas tú. La cifra que aparece es <strong>aproximada, basada en datos de población públicos, y se confirmará empíricamente</strong> una vez comience la codificación.`,s3_p2: `Adquirir un PNC inicia la codificación de ese territorio y te convierte en su <strong>Agente de Codificación Fundador</strong> — primer titular de la tranche de PNC anclada a él, informalmente su propio "[Ciudad]Coin". Según el <a href="/pnc">marco PNC</a>, esto no es un token separado ni una compra especulativa: es el mismo certificado matemático de reducción de entropía, anclado a tu territorio, y los ingresos financian el mismo trabajo de codificación descrito allí.`,claim_title: `Iniciar un nuevo territorio`,claim_city_ph: `Nombre de la ciudad o municipio`,claim_region_ph: `Región`,claim_pop_ph: `Población`,claim_estimate_label: `Potencial Neto Inexpresado λ estimado`,claim_estimate_note_dataset: `Aproximado — basado en datos de población públicos. A confirmar empíricamente por el Agente de Codificación.`,claim_estimate_note_self: `Aproximado — basado en la población que indicaste. A confirmar empíricamente por el Agente de Codificación.`,claim_found_label: `Encontrado en nuestro conjunto de datos:`,claim_agent_ph: `Tu nombre (opcional)`,claim_email_ph: `Tu email`,claim_btn: `Convertirme en el Agente de Codificación Fundador — €99 →`,claim_note: `€99 adquiere un PNC anclado a este territorio. Serás redirigido para completar el pago; tu solicitud se registra primero, así que el territorio es tuyo desde este momento.`,claim_msg_taken: `Este territorio ya ha sido reclamado — prueba otro, o consulta el panel de arriba.`,claim_msg_err: `Algo salió mal. Inténtalo de nuevo o escríbenos directamente.`,claim_msg_redirect: `Solicitud registrada. Redirigiendo al pago…`,claim_err_email: `Introduce una dirección de email válida.`,req_label_name: `Nombre del municipio`,req_label_region: `País / Región`,req_region_ph: `ej. Francia, Bretaña`,req_label_email: `Tu email`,req_label_notes: `Notas (opcional)`,req_btn: `Solicitar este territorio`,req_ok: `¡Gracias! Hemos registrado tu solicitud — te contactaremos en `,req_err_submit: `Error de envío. Inténtalo de nuevo o escríbenos directamente.`,req_err_network: `Error de red. Inténtalo de nuevo más tarde.`,s4_num: `IV · Profundizar`,cta_h2: `Ve las <em>matemáticas.</em><br/>Tén la prueba.`,cta_p: `La página de simulación recorre el modelo λ completo con un ejemplo práctico real, la visión general EU-27 y el marco del PNC territorial. O ve directamente a tu propio PNC.`,cta_btn1: `→ Simulación completa`,cta_btn2: `→ Mi PNC`,footer_note: `Modelo λ y metodología Fractal Cross-Pollination · 1love.works — De Lege et Amore.`,
+  }
+};
+
+let currentLang = localStorage.getItem('1lw_lang') || 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('1lw_lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (T[lang] && T[lang][key] !== undefined) el.innerHTML = T[lang][key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const key = el.getAttribute('data-i18n-ph');
+    if (T[lang] && T[lang][key] !== undefined) el.setAttribute('placeholder', T[lang][key]);
+  });
+  document.documentElement.lang = lang;
+  render();
+}
+
+// Mobile nav toggle
+(function() {
+  function initNav() {
+    var toggle = document.getElementById('nav-toggle');
+    var links = document.querySelector('.nav-links');
+    if (!toggle || !links) return;
+    var isOpen = false;
+    toggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      isOpen = !isOpen;
+      links.classList.toggle('open', isOpen);
+      toggle.textContent = isOpen ? '✕' : '☰';
+    });
+    document.addEventListener('click', function() {
+      if (isOpen) { isOpen = false; links.classList.remove('open'); toggle.textContent = '☰'; }
+    });
+  }
+  if (document.readyState !== 'loading') initNav(); else document.addEventListener('DOMContentLoaded', initNav);
+})();
+</script>
+
+<script>
+// ── Sardinia dataset: SRAW = [province, name, population, trend%] — identical to the simulation page ──
 var SRAW=[
   ["CA","Assemini",21800,2],["CA","Cagliari",154000,2],["CA","Capoterra",24000,3],
   ["CA","Decimomannu",7800,1],["CA","Dolianova",9200,-8],["CA","Domus de Maria",1700,-15],
@@ -292,13 +495,92 @@ var SARD=SRAW.map(function(r,i){
   var base=pop*(sem==="🔴"?28:sem==="🟡"?22:16)/1000;
   var tot=Math.max(0.5,+(base*(0.8+sr()*0.4)).toFixed(1));
   return {prov:prov,name:name,pop:pop,trend:trend,sem:sem,nup:tot,ent:ent,
-    slug:name.toLowerCase().replace(/'/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')};
+    slug:name.toLowerCase().replace(/'/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,''),
+    code:'eu.it.sardegna.'+prov.toLowerCase()+'.'+name.toLowerCase().replace(/'/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')};
 });
 
+// ── EU-27 dataset: [code, name, flag, p1, p2, p3, total, risk, stars] — identical to simulation page ──
+var EU27=[
+  ["IT","Italy","🇮🇹",312,18,54,384,"🔴","3star"],["ES","Spain","🇪🇸",163,12,98,273,"🔴","3star"],
+  ["RO","Romania","🇷🇴",70,19,87,176,"🔴","3star"],["BG","Bulgaria","🇧🇬",22,8,42,72,"🔴","3star"],
+  ["GR","Greece","🇬🇷",55,12,65,132,"🔴","3star"],["HR","Croatia","🇭🇷",25,7,28,60,"🔴","2star"],
+  ["LT","Lithuania","🇱🇹",13,5,16,34,"🔴","2star"],["LV","Latvia","🇱🇻",8,4,12,24,"🔴","2star"],
+  ["HU","Hungary","🇭🇺",48,14,34,96,"🟡","2star"],["PL","Poland","🇵🇱",126,50,72,248,"🟡","2star"],
+  ["FR","France","🇫🇷",176,28,98,302,"🟡","2star"],["PT","Portugal","🇵🇹",42,4,38,84,"🔴","2star"],
+  ["DE","Germany","🇩🇪",153,38,72,263,"🟡","1star"],["CZ","Czechia","🇨🇿",52,18,24,94,"🟡","1star"],
+  ["SK","Slovakia","🇸🇰",29,9,16,54,"🟡","1star"],["BE","Belgium","🇧🇪",28,8,9,45,"🟡","1star"],
+  ["NL","Netherlands","🇳🇱",36,12,18,66,"🟡","1star"],["EE","Estonia","🇪🇪",10,3,7,20,"🟡","1star"],
+  ["FI","Finland","🇫🇮",26,6,14,46,"🟡","1star"],["SE","Sweden","🇸🇪",33,7,18,58,"🟡","1star"],
+  ["AT","Austria","🇦🇹",24,1,11,36,"🟢","none"],["DK","Denmark","🇩🇰",18,1,7,26,"🟢","none"],
+  ["IE","Ireland","🇮🇪",20,8,14,42,"🟢","none"],["SI","Slovenia","🇸🇮",13,4,8,25,"🟡","1star"],
+  ["LU","Luxembourg","🇱🇺",2,0,1,3,"🟢","none"],["MT","Malta","🇲🇹",3,1,2,6,"🟢","none"],
+  ["CY","Cyprus","🇨🇾",6,2,4,12,"🟡","1star"]
+];
+
+// ── Bundled EU cities for the "start any city" autocomplete: [country_code, city, region, population] ──
+// Approximate populations from public sources — self-reported figures use the same formula for cities not listed here.
+var EUCITIES=[
+  ["IT","Rome","Lazio",2870000],["IT","Milan","Lombardy",1352000],["IT","Naples","Campania",914000],
+  ["IT","Turin","Piedmont",848000],["IT","Palermo","Sicily",630000],["IT","Genoa","Liguria",558000],
+  ["IT","Bologna","Emilia-Romagna",388000],["IT","Florence","Tuscany",366000],["IT","Bari","Apulia",316000],
+  ["IT","Catania","Sicily",298000],
+  ["FR","Paris","Ile-de-France",2148000],["FR","Marseille","Provence-Alpes-Cote d'Azur",870000],
+  ["FR","Lyon","Auvergne-Rhone-Alpes",518000],["FR","Toulouse","Occitanie",498000],
+  ["FR","Nice","Provence-Alpes-Cote d'Azur",342000],["FR","Nantes","Pays de la Loire",320000],
+  ["FR","Strasbourg","Grand Est",287000],["FR","Bordeaux","Nouvelle-Aquitaine",260000],
+  ["FR","Lille","Hauts-de-France",233000],
+  ["DE","Berlin","Berlin",3677000],["DE","Hamburg","Hamburg",1900000],["DE","Munich","Bavaria",1488000],
+  ["DE","Cologne","North Rhine-Westphalia",1085000],["DE","Frankfurt","Hesse",759000],
+  ["DE","Stuttgart","Baden-Wurttemberg",626000],["DE","Dusseldorf","North Rhine-Westphalia",620000],
+  ["DE","Leipzig","Saxony",601000],["DE","Dortmund","North Rhine-Westphalia",588000],
+  ["DE","Essen","North Rhine-Westphalia",582000],
+  ["ES","Madrid","Community of Madrid",3280000],["ES","Barcelona","Catalonia",1620000],
+  ["ES","Valencia","Valencian Community",791000],["ES","Seville","Andalusia",684000],
+  ["ES","Zaragoza","Aragon",675000],["ES","Malaga","Andalusia",578000],
+  ["ES","Murcia","Region of Murcia",453000],["ES","Bilbao","Basque Country",345000],
+  ["PL","Warsaw","Mazowieckie",1860000],["PL","Krakow","Malopolskie",780000],
+  ["PL","Lodz","Lodzkie",670000],["PL","Wroclaw","Dolnoslaskie",640000],
+  ["PL","Poznan","Wielkopolskie",530000],["PL","Gdansk","Pomorskie",470000],
+  ["RO","Bucharest","Bucuresti-Ilfov",1800000],["RO","Cluj-Napoca","Cluj",324000],
+  ["RO","Timisoara","Timis",319000],["RO","Iasi","Iasi",271000],
+  ["NL","Amsterdam","North Holland",921000],["NL","Rotterdam","South Holland",655000],
+  ["NL","The Hague","South Holland",553000],["NL","Utrecht","Utrecht",361000],
+  ["BE","Brussels","Brussels",1218000],["BE","Antwerp","Flanders",530000],["BE","Ghent","Flanders",263000],
+  ["GR","Athens","Attica",664000],["GR","Thessaloniki","Central Macedonia",325000],
+  ["PT","Lisbon","Lisboa",545000],["PT","Porto","Porto",231000],
+  ["CZ","Prague","Praha",1310000],["CZ","Brno","Jihomoravsky",382000],
+  ["SE","Stockholm","Stockholm",978000],["SE","Gothenburg","Vastra Gotaland",583000],["SE","Malmo","Skane",352000],
+  ["AT","Vienna","Vienna",1931000],["AT","Graz","Styria",291000],
+  ["HU","Budapest","Pest",1750000],
+  ["BG","Sofia","Sofia-grad",1241000],["BG","Plovdiv","Plovdiv",346000],
+  ["DK","Copenhagen","Hovedstaden",644000],["DK","Aarhus","Midtjylland",280000],
+  ["FI","Helsinki","Uusimaa",660000],
+  ["SK","Bratislava","Bratislavsky",433000],
+  ["IE","Dublin","Leinster",592000],
+  ["HR","Zagreb","Grad Zagreb",769000],
+  ["LT","Vilnius","Vilnius",588000],
+  ["SI","Ljubljana","Osrednjeslovenska",295000],
+  ["LV","Riga","Riga",605000],
+  ["EE","Tallinn","Harju",438000],
+  ["CY","Nicosia","Lefkosia",200000],
+  ["LU","Luxembourg City","Luxembourg",128000],
+  ["MT","Valletta","South Eastern",6000]
+];
+
+var STRIPE_PNC_URL='https://buy.stripe.com/00waEXbDe4AvghJgyngUM00';
+
+
 // ── State ──
-var CLAIMED={}; // slug -> true, populated from Supabase pnc_holders.territory_code
+var CLAIMED={}; // territory_code -> true, populated from Supabase pnc_holders.territory_code
+var CLAIMS_BY_COUNTRY={}; // country_code -> sum of lambda_estimate_eur_m for paid territory_claims
+var SARDINIA_MEASURED_M=0; // sum of nup (€M) for claimed Sardinian comuni
 var SUPABASE_URL='https://pwrcqepqhtuesoximmoj.supabase.co';
 var SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB3cmNxZXBxaHR1ZXNveGltbW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwNjg2MTMsImV4cCI6MjA5MTY0NDYxM30.tO5SFloOfMZULDHtFII2dilE10fUk8SLCpmyHiCNidE';
+
+function slugify(s){
+  return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .toLowerCase().replace(/'/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+}
 
 function fEur(v){
   if(v>=1000)return"€"+(v/1000).toFixed(2)+"B";
@@ -306,19 +588,11 @@ function fEur(v){
 }
 function fPop(p){return p.toLocaleString('de-DE');}
 
-function setLang(l){
-  document.body.className=l==='it'?'it':'';
-  document.getElementById('lang-en').className=l==='en'?'active':'';
-  document.getElementById('lang-it').className=l==='it'?'active':'';
-  try{localStorage.setItem('codif_lang',l);}catch(e){}
-  render();
-}
-
 function render(){
   var q=document.getElementById('search').value.trim().toLowerCase();
   var prov=document.getElementById('provFilter').value;
   var sortBy=document.getElementById('sortBy').value;
-  var isIt=document.body.className==='it';
+  var t=T[currentLang]||T.en;
 
   var list=SARD.filter(function(r){
     if(prov && r.prov!==prov) return false;
@@ -332,26 +606,47 @@ function render(){
 
   var rowsEl=document.getElementById('rows');
   if(!list.length){
-    rowsEl.innerHTML='<div class="empty">'+(isIt?'Nessun risultato. ':'No matches. ')+'<a href="#request" style="color:var(--b2)">'+(isIt?'Richiedi il tuo comune →':'Request your municipality →')+'</a></div>';
-    return;
+    rowsEl.innerHTML='<div class="d-empty">'+t.dash_empty+'</div>';
+  }else{
+    var html='';
+    list.forEach(function(r,idx){
+      var isClaimed=!!CLAIMED[r.code];
+      var featured=r.slug==='masullas'?' featured':'';
+      var badge=isClaimed
+        ?'<span class="d-badge claimed">✓ '+t.legend_claimed+'</span>'
+        :'<span class="d-badge open">'+t.legend_open+'</span>';
+      html+='<a class="d-row'+featured+'" href="/codification/'+r.slug+'">'+
+        '<div class="d-rk">'+(idx+1)+'</div>'+
+        '<div class="d-nm">'+r.sem+' '+r.name+'</div>'+
+        '<div class="d-prov">'+r.prov+'</div>'+
+        '<div class="d-pop">'+fPop(r.pop)+'</div>'+
+        '<div class="d-val">'+fEur(r.nup)+'</div>'+
+        '<div class="d-status">'+badge+'</div>'+
+        '<div class="d-arrow">→</div>'+
+      '</a>';
+    });
+    rowsEl.innerHTML=html;
   }
 
+  renderEU();
+}
+
+function renderEU(){
+  var rowsEl=document.getElementById('eu-rows');
+  var list=EU27.slice().sort(function(a,b){return b[6]-a[6];});
   var html='';
   list.forEach(function(r,idx){
-    var isClaimed=!!CLAIMED[r.slug];
-    var featured=r.slug==='masullas'?' featured':'';
-    var badge=isClaimed
-      ?'<span class="badge claimed">✓ '+(isIt?'rivendicato':'claimed')+'</span>'
-      :'<span class="badge open">'+(isIt?'aperto':'open')+'</span>';
-    html+='<a class="grow'+featured+'" href="/codification/'+r.slug+'">'+
-      '<div class="rk">'+(idx+1)+'</div>'+
-      '<div class="nm">'+r.sem+' '+r.name+badge+'</div>'+
-      '<div class="prov">'+r.prov+'</div>'+
-      '<div class="pop">'+fPop(r.pop)+'</div>'+
-      '<div class="val">'+fEur(r.nup)+'</div>'+
-      '<div class="status">'+(isClaimed?'✓':'—')+'</div>'+
-      '<div class="arrow">→</div>'+
-    '</a>';
+    var gross=r[6], net=Math.round(gross*0.77);
+    var measuredM=((CLAIMS_BY_COUNTRY[r[0]]||0)+(r[0]==='IT'?SARDINIA_MEASURED_M:0))*0.77;
+    var measured=measuredM>0?fEur(measuredM):'€0';
+    html+='<div class="eu-row">'+
+      '<div class="eu-rk">'+(idx+1)+'</div>'+
+      '<div class="eu-nm">'+r[2]+' '+r[1]+'</div>'+
+      '<div class="eu-v">€'+gross+'B</div>'+
+      '<div class="eu-v net">€'+net+'B</div>'+
+      '<div class="eu-v measured">'+measured+'</div>'+
+      '<div class="eu-sc">'+r[7]+'</div>'+
+    '</div>';
   });
   rowsEl.innerHTML=html;
 }
@@ -367,10 +662,31 @@ function loadClaimed(){
         });
         var n=Object.keys(CLAIMED).length;
         document.getElementById('kpi-claimed').textContent=n;
+        SARDINIA_MEASURED_M=0;
+        SARD.forEach(function(r){ if(CLAIMED[r.code]) SARDINIA_MEASURED_M+=r.nup; });
+        document.getElementById('kpi-measured').textContent=SARDINIA_MEASURED_M>0?fEur(SARDINIA_MEASURED_M*0.77):'€0';
         render();
       }
     })
     .catch(function(){ document.getElementById('kpi-claimed').textContent='0'; });
+}
+
+function loadTerritoryClaims(){
+  fetch(SUPABASE_URL+'/rest/v1/territory_claims_public?select=territory_code,country_code,lambda_estimate_eur_m&status=eq.paid',
+    {headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY}})
+    .then(function(r){return r.json();})
+    .then(function(data){
+      if(Array.isArray(data)){
+        CLAIMS_BY_COUNTRY={};
+        data.forEach(function(row){
+          var cc=(row.country_code||'').toUpperCase();
+          var v=+row.lambda_estimate_eur_m||0;
+          CLAIMS_BY_COUNTRY[cc]=(CLAIMS_BY_COUNTRY[cc]||0)+v;
+        });
+        renderEU();
+      }
+    })
+    .catch(function(){});
 }
 
 function calcKpis(){
@@ -380,61 +696,188 @@ function calcKpis(){
   document.getElementById('kpi-net').textContent='€'+(net/1000).toFixed(2)+'B';
 }
 
-function submitRequest(ev){
-  ev.preventDefault();
-  var isIt=document.body.className==='it';
-  var btn=document.getElementById('req-btn');
-  var msg=document.getElementById('req-msg');
-  var body={
-    municipality:document.getElementById('req-name').value.trim(),
-    region:document.getElementById('req-region').value.trim(),
-    email:document.getElementById('req-email').value.trim().toLowerCase(),
-    notes:document.getElementById('req-notes').value.trim(),
-    created_at:new Date().toISOString()
-  };
-  btn.disabled=true;
-  fetch(SUPABASE_URL+'/rest/v1/territory_requests',{
-    method:'POST',
-    headers:{
-      apikey:SUPABASE_KEY,
-      Authorization:'Bearer '+SUPABASE_KEY,
-      'Content-Type':'application/json',
-      Prefer:'return=minimal'
-    },
-    body:JSON.stringify(body)
-  }).then(function(r){
-    btn.disabled=false;
-    msg.style.display='block';
-    if(r.ok){
-      msg.className='req-msg ok';
-      msg.textContent=isIt
-        ?('Grazie! Abbiamo registrato la tua richiesta — ti contatteremo a '+body.email+'.')
-        :('Thank you! We have logged your request — we will be in touch at '+body.email+'.');
-      document.getElementById('reqForm').reset();
-    }else{
-      msg.className='req-msg err';
-      msg.textContent=isIt
-        ?'Errore di invio. Riprova o scrivici direttamente.'
-        :'Submission error. Please try again or email us directly.';
-    }
-  }).catch(function(){
-    btn.disabled=false;
-    msg.style.display='block';
-    msg.className='req-msg err';
-    msg.textContent=isIt
-      ?'Errore di rete. Riprova più tardi.'
-      :'Network error. Please try again later.';
-  });
-  return false;
+document.getElementById('search').addEventListener('input', render);
+document.getElementById('provFilter').addEventListener('change', render);
+document.getElementById('sortBy').addEventListener('change', render);
+
+// ── Territory claim flow ──
+var claimSource=null; // 'dataset' | 'self' | null
+var claimMatch=null;  // matched EUCITIES row when source==='dataset'
+
+function buildClaimUI(){
+  var t=T[currentLang]||T.en;
+  // country select
+  var countrySel=document.getElementById('claim-country');
+  if(countrySel.options.length===0){
+    EU27.slice().sort(function(a,b){return a[1].localeCompare(b[1]);}).forEach(function(r){
+      var o=document.createElement('option');
+      o.value=r[0]; o.textContent=r[2]+' '+r[1];
+      countrySel.appendChild(o);
+    });
+  }
+  // datalist
+  var dl=document.getElementById('claim-city-list');
+  if(dl.options.length===0){
+    EUCITIES.forEach(function(c){
+      var o=document.createElement('option');
+      o.value=c[1];
+      dl.appendChild(o);
+    });
+  }
 }
 
+function onClaimCityInput(){
+  var t=T[currentLang]||T.en;
+  var val=document.getElementById('claim-city').value.trim();
+  var foundEl=document.getElementById('claim-found');
+  var manualRow=document.getElementById('claim-manual-row');
+  claimMatch=null;
+  if(!val){
+    claimSource=null;
+    foundEl.style.display='none';
+    manualRow.style.display='none';
+    updateClaimEstimate();
+    return;
+  }
+  var m=EUCITIES.find(function(c){return c[1].toLowerCase()===val.toLowerCase();});
+  if(m){
+    claimMatch=m; claimSource='dataset';
+    var country=EU27.find(function(r){return r[0]===m[0];});
+    foundEl.textContent=t.claim_found_label+' '+(country?country[2]+' ':'')+m[1]+', '+m[2]+' ('+fPop(m[3])+')';
+    foundEl.style.display='block';
+    manualRow.style.display='none';
+  }else{
+    claimSource='self';
+    foundEl.style.display='none';
+    manualRow.style.display='flex';
+  }
+  updateClaimEstimate();
+}
+
+function updateClaimEstimate(){
+  var t=T[currentLang]||T.en;
+  var box=document.getElementById('claim-estimate');
+  var pop=0;
+  if(claimSource==='dataset'&&claimMatch){
+    pop=claimMatch[3];
+  }else if(claimSource==='self'){
+    pop=+document.getElementById('claim-pop').value||0;
+  }
+  if(pop<=0){
+    box.style.display='none';
+  }else{
+    var est=Math.max(0.5,+(pop*22/1000).toFixed(1));
+    box.style.display='block';
+    document.getElementById('claim-estimate-value').textContent=fEur(est);
+    document.getElementById('claim-estimate-note').textContent=
+      claimSource==='dataset'?t.claim_estimate_note_dataset:t.claim_estimate_note_self;
+  }
+  validateClaimForm();
+}
+
+function validateClaimForm(){
+  var city=document.getElementById('claim-city').value.trim();
+  var email=document.getElementById('claim-email').value.trim();
+  var pop=0;
+  if(claimSource==='dataset'&&claimMatch) pop=claimMatch[3];
+  else if(claimSource==='self') pop=+document.getElementById('claim-pop').value||0;
+  var emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  var ok=!!city&&pop>0&&emailOk&&claimSource;
+  if(claimSource==='self'){
+    var cc=document.getElementById('claim-country').value;
+    var region=document.getElementById('claim-region').value.trim();
+    ok=ok&&!!cc&&!!region;
+  }
+  document.getElementById('claim-btn').disabled=!ok;
+}
+
+function doClaim(){
+  var t=T[currentLang]||T.en;
+  var btn=document.getElementById('claim-btn');
+  var msg=document.getElementById('claim-msg');
+  var city=document.getElementById('claim-city').value.trim();
+  var agent=document.getElementById('claim-agent').value.trim();
+  var email=document.getElementById('claim-email').value.trim().toLowerCase();
+  var cc,region,pop,popSource;
+  if(claimSource==='dataset'&&claimMatch){
+    cc=claimMatch[0]; region=claimMatch[2]; pop=claimMatch[3]; popSource='dataset';
+  }else{
+    cc=document.getElementById('claim-country').value;
+    region=document.getElementById('claim-region').value.trim();
+    pop=+document.getElementById('claim-pop').value||0;
+    popSource='self-reported';
+  }
+  var lambdaEst=Math.max(0.5,+(pop*22/1000).toFixed(1));
+  var code='eu.'+cc.toLowerCase()+'.'+slugify(region)+'.'+slugify(city);
+
+  btn.disabled=true;
+  msg.className='claim-msg';
+  msg.textContent='';
+
+  fetch(SUPABASE_URL+'/rest/v1/territory_claims_public?select=id&territory_code=eq.'+encodeURIComponent(code)+'&status=in.(pending,paid)',
+    {headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY}})
+    .then(function(r){return r.json();})
+    .then(function(existing){
+      if(Array.isArray(existing)&&existing.length){
+        msg.className='claim-msg taken';
+        msg.textContent=t.claim_msg_taken;
+        btn.disabled=false;
+        return;
+      }
+      return fetch(SUPABASE_URL+'/rest/v1/territory_claims',{
+        method:'POST',
+        headers:{
+          apikey:SUPABASE_KEY,
+          Authorization:'Bearer '+SUPABASE_KEY,
+          'Content-Type':'application/json',
+          Prefer:'return=representation'
+        },
+        body:JSON.stringify({
+          territory_code:code,
+          display_name:city,
+          country_code:cc,
+          region:region,
+          population:pop,
+          population_source:popSource,
+          lambda_estimate_eur_m:lambdaEst,
+          agent_name:agent||null,
+          agent_email:email,
+          status:'pending'
+        })
+      }).then(function(r){return r.json();}).then(function(rows){
+        var id=Array.isArray(rows)&&rows[0]&&rows[0].id;
+        if(!id){ throw new Error('no id'); }
+        msg.className='claim-msg ok';
+        msg.textContent=t.claim_msg_redirect;
+        setTimeout(function(){
+          window.location.href=STRIPE_PNC_URL+'?client_reference_id='+encodeURIComponent(id)+'&prefilled_email='+encodeURIComponent(email);
+        },900);
+      });
+    })
+    .catch(function(){
+      msg.className='claim-msg err';
+      msg.textContent=t.claim_msg_err;
+      btn.disabled=false;
+    });
+}
+
+buildClaimUI();
+['claim-city'].forEach(function(id){
+  document.getElementById(id).addEventListener('input', onClaimCityInput);
+});
+['claim-country','claim-region','claim-pop','claim-email'].forEach(function(id){
+  document.getElementById(id).addEventListener('input', function(){
+    if(id==='claim-pop'||id==='claim-region'||id==='claim-country') updateClaimEstimate();
+    else validateClaimForm();
+  });
+});
+document.getElementById('claim-btn').addEventListener('click', doClaim);
+
 // init
-(function(){
-  try{ if(localStorage.getItem('codif_lang')==='it') setLang('it'); }catch(e){}
-  calcKpis();
-  render();
-  loadClaimed();
-})();
+calcKpis();
+setLang(currentLang);
+loadClaimed();
+loadTerritoryClaims();
 </script>
 </body>
 </html>
