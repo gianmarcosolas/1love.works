@@ -197,7 +197,7 @@ footer { max-width: 900px; margin: 0 auto; padding: 32px 48px 56px; font-family:
 <section class="section">
   <p class="section-num" data-i18n="s1_num">I · The pilot — Sardinia</p>
   <h2 data-i18n="s1_h2">271 municipalities.<br/>One <em>live</em> board.</h2>
-  <p data-i18n="s1_p1">The board below works like a stock exchange ticker. Every row is a Sardinian comune, ranked by its λ Net Unexpressed Potential — the value the legal system already has, but cannot yet convert into real economy. Colour marks entropy level: <strong>red</strong> means high entropy and the biggest opportunity, <strong>yellow</strong> medium, <strong>green</strong> low — a legal system already running efficiently.</p>
+  <p data-i18n="s1_p1">The board below works like a stock exchange ticker. Every row is a Sardinian comune, ranked by its λ Net Unexpressed Potential — the value the territory already has, but cannot yet convert into real economy. Colour marks entropy level: <strong>red</strong> means high entropy and the biggest opportunity, <strong>yellow</strong> medium, <strong>green</strong> low — a territory already running efficiently.</p>
   <p data-i18n="s1_p2"><strong>Masullas</strong> is the first comune being actively codified — its full case study, with the worked λ calculation, lives on the simulation page. Every other municipality below is open: click through to see its number, and be the first to claim it.</p>
 
   <div class="dashboard">
@@ -615,7 +615,7 @@ function render(){
       var badge=isClaimed
         ?'<span class="d-badge claimed">✓ '+t.legend_claimed+'</span>'
         :'<span class="d-badge open">'+t.legend_open+'</span>';
-      html+='<a class="d-row'+featured+'" href="/codification/'+r.slug+'">'+
+      html+='<a class="d-row'+featured+'" href="/codification/comune.html?c='+r.slug+'">'+
         '<div class="d-rk">'+(idx+1)+'</div>'+
         '<div class="d-nm">'+r.sem+' '+r.name+'</div>'+
         '<div class="d-prov">'+r.prov+'</div>'+
@@ -878,6 +878,18 @@ calcKpis();
 setLang(currentLang);
 loadClaimed();
 loadTerritoryClaims();
+
+// Pre-fill the claim form when arriving via a "?prefill=<city>" link (e.g. from a comune detail page)
+(function(){
+  var p = new URLSearchParams(location.search);
+  var pre = p.get('prefill');
+  if (!pre) return;
+  document.getElementById('claim-city').value = pre;
+  onClaimCityInput();
+  var section = document.getElementById('claim');
+  if (section) setTimeout(function(){ section.scrollIntoView({behavior:'smooth', block:'start'}); }, 50);
+})();
+
 </script>
 </body>
 </html>
