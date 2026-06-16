@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Comune — Codification — 1love.works</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #0d1f38; --parchment: #eef4fb; --cream: #ddeaf8; --white: #f5f9fd;
+  --gold: #b8860b; --blue: #2a7fc0; --flow: #5bb8e8; --green: #2d6a2d; --red: #8b0000;
+  --muted: #5a7490; --rule: rgba(13,31,56,0.10); --rule-med: rgba(13,31,56,0.18);
+  --serif: 'EB Garamond', Georgia, serif; --mono: 'DM Mono', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--serif); background: var(--parchment); color: var(--ink); line-height: 1.75; font-size: 18px; }
+
+nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(238,244,251,0.97); backdrop-filter: blur(8px); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 14px 48px; }
+.nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; font-weight: 500; }
+.nav-links { display: flex; gap: 24px; list-style: none; align-items: center; justify-content: center; }
+.nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--ink); }
+.lang-switcher { display: flex; border: 1px solid var(--rule); overflow: hidden; }
+.lang-btn { font-family: var(--mono); font-size: 10px; padding: 5px 9px; border: none; background: transparent; color: var(--muted); cursor: pointer; border-right: 1px solid var(--rule); transition: all 0.15s; }
+.lang-btn:last-child { border-right: none; }
+.lang-btn.active { background: var(--ink); color: var(--parchment); }
+.lang-btn:hover:not(.active) { background: var(--cream); }
+
+.hero { max-width: 760px; margin: 0 auto; padding: 48px 48px 40px; border-bottom: 1px solid var(--rule); }
+.back-link { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+.back-link:hover { color: var(--ink); }
+.hero-overline { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin: 22px 0 18px; }
+.hero h1 { font-size: clamp(34px, 5.5vw, 54px); font-weight: 400; line-height: 1.1; margin-bottom: 14px; }
+.hero h1 em { font-style: italic; color: var(--gold); }
+.hero-sub { font-size: 19px; color: #3a3a36; line-height: 1.7; }
+
+.section { max-width: 760px; margin: 0 auto; padding: 40px 48px; border-bottom: 1px solid var(--rule); }
+.section-num { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; display: flex; align-items: center; gap: 12px; }
+.section-num::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.section h2 { font-size: clamp(22px, 3.4vw, 30px); font-weight: 400; line-height: 1.2; margin-bottom: 16px; }
+.section p { font-size: 17px; color: #3a3a36; line-height: 1.85; margin-bottom: 16px; }
+.section p:last-of-type { margin-bottom: 0; }
+.section p a { color: var(--gold); }
+
+.dashboard { background: var(--ink); color: var(--parchment); padding: 32px; }
+.dashboard-title { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(245,242,234,0.5); margin-bottom: 20px; }
+.dashboard-note { font-family: var(--mono); font-size: 11px; color: rgba(245,242,234,0.4); margin-top: 18px; font-style: italic; }
+.d-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: rgba(245,242,234,0.1); }
+.d-kpi { background: var(--ink); padding: 14px 16px; }
+.d-kpi .l { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(245,242,234,0.4); margin-bottom: 6px; }
+.d-kpi .v { font-family: var(--mono); font-size: 20px; font-weight: 500; color: var(--gold); }
+.d-kpi .v.status-open { color: var(--gold); }
+.d-kpi .v.status-claimed { color: #8fd18f; }
+
+.notice-box { border: 1px solid var(--rule-med); border-left: 4px solid var(--gold); padding: 22px 26px; background: var(--white); }
+.notice-box.masullas { border-left-color: #2d6a2d; }
+.notice-box h3 { font-size: 19px; font-weight: 500; margin-bottom: 10px; }
+.notice-box p { font-size: 16px; color: #3a3a36; line-height: 1.8; margin-bottom: 14px; }
+.notice-box p:last-of-type { margin-bottom: 0; }
+
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px; }
+.cta-row a, .cta-row button {
+  display: inline-block; font-family: var(--mono); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 24px; text-decoration: none;
+  border: none; cursor: pointer;
+}
+.cta-row a.primary, .cta-row button.primary { background: var(--gold); color: var(--ink); }
+.cta-row a.secondary { background: transparent; color: var(--ink); border: 1px solid var(--rule-med); }
+
+.claimed-badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #2d6a2d; background: rgba(45,106,45,0.08); border: 1px solid rgba(45,106,45,0.25); padding: 8px 14px; margin-bottom: 16px; }
+
+footer { max-width: 900px; margin: 0 auto; padding: 32px 48px 56px; font-family: var(--mono); font-size: 11px; color: var(--muted); }
+
+@media (max-width: 680px) {
+  body { font-size: 16px; }
+  nav { padding: 12px 20px; grid-template-columns: 1fr auto; }
+  .nav-links { display: none; }
+  .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 52px; left: 0; right: 0; background: rgba(238,244,251,0.99); padding: 16px 20px 24px; border-bottom: 1px solid var(--rule-med); z-index: 9999; gap: 0; }
+  #nav-toggle { display: block !important; }
+  .hero, .section, footer { padding-left: 20px; padding-right: 20px; }
+  .hero h1 { font-size: 30px; }
+  .d-kpis { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">1love.works</a>
+  <ul class="nav-links">
+    <li class="hide-mobile"><a href="/problem" data-i18n="nav_problem">The Problem</a></li>
+    <li class="hide-mobile"><a href="/solutions" data-i18n="nav_solutions">The Proposed Solutions</a></li>
+    <li class="hide-mobile"><a href="/pnc" data-i18n="nav_pnc">PNC</a></li>
+    <li class="hide-mobile"><a href="/methodology" data-i18n="nav_methodology">About &amp; Methodology</a></li>
+    <li class="hide-mobile"><a href="/participate" data-i18n="nav_participate">Participate</a></li>
+  </ul>
+  <div style="display: flex; justify-content: flex-end;">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('it')">IT</button>
+      <button class="lang-btn" onclick="setLang('fr')">FR</button>
+      <button class="lang-btn" onclick="setLang('es')">ES</button>
+    </div>
+  </div>
+  <button id="nav-toggle" style="display:none; font-size:18px; background:none; border:none; cursor:pointer; color:var(--ink); padding:4px;" aria-label="Menu">☰</button>
+</nav>
+
+<div class="hero">
+  <a class="back-link" href="/codification" data-i18n="back_link">← Back to the live map</a>
+  <div id="tc-overline" class="hero-overline">Sardinia · λ model</div>
+  <h1 id="tc-name">—</h1>
+  <p class="hero-sub" id="tc-sub"></p>
+</div>
+
+<section class="section" id="tc-dashboard-section" style="display:none">
+  <div class="dashboard">
+    <div class="dashboard-title" id="tc-dash-title">λ model — single comune</div>
+    <div class="d-kpis">
+      <div class="d-kpi"><div class="l" id="tc-l-pop">Population</div><div class="v" id="tc-v-pop">—</div></div>
+      <div class="d-kpi"><div class="l" id="tc-l-gross">λ Potential (gross)</div><div class="v" id="tc-v-gross">—</div></div>
+      <div class="d-kpi"><div class="l" id="tc-l-net">λ Potential (net)</div><div class="v" id="tc-v-net">—</div></div>
+      <div class="d-kpi"><div class="l" id="tc-l-status">Status</div><div class="v" id="tc-v-status">—</div></div>
+    </div>
+    <div class="dashboard-note" id="tc-dash-note"></div>
+  </div>
+</section>
+
+<section class="section" id="tc-notice-section" style="display:none">
+  <div class="notice-box" id="tc-notice-box">
+    <h3 id="tc-notice-title"></h3>
+    <p id="tc-notice-text"></p>
+    <div class="cta-row">
+      <a class="secondary" id="tc-notice-btn" href="/codification/simulation"></a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="tc-cta-section" style="display:none; border-bottom: none;">
+  <div id="tc-cta-claimed" style="display:none">
+    <span class="claimed-badge" id="tc-cta-claimed-title"></span>
+    <p id="tc-cta-claimed-text" style="margin-bottom:18px"></p>
+    <div class="cta-row">
+      <a class="primary" id="tc-cta-claimed-btn" href="/pnc"></a>
+    </div>
+  </div>
+  <div id="tc-cta-open" style="display:none">
+    <h2 id="tc-cta-open-title" style="margin-bottom:14px"></h2>
+    <p id="tc-cta-open-text" style="margin-bottom:18px"></p>
+    <div class="cta-row">
+      <a class="primary" id="tc-cta-open-btn" href="#"></a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="tc-notfound-section" style="display:none; border-bottom:none">
+  <h2 id="tc-notfound-title"></h2>
+  <p id="tc-notfound-text" style="margin-bottom:18px"></p>
+  <div class="cta-row">
+    <a class="secondary" id="tc-notfound-link" href="/codification"></a>
+  </div>
+</section>
+
+<footer><span data-i18n="footer_note">λ model and Fractal Cross-Pollination methodology · 1love.works — De Lege et Amore.</span></footer>
+
+<script>
+var T = {
+  en: {
+    nav_problem: `The Problem`, nav_solutions: `The Proposed Solutions`, nav_pnc: `PNC`, nav_codification: `Codification`, nav_methodology: `About &amp; Methodology`, nav_participate: `Participate`,
+    back_link: `← Back to the live map`,
+    overline: `Sardinia · λ model`,
+    dash_title: `λ model — single comune`,
+    kpi_pop: `Population`, kpi_gross: `λ Potential (gross)`, kpi_net: `λ Potential (net)`, kpi_status: `Status`,
+    status_claimed: `✓ claimed`, status_open: `open`, status_checking: `checking…`,
+    dash_note: `λ model estimate — predictive, not official cadastral data. Methodology on the simulation page.`,
+    notice_masullas_title: `The first comune in active codification`,
+    notice_masullas_text: `Masullas is currently the only comune with a complete, step-by-step λ calculation. Its full worked case study — population, entropy coefficient, gross and net Unexpressed Potential, all shown — lives on the simulation page.`,
+    notice_masullas_btn: `→ See the full worked case study`,
+    notice_default_title: `Codification pending`,
+    notice_default_text: `This comune hasn't begun active codification yet — the number above is the λ model's baseline estimate, to be confirmed empirically once a Codification Agent takes it on. For now, see exactly how the calculation works using Masullas, the first comune in active codification, on the simulation page.`,
+    notice_default_btn: `→ See how this number is calculated`,
+    cta_claim_title: `Claim this territory`,
+    cta_claim_text: `No one has claimed {name} yet. Acquiring one PNC begins its codification and makes you its Founding Codification Agent — holder #1 of the PNC tranche anchored to it.`,
+    cta_claim_btn: `Become the Founding Codification Agent — €99 →`,
+    cta_claimed_title: `✓ Already claimed`,
+    cta_claimed_text: `{name} has a Founding Codification Agent. You can still explore your own PNC, or start a different territory.`,
+    cta_claimed_btn: `→ My PNC`,
+    not_found_title: `Territory not found`,
+    not_found_text: `We couldn't find a comune matching this address. It may have been mistyped, or it isn't part of the 271-comune Sardinia dataset yet.`,
+    not_found_link: `← Back to the live map`,
+    footer_note: `λ model and Fractal Cross-Pollination methodology · 1love.works — De Lege et Amore.`
+  },
+  it: {
+    nav_problem: `Il Problema`, nav_solutions: `Le Soluzioni Proposte`, nav_pnc: `PNC`, nav_codification: `Codificazione`, nav_methodology: `Chi Siamo e Metodologia`, nav_participate: `Partecipa`,
+    back_link: `← Torna alla mappa live`,
+    overline: `Sardegna · modello λ`,
+    dash_title: `Modello λ — singolo comune`,
+    kpi_pop: `Popolazione`, kpi_gross: `Potenziale λ (gross)`, kpi_net: `Potenziale λ (net)`, kpi_status: `Stato`,
+    status_claimed: `✓ rivendicato`, status_open: `aperto`, status_checking: `verifica…`,
+    dash_note: `Stima del modello λ — dati predittivi, non output catastali ufficiali. Metodologia nella pagina di simulazione.`,
+    notice_masullas_title: `Il primo comune in codificazione attiva`,
+    notice_masullas_text: `Masullas è attualmente l'unico comune con un calcolo λ completo, passo per passo. Il suo caso studio completo — popolazione, coefficiente di entropia, Potenziale Inespresso gross e net, tutto mostrato — è nella pagina di simulazione.`,
+    notice_masullas_btn: `→ Vedi il caso studio completo`,
+    notice_default_title: `Codificazione in attesa`,
+    notice_default_text: `Questo comune non ha ancora iniziato la codificazione attiva — il numero sopra è la stima di base del modello λ, da confermare empiricamente quando un Agente di Codificazione se ne occuperà. Per ora, vedi esattamente come funziona il calcolo usando Masullas, il primo comune in codificazione attiva, nella pagina di simulazione.`,
+    notice_default_btn: `→ Vedi come si calcola questo numero`,
+    cta_claim_title: `Rivendica questo territorio`,
+    cta_claim_text: `Nessuno ha ancora rivendicato {name}. Acquisire un PNC avvia la sua codificazione e ti rende il suo Agente di Codificazione Fondatore — primo detentore della tranche di PNC ancorata a esso.`,
+    cta_claim_btn: `Diventa l'Agente di Codificazione Fondatore — €99 →`,
+    cta_claimed_title: `✓ Già rivendicato`,
+    cta_claimed_text: `{name} ha già un Agente di Codificazione Fondatore. Puoi comunque esplorare il tuo PNC, o avviare un territorio diverso.`,
+    cta_claimed_btn: `→ Il mio PNC`,
+    not_found_title: `Comune non trovato`,
+    not_found_text: `Non abbiamo trovato un comune corrispondente a questo indirizzo. Potrebbe essere stato digitato male, oppure non fa ancora parte del dataset dei 271 comuni della Sardegna.`,
+    not_found_link: `← Torna alla mappa live`,
+    footer_note: `Modello λ e metodologia Fractal Cross-Pollination · 1love.works — De Lege et Amore.`
+  },
+  fr: {
+    nav_problem: `Le Problème`, nav_solutions: `Les Solutions Proposées`, nav_pnc: `PNC`, nav_codification: `Codification`, nav_methodology: `À Propos et Méthodologie`, nav_participate: `Participer`,
+    back_link: `← Retour à la carte en direct`,
+    overline: `Sardaigne · modèle λ`,
+    dash_title: `Modèle λ — commune unique`,
+    kpi_pop: `Population`, kpi_gross: `Potentiel λ (brut)`, kpi_net: `Potentiel λ (net)`, kpi_status: `Statut`,
+    status_claimed: `✓ revendiqué`, status_open: `ouvert`, status_checking: `vérification…`,
+    dash_note: `Estimation du modèle λ — données prédictives, non issues du cadastre officiel. Méthodologie sur la page de simulation.`,
+    notice_masullas_title: `La première commune en codification active`,
+    notice_masullas_text: `Masullas est actuellement la seule commune disposant d'un calcul λ complet, étape par étape. Son étude de cas complète — population, coefficient d'entropie, Potentiel Inexprimé brut et net, tout est détaillé — se trouve sur la page de simulation.`,
+    notice_masullas_btn: `→ Voir l'étude de cas complète`,
+    notice_default_title: `Codification en attente`,
+    notice_default_text: `Cette commune n'a pas encore commencé sa codification active — le chiffre ci-dessus est l'estimation de base du modèle λ, à confirmer empiriquement lorsqu'un Agent de Codification s'en chargera. Pour l'instant, voyez exactement comment fonctionne le calcul avec Masullas, la première commune en codification active, sur la page de simulation.`,
+    notice_default_btn: `→ Voir comment ce chiffre est calculé`,
+    cta_claim_title: `Revendiquer ce territoire`,
+    cta_claim_text: `Personne n'a encore revendiqué {name}. Acquérir un PNC démarre sa codification et vous rend son Agent de Codification fondateur — premier détenteur de la tranche de PNC ancrée à celui-ci.`,
+    cta_claim_btn: `Devenir l'Agent de Codification fondateur — €99 →`,
+    cta_claimed_title: `✓ Déjà revendiqué`,
+    cta_claimed_text: `{name} a déjà un Agent de Codification fondateur. Vous pouvez tout de même explorer votre propre PNC, ou démarrer un autre territoire.`,
+    cta_claimed_btn: `→ Mon PNC`,
+    not_found_title: `Commune introuvable`,
+    not_found_text: `Nous n'avons trouvé aucune commune correspondant à cette adresse. Elle a peut-être été mal saisie, ou ne fait pas encore partie du jeu de données des 271 communes de Sardaigne.`,
+    not_found_link: `← Retour à la carte en direct`,
+    footer_note: `Modèle λ et méthodologie Fractal Cross-Pollination · 1love.works — De Lege et Amore.`
+  },
+  es: {
+    nav_problem: `El Problema`, nav_solutions: `Las Soluciones Propuestas`, nav_pnc: `PNC`, nav_codification: `Codificación`, nav_methodology: `Sobre Nosotros y Metodología`, nav_participate: `Participar`,
+    back_link: `← Volver al mapa en vivo`,
+    overline: `Cerdeña · modelo λ`,
+    dash_title: `Modelo λ — municipio único`,
+    kpi_pop: `Población`, kpi_gross: `Potencial λ (bruto)`, kpi_net: `Potencial λ (neto)`, kpi_status: `Estado`,
+    status_claimed: `✓ reclamado`, status_open: `abierto`, status_checking: `comprobando…`,
+    dash_note: `Estimación del modelo λ — datos predictivos, no datos catastrales oficiales. Metodología en la página de simulación.`,
+    notice_masullas_title: `El primer municipio en codificación activa`,
+    notice_masullas_text: `Masullas es actualmente el único municipio con un cálculo λ completo, paso a paso. Su caso de estudio completo — población, coeficiente de entropía, Potencial Inexpresado bruto y neto, todo mostrado — está en la página de simulación.`,
+    notice_masullas_btn: `→ Ver el caso de estudio completo`,
+    notice_default_title: `Codificación pendiente`,
+    notice_default_text: `Este municipio aún no ha comenzado su codificación activa — la cifra de arriba es la estimación base del modelo λ, a confirmar empíricamente cuando un Agente de Codificación se encargue de él. Por ahora, ve exactamente cómo funciona el cálculo usando Masullas, el primer municipio en codificación activa, en la página de simulación.`,
+    notice_default_btn: `→ Ver cómo se calcula esta cifra`,
+    cta_claim_title: `Reclamar este territorio`,
+    cta_claim_text: `Nadie ha reclamado {name} todavía. Adquirir un PNC inicia su codificación y te convierte en su Agente de Codificación Fundador — primer titular de la tranche de PNC anclada a él.`,
+    cta_claim_btn: `Convertirme en el Agente de Codificación Fundador — €99 →`,
+    cta_claimed_title: `✓ Ya reclamado`,
+    cta_claimed_text: `{name} ya tiene un Agente de Codificación Fundador. Aún puedes explorar tu propio PNC, o iniciar un territorio diferente.`,
+    cta_claimed_btn: `→ Mi PNC`,
+    not_found_title: `Municipio no encontrado`,
+    not_found_text: `No encontramos ningún municipio que coincida con esta dirección. Puede que esté mal escrito, o que aún no forme parte del conjunto de datos de los 271 municipios de Cerdeña.`,
+    not_found_link: `← Volver al mapa en vivo`,
+    footer_note: `Modelo λ y metodología Fractal Cross-Pollination · 1love.works — De Lege et Amore.`
+  }
+};
+
+let currentLang = localStorage.getItem('1lw_lang') || 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('1lw_lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (T[lang] && T[lang][key] !== undefined) el.innerHTML = T[lang][key];
+  });
+  document.documentElement.lang = lang;
+  renderComune();
+}
+
+// Mobile nav toggle
+(function() {
+  function initNav() {
+    var toggle = document.getElementById('nav-toggle');
+    var links = document.querySelector('.nav-links');
+    if (!toggle || !links) return;
+    var isOpen = false;
+    toggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      isOpen = !isOpen;
+      links.classList.toggle('open', isOpen);
+      toggle.textContent = isOpen ? '✕' : '☰';
+    });
+    document.addEventListener('click', function() {
+      if (isOpen) { isOpen = false; links.classList.remove('open'); toggle.textContent = '☰'; }
+    });
+  }
+  if (document.readyState !== 'loading') initNav(); else document.addEventListener('DOMContentLoaded', initNav);
+})();
+</script>
+
+<script>
+// ── Sardinia dataset: SRAW = [province, name, population, trend%] — identical to index.html / simulation page ──
+var SRAW=[
+  ["CA","Assemini",21800,2],["CA","Cagliari",154000,2],["CA","Capoterra",24000,3],
+  ["CA","Decimomannu",7800,1],["CA","Dolianova",9200,-8],["CA","Domus de Maria",1700,-15],
+  ["CA","Elmas",9600,5],["CA","Gesico",600,-28],["CA","Guamaggiore",900,-22],
+  ["CA","Guasila",2800,-18],["CA","Mandas",2100,-20],["CA","Maracalagonis",8100,4],
+  ["CA","Monastir",4800,2],["CA","Monserrato",21000,1],["CA","Muravera",5200,-8],
+  ["CA","Nuraminis",2600,-12],["CA","Pimentel",1100,-16],["CA","Quartu Sant Elena",71000,1],
+  ["CA","Quartucciu",14000,4],["CA","Samatzai",1500,-20],["CA","San Basilio",1000,-25],
+  ["CA","San Gavino Monreale",7200,-10],["CA","San Nicolo Gerrei",720,-31],
+  ["CA","San Sperate",7200,2],["CA","San Vito",3800,-12],["CA","Sant Andrea Frius",1200,-22],
+  ["CA","Sardara",4100,-8],["CA","Selargius",29000,3],["CA","Senorbi",4600,-5],
+  ["CA","Serdiana",2880,-12],["CA","Serri",650,-30],["CA","Sestu",22000,5],
+  ["CA","Settimo San Pietro",6400,3],["CA","Siliqua",3600,-14],["CA","Silius",940,-28],
+  ["CA","Sinnai",17000,4],["CA","Siurgus Donigala",1800,-22],["CA","Soleminis",2000,2],
+  ["CA","Suelli",900,-28],["CA","Ussana",4800,2],["CA","Uta",7900,3],
+  ["CA","Vallermosa",1700,-18],["CA","Villaputzu",4600,-8],["CA","Villasimius",3600,12],
+  ["CA","Villasor",5200,-5],["CA","Villaspeciosa",2200,-8],
+  ["SS","Aggius",1480,-28],["SS","Aglientu",1100,-20],["SS","Alghero",44000,3],
+  ["SS","Arzachena",13000,8],["SS","Banari",570,-30],["SS","Benetutti",1800,-22],
+  ["SS","Berchidda",2800,-15],["SS","Bessude",390,-35],["SS","Bonnanaro",950,-28],
+  ["SS","Bono",3500,-18],["SS","Bonorva",3600,-20],["SS","Bortigiadas",600,-32],
+  ["SS","Bortigali",1380,-32],["SS","Budduso",3900,-12],["SS","Bulzi",420,-38],
+  ["SS","Burgos",880,-30],["SS","Cargeghe",870,-18],["SS","Castelsardo",5800,-12],
+  ["SS","Cheremule",350,-40],["SS","Chiaramonti",1500,-22],["SS","Codrongianos",1100,-15],
+  ["SS","Cossoine",560,-35],["SS","Esporlatu",280,-42],["SS","Florinas",1600,-15],
+  ["SS","Giave",470,-38],["SS","Illorai",800,-30],["SS","Ittiri",8900,-5],
+  ["SS","Laerru",850,-28],["SS","La Maddalena",11000,-5],["SS","Luras",2400,-18],
+  ["SS","Mara",720,-30],["SS","Martis",550,-35],["SS","Monteleone Rocca Doria",110,-48],
+  ["SS","Mores",2000,-22],["SS","Muros",870,-22],["SS","Nughedu di San Nicolo",640,-32],
+  ["SS","Nule",1300,-28],["SS","Nulvi",2900,-20],["SS","Olbia",62000,5],
+  ["SS","Olmedo",2500,-8],["SS","Oschiri",3200,-15],["SS","Osilo",3100,-22],
+  ["SS","Ossi",5600,-8],["SS","Ozieri",11000,-12],["SS","Padria",640,-35],
+  ["SS","Palau",4200,10],["SS","Pattada",3200,-20],["SS","Perfugas",2500,-22],
+  ["SS","Ploaghe",4400,-15],["SS","Porto Torres",22000,-5],["SS","Pozzomaggiore",2700,-22],
+  ["SS","Putifigari",620,-30],["SS","Romana",570,-32],["SS","Santa Maria Coghinas",1600,-18],
+  ["SS","Santa Teresa Gallura",5200,8],["SS","Sant Antonio di Gallura",1600,-15],
+  ["SS","Sassari",124000,1],["SS","Sedini",1200,-28],["SS","Semestene",160,-48],
+  ["SS","Sennori",7200,-8],["SS","Siligo",900,-30],["SS","Sorso",14000,-5],
+  ["SS","Telti",2200,-15],["SS","Tempio Pausania",14000,-8],["SS","Tergu",390,-38],
+  ["SS","Thiesi",3000,-18],["SS","Tissi",2900,-10],["SS","Torralba",1000,-28],
+  ["SS","Trinita d Agultu",2200,-10],["SS","Tula",1500,-20],["SS","Uri",3000,-12],
+  ["SS","Usini",4200,-8],["SS","Valledoria",2800,-10],["SS","Viddalba",1600,-20],
+  ["SS","Villanova Monteleone",2100,-22],
+  ["NU","Aritzo",1180,-52],["NU","Arzana",2400,-30],["NU","Atzara",1180,-45],
+  ["NU","Austis",800,-38],["NU","Bari Sardo",3900,-15],["NU","Baunei",3700,-20],
+  ["NU","Belvi",650,-45],["NU","Birori",490,-40],["NU","Bitti",2900,-30],
+  ["NU","Bolotana",3000,-25],["NU","Borore",2200,-22],["NU","Cardedu",1600,-18],
+  ["NU","Desulo",2200,-45],["NU","Dorgali",8500,-18],["NU","Dualchi",590,-38],
+  ["NU","Elini",560,-32],["NU","Fonni",3900,-25],["NU","Gadoni",800,-40],
+  ["NU","Gairo",480,-58],["NU","Galtelli",2400,-22],["NU","Gavoi",2700,-28],
+  ["NU","Genoni",580,-35],["NU","Ilbono",2000,-22],["NU","Irgoli",2400,-18],
+  ["NU","Jerzu",3200,-22],["NU","Lode",1500,-25],["NU","Lula",1500,-35],
+  ["NU","Macomer",10000,-15],["NU","Mamoiada",2600,-28],["NU","Meana Sardo",1400,-35],
+  ["NU","Noragugume",380,-42],["NU","Nuoro",35000,-8],["NU","Oliena",7400,-18],
+  ["NU","Ollolai",190,-65],["NU","Olzai",800,-42],["NU","Onani",590,-38],
+  ["NU","Onifai",650,-30],["NU","Oniferi",810,-35],["NU","Orani",3000,-28],
+  ["NU","Orgosolo",4200,-22],["NU","Orosei",5100,-10],["NU","Orotelli",2000,-30],
+  ["NU","Ortueri",1300,-35],["NU","Orune",2300,-32],["NU","Osidda",280,-48],
+  ["NU","Osini",780,-38],["NU","Ottana",2300,-25],["NU","Ovodda",1700,-40],
+  ["NU","Posada",2900,-12],["NU","Sarule",1700,-35],["NU","Silanus",2000,-28],
+  ["NU","Siniscola",11000,-12],["NU","Sorgono",1700,-35],["NU","Talana",1100,-40],
+  ["NU","Tertenia",3700,-18],["NU","Teti",560,-42],["NU","Tiana",510,-45],
+  ["NU","Tonara",2100,-44],["NU","Torpe",3200,-15],["NU","Tortoli",11000,-5],
+  ["NU","Triei",1000,-35],["NU","Ulassai",1600,-35],["NU","Urzulei",1300,-38],
+  ["NU","Ussassai",480,-42],["NU","Villagrande Strisaili",3300,-22],
+  ["OR","Abbasanta",2800,-18],["OR","Aidomaggiore",450,-40],["OR","Ales",1520,-28],
+  ["OR","Allai",470,-40],["OR","Arborea",4200,-5],["OR","Ardauli",820,-35],
+  ["OR","Assolo",340,-42],["OR","Asuni",340,-45],["OR","Baradili",90,-52],
+  ["OR","Baratili San Pietro",1400,-18],["OR","Baressa",680,-40],["OR","Bauladu",640,-32],
+  ["OR","Bonarcado",1600,-28],["OR","Busachi",1500,-32],["OR","Cabras",9200,-8],
+  ["OR","Collinas",580,-35],["OR","Cuglieri",2700,-25],["OR","Fordongianus",970,-35],
+  ["OR","Ghilarza",4800,-18],["OR","Gonnosno",760,-38],["OR","Laconi",1820,-35],
+  ["OR","Marrubiu",5000,-8],["OR","Milis",1600,-22],["OR","Masullas",980,-42],
+  ["OR","Mogoro",4400,-15],["OR","Narbolia",1800,-20],["OR","Neoneli",700,-42],
+  ["OR","Nurachi",1700,-18],["OR","Ollastra",1700,-20],["OR","Oristano",31000,-6],
+  ["OR","Palmas Arborea",1300,-20],["OR","Paulilatino",2380,-30],["OR","Riola Sardo",2000,-18],
+  ["OR","Samugheo",3100,-28],["OR","San Vero Milis",2700,-15],["OR","Santa Giusta",4700,-8],
+  ["OR","Santu Lussurgiu",2480,-38],["OR","Sedilo",2200,-28],["OR","Seneghe",1540,-40],
+  ["OR","Simaxis",2600,-15],["OR","Solarussa",2600,-18],["OR","Terralba",9800,-8],
+  ["OR","Tramatza",1200,-22],["OR","Ula Tirso",700,-40],["OR","Villaurbana",2200,-22],
+  ["OR","Zerfaliu",1200,-22],
+  ["SU","Armungia",480,-38],["SU","Ballao",890,-32],["SU","Burcei",2800,-15],
+  ["SU","Carbonia",28000,-12],["SU","Carloforte",6400,-5],["SU","Castiadas",1800,2],
+  ["SU","Decimoputzu",3800,-12],["SU","Domusnovas",6400,-12],["SU","Escalaplano",2400,-22],
+  ["SU","Fluminimaggiore",2900,-20],["SU","Gergei",1100,-28],["SU","Gesturi",1200,-28],
+  ["SU","Gonnesa",5300,-15],["SU","Iglesias",27000,-10],["SU","Isili",3200,-18],
+  ["SU","Lunamatrona",2300,-22],["SU","Narcao",3200,-18],["SU","Nuragus",800,-32],
+  ["SU","Nurallao",1600,-22],["SU","Nurri",2400,-22],["SU","Pabillonis",2900,-15],
+  ["SU","Perdaxius",1600,-22],["SU","Portoscuso",5100,-12],
+  ["SU","San Giovanni Suergiu",6400,-12],["SU","Sant Anna Arresi",2800,-15],
+  ["SU","Sant Antioco",11000,-8],["SU","Santadi",3100,-18],["SU","Senorbi",4600,-8],
+  ["SU","Sanluri",8500,-8],["SU","Serramanna",9200,-8],["SU","Serrenti",4800,-10],["SU","Teulada",4100,-12],
+  ["SU","Tratalias",1000,-28],["SU","Tuili",1200,-28],["SU","Villacidro",14000,-12],
+  ["SU","Villamar",2800,-18],["SU","Villanovaforru",680,-32],
+  ["SU","Villanovafranca",1500,-25],["SU","Villasalto",1200,-30]
+];
+
+// ── Identical seeded computation to index.html / the simulation page, so λ NUP values match exactly ──
+var SARD=SRAW.map(function(r,i){
+  var prov=r[0],name=r[1],pop=r[2],trend=r[3];
+  var s=i*137+name.charCodeAt(0);
+  function sr(){s=(s*1664525+1013904223)&0xFFFFFFFF;return(s>>>0)/4294967296;}
+  var sem,ent;
+  if(trend<=-30||(trend<=-20&&pop<2000)){sem="🔴";ent=60+Math.floor(sr()*25);}
+  else if(trend<=-8||(trend<0&&pop<5000)){sem="🟡";ent=35+Math.floor(sr()*25);}
+  else{sem="🟢";ent=10+Math.floor(sr()*20);}
+  var base=pop*(sem==="🔴"?28:sem==="🟡"?22:16)/1000;
+  var tot=Math.max(0.5,+(base*(0.8+sr()*0.4)).toFixed(1));
+  return {prov:prov,name:name,pop:pop,trend:trend,sem:sem,nup:tot,ent:ent,
+    slug:name.toLowerCase().replace(/'/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,''),
+    code:'eu.it.sardegna.'+prov.toLowerCase()+'.'+name.toLowerCase().replace(/'/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')};
+});
+
+function fEur(v){
+  if(v>=1000)return"€"+(v/1000).toFixed(2)+"B";
+  return"€"+v.toFixed(1)+"M";
+}
+function fPop(p){return p.toLocaleString('de-DE');}
+
+var SUPABASE_URL='https://pwrcqepqhtuesoximmoj.supabase.co';
+var SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB3cmNxZXBxaHR1ZXNveGltbW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwNjg2MTMsImV4cCI6MjA5MTY0NDYxM30.tO5SFloOfMZULDHtFII2dilE10fUk8SLCpmyHiCNidE';
+
+var params = new URLSearchParams(location.search);
+var slug = (params.get('c') || '').toLowerCase();
+var comune = SARD.find(function(r){ return r.slug === slug; });
+var claimedState = 'checking'; // 'checking' | 'open' | 'claimed'
+
+function renderComune(){
+  var t = T[currentLang] || T.en;
+
+  if (!comune) {
+    document.getElementById('tc-name').textContent = '—';
+    document.getElementById('tc-sub').textContent = '';
+    document.getElementById('tc-overline').textContent = t.overline;
+    document.getElementById('tc-notfound-section').style.display = 'block';
+    document.getElementById('tc-notfound-title').textContent = t.not_found_title;
+    document.getElementById('tc-notfound-text').textContent = t.not_found_text;
+    document.getElementById('tc-notfound-link').textContent = t.not_found_link;
+    return;
+  }
+
+  document.title = comune.name + ' — Codification — 1love.works';
+  document.getElementById('tc-overline').textContent = t.overline;
+  document.getElementById('tc-name').innerHTML = comune.sem + ' ' + comune.name;
+  document.getElementById('tc-sub').textContent = comune.prov + ' · ' + fPop(comune.pop) + ' · ' + comune.trend + '%';
+
+  document.getElementById('tc-dashboard-section').style.display = 'block';
+  document.getElementById('tc-dash-title').textContent = t.dash_title;
+  document.getElementById('tc-l-pop').textContent = t.kpi_pop;
+  document.getElementById('tc-l-gross').textContent = t.kpi_gross;
+  document.getElementById('tc-l-net').textContent = t.kpi_net;
+  document.getElementById('tc-l-status').textContent = t.kpi_status;
+  document.getElementById('tc-v-pop').textContent = fPop(comune.pop);
+  document.getElementById('tc-v-gross').textContent = fEur(comune.nup);
+  document.getElementById('tc-v-net').textContent = fEur(+(comune.nup*0.77).toFixed(1));
+  document.getElementById('tc-dash-note').textContent = t.dash_note;
+
+  var statusEl = document.getElementById('tc-v-status');
+  if (claimedState === 'claimed') { statusEl.textContent = t.status_claimed; statusEl.className = 'v status-claimed'; }
+  else if (claimedState === 'open') { statusEl.textContent = t.status_open; statusEl.className = 'v status-open'; }
+  else { statusEl.textContent = t.status_checking; statusEl.className = 'v'; }
+
+  document.getElementById('tc-notice-section').style.display = 'block';
+  var box = document.getElementById('tc-notice-box');
+  if (comune.slug === 'masullas') {
+    box.className = 'notice-box masullas';
+    document.getElementById('tc-notice-title').textContent = t.notice_masullas_title;
+    document.getElementById('tc-notice-text').textContent = t.notice_masullas_text;
+    document.getElementById('tc-notice-btn').textContent = t.notice_masullas_btn;
+  } else {
+    box.className = 'notice-box';
+    document.getElementById('tc-notice-title').textContent = t.notice_default_title;
+    document.getElementById('tc-notice-text').textContent = t.notice_default_text;
+    document.getElementById('tc-notice-btn').textContent = t.notice_default_btn;
+  }
+
+  document.getElementById('tc-cta-section').style.display = claimedState === 'checking' ? 'none' : 'block';
+  document.getElementById('tc-cta-claimed').style.display = claimedState === 'claimed' ? 'block' : 'none';
+  document.getElementById('tc-cta-open').style.display = claimedState === 'open' ? 'block' : 'none';
+
+  if (claimedState === 'claimed') {
+    document.getElementById('tc-cta-claimed-title').textContent = t.cta_claimed_title;
+    document.getElementById('tc-cta-claimed-text').textContent = t.cta_claimed_text.replace('{name}', comune.name);
+    document.getElementById('tc-cta-claimed-btn').textContent = t.cta_claimed_btn;
+  } else if (claimedState === 'open') {
+    document.getElementById('tc-cta-open-title').textContent = t.cta_claim_title;
+    document.getElementById('tc-cta-open-text').textContent = t.cta_claim_text.replace('{name}', comune.name);
+    var btn = document.getElementById('tc-cta-open-btn');
+    btn.textContent = t.cta_claim_btn;
+    btn.href = '/codification/index.html?prefill=' + encodeURIComponent(comune.name) + '#claim';
+  }
+}
+
+function loadClaimStatus(){
+  if (!comune) return;
+  fetch(SUPABASE_URL+'/rest/v1/pnc_holders?select=territory_code&territory_code=eq.'+encodeURIComponent(comune.code),
+    {headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY}})
+    .then(function(r){return r.json();})
+    .then(function(data){
+      claimedState = (Array.isArray(data) && data.length > 0) ? 'claimed' : 'open';
+      renderComune();
+    })
+    .catch(function(){ claimedState = 'open'; renderComune(); });
+}
+
+renderComune();
+loadClaimStatus();
+setLang(currentLang);
+</script>
+
+</body>
+</html>
