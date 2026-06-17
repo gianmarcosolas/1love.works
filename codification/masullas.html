@@ -74,6 +74,7 @@ button.btn.secondary, a.btn.secondary { background: transparent; color: var(--in
 .listing-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 6px; }
 .listing-title { font-size: 18px; font-weight: 500; }
 .listing-price { font-family: var(--mono); font-size: 16px; color: var(--gold); font-weight: 600; white-space: nowrap; }
+.price-eur-ref { font-size: 12px; font-weight: 400; color: var(--muted); }
 .listing-meta { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 8px; }
 .listing-desc { font-size: 15px; color: #3a3a36; margin-bottom: 12px; }
 .listing.sold { opacity: 0.5; }
@@ -84,6 +85,33 @@ button.btn.secondary, a.btn.secondary { background: transparent; color: var(--in
 .index-svg { width: 100%; height: auto; display: block; }
 .index-current { font-family: var(--mono); font-size: 32px; font-weight: 500; color: var(--gold); margin-bottom: 6px; }
 .index-current span { font-size: 14px; color: rgba(245,242,234,0.5); margin-left: 8px; }
+
+.cat-row { display: flex; align-items: baseline; gap: 14px; padding: 9px 0; border-top: 1px solid rgba(245,242,234,0.1); }
+.cat-row:first-of-type { border-top: none; }
+.cat-name { font-family: var(--mono); font-size: 12px; color: rgba(245,242,234,0.65); width: 130px; flex-shrink: 0; }
+.cat-bar-wrap { flex: 1; height: 6px; background: rgba(245,242,234,0.08); position: relative; }
+.cat-bar { height: 100%; background: var(--gold); }
+.cat-figures { font-family: var(--mono); font-size: 11px; color: rgba(245,242,234,0.45); white-space: nowrap; width: 110px; text-align: right; flex-shrink: 0; }
+
+.circ-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.circ-cell { padding: 4px 0; }
+.circ-cell + .circ-cell { border-left: 1px solid rgba(245,242,234,0.12); padding-left: 24px; }
+.circ-figure { font-family: var(--mono); font-size: 26px; font-weight: 500; color: var(--gold); }
+.circ-figure-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(245,242,234,0.45); margin-top: 4px; }
+
+.activity-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 11px 0; border-top: 1px solid var(--rule); font-size: 15px; }
+.activity-row:first-of-type { border-top: none; }
+.activity-desc { color: #3a3a36; }
+.activity-desc strong { color: var(--ink); font-weight: 600; }
+.activity-amount { font-family: var(--mono); font-size: 13px; color: var(--gold); white-space: nowrap; }
+.activity-time { font-family: var(--mono); font-size: 10px; color: var(--muted); white-space: nowrap; margin-left: 10px; }
+
+@media (max-width: 640px) {
+  .circ-grid { grid-template-columns: 1fr; }
+  .circ-cell + .circ-cell { border-left: none; border-top: 1px solid rgba(245,242,234,0.12); padding-left: 0; padding-top: 14px; margin-top: 10px; }
+  .cat-name { width: 90px; }
+  .cat-figures { width: 80px; }
+}
 
 footer { max-width: 900px; margin: 0 auto; padding: 28px 48px 48px; font-family: var(--mono); font-size: 11px; color: var(--muted); }
 
@@ -126,6 +154,24 @@ footer { max-width: 900px; margin: 0 auto; padding: 28px 48px 48px; font-family:
 </section>
 
 <section class="section">
+  <div class="section-num" data-i18n="s1b_label">Masullas in cifre</div>
+  <div class="ledger-card">
+    <div class="ledger-title" data-i18n="circ_title">Circolazione</div>
+    <div id="circ-wrap"><div class="empty-state" style="border:none; color:rgba(245,242,234,0.4)" data-i18n="loading">Caricamento…</div></div>
+    <div class="ledger-note" data-i18n="circ_note">Coniato = coin totale mai emesso a fronte di un PNC. Scambiato = somma di tutte le transazioni concluse, da quando il mercato è aperto.</div>
+  </div>
+  <div class="ledger-card" style="margin-top:14px">
+    <div class="ledger-title" data-i18n="cat_title">Cosa si scambia, per categoria</div>
+    <div id="cat-wrap"><div class="empty-state" style="border:none; color:rgba(245,242,234,0.4)" data-i18n="loading">Caricamento…</div></div>
+    <div class="ledger-note" data-i18n="cat_note">Conteggio annunci attivi e venduti per categoria, con il relativo volume in MasullasCoin.</div>
+  </div>
+  <div class="ledger-card" style="margin-top:14px">
+    <div class="ledger-title" data-i18n="activity_title">Attività recente</div>
+    <div id="activity-wrap"><div class="empty-state" style="border:none; color:rgba(245,242,234,0.4)" data-i18n="loading">Caricamento…</div></div>
+  </div>
+</section>
+
+<section class="section">
   <div class="section-num" data-i18n="s2_label">Il tuo account</div>
   <div id="acct-logged-out">
     <div class="field">
@@ -150,7 +196,9 @@ footer { max-width: 900px; margin: 0 auto; padding: 28px 48px 48px; font-family:
       <div class="ledger-row"><span class="ledger-label" data-i18n="ledger_trading_as">Operi come</span><span class="ledger-value you" id="acct-name">—</span></div>
       <div class="ledger-row"><span class="ledger-label" data-i18n="ledger_status">Stato</span><span class="ledger-value you" id="acct-status">—</span></div>
       <div class="ledger-row"><span class="ledger-label" data-i18n="ledger_balance">Saldo</span><span class="ledger-value" id="acct-balance">—</span></div>
+      <div class="ledger-row"><span class="ledger-label" data-i18n="ledger_eur_ref">Equivalente di riferimento</span><span class="ledger-value" id="acct-balance-eur" style="font-size:14px; color: var(--muted);">—</span></div>
       <div class="ledger-note" data-i18n="ledger_note">I saldi si muovono solo tramite la funzione di acquisto qui sotto — non vengono mai modificati direttamente.</div>
+      <div class="ledger-note" data-i18n="ledger_eur_note">Il valore in euro è un riferimento di calcolo (1 MasullasCoin = €1, lo stesso rapporto di conio), non un cambio: il coin resta non convertibile in euro.</div>
     </div>
     <p style="margin-top:14px"><span class="account-pill"><span data-i18n="not_you">Non sei tu?</span> <a id="btn-logout" data-i18n="switch_account">Cambia account</a></span></p>
   </div>
@@ -214,6 +262,23 @@ var T = {
     s1_label: 'Market index',
     s1_title: 'MasullasCoin velocity index',
     s1_note: 'Index = 100 + 100 × (cumulative trade volume ÷ coin supply). It only moves when coin actually changes hands inside Masullas — the same "velocity of money" concept used for whole economies, applied to this one closed system.',
+    s1b_label: 'Masullas, in numbers',
+    circ_title: 'Circulation',
+    circ_minted: 'Minted',
+    circ_transacted: 'Transacted',
+    circ_note: 'Minted = all coin ever issued against a PNC. Transacted = the sum of every completed sale since the market opened.',
+    cat_title: 'What changes hands, by category',
+    cat_note: 'Active and sold listing counts by category, with the matching volume in MasullasCoin.',
+    cat_produce: 'Produce',
+    cat_food_drink: 'Food & drink',
+    cat_craft: 'Craft / manufacture',
+    cat_service: 'Service',
+    cat_property: 'Property / space',
+    cat_other: 'Other',
+    cat_no_data: 'No listings yet in any category.',
+    activity_title: 'Recent activity',
+    activity_no_data: 'No completed sales yet — the first one will show up here.',
+    activity_bought: '{buyer} bought "{item}" from {seller}',
     loading: 'Loading…',
     s2_label: 'Your account',
     f_email: 'Email',
@@ -227,6 +292,8 @@ var T = {
     ledger_status: 'Status',
     ledger_balance: 'Balance',
     ledger_note: 'Balances move only through the purchase function below — never edited directly.',
+    ledger_eur_ref: 'Reference equivalent',
+    ledger_eur_note: 'The euro figure is a calculation reference (1 MasullasCoin = €1, the same ratio used at minting), not an exchange: the coin remains non-redeemable for euros.',
     not_you: 'Not you?',
     switch_account: 'Switch account',
     s3_label: 'Invite someone',
@@ -289,6 +356,23 @@ var T = {
     s1_label: 'Indice di mercato',
     s1_title: 'Indice di velocità del MasullasCoin',
     s1_note: 'Indice = 100 + 100 × (volume di scambio cumulativo ÷ offerta di coin). Si muove solo quando i coin cambiano effettivamente di mano dentro Masullas — lo stesso concetto di "velocità della moneta" usato per intere economie, applicato a questo unico sistema chiuso.',
+    s1b_label: 'Masullas, in cifre',
+    circ_title: 'Circolazione',
+    circ_minted: 'Coniato',
+    circ_transacted: 'Scambiato',
+    circ_note: 'Coniato = coin totale mai emesso a fronte di un PNC. Scambiato = somma di tutte le transazioni concluse, da quando il mercato è aperto.',
+    cat_title: 'Cosa si scambia, per categoria',
+    cat_note: 'Conteggio annunci attivi e venduti per categoria, con il relativo volume in MasullasCoin.',
+    cat_produce: 'Prodotti agricoli',
+    cat_food_drink: 'Cibo e bevande',
+    cat_craft: 'Artigianato / manifattura',
+    cat_service: 'Servizio',
+    cat_property: 'Immobile / spazio',
+    cat_other: 'Altro',
+    cat_no_data: 'Ancora nessun annuncio in nessuna categoria.',
+    activity_title: 'Attività recente',
+    activity_no_data: 'Ancora nessuna vendita conclusa — la prima apparirà qui.',
+    activity_bought: '{buyer} ha comprato "{item}" da {seller}',
     loading: 'Caricamento…',
     s2_label: 'Il tuo account',
     f_email: 'Email',
@@ -302,6 +386,8 @@ var T = {
     ledger_status: 'Stato',
     ledger_balance: 'Saldo',
     ledger_note: 'I saldi si muovono solo tramite la funzione di acquisto qui sotto — non vengono mai modificati direttamente.',
+    ledger_eur_ref: 'Equivalente di riferimento',
+    ledger_eur_note: 'Il valore in euro è un riferimento di calcolo (1 MasullasCoin = €1, lo stesso rapporto di conio), non un cambio: il coin resta non convertibile in euro.',
     not_you: 'Non sei tu?',
     switch_account: 'Cambia account',
     s3_label: 'Invita qualcuno',
@@ -381,6 +467,8 @@ function setLang(lang) {
   setAccountUI();
   if (typeof lastListingsRows !== 'undefined') renderListings(lastListingsRows);
   if (typeof lastIndexRows !== 'undefined') renderIndexChart(lastIndexRows);
+  if (typeof lastCircRow !== 'undefined') renderCirculation(lastCircRow);
+  if (typeof lastActivityRows !== 'undefined') renderActivity(lastActivityRows);
 }
 
 var SUPABASE_URL = 'https://pwrcqepqhtuesoximmoj.supabase.co';
@@ -425,6 +513,7 @@ function setAccountUI() {
     document.getElementById('acct-name').textContent = account.display_name;
     document.getElementById('acct-status').textContent = account.is_pnc_holder ? tr('status_pnc') : tr('status_invited');
     document.getElementById('acct-balance').textContent = Number(account.balance_coin).toFixed(0) + ' ' + tr('coin_suffix');
+    document.getElementById('acct-balance-eur').textContent = '≈ €' + Number(account.balance_coin).toFixed(0);
   } else {
     out.style.display = 'block';
     inUI.style.display = 'none';
@@ -513,12 +602,13 @@ function categoryLabel(c) {
 
 function renderListings(rows) {
   lastListingsRows = rows;
+  renderCategoryBreakdown(rows);
   var root = document.getElementById('listings-root');
   if (!rows || rows.length === 0) { root.innerHTML = '<div class="empty-state">' + tr('no_listings') + '</div>'; return; }
   rows.sort(function(a, b) { return (a.status === 'sold') - (b.status === 'sold'); });
   var html = '';
   rows.forEach(function(r) {
-    var priceText = Number(r.price_coin).toFixed(0) + ' ' + tr('coin_short') + (r.status === 'sold' ? ' · ' + tr('sold_suffix') : '');
+    var priceText = Number(r.price_coin).toFixed(0) + ' ' + tr('coin_short') + ' <span class="price-eur-ref">(≈€' + Number(r.price_coin).toFixed(0) + ')</span>' + (r.status === 'sold' ? ' · ' + tr('sold_suffix') : '');
     html += '<div class="listing' + (r.status === 'sold' ? ' sold' : '') + '">' +
       '<div class="listing-top"><span class="listing-title">' + escapeHtml(r.title) + '</span><span class="listing-price">' + priceText + '</span></div>' +
       '<div class="listing-meta">' + categoryLabel(r.category) + ' · ' + escapeHtml(r.seller_name) + '</div>' +
@@ -602,6 +692,87 @@ function loadIndex() {
     });
 }
 
+var lastCircRow = null;
+function renderCirculation(row) {
+  lastCircRow = row;
+  var wrap = document.getElementById('circ-wrap');
+  if (!row) { wrap.innerHTML = '<div class="empty-state" style="border:none; color:rgba(245,242,234,0.4)">' + tr('couldnt_load_index') + '</div>'; return; }
+  wrap.innerHTML =
+    '<div class="circ-grid">' +
+      '<div class="circ-cell"><div class="circ-figure">' + Number(row.total_supply).toFixed(0) + '</div><div class="circ-figure-label">' + tr('circ_minted') + '</div></div>' +
+      '<div class="circ-cell"><div class="circ-figure">' + Number(row.total_transacted).toFixed(0) + '</div><div class="circ-figure-label">' + tr('circ_transacted') + '</div></div>' +
+    '</div>';
+}
+
+function loadCirculation() {
+  rpc('masullas_market_circulation_summary', {})
+    .then(function(data) { renderCirculation(Array.isArray(data) ? data[0] : data); })
+    .catch(function() { renderCirculation(null); });
+}
+
+function renderCategoryBreakdown(rows) {
+  var wrap = document.getElementById('cat-wrap');
+  if (!rows || rows.length === 0) { wrap.innerHTML = '<div class="empty-state" style="border:none; color:rgba(245,242,234,0.4)">' + tr('cat_no_data') + '</div>'; return; }
+
+  var byCat = {};
+  rows.forEach(function(r) {
+    var c = r.category || 'other';
+    if (!byCat[c]) byCat[c] = { count: 0, coin: 0 };
+    byCat[c].count += 1;
+    byCat[c].coin += Number(r.price_coin) || 0;
+  });
+
+  var maxCoin = Math.max.apply(null, Object.keys(byCat).map(function(c) { return byCat[c].coin; }).concat([1]));
+  var order = ['produce', 'food_drink', 'craft', 'service', 'property', 'other'];
+  var html = '';
+  order.forEach(function(c) {
+    if (!byCat[c]) return;
+    var pct = Math.max(4, Math.round((byCat[c].coin / maxCoin) * 100));
+    html += '<div class="cat-row">' +
+      '<div class="cat-name">' + categoryLabel(c) + '</div>' +
+      '<div class="cat-bar-wrap"><div class="cat-bar" style="width:' + pct + '%"></div></div>' +
+      '<div class="cat-figures">' + byCat[c].count + (byCat[c].count === 1 ? ' · ' : ' · ') + byCat[c].coin.toFixed(0) + ' coin</div>' +
+    '</div>';
+  });
+  wrap.innerHTML = html;
+}
+
+var lastActivityRows = null;
+function renderActivity(rows) {
+  lastActivityRows = rows;
+  var wrap = document.getElementById('activity-wrap');
+  if (!rows || rows.length === 0) { wrap.innerHTML = '<div class="empty-state" style="border:none; color:rgba(245,242,234,0.4)">' + tr('activity_no_data') + '</div>'; return; }
+  var html = '';
+  rows.slice(0, 8).forEach(function(r) {
+    var desc = tr('activity_bought')
+      .replace('{buyer}', '<strong>' + escapeHtml(r.buyer_name) + '</strong>')
+      .replace('{item}', escapeHtml(r.listing_title || ''))
+      .replace('{seller}', '<strong>' + escapeHtml(r.seller_name) + '</strong>');
+    html += '<div class="activity-row">' +
+      '<span class="activity-desc">' + desc + '</span>' +
+      '<span><span class="activity-amount">' + Number(r.amount_coin).toFixed(0) + ' coin</span>' +
+      '<span class="activity-time">' + timeAgo(r.created_at) + '</span></span>' +
+    '</div>';
+  });
+  wrap.innerHTML = html;
+}
+
+function timeAgo(iso) {
+  var diffMs = Date.now() - new Date(iso).getTime();
+  var mins = Math.floor(diffMs / 60000);
+  if (mins < 1) return 'now';
+  if (mins < 60) return mins + 'm';
+  var hrs = Math.floor(mins / 60);
+  if (hrs < 24) return hrs + 'h';
+  return Math.floor(hrs / 24) + 'd';
+}
+
+function loadActivity() {
+  getJSON('masullas_market_transactions_public?select=*&order=created_at.desc&limit=8')
+    .then(renderActivity)
+    .catch(function() { renderActivity(null); });
+}
+
 // Init
 (function() {
   setLang(currentLang);
@@ -610,6 +781,8 @@ function loadIndex() {
   else setAccountUI();
   loadListings();
   loadIndex();
+  loadCirculation();
+  loadActivity();
 })();
 </script>
 
