@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Masullas Internal Market — 1love.works</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #0d1f38; --parchment: #eef4fb; --cream: #ddeaf8; --white: #f5f9fd;
+  --gold: #b8860b; --blue: #2a7fc0; --green: #2d6a2d; --red: #8b0000;
+  --muted: #5a7490; --rule: rgba(13,31,56,0.10); --rule-med: rgba(13,31,56,0.18);
+  --serif: 'EB Garamond', Georgia, serif; --mono: 'DM Mono', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--serif); background: var(--parchment); color: var(--ink); line-height: 1.7; font-size: 17px; }
+
+nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(238,244,251,0.97); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: space-between; padding: 14px 48px; }
+.nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; font-weight: 500; }
+.nav-right { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+.nav-right:hover { color: var(--ink); }
+
+.hero { max-width: 760px; margin: 0 auto; padding: 56px 48px 36px; border-bottom: 1px solid var(--rule); }
+.hero-overline { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+.hero h1 { font-size: clamp(32px, 5vw, 48px); font-weight: 400; line-height: 1.12; margin-bottom: 16px; }
+.hero h1 em { font-style: italic; color: var(--gold); }
+.hero-sub { font-size: 18px; color: #3a3a36; line-height: 1.75; margin-bottom: 14px; }
+.hero-note { font-family: var(--mono); font-size: 11.5px; color: var(--muted); line-height: 1.7; border-top: 1px solid var(--rule); padding-top: 16px; margin-top: 16px; }
+
+.section { max-width: 760px; margin: 0 auto; padding: 36px 48px; border-bottom: 1px solid var(--rule); }
+.section-num { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+.section-num::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.section h2 { font-size: 24px; font-weight: 400; margin-bottom: 14px; }
+
+.ledger-card { background: var(--ink); color: var(--parchment); padding: 28px 32px; }
+.ledger-title { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(245,242,234,0.5); margin-bottom: 16px; }
+.ledger-row { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-top: 1px solid rgba(245,242,234,0.12); }
+.ledger-row:first-of-type { border-top: none; }
+.ledger-label { font-family: var(--mono); font-size: 12px; color: rgba(245,242,234,0.6); }
+.ledger-value { font-family: var(--mono); font-size: 20px; font-weight: 500; color: var(--gold); }
+.ledger-value.you { color: #8fd1e8; }
+.ledger-note { font-family: var(--mono); font-size: 10.5px; color: rgba(245,242,234,0.4); margin-top: 14px; font-style: italic; }
+
+.field { margin-bottom: 14px; }
+.field label { display: block; font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 6px; }
+.field input, .field textarea, .field select {
+  width: 100%; font-family: var(--serif); font-size: 16px; padding: 10px 12px;
+  border: 1px solid var(--rule-med); background: var(--white); color: var(--ink);
+}
+.field textarea { resize: vertical; min-height: 64px; }
+.field-row { display: flex; gap: 12px; }
+.field-row .field { flex: 1; }
+
+button.btn, a.btn {
+  font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 12px 22px; border: none; cursor: pointer;
+  background: var(--gold); color: var(--ink); display: inline-block; text-decoration: none;
+}
+button.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+button.btn.secondary, a.btn.secondary { background: transparent; color: var(--ink); border: 1px solid var(--rule-med); }
+.msg { font-family: var(--mono); font-size: 13px; margin-top: 12px; padding: 10px 14px; }
+.msg.ok { background: rgba(45,106,45,0.08); color: var(--green); border: 1px solid rgba(45,106,45,0.25); }
+.msg.err { background: rgba(139,0,0,0.06); color: var(--red); border: 1px solid rgba(139,0,0,0.2); }
+
+.listing { border: 1px solid var(--rule-med); padding: 18px 20px; margin-bottom: 12px; }
+.listing-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+.listing-title { font-size: 18px; font-weight: 500; }
+.listing-price { font-family: var(--mono); font-size: 16px; color: var(--gold); font-weight: 600; white-space: nowrap; }
+.listing-meta { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 8px; }
+.listing-desc { font-size: 15px; color: #3a3a36; margin-bottom: 12px; }
+.listing.sold { opacity: 0.5; }
+.listing.sold .listing-price::after { content: ' · sold'; text-transform: lowercase; color: var(--muted); }
+
+.empty-state { font-family: var(--mono); font-size: 13px; color: var(--muted); padding: 24px 0; text-align: center; border: 1px dashed var(--rule-med); }
+.account-pill { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.account-pill a { color: var(--gold); cursor: pointer; }
+.index-svg { width: 100%; height: auto; display: block; }
+.index-current { font-family: var(--mono); font-size: 32px; font-weight: 500; color: var(--gold); margin-bottom: 6px; }
+.index-current span { font-size: 14px; color: rgba(245,242,234,0.5); margin-left: 8px; }
+
+footer { max-width: 900px; margin: 0 auto; padding: 28px 48px 48px; font-family: var(--mono); font-size: 11px; color: var(--muted); }
+
+@media (max-width: 640px) {
+  nav { padding: 12px 20px; }
+  .hero, .section, footer { padding-left: 20px; padding-right: 20px; }
+  .field-row { flex-direction: column; gap: 0; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">1love.works</a>
+  <a class="nav-right" href="/codification/comune.html?c=masullas">← Masullas comune page</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-overline">Prototype · eu.it.sardegna.or.masullas</div>
+  <h1>Masullas <em>Internal Market</em></h1>
+  <p class="hero-sub">A closed marketplace for Masullas, denominated in MasullasCoin — the same PNC certificate's value, now also usable to buy and sell goods and services locally.</p>
+  <p class="hero-sub">Founding Codification Agents (PNC holders) start with a balance equal to what they put in. Everyone else joins by invitation from someone already in, and starts at zero — earning coin by selling something real.</p>
+  <p class="hero-sub">Most of what a small town spends leaves it immediately — paid to outside suppliers, chains, or services with no local presence. Coin that can only be spent inside Masullas can't leak out that way: it has to circulate locally first. That circulation is measurable, and it's exactly what the index below tracks.</p>
+  <div class="hero-note">1 PNC (€99) = 99 MasullasCoin, minted once at registration. MasullasCoin is a closed-loop unit of account for this prototype only — it is not redeemable for euros, not a financial instrument, and not tradable outside this market.</div>
+</div>
+
+<section class="section">
+  <div class="section-num">Market index</div>
+  <div class="ledger-card">
+    <div class="ledger-title">MasullasCoin velocity index</div>
+    <div id="index-chart-wrap"><div class="empty-state" style="border:none; color:rgba(245,242,234,0.4)">Loading…</div></div>
+    <div class="ledger-note" id="index-note">Index = 100 + 100 × (cumulative trade volume ÷ coin supply). It only moves when coin actually changes hands inside Masullas — the same "velocity of money" concept used for whole economies, applied to this one closed system.</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-num">Your account</div>
+  <div id="acct-logged-out">
+    <div class="field">
+      <label for="reg-email">Email</label>
+      <input type="email" id="reg-email" placeholder="you@example.com" />
+    </div>
+    <div class="field">
+      <label for="reg-name">Display name</label>
+      <input type="text" id="reg-name" placeholder="How you'll appear to other traders" />
+    </div>
+    <div class="field" id="invite-field">
+      <label for="reg-invite">Invite code <span style="font-style:italic">(skip this only if you're a Masullas PNC holder)</span></label>
+      <input type="text" id="reg-invite" placeholder="e.g. a1b2c3d4e5" />
+    </div>
+    <button class="btn" id="btn-register">Enter the market</button>
+    <div id="reg-msg"></div>
+  </div>
+
+  <div id="acct-logged-in" style="display:none">
+    <div class="ledger-card">
+      <div class="ledger-title">Account ledger</div>
+      <div class="ledger-row"><span class="ledger-label">Trading as</span><span class="ledger-value you" id="acct-name">—</span></div>
+      <div class="ledger-row"><span class="ledger-label">Status</span><span class="ledger-value you" id="acct-status">—</span></div>
+      <div class="ledger-row"><span class="ledger-label">Balance</span><span class="ledger-value" id="acct-balance">—</span></div>
+      <div class="ledger-note">Balances move only through the purchase function below — never edited directly.</div>
+    </div>
+    <p style="margin-top:14px"><span class="account-pill">Not you? <a id="btn-logout">Switch account</a></span></p>
+  </div>
+</section>
+
+<section class="section" id="invite-section" style="display:none">
+  <div class="section-num">Invite someone</div>
+  <p style="margin-bottom:14px; color:#3a3a36">Bring in a real seller — the artichoke grower, the bakery, whoever has something to offer. They start at zero and earn by selling.</p>
+  <button class="btn secondary" id="btn-invite">Generate invite code</button>
+  <div id="invite-result" style="margin-top:12px"></div>
+</section>
+
+<section class="section" id="post-section" style="display:none">
+  <div class="section-num">Sell something</div>
+  <div class="field">
+    <label for="post-title">What are you offering</label>
+    <input type="text" id="post-title" placeholder="e.g. Box of fresh artichokes (12)" />
+  </div>
+  <div class="field">
+    <label for="post-desc">Description</label>
+    <textarea id="post-desc" placeholder="A line or two — what it is, condition, pickup, etc."></textarea>
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label for="post-category">Category</label>
+      <select id="post-category">
+        <option value="produce">Produce</option>
+        <option value="food_drink">Food &amp; drink</option>
+        <option value="craft">Craft / manufacture</option>
+        <option value="service">Service</option>
+        <option value="property">Property / space</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="post-price">Price (MasullasCoin)</label>
+      <input type="number" id="post-price" min="1" step="1" placeholder="e.g. 15" />
+    </div>
+  </div>
+  <button class="btn" id="btn-post">Post listing</button>
+  <div id="post-msg"></div>
+</section>
+
+<section class="section" style="border-bottom:none">
+  <div class="section-num">Listings</div>
+  <div id="listings-root"><div class="empty-state">Loading listings…</div></div>
+</section>
+
+<footer>MasullasCoin is not a financial instrument. Not tradeable outside this prototype. Issued only as part of PNC service delivery or by invitation. · 1love.works — De Lege et Amore.</footer>
+
+<script>
+var SUPABASE_URL = 'https://pwrcqepqhtuesoximmoj.supabase.co';
+var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB3cmNxZXBxaHR1ZXNveGltbW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwNjg2MTMsImV4cCI6MjA5MTY0NDYxM30.tO5SFloOfMZULDHtFII2dilE10fUk8SLCpmyHiCNidE';
+
+function rpc(fn, body) {
+  return fetch(SUPABASE_URL + '/rest/v1/rpc/' + fn, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY },
+    body: JSON.stringify(body)
+  }).then(function(r) {
+    return r.json().then(function(data) {
+      if (!r.ok) { var e = new Error((data && (data.message || data.hint)) || 'request_failed'); e.data = data; throw e; }
+      return data;
+    });
+  });
+}
+
+function getJSON(path) {
+  return fetch(SUPABASE_URL + '/rest/v1/' + path, { headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY } })
+    .then(function(r) { return r.json(); });
+}
+
+function showMsg(el, text, ok) {
+  el.innerHTML = '<div class="msg ' + (ok ? 'ok' : 'err') + '">' + text + '</div>';
+}
+
+var account = null;
+
+function setAccountUI() {
+  var out = document.getElementById('acct-logged-out');
+  var inUI = document.getElementById('acct-logged-in');
+  var inviteSec = document.getElementById('invite-section');
+  var postSec = document.getElementById('post-section');
+  if (account) {
+    out.style.display = 'none';
+    inUI.style.display = 'block';
+    inviteSec.style.display = 'block';
+    postSec.style.display = 'block';
+    document.getElementById('acct-name').textContent = account.display_name;
+    document.getElementById('acct-status').textContent = account.is_pnc_holder ? 'PNC holder (Founding Codification Agent)' : 'Invited trader';
+    document.getElementById('acct-balance').textContent = Number(account.balance_coin).toFixed(0) + ' MasullasCoin';
+  } else {
+    out.style.display = 'block';
+    inUI.style.display = 'none';
+    inviteSec.style.display = 'none';
+    postSec.style.display = 'none';
+  }
+}
+
+function loadAccount(email) {
+  return rpc('masullas_get_account', { p_email: email }).then(function(data) {
+    var row = Array.isArray(data) ? data[0] : data;
+    if (row && row.email) { account = row; localStorage.setItem('masullas_market_email', row.email); }
+    setAccountUI();
+    return row;
+  });
+}
+
+document.getElementById('btn-register').addEventListener('click', function() {
+  var email = document.getElementById('reg-email').value.trim();
+  var name = document.getElementById('reg-name').value.trim();
+  var invite = document.getElementById('reg-invite').value.trim();
+  var msgEl = document.getElementById('reg-msg');
+  if (!email || !name) { showMsg(msgEl, 'Email and display name are both required.', false); return; }
+
+  rpc('masullas_register_account', { p_email: email, p_display_name: name, p_invite_code: invite || null })
+    .then(function(data) {
+      account = Array.isArray(data) ? data[0] : data;
+      localStorage.setItem('masullas_market_email', account.email);
+      setAccountUI();
+      loadIndex();
+    })
+    .catch(function(e) {
+      var code = (e.data && e.data.message) || e.message || '';
+      var text = 'Something went wrong. Please try again or email us directly at info@1love.works';
+      if (code.indexOf('NOT_PNC_HOLDER_NO_INVITE') !== -1) text = "We don't see a Masullas PNC under this email — ask someone already in the market for an invite code.";
+      else if (code.indexOf('INVALID_OR_USED_INVITE') !== -1) text = 'That invite code is invalid or has already been used.';
+      showMsg(msgEl, text, false);
+    });
+});
+
+document.getElementById('btn-logout').addEventListener('click', function() {
+  account = null;
+  localStorage.removeItem('masullas_market_email');
+  setAccountUI();
+});
+
+document.getElementById('btn-invite').addEventListener('click', function() {
+  if (!account) return;
+  var resEl = document.getElementById('invite-result');
+  rpc('masullas_create_invite', { p_email: account.email })
+    .then(function(code) {
+      var c = Array.isArray(code) ? code[0] : code;
+      showMsg(resEl, 'Invite code: <strong>' + c + '</strong> — share it with whoever you\'re bringing in.', true);
+    })
+    .catch(function() { showMsg(resEl, 'Could not generate an invite right now. Try again shortly.', false); });
+});
+
+document.getElementById('btn-post').addEventListener('click', function() {
+  if (!account) return;
+  var title = document.getElementById('post-title').value.trim();
+  var desc = document.getElementById('post-desc').value.trim();
+  var category = document.getElementById('post-category').value;
+  var price = parseFloat(document.getElementById('post-price').value);
+  var msgEl = document.getElementById('post-msg');
+  if (!title || !price || price <= 0) { showMsg(msgEl, 'A title and a price above zero are both required.', false); return; }
+
+  rpc('masullas_create_listing', { p_seller_email: account.email, p_title: title, p_description: desc, p_category: category, p_price_coin: price })
+    .then(function() {
+      showMsg(msgEl, 'Listed.', true);
+      document.getElementById('post-title').value = '';
+      document.getElementById('post-desc').value = '';
+      document.getElementById('post-price').value = '';
+      loadListings();
+    })
+    .catch(function() { showMsg(msgEl, 'Could not post that listing. Please try again.', false); });
+});
+
+function categoryLabel(c) {
+  return { produce: 'Produce', food_drink: 'Food & drink', craft: 'Craft / manufacture', service: 'Service', property: 'Property / space', other: 'Other' }[c] || c;
+}
+
+function renderListings(rows) {
+  var root = document.getElementById('listings-root');
+  if (!rows || rows.length === 0) { root.innerHTML = '<div class="empty-state">No listings yet — be the first to sell something.</div>'; return; }
+  rows.sort(function(a, b) { return (a.status === 'sold') - (b.status === 'sold'); });
+  var html = '';
+  rows.forEach(function(r) {
+    html += '<div class="listing' + (r.status === 'sold' ? ' sold' : '') + '">' +
+      '<div class="listing-top"><span class="listing-title">' + escapeHtml(r.title) + '</span><span class="listing-price">' + Number(r.price_coin).toFixed(0) + ' coin</span></div>' +
+      '<div class="listing-meta">' + categoryLabel(r.category) + ' · ' + escapeHtml(r.seller_name) + '</div>' +
+      (r.description ? '<div class="listing-desc">' + escapeHtml(r.description) + '</div>' : '') +
+      (r.status === 'active' ? '<button class="btn secondary buy-btn" data-id="' + r.id + '" data-price="' + r.price_coin + '">Buy</button>' : '') +
+      '</div>';
+  });
+  root.innerHTML = html;
+  root.querySelectorAll('.buy-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() { buyListing(btn.getAttribute('data-id')); });
+  });
+}
+
+function escapeHtml(s) {
+  var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML;
+}
+
+function buyListing(id) {
+  if (!account) { alert('Enter the market first — register above.'); return; }
+  rpc('masullas_purchase_listing', { p_listing_id: id, p_buyer_email: account.email })
+    .then(function(result) {
+      var res = Array.isArray(result) ? result[0] : result;
+      loadAccount(account.email);
+      loadListings();
+      loadIndex();
+      alert('Bought "' + (res.listing_title || 'item') + '" for ' + res.amount_coin + ' MasullasCoin.');
+    })
+    .catch(function(e) {
+      var code = (e.data && e.data.message) || e.message || '';
+      var text = 'Could not complete that purchase.';
+      if (code.indexOf('INSUFFICIENT_BALANCE') !== -1) text = "You don't have enough MasullasCoin for that yet.";
+      else if (code.indexOf('CANNOT_BUY_OWN_LISTING') !== -1) text = "You can't buy your own listing.";
+      else if (code.indexOf('LISTING_NOT_ACTIVE') !== -1) text = 'That listing was already sold.';
+      alert(text);
+    });
+}
+
+function loadListings() {
+  getJSON('masullas_market_listings_public?select=*&order=created_at.desc')
+    .then(renderListings)
+    .catch(function() { document.getElementById('listings-root').innerHTML = '<div class="empty-state">Couldn\'t load listings right now.</div>'; });
+}
+
+function renderIndexChart(rows) {
+  var wrap = document.getElementById('index-chart-wrap');
+  if (!rows || rows.length === 0) {
+    wrap.innerHTML = '<div class="empty-state" style="border:none; color:rgba(245,242,234,0.4)">No PNC holders registered yet — the index starts moving once the first one joins.</div>';
+    return;
+  }
+  var points = rows.map(function(r) { return Number(r.index_value); });
+  var current = points[points.length - 1];
+  var min = Math.min.apply(null, points.concat([100]));
+  var max = Math.max.apply(null, points.concat([100]));
+  var range = Math.max(max - min, 1);
+  var w = 600, h = 140, pad = 8;
+
+  var coords = points.map(function(v, i) {
+    var x = points.length === 1 ? w / 2 : pad + (i / (points.length - 1)) * (w - pad * 2);
+    var y = h - pad - ((v - min) / range) * (h - pad * 2);
+    return x.toFixed(1) + ',' + y.toFixed(1);
+  });
+
+  var baselineY = (h - pad - ((100 - min) / range) * (h - pad * 2)).toFixed(1);
+  var areaPath = 'M' + coords[0].split(',')[0] + ',' + (h - pad) + ' L' + coords.join(' L') + ' L' + coords[coords.length - 1].split(',')[0] + ',' + (h - pad) + ' Z';
+
+  var svg = '<svg class="index-svg" viewBox="0 0 ' + w + ' ' + h + '" xmlns="http://www.w3.org/2000/svg">' +
+    '<line x1="0" y1="' + baselineY + '" x2="' + w + '" y2="' + baselineY + '" stroke="rgba(245,242,234,0.15)" stroke-width="1" stroke-dasharray="3,3"/>' +
+    '<path d="' + areaPath + '" fill="rgba(184,134,11,0.12)" stroke="none"/>' +
+    '<polyline points="' + coords.join(' ') + '" fill="none" stroke="#b8860b" stroke-width="2"/>' +
+    '</svg>';
+
+  wrap.innerHTML = '<div class="index-current">' + current.toFixed(1) + '<span>baseline 100.0</span></div>' + svg;
+}
+
+function loadIndex() {
+  rpc('masullas_market_index_series', {})
+    .then(renderIndexChart)
+    .catch(function() {
+      document.getElementById('index-chart-wrap').innerHTML = '<div class="empty-state" style="border:none; color:rgba(245,242,234,0.4)">Couldn\'t load the index right now.</div>';
+    });
+}
+
+// Init
+(function() {
+  var savedEmail = localStorage.getItem('masullas_market_email');
+  if (savedEmail) loadAccount(savedEmail);
+  else setAccountUI();
+  loadListings();
+  loadIndex();
+})();
+</script>
+
+</body>
+</html>
