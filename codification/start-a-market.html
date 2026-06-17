@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Avvia il tuo mercato interno — 1love.works</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #0d1f38; --parchment: #eef4fb; --cream: #ddeaf8; --white: #f5f9fd;
+  --gold: #b8860b; --blue: #2a7fc0; --green: #2d6a2d; --red: #8b0000;
+  --muted: #5a7490; --rule: rgba(13,31,56,0.10); --rule-med: rgba(13,31,56,0.18);
+  --serif: 'EB Garamond', Georgia, serif; --mono: 'DM Mono', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--serif); background: var(--parchment); color: var(--ink); line-height: 1.75; font-size: 18px; }
+
+nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(238,244,251,0.97); backdrop-filter: blur(8px); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 14px 48px; }
+.nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; font-weight: 500; }
+.nav-links { display: flex; gap: 24px; list-style: none; align-items: center; justify-content: center; }
+.nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--ink); }
+.lang-switcher { display: flex; border: 1px solid var(--rule); overflow: hidden; }
+.lang-btn { font-family: var(--mono); font-size: 10px; padding: 5px 9px; border: none; background: transparent; color: var(--muted); cursor: pointer; border-right: 1px solid var(--rule); transition: all 0.15s; }
+.lang-btn:last-child { border-right: none; }
+.lang-btn.active { background: var(--ink); color: var(--parchment); }
+.lang-btn:hover:not(.active) { background: var(--cream); }
+
+.hero { max-width: 760px; margin: 0 auto; padding: 64px 48px 48px; border-bottom: 1px solid var(--rule); }
+.hero-overline { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; }
+.hero h1 { font-size: clamp(34px, 5vw, 54px); font-weight: 400; line-height: 1.15; margin-bottom: 24px; }
+.hero h1 em { font-style: italic; color: var(--gold); }
+.hero-intro { font-size: 20px; color: #3a3a36; line-height: 1.85; }
+.hero-intro a { color: var(--gold); }
+
+.section { max-width: 760px; margin: 0 auto; padding: 48px 48px; border-bottom: 1px solid var(--rule); }
+.section-num { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+.section-num::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.section h2 { font-size: clamp(24px, 3.6vw, 34px); font-weight: 400; line-height: 1.2; margin-bottom: 20px; }
+.section h2 em { font-style: italic; color: var(--gold); }
+.section p { font-size: 18px; color: #3a3a36; line-height: 1.9; margin-bottom: 18px; }
+.section p:last-of-type { margin-bottom: 0; }
+.section p a { color: var(--gold); }
+
+.steps { counter-reset: stepnum; margin-top: 8px; }
+.step { display: grid; grid-template-columns: 48px 1fr; gap: 18px; padding: 22px 0; border-bottom: 1px solid var(--rule); }
+.step:last-child { border-bottom: none; }
+.step-num { counter-increment: stepnum; font-family: var(--mono); font-size: 22px; font-weight: 500; color: var(--gold); }
+.step-num::before { content: counter(stepnum); }
+.step-body h3 { font-size: 21px; font-weight: 500; margin-bottom: 8px; }
+.step-body p { font-size: 17px; color: #3a3a36; line-height: 1.8; margin-bottom: 10px; }
+.step-body p:last-child { margin-bottom: 0; }
+.step-tag { display: inline-block; font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; margin-bottom: 10px; }
+.step-tag.technical { background: rgba(139,0,0,0.08); color: var(--red); border: 1px solid rgba(139,0,0,0.2); }
+.step-tag.easy { background: rgba(45,106,45,0.1); color: var(--green); border: 1px solid rgba(45,106,45,0.25); }
+
+.dashboard { background: var(--ink); color: var(--parchment); padding: 28px 32px; margin: 24px 0 0; }
+.dashboard-title { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(245,242,234,0.5); margin-bottom: 16px; }
+.dashboard p { font-size: 16px; color: rgba(245,242,234,0.85); line-height: 1.8; margin-bottom: 14px; }
+.dashboard p:last-of-type { margin-bottom: 0; }
+.dashboard code { font-family: var(--mono); font-size: 14px; background: rgba(245,242,234,0.08); padding: 2px 6px; border-radius: 2px; color: #8fd18f; }
+.dashboard a.file-link { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 13px; color: var(--gold); text-decoration: none; border: 1px solid rgba(184,134,11,0.4); padding: 10px 16px; margin-top: 6px; }
+.dashboard a.file-link:hover { background: rgba(184,134,11,0.1); }
+
+.checklist { list-style: none; margin-top: 14px; }
+.checklist li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; font-family: var(--mono); font-size: 14px; color: rgba(245,242,234,0.8); padding: 6px 0; line-height: 1.6; }
+.checklist li::before { content: '□'; color: var(--gold); }
+
+.pull-quote { border-left: 4px solid var(--gold); padding: 18px 26px; margin: 28px 0; background: var(--cream); }
+.pull-quote p { font-size: 17px; font-style: italic; color: var(--ink); line-height: 1.7; margin: 0; }
+
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+.cta-row a {
+  display: inline-block; font-family: var(--mono); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 24px; text-decoration: none;
+}
+.cta-row a.primary { background: var(--ink); color: var(--parchment); }
+.cta-row a.secondary { background: transparent; color: var(--ink); border: 1px solid var(--rule-med); }
+
+.faq-item { margin-bottom: 24px; }
+.faq-item:last-child { margin-bottom: 0; }
+.faq-q { font-size: 18px; font-weight: 500; margin-bottom: 8px; }
+.faq-a { font-size: 17px; color: #3a3a36; line-height: 1.8; }
+
+footer { max-width: 760px; margin: 0 auto; padding: 32px 48px 56px; font-family: var(--mono); font-size: 11px; color: var(--muted); }
+
+@media (max-width: 680px) {
+  body { font-size: 16px; }
+  nav { padding: 12px 20px; grid-template-columns: 1fr auto; }
+  .nav-links { display: none; }
+  .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 52px; left: 0; right: 0; background: rgba(238,244,251,0.99); padding: 16px 20px 24px; border-bottom: 1px solid var(--rule-med); z-index: 9999; gap: 0; }
+  #nav-toggle { display: block !important; }
+  .hero, .section, footer { padding-left: 20px; padding-right: 20px; }
+  .hero h1 { font-size: 30px; }
+  .step { grid-template-columns: 36px 1fr; }
+  .dashboard { padding: 18px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">1love.works</a>
+  <ul class="nav-links">
+    <li class="hide-mobile"><a href="/problem" data-i18n="nav_problem">The Problem</a></li>
+    <li class="hide-mobile"><a href="/codification" data-i18n="nav_codification">Codification</a></li>
+    <li class="hide-mobile"><a href="/pnc" data-i18n="nav_pnc">PNC</a></li>
+    <li class="hide-mobile"><a href="/participate" data-i18n="nav_participate">Participate</a></li>
+  </ul>
+  <div style="display: flex; justify-content: flex-end;">
+    <div class="lang-switcher">
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+      <button class="lang-btn active" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+  <button id="nav-toggle" style="display:none; font-size:18px; background:none; border:none; cursor:pointer; color:var(--ink); padding:4px;" aria-label="Menu">☰</button>
+</nav>
+
+<div class="hero">
+  <p class="hero-overline" data-i18n="overline">1love.works · Codificazione — Mercati interni</p>
+  <h1 id="hero-h1" data-i18n="h1">Hai rivendicato un territorio?<br/>Ecco come <em>costruire</em> il suo mercato interno per ottimizzare il sistema legale.</h1>
+  <p class="hero-intro" id="hero-intro" data-i18n="hero_intro">Oltre al diritto applicabile (locale, provinciale, statale, UE) ci sono ben poche regole. Quella principale è che il codice è fatto per essere proprietario di qualsiasi sistema, cosicché il codice di — ad esempio — Roma sarà λRoma, che contiene tutti i cittadini romani, che sta dentro quello del Lazio, che sta dentro quello italiano, che sta dentro quello UE. In altre parole, il codice È la legge. Questo significa che come community manager ti devi adoperare per salvare e custodire il codice proprietario, ad esempio in un server messo a disposizione da un ente locale o come da accordi presi localmente. Ciò significa che potrai anche — in collaborazione con avvocati o altri professionisti — misurare il peso e l'entropia giuridica con <a href="/eulawmeter">EUlawMeter</a> o <a href="/corporatemeter">Corporate Meter</a> e recuperare i dati personali con <a href="/bigtechclaim">BigTechClaim</a>. L'altra regola è che i proventi in euro da un dato sistema vanno per il 50% al community manager, per la costruzione della piattaforma locale e per le azioni legali necessarie a ridurre l'entropia a livello locale; l'altro 50% viene centralizzato per costituire un fondo comune europeo di finanziamento del <a href="https://www.cambridge.org/core/books/abs/third-party-funding/third-party-funding/735AA5DAB8AE450542CE4F230BA139F0">contenzioso 3.0©</a> per l'ottimizzazione dei sistemi legali europei attraverso smart claims e contracts (vedi anche Global Competition Litigation 1/25).</p>
+</div>
+
+<section class="section">
+  <p class="section-num" data-i18n="s0_num">Prima di iniziare</p>
+  <h2 data-i18n="s0_h2">Non è (ancora) <em>un bottone</em>.</h2>
+  <p data-i18n="s0_p1">Questa è una cosa che vogliamo essere onesti su: replicare il mercato oggi richiede tre passaggi manuali, uno dei quali tocca direttamente il database. Non è un processo a un click. Se non sei a tuo agio con SQL o non hai accesso al pannello Supabase del progetto, questa pagina ti dà comunque tutto il necessario da passare a chi può farlo per te — un developer, o chiunque stia già amministrando il backend di 1love.works.</p>
+  <p data-i18n="s0_p2">Quello che ottieni alla fine è esattamente ciò che esiste già per Masullas: una pagina del mercato dedicata al tuo comune, un coin locale coniato 1:1 con il valore del tuo PNC, e un indice di velocità che misura quanto valore circola effettivamente a livello locale invece di uscire subito.</p>
+</section>
+
+<section class="section">
+  <p class="section-num" data-i18n="s1_num">Il percorso in tre passaggi</p>
+  <h2 data-i18n="s1_h2">Dalla rivendicazione<br/>al <em>mercato</em> attivo.</h2>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num"></div>
+      <div class="step-body">
+        <span class="step-tag easy" data-i18n="step1_tag">Chiunque può farlo</span>
+        <h3 data-i18n="step1_h3">Rivendica il territorio</h3>
+        <p id="step1-p1" data-i18n="step1_p1">Se non l'hai già fatto, vai alla <a href="/codification">mappa dei territori</a> e cerca la tua città nella sezione "Ogni città UE può iniziare qui". Acquisendo un PNC diventi il suo Agente di Codificazione Fondatore — il primo titolare del PNC ancorato a quel territorio.</p>
+        <p data-i18n="step1_p2">Questo passaggio da solo non crea ancora alcun mercato: registra solo il territorio e il tuo PNC. I passaggi 2 e 3 sotto sono quelli che trasformano quel PNC in un mercato funzionante con un coin locale.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num"></div>
+      <div class="step-body">
+        <span class="step-tag technical" data-i18n="step2_tag">Richiede accesso al database</span>
+        <h3 data-i18n="step2_h3">Esegui lo schema SQL per la tua città</h3>
+        <p data-i18n="step2_p1">Il mercato di ogni città vive su un proprio set indipendente di tabelle e funzioni — non condiviso con Masullas o con altri comuni. Il file sotto è il template usato per generare lo schema di Masullas: contiene istruzioni dettagliate in testa su quali tre segnaposto sostituire (il prefisso della città, il nome leggibile, e la stringa di corrispondenza per la giurisdizione).</p>
+        <div class="dashboard">
+          <div class="dashboard-title" data-i18n="step2_filetitle">market_setup_template.sql</div>
+          <p data-i18n="step2_filedesc">Dopo aver sostituito i tre segnaposto, esegui l'intero file una volta nell'SQL Editor di Supabase. È idempotente — sicuro da rieseguire se qualcosa va storto a metà.</p>
+          <ul class="checklist">
+            <li data-i18n="step2_check1">__SLUG__ → prefisso minuscolo, es. cagliari_</li>
+            <li data-i18n="step2_check2">__CITY_NAME__ → nome leggibile, es. Cagliari</li>
+            <li data-i18n="step2_check3">__JURISDICTION_MATCH__ → stringa di corrispondenza, es. cagliari</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num"></div>
+      <div class="step-body">
+        <span class="step-tag technical" data-i18n="step3_tag">Richiede accesso al repository</span>
+        <h3 data-i18n="step3_h3">Genera la pagina del mercato e pubblicala</h3>
+        <p data-i18n="step3_p1">Stessa logica del passaggio precedente, applicata alla pagina HTML: il template sotto è una copia esatta della pagina del mercato di Masullas con cinque segnaposto al posto dei riferimenti a Masullas. Dopo la sostituzione, il file va salvato con il nome della città (es. <code>cagliari.html</code>) e caricato nella cartella <code>/codification</code> del repository.</p>
+        <div class="dashboard">
+          <div class="dashboard-title" data-i18n="step3_filetitle">market_template.html</div>
+          <p data-i18n="step3_filedesc">Le istruzioni complete sono nel commento HTML in testa al file. I cinque segnaposto sono __SLUG__, __SLUG_PLAIN__, __CITY_NAME__, __COIN_NAME__ e __TERRITORY_CODE__.</p>
+        </div>
+        <p data-i18n="step3_p2">Un ultimo collegamento da fare a mano: sulla mappa dei territori, la riga della tua città deve puntare a questa nuova pagina invece che alla pagina generica del comune — è la stessa modifica già fatta per la riga di Masullas nella board.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <p class="section-num" data-i18n="s2_num">Domande frequenti</p>
+  <h2 data-i18n="s2_h2">Cosa aspettarsi.</h2>
+
+  <div class="faq-item">
+    <div class="faq-q" data-i18n="faq1_q">Posso fare tutto da solo, senza un developer?</div>
+    <div class="faq-a" data-i18n="faq1_a">Se sai leggere e modificare SQL e HTML con cautela, sì — entrambi i template sono pensati per una sostituzione testuale semplice, senza bisogno di scrivere nuovo codice. Se non ti senti a tuo agio nel toccare direttamente il database di produzione, è più sicuro passare i due file a chi già amministra il backend di 1love.works.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" data-i18n="faq2_q">Il mercato della mia città condivide coin o liquidità con Masullas?</div>
+    <div class="faq-a" data-i18n="faq2_a">No, non ancora — oggi ogni città ha le proprie tabelle, le proprie funzioni e il proprio coin a circuito chiuso, completamente separato da quello di qualsiasi altra città, incluso Masullas. Ma è una separazione di fase, non di principio: l'obiettivo locale è creare il KM zero per ogni singolo sistema legale europeo; l'obiettivo generale è che questi sistemi locali confluiscano nel mercato unico e nell'economia sociale di mercato a livello europeo.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" data-i18n="faq3_q">Cosa succede se due persone rivendicano la stessa città?</div>
+    <div class="faq-a" data-i18n="faq3_a">La mappa dei territori impedisce di rivendicare due volte lo stesso comune o città: una volta acquisito un PNC, quel territorio risulta "rivendicato" per chiunque altro lo cerchi successivamente.</div>
+  </div>
+</section>
+
+<section class="section">
+  <p class="section-num" data-i18n="s3_num">Pronto?</p>
+  <h2 data-i18n="s3_h2">Inizia dalla <em>mappa</em>.</h2>
+  <p data-i18n="s3_p1">Se non hai ancora rivendicato un territorio, è il primo passo. Se l'hai già fatto, i due file di questa pagina sono tutto ciò che serve per passare al passaggio successivo.</p>
+  <div class="cta-row">
+    <a href="/codification" class="primary" data-i18n="cta_btn1">→ Vai alla mappa dei territori</a>
+    <a href="/codification/masullas" class="secondary" data-i18n="cta_btn2">→ Vedi il mercato di Masullas</a>
+  </div>
+</section>
+
+<footer>
+  <span data-i18n="footer_note">λ model e metodologia Fractal Cross-Pollination · 1love.works — De Lege et Amore.</span>
+</footer>
+
+<script>
+const T = {
+  it: {
+    nav_problem: 'Il Problema', nav_codification: 'Codificazione', nav_pnc: 'PNC', nav_participate: 'Partecipa',
+    overline: '1love.works · Codificazione — Mercati interni',
+    h1: 'Hai rivendicato un territorio?<br/>Ecco come <em>costruire</em> il suo mercato interno per ottimizzare il sistema legale.',
+    hero_intro: `Oltre al diritto applicabile (locale, provinciale, statale, UE) ci sono ben poche regole. Quella principale è che il codice è fatto per essere proprietario di qualsiasi sistema, cosicché il codice di — ad esempio — Roma sarà λRoma, che contiene tutti i cittadini romani, che sta dentro quello del Lazio, che sta dentro quello italiano, che sta dentro quello UE. In altre parole, il codice È la legge. Questo significa che come community manager ti devi adoperare per salvare e custodire il codice proprietario, ad esempio in un server messo a disposizione da un ente locale o come da accordi presi localmente. Ciò significa che potrai anche — in collaborazione con avvocati o altri professionisti — misurare il peso e l'entropia giuridica con <a href="/eulawmeter">EUlawMeter</a> o <a href="/corporatemeter">Corporate Meter</a> e recuperare i dati personali con <a href="/bigtechclaim">BigTechClaim</a>. L'altra regola è che i proventi in euro da un dato sistema vanno per il 50% al community manager, per la costruzione della piattaforma locale e per le azioni legali necessarie a ridurre l'entropia a livello locale; l'altro 50% viene centralizzato per costituire un fondo comune europeo di finanziamento del <a href="https://www.cambridge.org/core/books/abs/third-party-funding/third-party-funding/735AA5DAB8AE450542CE4F230BA139F0">contenzioso 3.0©</a> per l'ottimizzazione dei sistemi legali europei attraverso smart claims e contracts (vedi anche Global Competition Litigation 1/25).`,
+    h1_city: 'Vuoi un mercato interno<br/>per <em>{city}</em>?',
+    hero_intro_city: 'Masullas è il primo comune con un mercato interno funzionante, in MasullasCoin. {city} non è stata ancora rivendicata: questa pagina spiega esattamente cosa serve per costruire lo stesso sistema lì.',
+    step1_p1_city: `<strong>{city}</strong> non è ancora stata rivendicata. <a href="/codification/index.html?prefill={cityEnc}#claim">Rivendicala ora</a> per diventarne l'Agente di Codificazione Fondatore — il primo titolare del PNC ancorato a quel territorio.`,
+    s0_num: 'Prima di iniziare',
+    s0_h2: 'Non è (ancora) <em>un bottone</em>.',
+    s0_p1: 'Questa è una cosa che vogliamo essere onesti su: replicare il mercato oggi richiede tre passaggi manuali, uno dei quali tocca direttamente il database. Non è un processo a un click. Se non sei a tuo agio con SQL o non hai accesso al pannello Supabase del progetto, questa pagina ti dà comunque tutto il necessario da passare a chi può farlo per te — un developer, o chiunque stia già amministrando il backend di 1love.works.',
+    s0_p2: 'Quello che ottieni alla fine è esattamente ciò che esiste già per Masullas: una pagina del mercato dedicata al tuo comune, un coin locale coniato 1:1 con il valore del tuo PNC, e un indice di velocità che misura quanto valore circola effettivamente a livello locale invece di uscire subito.',
+    s1_num: 'Il percorso in tre passaggi',
+    s1_h2: 'Dalla rivendicazione<br/>al <em>mercato</em> attivo.',
+    step1_tag: 'Chiunque può farlo',
+    step1_h3: 'Rivendica il territorio',
+    step1_p1: `Se non l'hai già fatto, vai alla <a href="/codification">mappa dei territori</a> e cerca la tua città nella sezione "Ogni città UE può iniziare qui". Acquisendo un PNC diventi il suo Agente di Codificazione Fondatore — il primo titolare del PNC ancorato a quel territorio.`,
+    step1_p2: 'Questo passaggio da solo non crea ancora alcun mercato: registra solo il territorio e il tuo PNC. I passaggi 2 e 3 sotto sono quelli che trasformano quel PNC in un mercato funzionante con un coin locale.',
+    step2_tag: 'Richiede accesso al database',
+    step2_h3: 'Esegui lo schema SQL per la tua città',
+    step2_p1: 'Il mercato di ogni città vive su un proprio set indipendente di tabelle e funzioni — non condiviso con Masullas o con altri comuni. Il file sotto è il template usato per generare lo schema di Masullas: contiene istruzioni dettagliate in testa su quali tre segnaposto sostituire (il prefisso della città, il nome leggibile, e la stringa di corrispondenza per la giurisdizione).',
+    step2_filetitle: 'market_setup_template.sql',
+    step2_filedesc: `Dopo aver sostituito i tre segnaposto, esegui l'intero file una volta nell'SQL Editor di Supabase. È idempotente — sicuro da rieseguire se qualcosa va storto a metà.`,
+    step2_check1: '__SLUG__ → prefisso minuscolo, es. cagliari_',
+    step2_check2: '__CITY_NAME__ → nome leggibile, es. Cagliari',
+    step2_check3: '__JURISDICTION_MATCH__ → stringa di corrispondenza, es. cagliari',
+    step3_tag: 'Richiede accesso al repository',
+    step3_h3: 'Genera la pagina del mercato e pubblicala',
+    step3_p1: 'Stessa logica del passaggio precedente, applicata alla pagina HTML: il template sotto è una copia esatta della pagina del mercato di Masullas con cinque segnaposto al posto dei riferimenti a Masullas. Dopo la sostituzione, il file va salvato con il nome della città (es. <code>cagliari.html</code>) e caricato nella cartella <code>/codification</code> del repository.',
+    step3_filetitle: 'market_template.html',
+    step3_filedesc: 'Le istruzioni complete sono nel commento HTML in testa al file. I cinque segnaposto sono __SLUG__, __SLUG_PLAIN__, __CITY_NAME__, __COIN_NAME__ e __TERRITORY_CODE__.',
+    step3_p2: 'Un ultimo collegamento da fare a mano: sulla mappa dei territori, la riga della tua città deve puntare a questa nuova pagina invece che alla pagina generica del comune — è la stessa modifica già fatta per la riga di Masullas nella board.',
+    s2_num: 'Domande frequenti',
+    s2_h2: 'Cosa aspettarsi.',
+    faq1_q: 'Posso fare tutto da solo, senza un developer?',
+    faq1_a: 'Se sai leggere e modificare SQL e HTML con cautela, sì — entrambi i template sono pensati per una sostituzione testuale semplice, senza bisogno di scrivere nuovo codice. Se non ti senti a tuo agio nel toccare direttamente il database di produzione, è più sicuro passare i due file a chi già amministra il backend di 1love.works.',
+    faq2_q: 'Il mercato della mia città condivide coin o liquidità con Masullas?',
+    faq2_a: "No, non ancora — oggi ogni città ha le proprie tabelle, le proprie funzioni e il proprio coin a circuito chiuso, completamente separato da quello di qualsiasi altra città, incluso Masullas. Ma è una separazione di fase, non di principio: l'obiettivo locale è creare il KM zero per ogni singolo sistema legale europeo; l'obiettivo generale è che questi sistemi locali confluiscano nel mercato unico e nell'economia sociale di mercato a livello europeo.",
+    faq3_q: 'Cosa succede se due persone rivendicano la stessa città?',
+    faq3_a: 'La mappa dei territori impedisce di rivendicare due volte lo stesso comune o città: una volta acquisito un PNC, quel territorio risulta "rivendicato" per chiunque altro lo cerchi successivamente.',
+    s3_num: 'Pronto?',
+    s3_h2: 'Inizia dalla <em>mappa</em>.',
+    s3_p1: `Se non hai ancora rivendicato un territorio, è il primo passo. Se l'hai già fatto, i due file di questa pagina sono tutto ciò che serve per passare al passaggio successivo.`,
+    cta_btn1: '→ Vai alla mappa dei territori',
+    cta_btn2: '→ Vedi il mercato di Masullas',
+    footer_note: 'λ model e metodologia Fractal Cross-Pollination · 1love.works — De Lege et Amore.',
+  },
+  en: {
+    nav_problem: 'The Problem', nav_codification: 'Codification', nav_pnc: 'PNC', nav_participate: 'Participate',
+    overline: '1love.works · Codification — Internal markets',
+    h1: `Claimed a territory?<br/>Here's how to <em>build</em> its internal market to optimize the legal system.`,
+    hero_intro: `Beyond the applicable law (local, provincial, national, EU), there are very few rules. The main one is that the code is built to own any system, such that the code for — say — Rome will be λRome, containing all Roman citizens, nested inside the code for Lazio, nested inside Italy's, nested inside the EU's. In other words, the code IS the law. This means that as community manager, you're responsible for saving and safeguarding the proprietary code — for instance on a server made available by a local authority, or under whatever arrangement is agreed locally. It also means you can, working with lawyers or other professionals, measure legal weight and entropy with <a href="/eulawmeter">EUlawMeter</a> or <a href="/corporatemeter">Corporate Meter</a>, and reclaim personal data with <a href="/bigtechclaim">BigTechClaim</a>. The other rule is that euro proceeds from a given system go 50% to the community manager, to build the local platform and fund the legal actions needed to reduce entropy locally; the other 50% is pooled into a shared European fund financing <a href="https://www.cambridge.org/core/books/abs/third-party-funding/third-party-funding/735AA5DAB8AE450542CE4F230BA139F0">litigation 3.0©</a> to optimize European legal systems through smart claims and contracts (see also Global Competition Litigation 1/25).`,
+    h1_city: `Want an internal market<br/>for <em>{city}</em>?`,
+    hero_intro_city: `Masullas is the first comune with a working internal market, in MasullasCoin. {city} hasn't been claimed yet — this page explains exactly what it takes to build the same system there.`,
+    step1_p1_city: `<strong>{city}</strong> hasn't been claimed yet. <a href="/codification/index.html?prefill={cityEnc}#claim">Claim it now</a> to become its Founding Codification Agent — the first holder of the PNC anchored to that territory.`,
+    s0_num: 'Before you start',
+    s0_h2: "It's not (yet) <em>a button</em>.",
+    s0_p1: "We want to be upfront about this: replicating the market today takes three manual steps, one of which touches the database directly. It isn't a one-click process. If you're not comfortable with SQL or don't have access to the project's Supabase panel, this page still gives you everything you need to hand off to someone who can — a developer, or whoever is already administering 1love.works's backend.",
+    s0_p2: "What you end up with is exactly what already exists for Masullas: a market page dedicated to your comune, a local coin minted 1:1 with your PNC's value, and a velocity index that measures how much value actually circulates locally instead of leaving right away.",
+    s1_num: 'The three-step path',
+    s1_h2: 'From claim<br/>to active <em>market</em>.',
+    step1_tag: 'Anyone can do this',
+    step1_h3: 'Claim the territory',
+    step1_p1: `If you haven't already, go to the <a href="/codification">territory map</a> and look up your city in the "Any EU city can start here" section. Acquiring a PNC makes you its Founding Codification Agent — the first holder of the PNC anchored to that territory.`,
+    step1_p2: "This step alone doesn't create a market yet — it only registers the territory and your PNC. Steps 2 and 3 below are what turn that PNC into a working market with a local coin.",
+    step2_tag: 'Requires database access',
+    step2_h3: "Run the SQL schema for your city",
+    step2_p1: "Each city's market lives on its own independent set of tables and functions — not shared with Masullas or any other comune. The file below is the template used to generate Masullas's schema: it has detailed instructions at the top on which three placeholders to replace (the city prefix, the readable name, and the jurisdiction match string).",
+    step2_filetitle: 'market_setup_template.sql',
+    step2_filedesc: "After replacing the three placeholders, run the whole file once in the Supabase SQL Editor. It's idempotent — safe to re-run if something fails partway through.",
+    step2_check1: '__SLUG__ → lowercase prefix, e.g. cagliari_',
+    step2_check2: '__CITY_NAME__ → readable name, e.g. Cagliari',
+    step2_check3: '__JURISDICTION_MATCH__ → match string, e.g. cagliari',
+    step3_tag: 'Requires repository access',
+    step3_h3: 'Generate the market page and publish it',
+    step3_p1: `Same logic as the previous step, applied to the HTML page: the template below is an exact copy of the Masullas market page with five placeholders standing in for Masullas references. After substitution, the file should be saved under the city's name (e.g. <code>cagliari.html</code>) and uploaded to the repository's <code>/codification</code> folder.`,
+    step3_filetitle: 'market_template.html',
+    step3_filedesc: 'Full instructions are in the HTML comment at the top of the file. The five placeholders are __SLUG__, __SLUG_PLAIN__, __CITY_NAME__, __COIN_NAME__ and __TERRITORY_CODE__.',
+    step3_p2: "One last manual link: on the territory map, your city's row needs to point to this new page instead of the generic comune page — the same change already made for the Masullas row on the board.",
+    s2_num: 'Frequently asked',
+    s2_h2: 'What to expect.',
+    faq1_q: "Can I do all of this myself, without a developer?",
+    faq1_a: "If you can read and carefully edit SQL and HTML, yes — both templates are designed for a simple text substitution, no new code required. If you're not comfortable touching the production database directly, it's safer to hand the two files to whoever already administers 1love.works's backend.",
+    faq2_q: "Does my city's market share coin or liquidity with Masullas?",
+    faq2_a: "Not yet — today every city has its own tables, its own functions, and its own closed-loop coin, completely separate from any other city's, including Masullas. But that separation is a matter of phase, not principle: the local goal is to create a zero-mile market for every individual European legal system; the larger goal is for these local systems to converge into the EU's single market and sustainable social market economy.",
+    faq3_q: 'What happens if two people claim the same city?',
+    faq3_a: "The territory map prevents the same comune or city from being claimed twice: once a PNC has been acquired, that territory shows as 'claimed' for anyone else who looks it up afterward.",
+    s3_num: 'Ready?',
+    s3_h2: 'Start at the <em>map</em>.',
+    s3_p1: "If you haven't claimed a territory yet, that's the first step. If you already have, the two files on this page are everything you need to move to the next one.",
+    cta_btn1: '→ Go to the territory map',
+    cta_btn2: '→ See the Masullas market',
+    footer_note: 'λ model and Fractal Cross-Pollination methodology · 1love.works — De Lege et Amore.',
+  }
+};
+
+let currentLang = localStorage.getItem('1lw_lang') || 'it';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('1lw_lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (T[lang] && T[lang][key] !== undefined) el.innerHTML = T[lang][key];
+  });
+  document.documentElement.lang = lang;
+  applyCityPersonalization();
+}
+
+function applyCityPersonalization() {
+  var params = new URLSearchParams(location.search);
+  var city = params.get('city');
+  if (!city) return;
+  var t = T[currentLang] || T.en;
+  var cityEnc = encodeURIComponent(city);
+
+  var h1El = document.getElementById('hero-h1');
+  if (h1El && t.h1_city) h1El.innerHTML = t.h1_city.replace('{city}', city);
+
+  var introEl = document.getElementById('hero-intro');
+  if (introEl && t.hero_intro_city) introEl.innerHTML = t.hero_intro_city.replace('{city}', city);
+
+  var step1El = document.getElementById('step1-p1');
+  if (step1El && t.step1_p1_city) {
+    step1El.innerHTML = t.step1_p1_city.replace(/\{city\}/g, city).replace('{cityEnc}', cityEnc);
+  }
+}
+
+(function() {
+  function initNav() {
+    var toggle = document.getElementById('nav-toggle');
+    var links = document.querySelector('.nav-links');
+    if (!toggle || !links) return;
+    var isOpen = false;
+    toggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      isOpen = !isOpen;
+      links.classList.toggle('open', isOpen);
+      toggle.textContent = isOpen ? '✕' : '☰';
+    });
+    document.addEventListener('click', function() {
+      if (isOpen) { isOpen = false; links.classList.remove('open'); toggle.textContent = '☰'; }
+    });
+  }
+  if (document.readyState !== 'loading') initNav(); else document.addEventListener('DOMContentLoaded', initNav);
+})();
+
+setLang(currentLang);
+</script>
+</body>
+</html>
