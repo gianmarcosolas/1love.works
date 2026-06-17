@@ -615,7 +615,8 @@ function render(){
       var badge=isClaimed
         ?'<span class="d-badge claimed">✓ '+t.legend_claimed+'</span>'
         :'<span class="d-badge open">'+t.legend_open+'</span>';
-      html+='<a class="d-row'+featured+'" href="/codification/comune.html?c='+r.slug+'">'+
+      var href=r.slug==='masullas'?'/codification/masullas':'/codification/comune.html?c='+r.slug;
+      html+='<a class="d-row'+featured+'" href="'+href+'">'+
         '<div class="d-rk">'+(idx+1)+'</div>'+
         '<div class="d-nm">'+r.sem+' '+r.name+'</div>'+
         '<div class="d-prov">'+r.prov+'</div>'+
