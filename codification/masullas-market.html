@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Masullas Internal Market — 1love.works</title>
+<title>Mercato Interno di Masullas — 1love.works</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
@@ -17,10 +17,16 @@
 html { scroll-behavior: smooth; }
 body { font-family: var(--serif); background: var(--parchment); color: var(--ink); line-height: 1.7; font-size: 17px; }
 
-nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(238,244,251,0.97); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: space-between; padding: 14px 48px; }
+nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--rule); background: rgba(238,244,251,0.97); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: space-between; padding: 14px 48px; gap: 16px; }
 .nav-logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; font-weight: 500; }
+.nav-right-group { display: flex; align-items: center; gap: 18px; }
 .nav-right { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
 .nav-right:hover { color: var(--ink); }
+.lang-switcher { display: flex; border: 1px solid var(--rule); overflow: hidden; flex-shrink: 0; }
+.lang-btn { font-family: var(--mono); font-size: 10px; padding: 5px 9px; border: none; background: transparent; color: var(--muted); cursor: pointer; border-right: 1px solid var(--rule); transition: all 0.15s; }
+.lang-btn:last-child { border-right: none; }
+.lang-btn.active { background: var(--ink); color: var(--parchment); }
+.lang-btn:hover:not(.active) { background: var(--cream); }
 
 .hero { max-width: 760px; margin: 0 auto; padding: 56px 48px 36px; border-bottom: 1px solid var(--rule); }
 .hero-overline { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
@@ -71,7 +77,6 @@ button.btn.secondary, a.btn.secondary { background: transparent; color: var(--in
 .listing-meta { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 8px; }
 .listing-desc { font-size: 15px; color: #3a3a36; margin-bottom: 12px; }
 .listing.sold { opacity: 0.5; }
-.listing.sold .listing-price::after { content: ' · sold'; text-transform: lowercase; color: var(--muted); }
 
 .empty-state { font-family: var(--mono); font-size: 13px; color: var(--muted); padding: 24px 0; text-align: center; border: 1px dashed var(--rule-med); }
 .account-pill { font-family: var(--mono); font-size: 11px; color: var(--muted); }
@@ -93,104 +98,291 @@ footer { max-width: 900px; margin: 0 auto; padding: 28px 48px 48px; font-family:
 
 <nav>
   <a class="nav-logo" href="/">1love.works</a>
-  <a class="nav-right" href="/codification/comune.html?c=masullas">← Masullas comune page</a>
+  <div class="nav-right-group">
+    <a class="nav-right" href="/codification/comune.html?c=masullas" data-i18n="nav_back">← Pagina del comune di Masullas</a>
+    <div class="lang-switcher">
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+      <button class="lang-btn active" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
 </nav>
 
 <div class="hero">
-  <div class="hero-overline">Prototype · eu.it.sardegna.or.masullas</div>
-  <h1>Masullas <em>Internal Market</em></h1>
-  <p class="hero-sub">A closed marketplace for Masullas, denominated in MasullasCoin — the same PNC certificate's value, now also usable to buy and sell goods and services locally.</p>
-  <p class="hero-sub">Founding Codification Agents (PNC holders) start with a balance equal to what they put in. Everyone else joins by invitation from someone already in, and starts at zero — earning coin by selling something real.</p>
-  <p class="hero-sub">Most of what a small town spends leaves it immediately — paid to outside suppliers, chains, or services with no local presence. Coin that can only be spent inside Masullas can't leak out that way: it has to circulate locally first. That circulation is measurable, and it's exactly what the index below tracks.</p>
-  <div class="hero-note">1 PNC (€99) = 99 MasullasCoin, minted once at registration. MasullasCoin is a closed-loop unit of account for this prototype only — it is not redeemable for euros, not a financial instrument, and not tradable outside this market.</div>
+  <div class="hero-overline" data-i18n="hero_overline">Prototipo · eu.it.sardegna.or.masullas</div>
+  <h1 data-i18n="hero_title">Mercato Interno <em>di Masullas</em></h1>
+  <p class="hero-sub" data-i18n="hero_sub1">Un mercato chiuso per Masullas, denominato in MasullasCoin — lo stesso valore del certificato PNC, ora utilizzabile anche per comprare e vendere beni e servizi a livello locale.</p>
+  <p class="hero-sub" data-i18n="hero_sub2">Gli Agenti di Codificazione Fondatori (titolari di PNC) partono con un saldo pari a quanto hanno versato. Tutti gli altri entrano tramite invito da chi è già dentro, e partono da zero — guadagnando coin vendendo qualcosa di reale.</p>
+  <p class="hero-sub" data-i18n="hero_sub3">Gran parte di ciò che un piccolo paese spende ne esce immediatamente — pagato a fornitori esterni, catene o servizi senza presenza locale. Un coin spendibile solo dentro Masullas non può uscire in questo modo: deve prima circolare localmente. Quella circolazione è misurabile, ed è esattamente ciò che traccia l'indice qui sotto.</p>
+  <div class="hero-note" data-i18n="hero_note">1 PNC (€99) = 99 MasullasCoin, coniati una sola volta alla registrazione. MasullasCoin è un'unità di conto a circuito chiuso solo per questo prototipo — non è convertibile in euro, non è uno strumento finanziario e non è negoziabile fuori da questo mercato.</div>
 </div>
 
 <section class="section">
-  <div class="section-num">Market index</div>
+  <div class="section-num" data-i18n="s1_label">Indice di mercato</div>
   <div class="ledger-card">
-    <div class="ledger-title">MasullasCoin velocity index</div>
-    <div id="index-chart-wrap"><div class="empty-state" style="border:none; color:rgba(245,242,234,0.4)">Loading…</div></div>
-    <div class="ledger-note" id="index-note">Index = 100 + 100 × (cumulative trade volume ÷ coin supply). It only moves when coin actually changes hands inside Masullas — the same "velocity of money" concept used for whole economies, applied to this one closed system.</div>
+    <div class="ledger-title" data-i18n="s1_title">Indice di velocità del MasullasCoin</div>
+    <div id="index-chart-wrap"><div class="empty-state" style="border:none; color:rgba(245,242,234,0.4)" data-i18n="loading">Caricamento…</div></div>
+    <div class="ledger-note" id="index-note" data-i18n="s1_note">Indice = 100 + 100 × (volume di scambio cumulativo ÷ offerta di coin). Si muove solo quando i coin cambiano effettivamente di mano dentro Masullas — lo stesso concetto di "velocità della moneta" usato per intere economie, applicato a questo unico sistema chiuso.</div>
   </div>
 </section>
 
 <section class="section">
-  <div class="section-num">Your account</div>
+  <div class="section-num" data-i18n="s2_label">Il tuo account</div>
   <div id="acct-logged-out">
     <div class="field">
-      <label for="reg-email">Email</label>
-      <input type="email" id="reg-email" placeholder="you@example.com" />
+      <label for="reg-email" data-i18n="f_email">Email</label>
+      <input type="email" id="reg-email" placeholder="tu@esempio.com" />
     </div>
     <div class="field">
-      <label for="reg-name">Display name</label>
-      <input type="text" id="reg-name" placeholder="How you'll appear to other traders" />
+      <label for="reg-name" data-i18n="f_name">Nome visualizzato</label>
+      <input type="text" id="reg-name" data-i18n-ph="f_name_ph" placeholder="Come apparirai agli altri commercianti" />
     </div>
     <div class="field" id="invite-field">
-      <label for="reg-invite">Invite code <span style="font-style:italic">(skip this only if you're a Masullas PNC holder)</span></label>
-      <input type="text" id="reg-invite" placeholder="e.g. a1b2c3d4e5" />
+      <label for="reg-invite"><span data-i18n="f_invite">Codice invito</span> <span style="font-style:italic" data-i18n="f_invite_note">(salta solo se sei titolare di un PNC Masullas)</span></label>
+      <input type="text" id="reg-invite" placeholder="es. a1b2c3d4e5" />
     </div>
-    <button class="btn" id="btn-register">Enter the market</button>
+    <button class="btn" id="btn-register" data-i18n="btn_register">Entra nel mercato</button>
     <div id="reg-msg"></div>
   </div>
 
   <div id="acct-logged-in" style="display:none">
     <div class="ledger-card">
-      <div class="ledger-title">Account ledger</div>
-      <div class="ledger-row"><span class="ledger-label">Trading as</span><span class="ledger-value you" id="acct-name">—</span></div>
-      <div class="ledger-row"><span class="ledger-label">Status</span><span class="ledger-value you" id="acct-status">—</span></div>
-      <div class="ledger-row"><span class="ledger-label">Balance</span><span class="ledger-value" id="acct-balance">—</span></div>
-      <div class="ledger-note">Balances move only through the purchase function below — never edited directly.</div>
+      <div class="ledger-title" data-i18n="ledger_title">Estratto conto</div>
+      <div class="ledger-row"><span class="ledger-label" data-i18n="ledger_trading_as">Operi come</span><span class="ledger-value you" id="acct-name">—</span></div>
+      <div class="ledger-row"><span class="ledger-label" data-i18n="ledger_status">Stato</span><span class="ledger-value you" id="acct-status">—</span></div>
+      <div class="ledger-row"><span class="ledger-label" data-i18n="ledger_balance">Saldo</span><span class="ledger-value" id="acct-balance">—</span></div>
+      <div class="ledger-note" data-i18n="ledger_note">I saldi si muovono solo tramite la funzione di acquisto qui sotto — non vengono mai modificati direttamente.</div>
     </div>
-    <p style="margin-top:14px"><span class="account-pill">Not you? <a id="btn-logout">Switch account</a></span></p>
+    <p style="margin-top:14px"><span class="account-pill"><span data-i18n="not_you">Non sei tu?</span> <a id="btn-logout" data-i18n="switch_account">Cambia account</a></span></p>
   </div>
 </section>
 
 <section class="section" id="invite-section" style="display:none">
-  <div class="section-num">Invite someone</div>
-  <p style="margin-bottom:14px; color:#3a3a36">Bring in a real seller — the artichoke grower, the bakery, whoever has something to offer. They start at zero and earn by selling.</p>
-  <button class="btn secondary" id="btn-invite">Generate invite code</button>
+  <div class="section-num" data-i18n="s3_label">Invita qualcuno</div>
+  <p style="margin-bottom:14px; color:#3a3a36" data-i18n="s3_text">Porta dentro un venditore vero — il coltivatore di carciofi, il panificio, chiunque abbia qualcosa da offrire. Partono da zero e guadagnano vendendo.</p>
+  <button class="btn secondary" id="btn-invite" data-i18n="btn_invite">Genera codice invito</button>
   <div id="invite-result" style="margin-top:12px"></div>
 </section>
 
 <section class="section" id="post-section" style="display:none">
-  <div class="section-num">Sell something</div>
+  <div class="section-num" data-i18n="s4_label">Vendi qualcosa</div>
   <div class="field">
-    <label for="post-title">What are you offering</label>
-    <input type="text" id="post-title" placeholder="e.g. Box of fresh artichokes (12)" />
+    <label for="post-title" data-i18n="f_offer">Cosa offri</label>
+    <input type="text" id="post-title" data-i18n-ph="f_offer_ph" placeholder="es. Cassetta di carciofi freschi (12)" />
   </div>
   <div class="field">
-    <label for="post-desc">Description</label>
-    <textarea id="post-desc" placeholder="A line or two — what it is, condition, pickup, etc."></textarea>
+    <label for="post-desc" data-i18n="f_desc">Descrizione</label>
+    <textarea id="post-desc" data-i18n-ph="f_desc_ph" placeholder="Una riga o due — cos'è, condizioni, ritiro, ecc."></textarea>
   </div>
   <div class="field-row">
     <div class="field">
-      <label for="post-category">Category</label>
+      <label for="post-category" data-i18n="f_category">Categoria</label>
       <select id="post-category">
-        <option value="produce">Produce</option>
-        <option value="food_drink">Food &amp; drink</option>
-        <option value="craft">Craft / manufacture</option>
-        <option value="service">Service</option>
-        <option value="property">Property / space</option>
-        <option value="other">Other</option>
+        <option value="produce" data-i18n="cat_produce">Prodotti agricoli</option>
+        <option value="food_drink" data-i18n="cat_food_drink">Cibo e bevande</option>
+        <option value="craft" data-i18n="cat_craft">Artigianato / manifattura</option>
+        <option value="service" data-i18n="cat_service">Servizio</option>
+        <option value="property" data-i18n="cat_property">Proprietà / spazio</option>
+        <option value="other" data-i18n="cat_other">Altro</option>
       </select>
     </div>
     <div class="field">
-      <label for="post-price">Price (MasullasCoin)</label>
-      <input type="number" id="post-price" min="1" step="1" placeholder="e.g. 15" />
+      <label for="post-price" data-i18n="f_price">Prezzo (MasullasCoin)</label>
+      <input type="number" id="post-price" min="1" step="1" placeholder="es. 15" />
     </div>
   </div>
-  <button class="btn" id="btn-post">Post listing</button>
+  <button class="btn" id="btn-post" data-i18n="btn_post">Pubblica annuncio</button>
   <div id="post-msg"></div>
 </section>
 
 <section class="section" style="border-bottom:none">
-  <div class="section-num">Listings</div>
-  <div id="listings-root"><div class="empty-state">Loading listings…</div></div>
+  <div class="section-num" data-i18n="s5_label">Annunci</div>
+  <div id="listings-root"><div class="empty-state" data-i18n="loading_listings">Caricamento annunci…</div></div>
 </section>
 
-<footer>MasullasCoin is not a financial instrument. Not tradeable outside this prototype. Issued only as part of PNC service delivery or by invitation. · 1love.works — De Lege et Amore.</footer>
+<footer data-i18n="footer_text">MasullasCoin non è uno strumento finanziario. Non negoziabile fuori da questo prototipo. Emesso solo come parte dell'erogazione del servizio PNC o per invito. · 1love.works — De Lege et Amore.</footer>
 
 <script>
+var T = {
+  en: {
+    nav_back: '← Masullas comune page',
+    hero_overline: 'Prototype · eu.it.sardegna.or.masullas',
+    hero_title: 'Masullas <em>Internal Market</em>',
+    hero_sub1: "A closed marketplace for Masullas, denominated in MasullasCoin — the same PNC certificate's value, now also usable to buy and sell goods and services locally.",
+    hero_sub2: 'Founding Codification Agents (PNC holders) start with a balance equal to what they put in. Everyone else joins by invitation from someone already in, and starts at zero — earning coin by selling something real.',
+    hero_sub3: "Most of what a small town spends leaves it immediately — paid to outside suppliers, chains, or services with no local presence. Coin that can only be spent inside Masullas can't leak out that way: it has to circulate locally first. That circulation is measurable, and it's exactly what the index below tracks.",
+    hero_note: '1 PNC (€99) = 99 MasullasCoin, minted once at registration. MasullasCoin is a closed-loop unit of account for this prototype only — it is not redeemable for euros, not a financial instrument, and not tradable outside this market.',
+    s1_label: 'Market index',
+    s1_title: 'MasullasCoin velocity index',
+    s1_note: 'Index = 100 + 100 × (cumulative trade volume ÷ coin supply). It only moves when coin actually changes hands inside Masullas — the same "velocity of money" concept used for whole economies, applied to this one closed system.',
+    loading: 'Loading…',
+    s2_label: 'Your account',
+    f_email: 'Email',
+    f_name: 'Display name',
+    f_name_ph: "How you'll appear to other traders",
+    f_invite: 'Invite code',
+    f_invite_note: "(skip this only if you're a Masullas PNC holder)",
+    btn_register: 'Enter the market',
+    ledger_title: 'Account ledger',
+    ledger_trading_as: 'Trading as',
+    ledger_status: 'Status',
+    ledger_balance: 'Balance',
+    ledger_note: 'Balances move only through the purchase function below — never edited directly.',
+    not_you: 'Not you?',
+    switch_account: 'Switch account',
+    s3_label: 'Invite someone',
+    s3_text: 'Bring in a real seller — the artichoke grower, the bakery, whoever has something to offer. They start at zero and earn by selling.',
+    btn_invite: 'Generate invite code',
+    s4_label: 'Sell something',
+    f_offer: 'What are you offering',
+    f_offer_ph: 'e.g. Box of fresh artichokes (12)',
+    f_desc: 'Description',
+    f_desc_ph: 'A line or two — what it is, condition, pickup, etc.',
+    f_category: 'Category',
+    cat_produce: 'Produce',
+    cat_food_drink: 'Food & drink',
+    cat_craft: 'Craft / manufacture',
+    cat_service: 'Service',
+    cat_property: 'Property / space',
+    cat_other: 'Other',
+    f_price: 'Price (MasullasCoin)',
+    btn_post: 'Post listing',
+    s5_label: 'Listings',
+    loading_listings: 'Loading listings…',
+    footer_text: 'MasullasCoin is not a financial instrument. Not tradeable outside this prototype. Issued only as part of PNC service delivery or by invitation. · 1love.works — De Lege et Amore.',
+    status_pnc: 'PNC holder (Founding Codification Agent)',
+    status_invited: 'Invited trader',
+    coin_suffix: 'MasullasCoin',
+    coin_short: 'coin',
+    sold_suffix: 'sold',
+    no_listings: 'No listings yet — be the first to sell something.',
+    buy_btn: 'Buy',
+    couldnt_load_listings: "Couldn't load listings right now.",
+    no_pnc_yet: 'No PNC holders registered yet — the index starts moving once the first one joins.',
+    couldnt_load_index: "Couldn't load the index right now.",
+    baseline: 'baseline 100.0',
+    req_email_name: 'Email and display name are both required.',
+    req_title_price: 'A title and a price above zero are both required.',
+    listed_ok: 'Listed.',
+    listing_post_fail: 'Could not post that listing. Please try again.',
+    invite_result: 'Invite code: <strong>{code}</strong> — share it with whoever you\'re bringing in.',
+    invite_fail: 'Could not generate an invite right now. Try again shortly.',
+    err_generic: 'Something went wrong. Please try again or email us directly at info@1love.works',
+    err_not_pnc: "We don't see a Masullas PNC under this email — ask someone already in the market for an invite code.",
+    err_invalid_invite: 'That invite code is invalid or has already been used.',
+    err_too_many_invites: 'You already have several open invite codes outstanding — use one of those first, or wait for one to be redeemed.',
+    register_first: 'Enter the market first — register above.',
+    bought_msg: 'Bought "{title}" for {amount} MasullasCoin.',
+    item_fallback: 'item',
+    err_purchase_generic: 'Could not complete that purchase.',
+    err_insufficient: "You don't have enough MasullasCoin for that yet.",
+    err_own_listing: "You can't buy your own listing.",
+    err_already_sold: 'That listing was already sold.'
+  },
+  it: {
+    nav_back: '← Pagina del comune di Masullas',
+    hero_overline: 'Prototipo · eu.it.sardegna.or.masullas',
+    hero_title: 'Mercato Interno <em>di Masullas</em>',
+    hero_sub1: "Un mercato chiuso per Masullas, denominato in MasullasCoin — lo stesso valore del certificato PNC, ora utilizzabile anche per comprare e vendere beni e servizi a livello locale.",
+    hero_sub2: 'Gli Agenti di Codificazione Fondatori (titolari di PNC) partono con un saldo pari a quanto hanno versato. Tutti gli altri entrano tramite invito da chi è già dentro, e partono da zero — guadagnando coin vendendo qualcosa di reale.',
+    hero_sub3: "Gran parte di ciò che un piccolo paese spende ne esce immediatamente — pagato a fornitori esterni, catene o servizi senza presenza locale. Un coin spendibile solo dentro Masullas non può uscire in questo modo: deve prima circolare localmente. Quella circolazione è misurabile, ed è esattamente ciò che traccia l'indice qui sotto.",
+    hero_note: "1 PNC (€99) = 99 MasullasCoin, coniati una sola volta alla registrazione. MasullasCoin è un'unità di conto a circuito chiuso solo per questo prototipo — non è convertibile in euro, non è uno strumento finanziario e non è negoziabile fuori da questo mercato.",
+    s1_label: 'Indice di mercato',
+    s1_title: 'Indice di velocità del MasullasCoin',
+    s1_note: 'Indice = 100 + 100 × (volume di scambio cumulativo ÷ offerta di coin). Si muove solo quando i coin cambiano effettivamente di mano dentro Masullas — lo stesso concetto di "velocità della moneta" usato per intere economie, applicato a questo unico sistema chiuso.',
+    loading: 'Caricamento…',
+    s2_label: 'Il tuo account',
+    f_email: 'Email',
+    f_name: 'Nome visualizzato',
+    f_name_ph: 'Come apparirai agli altri commercianti',
+    f_invite: 'Codice invito',
+    f_invite_note: '(salta solo se sei titolare di un PNC Masullas)',
+    btn_register: 'Entra nel mercato',
+    ledger_title: 'Estratto conto',
+    ledger_trading_as: 'Operi come',
+    ledger_status: 'Stato',
+    ledger_balance: 'Saldo',
+    ledger_note: 'I saldi si muovono solo tramite la funzione di acquisto qui sotto — non vengono mai modificati direttamente.',
+    not_you: 'Non sei tu?',
+    switch_account: 'Cambia account',
+    s3_label: 'Invita qualcuno',
+    s3_text: 'Porta dentro un venditore vero — il coltivatore di carciofi, il panificio, chiunque abbia qualcosa da offrire. Partono da zero e guadagnano vendendo.',
+    btn_invite: 'Genera codice invito',
+    s4_label: 'Vendi qualcosa',
+    f_offer: 'Cosa offri',
+    f_offer_ph: 'es. Cassetta di carciofi freschi (12)',
+    f_desc: 'Descrizione',
+    f_desc_ph: "Una riga o due — cos'è, condizioni, ritiro, ecc.",
+    f_category: 'Categoria',
+    cat_produce: 'Prodotti agricoli',
+    cat_food_drink: 'Cibo e bevande',
+    cat_craft: 'Artigianato / manifattura',
+    cat_service: 'Servizio',
+    cat_property: 'Proprietà / spazio',
+    cat_other: 'Altro',
+    f_price: 'Prezzo (MasullasCoin)',
+    btn_post: 'Pubblica annuncio',
+    s5_label: 'Annunci',
+    loading_listings: 'Caricamento annunci…',
+    footer_text: "MasullasCoin non è uno strumento finanziario. Non negoziabile fuori da questo prototipo. Emesso solo come parte dell'erogazione del servizio PNC o per invito. · 1love.works — De Lege et Amore.",
+    status_pnc: 'Titolare PNC (Agente di Codificazione Fondatore)',
+    status_invited: 'Commerciante invitato',
+    coin_suffix: 'MasullasCoin',
+    coin_short: 'coin',
+    sold_suffix: 'venduto',
+    no_listings: 'Ancora nessun annuncio — sii il primo a vendere qualcosa.',
+    buy_btn: 'Compra',
+    couldnt_load_listings: 'Impossibile caricare gli annunci in questo momento.',
+    no_pnc_yet: "Nessun titolare di PNC ancora registrato — l'indice inizia a muoversi non appena il primo si unisce.",
+    couldnt_load_index: "Impossibile caricare l'indice in questo momento.",
+    baseline: 'base 100,0',
+    req_email_name: 'Email e nome visualizzato sono entrambi obbligatori.',
+    req_title_price: 'Sono obbligatori sia un titolo che un prezzo superiore a zero.',
+    listed_ok: 'Pubblicato.',
+    listing_post_fail: "Impossibile pubblicare l'annuncio. Riprova.",
+    invite_result: 'Codice invito: <strong>{code}</strong> — condividilo con chi stai portando dentro.',
+    invite_fail: 'Al momento non è possibile generare un invito. Riprova a breve.',
+    err_generic: "Qualcosa è andato storto. Riprova oppure scrivi direttamente a info@1love.works",
+    err_not_pnc: 'Non troviamo un PNC Masullas associato a questa email — chiedi un codice invito a chi è già nel mercato.',
+    err_invalid_invite: 'Quel codice invito non è valido o è già stato usato.',
+    err_too_many_invites: 'Hai già diversi codici invito aperti in sospeso — usane uno di quelli, oppure aspetta che venga riscattato.',
+    register_first: 'Entra prima nel mercato — registrati qui sopra.',
+    bought_msg: 'Acquistato "{title}" per {amount} MasullasCoin.',
+    item_fallback: 'articolo',
+    err_purchase_generic: "Impossibile completare l'acquisto.",
+    err_insufficient: 'Non hai ancora abbastanza MasullasCoin per questo.',
+    err_own_listing: 'Non puoi comprare il tuo stesso annuncio.',
+    err_already_sold: 'Quell\'annuncio è già stato venduto.'
+  }
+};
+
+var currentLang = localStorage.getItem('1lw_lang') || 'it';
+if (currentLang !== 'en' && currentLang !== 'it') currentLang = 'it';
+
+function tr(key) {
+  return (T[currentLang] && T[currentLang][key] !== undefined) ? T[currentLang][key] : (T.en[key] !== undefined ? T.en[key] : key);
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('1lw_lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(function(b) {
+    b.classList.toggle('active', b.textContent === lang.toUpperCase());
+  });
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (T[lang] && T[lang][key] !== undefined) el.innerHTML = T[lang][key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-ph');
+    if (T[lang] && T[lang][key] !== undefined) el.setAttribute('placeholder', T[lang][key]);
+  });
+  document.documentElement.lang = lang;
+  // Re-render any dynamic content that depends on language.
+  setAccountUI();
+  if (typeof lastListingsRows !== 'undefined') renderListings(lastListingsRows);
+  if (typeof lastIndexRows !== 'undefined') renderIndexChart(lastIndexRows);
+}
+
 var SUPABASE_URL = 'https://pwrcqepqhtuesoximmoj.supabase.co';
 var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB3cmNxZXBxaHR1ZXNveGltbW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwNjg2MTMsImV4cCI6MjA5MTY0NDYxM30.tO5SFloOfMZULDHtFII2dilE10fUk8SLCpmyHiCNidE';
 
@@ -217,6 +409,8 @@ function showMsg(el, text, ok) {
 }
 
 var account = null;
+var lastListingsRows = null;
+var lastIndexRows = null;
 
 function setAccountUI() {
   var out = document.getElementById('acct-logged-out');
@@ -229,8 +423,8 @@ function setAccountUI() {
     inviteSec.style.display = 'block';
     postSec.style.display = 'block';
     document.getElementById('acct-name').textContent = account.display_name;
-    document.getElementById('acct-status').textContent = account.is_pnc_holder ? 'PNC holder (Founding Codification Agent)' : 'Invited trader';
-    document.getElementById('acct-balance').textContent = Number(account.balance_coin).toFixed(0) + ' MasullasCoin';
+    document.getElementById('acct-status').textContent = account.is_pnc_holder ? tr('status_pnc') : tr('status_invited');
+    document.getElementById('acct-balance').textContent = Number(account.balance_coin).toFixed(0) + ' ' + tr('coin_suffix');
   } else {
     out.style.display = 'block';
     inUI.style.display = 'none';
@@ -253,7 +447,7 @@ document.getElementById('btn-register').addEventListener('click', function() {
   var name = document.getElementById('reg-name').value.trim();
   var invite = document.getElementById('reg-invite').value.trim();
   var msgEl = document.getElementById('reg-msg');
-  if (!email || !name) { showMsg(msgEl, 'Email and display name are both required.', false); return; }
+  if (!email || !name) { showMsg(msgEl, tr('req_email_name'), false); return; }
 
   rpc('masullas_register_account', { p_email: email, p_display_name: name, p_invite_code: invite || null })
     .then(function(data) {
@@ -264,9 +458,9 @@ document.getElementById('btn-register').addEventListener('click', function() {
     })
     .catch(function(e) {
       var code = (e.data && e.data.message) || e.message || '';
-      var text = 'Something went wrong. Please try again or email us directly at info@1love.works';
-      if (code.indexOf('NOT_PNC_HOLDER_NO_INVITE') !== -1) text = "We don't see a Masullas PNC under this email — ask someone already in the market for an invite code.";
-      else if (code.indexOf('INVALID_OR_USED_INVITE') !== -1) text = 'That invite code is invalid or has already been used.';
+      var text = tr('err_generic');
+      if (code.indexOf('NOT_PNC_HOLDER_NO_INVITE') !== -1) text = tr('err_not_pnc');
+      else if (code.indexOf('INVALID_OR_USED_INVITE') !== -1) text = tr('err_invalid_invite');
       showMsg(msgEl, text, false);
     });
 });
@@ -283,9 +477,13 @@ document.getElementById('btn-invite').addEventListener('click', function() {
   rpc('masullas_create_invite', { p_email: account.email })
     .then(function(code) {
       var c = Array.isArray(code) ? code[0] : code;
-      showMsg(resEl, 'Invite code: <strong>' + c + '</strong> — share it with whoever you\'re bringing in.', true);
+      showMsg(resEl, tr('invite_result').replace('{code}', c), true);
     })
-    .catch(function() { showMsg(resEl, 'Could not generate an invite right now. Try again shortly.', false); });
+    .catch(function(e) {
+      var msg = (e.data && e.data.message) || e.message || '';
+      var text = msg.indexOf('TOO_MANY_OPEN_INVITES') !== -1 ? tr('err_too_many_invites') : tr('invite_fail');
+      showMsg(resEl, text, false);
+    });
 });
 
 document.getElementById('btn-post').addEventListener('click', function() {
@@ -295,34 +493,37 @@ document.getElementById('btn-post').addEventListener('click', function() {
   var category = document.getElementById('post-category').value;
   var price = parseFloat(document.getElementById('post-price').value);
   var msgEl = document.getElementById('post-msg');
-  if (!title || !price || price <= 0) { showMsg(msgEl, 'A title and a price above zero are both required.', false); return; }
+  if (!title || !price || price <= 0) { showMsg(msgEl, tr('req_title_price'), false); return; }
 
   rpc('masullas_create_listing', { p_seller_email: account.email, p_title: title, p_description: desc, p_category: category, p_price_coin: price })
     .then(function() {
-      showMsg(msgEl, 'Listed.', true);
+      showMsg(msgEl, tr('listed_ok'), true);
       document.getElementById('post-title').value = '';
       document.getElementById('post-desc').value = '';
       document.getElementById('post-price').value = '';
       loadListings();
     })
-    .catch(function() { showMsg(msgEl, 'Could not post that listing. Please try again.', false); });
+    .catch(function() { showMsg(msgEl, tr('listing_post_fail'), false); });
 });
 
 function categoryLabel(c) {
-  return { produce: 'Produce', food_drink: 'Food & drink', craft: 'Craft / manufacture', service: 'Service', property: 'Property / space', other: 'Other' }[c] || c;
+  var map = { produce: 'cat_produce', food_drink: 'cat_food_drink', craft: 'cat_craft', service: 'cat_service', property: 'cat_property', other: 'cat_other' };
+  return map[c] ? tr(map[c]) : c;
 }
 
 function renderListings(rows) {
+  lastListingsRows = rows;
   var root = document.getElementById('listings-root');
-  if (!rows || rows.length === 0) { root.innerHTML = '<div class="empty-state">No listings yet — be the first to sell something.</div>'; return; }
+  if (!rows || rows.length === 0) { root.innerHTML = '<div class="empty-state">' + tr('no_listings') + '</div>'; return; }
   rows.sort(function(a, b) { return (a.status === 'sold') - (b.status === 'sold'); });
   var html = '';
   rows.forEach(function(r) {
+    var priceText = Number(r.price_coin).toFixed(0) + ' ' + tr('coin_short') + (r.status === 'sold' ? ' · ' + tr('sold_suffix') : '');
     html += '<div class="listing' + (r.status === 'sold' ? ' sold' : '') + '">' +
-      '<div class="listing-top"><span class="listing-title">' + escapeHtml(r.title) + '</span><span class="listing-price">' + Number(r.price_coin).toFixed(0) + ' coin</span></div>' +
+      '<div class="listing-top"><span class="listing-title">' + escapeHtml(r.title) + '</span><span class="listing-price">' + priceText + '</span></div>' +
       '<div class="listing-meta">' + categoryLabel(r.category) + ' · ' + escapeHtml(r.seller_name) + '</div>' +
       (r.description ? '<div class="listing-desc">' + escapeHtml(r.description) + '</div>' : '') +
-      (r.status === 'active' ? '<button class="btn secondary buy-btn" data-id="' + r.id + '" data-price="' + r.price_coin + '">Buy</button>' : '') +
+      (r.status === 'active' ? '<button class="btn secondary buy-btn" data-id="' + r.id + '" data-price="' + r.price_coin + '">' + tr('buy_btn') + '</button>' : '') +
       '</div>';
   });
   root.innerHTML = html;
@@ -336,21 +537,21 @@ function escapeHtml(s) {
 }
 
 function buyListing(id) {
-  if (!account) { alert('Enter the market first — register above.'); return; }
+  if (!account) { alert(tr('register_first')); return; }
   rpc('masullas_purchase_listing', { p_listing_id: id, p_buyer_email: account.email })
     .then(function(result) {
       var res = Array.isArray(result) ? result[0] : result;
       loadAccount(account.email);
       loadListings();
       loadIndex();
-      alert('Bought "' + (res.listing_title || 'item') + '" for ' + res.amount_coin + ' MasullasCoin.');
+      alert(tr('bought_msg').replace('{title}', res.listing_title || tr('item_fallback')).replace('{amount}', res.amount_coin));
     })
     .catch(function(e) {
       var code = (e.data && e.data.message) || e.message || '';
-      var text = 'Could not complete that purchase.';
-      if (code.indexOf('INSUFFICIENT_BALANCE') !== -1) text = "You don't have enough MasullasCoin for that yet.";
-      else if (code.indexOf('CANNOT_BUY_OWN_LISTING') !== -1) text = "You can't buy your own listing.";
-      else if (code.indexOf('LISTING_NOT_ACTIVE') !== -1) text = 'That listing was already sold.';
+      var text = tr('err_purchase_generic');
+      if (code.indexOf('INSUFFICIENT_BALANCE') !== -1) text = tr('err_insufficient');
+      else if (code.indexOf('CANNOT_BUY_OWN_LISTING') !== -1) text = tr('err_own_listing');
+      else if (code.indexOf('LISTING_NOT_ACTIVE') !== -1) text = tr('err_already_sold');
       alert(text);
     });
 }
@@ -358,13 +559,14 @@ function buyListing(id) {
 function loadListings() {
   getJSON('masullas_market_listings_public?select=*&order=created_at.desc')
     .then(renderListings)
-    .catch(function() { document.getElementById('listings-root').innerHTML = '<div class="empty-state">Couldn\'t load listings right now.</div>'; });
+    .catch(function() { document.getElementById('listings-root').innerHTML = '<div class="empty-state">' + tr('couldnt_load_listings') + '</div>'; });
 }
 
 function renderIndexChart(rows) {
+  lastIndexRows = rows;
   var wrap = document.getElementById('index-chart-wrap');
   if (!rows || rows.length === 0) {
-    wrap.innerHTML = '<div class="empty-state" style="border:none; color:rgba(245,242,234,0.4)">No PNC holders registered yet — the index starts moving once the first one joins.</div>';
+    wrap.innerHTML = '<div class="empty-state" style="border:none; color:rgba(245,242,234,0.4)">' + tr('no_pnc_yet') + '</div>';
     return;
   }
   var points = rows.map(function(r) { return Number(r.index_value); });
@@ -389,19 +591,20 @@ function renderIndexChart(rows) {
     '<polyline points="' + coords.join(' ') + '" fill="none" stroke="#b8860b" stroke-width="2"/>' +
     '</svg>';
 
-  wrap.innerHTML = '<div class="index-current">' + current.toFixed(1) + '<span>baseline 100.0</span></div>' + svg;
+  wrap.innerHTML = '<div class="index-current">' + current.toFixed(1) + '<span>' + tr('baseline') + '</span></div>' + svg;
 }
 
 function loadIndex() {
   rpc('masullas_market_index_series', {})
     .then(renderIndexChart)
     .catch(function() {
-      document.getElementById('index-chart-wrap').innerHTML = '<div class="empty-state" style="border:none; color:rgba(245,242,234,0.4)">Couldn\'t load the index right now.</div>';
+      document.getElementById('index-chart-wrap').innerHTML = '<div class="empty-state" style="border:none; color:rgba(245,242,234,0.4)">' + tr('couldnt_load_index') + '</div>';
     });
 }
 
 // Init
 (function() {
+  setLang(currentLang);
   var savedEmail = localStorage.getItem('masullas_market_email');
   if (savedEmail) loadAccount(savedEmail);
   else setAccountUI();
