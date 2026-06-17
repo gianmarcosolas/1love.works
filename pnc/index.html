@@ -364,6 +364,27 @@
         <span data-i18n="note_nopnc">Don't have a PNC yet?</span> <a href="/participate" style="color: var(--gold);" data-i18n="note_preorder">Pre-order at €99 →</a><br/>
         <span data-i18n="note_lost">Lost your code? Email</span> <a href="mailto:info@1love.works" style="color: var(--gold);">info@1love.works</a>
       </p>
+
+      <!-- City-level lookup: aggregate info only, no email/code required.
+           Shows totals for a territory's PNC, not any individual holder's
+           record — full per-holder access still requires the email+code
+           form above. Community-manager verification for a fuller view is
+           a planned second stage, not built yet. -->
+      <div style="margin-top: 40px; padding-top: 32px; border-top: 1px solid rgba(245,242,234,0.1);">
+        <p data-i18n="city_lookup_title" style="font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(245,242,234,0.45); margin-bottom: 14px;">Or look up a territory</p>
+        <div style="display: flex; gap: 10px; max-width: 440px; flex-wrap: wrap;">
+          <input id="pnc-city-input" type="text" data-i18n-ph="city_lookup_ph" placeholder="City or comune name"
+            style="flex: 1; min-width: 180px; font-family: var(--serif); font-size: 16px; color: var(--ink); background: var(--parchment); border: 1px solid rgba(245,242,234,0.2); padding: 11px 14px; outline: none;" />
+          <button id="pnc-city-btn" onclick="pncCityLookup()"
+            style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 11px 20px; background: transparent; color: var(--gold); border: 1px solid rgba(184,134,11,0.4); cursor: pointer; white-space: nowrap;"
+            data-i18n="city_lookup_btn">Look up →</button>
+        </div>
+        <p id="pnc-city-error" style="font-family: var(--mono); font-size: 10px; color: #f87171; display: none; margin-top: 8px;"></p>
+        <div id="pnc-city-result" style="display:none; margin-top: 18px; padding: 18px 20px; border: 1px solid rgba(184,134,11,0.25); background: rgba(184,134,11,0.05);">
+          <div id="pnc-city-result-name" style="font-family: var(--mono); font-size: 13px; color: var(--gold); letter-spacing: 0.04em; margin-bottom: 10px;"></div>
+          <div id="pnc-city-result-body" style="font-size: 14px; color: rgba(245,242,234,0.75); line-height: 1.7;"></div>
+        </div>
+      </div>
     </div>
 
     <!-- Dashboard (shown after login) -->
@@ -509,6 +530,11 @@ const T = {
     lookup_sub: 'Enter your email and PNC code from your confirmation to see your personal dashboard.',
     label_email: 'Email', label_code: 'PNC Code',
     btn_access: 'Access my PNC →',
+    city_lookup_title: 'Or look up a territory',
+    city_lookup_ph: 'City or comune name',
+    city_lookup_btn: 'Look up →',
+    city_lookup_err: 'No PNC found for that territory yet.',
+    city_lookup_summary: 'PNC issued for {city}',
     note_nopnc: "Don't have a PNC yet?", note_preorder: 'Pre-order at €99 →',
     note_lost: 'Lost your code? Email',
     lbl_pnc_held: 'PNC held', lbl_implied: 'Implied value / PNC',
@@ -611,6 +637,11 @@ const T = {
     lookup_sub: 'Inserisci la tua email e il codice PNC dalla conferma per accedere al tuo pannello personale.',
     label_email: 'Email', label_code: 'Codice PNC',
     btn_access: 'Accedi al mio PNC →',
+    city_lookup_title: 'Oppure cerca un territorio',
+    city_lookup_ph: 'Nome della città o del comune',
+    city_lookup_btn: 'Cerca →',
+    city_lookup_err: 'Nessun PNC trovato ancora per questo territorio.',
+    city_lookup_summary: 'PNC emessi per {city}',
     note_nopnc: 'Non hai ancora un PNC?', note_preorder: 'Pre-ordina a €99 →',
     note_lost: 'Codice smarrito? Scrivi a',
     lbl_pnc_held: 'PNC detenuti', lbl_implied: 'Valore implicito / PNC',
@@ -712,6 +743,11 @@ const T = {
     lookup_sub: 'Entrez votre email et votre code PNC de la confirmation pour accéder à votre tableau de bord.',
     label_email: 'Email', label_code: 'Code PNC',
     btn_access: 'Accéder à mon PNC →',
+    city_lookup_title: 'Ou recherchez un territoire',
+    city_lookup_ph: 'Nom de la ville ou commune',
+    city_lookup_btn: 'Rechercher →',
+    city_lookup_err: 'Aucun PNC trouvé pour ce territoire pour le moment.',
+    city_lookup_summary: 'PNC émis pour {city}',
     note_nopnc: "Vous n'avez pas encore de PNC ?", note_preorder: 'Pré-commander à €99 →',
     note_lost: 'Code perdu ? Écrivez à',
     lbl_pnc_held: 'PNC détenus', lbl_implied: 'Valeur implicite / PNC',
@@ -813,6 +849,11 @@ const T = {
     lookup_sub: 'Introduce tu email y código PNC de la confirmación para acceder a tu panel personal.',
     label_email: 'Email', label_code: 'Código PNC',
     btn_access: 'Acceder a mi PNC →',
+    city_lookup_title: 'O busca un territorio',
+    city_lookup_ph: 'Nombre de la ciudad o municipio',
+    city_lookup_btn: 'Buscar →',
+    city_lookup_err: 'Aún no se ha encontrado ningún PNC para ese territorio.',
+    city_lookup_summary: 'PNC emitidos para {city}',
     note_nopnc: '¿Aún no tienes PNC?', note_preorder: 'Pre-pedir a €99 →',
     note_lost: '¿Código perdido? Escribe a',
     lbl_pnc_held: 'PNC en posesión', lbl_implied: 'Valor implícito / PNC',
@@ -1043,12 +1084,89 @@ function pncLogout() {
   document.getElementById('pnc-code').value = '';
 }
 
+// City-level lookup: aggregate only, no individual holder data shown.
+// pnc_holders has no machine-readable territory column — jurisdiction is
+// free text (e.g. "Masullas (OR), San Sperate (CA) — Sardegna / Italia").
+// Word-boundary match (not raw substring) so "Bono" doesn't match inside
+// "Bonorva" — same logic used on the codification dashboard's claimed-status
+// check, kept consistent so the two never disagree about what counts as a
+// match for a given city.
+async function pncCityLookup() {
+  var input = document.getElementById('pnc-city-input');
+  var btn = document.getElementById('pnc-city-btn');
+  var err = document.getElementById('pnc-city-error');
+  var resultBox = document.getElementById('pnc-city-result');
+  var city = input.value.trim();
+  var t = T[currentLang] || T.en;
+  err.style.display = 'none';
+  resultBox.style.display = 'none';
+  if (!city) return;
+
+  btn.disabled = true;
+  try {
+    const res = await fetch(
+      SUPABASE_URL+'/rest/v1/pnc_holders?select=pnc_amount,jurisdiction&jurisdiction=not.is.null',
+      { headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer '+SUPABASE_KEY } }
+    );
+    const data = await res.json();
+    btn.disabled = false;
+    if (!Array.isArray(data)) throw new Error('bad response');
+
+    var escaped = city.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    var re = new RegExp('\\b' + escaped.toLowerCase() + '\\b');
+    var matches = data.filter(function(row) {
+      return row.jurisdiction && re.test(row.jurisdiction.toLowerCase());
+    });
+
+    if (!matches.length) {
+      err.textContent = t.city_lookup_err;
+      err.style.display = 'block';
+      return;
+    }
+
+    var holderCount = matches.length;
+    var totalPnc = matches.reduce(function(sum, row) { return sum + (+row.pnc_amount || 0); }, 0);
+
+    document.getElementById('pnc-city-result-name').textContent =
+      '⬡ ' + t.city_lookup_summary.replace('{city}', city);
+    document.getElementById('pnc-city-result-body').textContent =
+      pncFmt(totalPnc) + ' PNC · ' + holderCount + (holderCount === 1 ? ' record' : ' records');
+    resultBox.style.display = 'block';
+  } catch (e) {
+    btn.disabled = false;
+    err.textContent = t.city_lookup_err;
+    err.style.display = 'block';
+  }
+}
+
 // Enter key support
 document.addEventListener('DOMContentLoaded', function() {
   ['pnc-email','pnc-code'].forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.addEventListener('keydown', function(e) { if (e.key === 'Enter') pncLogin(); });
   });
+  var cityEl = document.getElementById('pnc-city-input');
+  if (cityEl) cityEl.addEventListener('keydown', function(e) { if (e.key === 'Enter') pncCityLookup(); });
+});
+
+// Pre-fill from a personalized link (e.g. ?email=...&code=PNC-00001), so a
+// holder arriving from a market page or comune page doesn't have to retype
+// their credentials. Still requires a deliberate click on "Access my PNC" —
+// intentionally NOT auto-submitting, since this form's two fields together
+// are effectively a working credential, and a leaked link alone should not
+// be enough to open someone's dashboard without at least one more action.
+document.addEventListener('DOMContentLoaded', function() {
+  var params = new URLSearchParams(location.search);
+  var email = params.get('email');
+  var code = params.get('code');
+  if (email) {
+    var emailEl = document.getElementById('pnc-email');
+    if (emailEl) emailEl.value = email;
+  }
+  if (code) {
+    var codeEl = document.getElementById('pnc-code');
+    if (codeEl) codeEl.value = code.toUpperCase();
+  }
 });
 </script>
 
