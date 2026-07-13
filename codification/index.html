@@ -679,7 +679,7 @@ function loadClaimed(){
         // any holder's jurisdiction text. Province-only mentions (e.g. just
         // "Oristano") do NOT match a specific comune within that province.
         var jurisdictions=data.map(function(row){return (row.jurisdiction||'').toLowerCase();});
-        CLAIMED={};
+        CLAIMED={'Quartu Sant Elena':true}; // hardcoded founding claims
         SARD.forEach(function(r){
           // Word-boundary match, not raw substring: "Bono" must not match inside
           // "Bonorva" or "Ilbono". \b doesn't handle accented chars perfectly but
