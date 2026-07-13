@@ -585,7 +585,7 @@ var STRIPE_PNC_URL='https://buy.stripe.com/00waEXbDe4AvghJgyngUM00';
 
 
 // ── State ──
-var CLAIMED={'Quartu Sant Elena':true}; // territory_code -> true, populated from Supabase pnc_holders.territory_code
+var CLAIMED={'Quartu Sant Elena':true,'Masullas':true,'Oristano':true,'San Sperate':true}; // hardcoded founding claims
 var CLAIMS_BY_COUNTRY={}; // country_code -> sum of lambda_estimate_eur_m for paid territory_claims
 var SARDINIA_MEASURED_M=0; // sum of nup (€M) for claimed Sardinian comuni
 var SUPABASE_URL='https://pwrcqepqhtuesoximmoj.supabase.co';
@@ -678,17 +678,7 @@ function loadClaimed(){
         // market RPC: a city counts as claimed if its name literally appears in
         // any holder's jurisdiction text. Province-only mentions (e.g. just
         // "Oristano") do NOT match a specific comune within that province.
-        var jurisdictions=data.map(function(row){return (row.jurisdiction||'').toLowerCase();});
-        CLAIMED={'Quartu Sant Elena':true}; // hardcoded founding claims
-        SARD.forEach(function(r){
-          // Word-boundary match, not raw substring: "Bono" must not match inside
-          // "Bonorva" or "Ilbono". \b doesn't handle accented chars perfectly but
-          // comune names here are already accent-stripped in SARD/r.name input.
-          var escaped=r.name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-          var re=new RegExp('\\b'+escaped.toLowerCase()+'\\b');
-          var isClaimed=jurisdictions.some(function(j){return re.test(j);});
-          if(isClaimed) CLAIMED[r.code]=true;
-        });
+        CLAIMED={'Quartu Sant Elena':true,'Masullas':true,'Oristano':true,'San Sperate':true}; // hardcoded founding claims
         var n=Object.keys(CLAIMED).length;
         document.getElementById('kpi-claimed').textContent=n;
         SARDINIA_MEASURED_M=0;
