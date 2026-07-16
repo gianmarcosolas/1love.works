@@ -4056,83 +4056,91 @@ function generateShareCard(fmt){
   var pad=isStory?80:72;
   var cy=isStory?200:120; // current Y cursor
 
-  // ── LOGO / BRAND ──
-  ctx.font='bold '+(isStory?36:28)+'px system-ui,sans-serif';
+  // ── ZONE 1: HEADER ──
+  ctx.font='bold '+(isStory?28:22)+'px system-ui,sans-serif';
   ctx.fillStyle='#c9a55a';
-  ctx.fillText('λ 1love.works©', pad, cy);
-  cy+=isStory?28:22;
-  ctx.font=(isStory?24:18)+'px ui-monospace,monospace';
-  ctx.fillStyle='#5e7585';
-  ctx.fillText('1love.works', pad, cy);
-  cy+=isStory?80:60;
+  ctx.fillText(lang?"Il Metro dei Sistemi Legali":"The Legal Systems' Meter", pad, cy);
+  ctx.font=(isStory?20:14)+'px ui-monospace,monospace';
+  ctx.fillStyle='#253545';
+  ctx.textAlign='right';
+  ctx.fillText('1love.works©', W-pad, cy+(isStory?6:4));
+  ctx.textAlign='left';
+  cy+=isStory?68:52;
 
-  // ── DIVIDER ──
-  ctx.strokeStyle='rgba(201,165,90,0.3)';
+  // Thin gold line
+  ctx.strokeStyle='rgba(201,165,90,0.4)';
   ctx.lineWidth=1;
   ctx.beginPath();ctx.moveTo(pad,cy);ctx.lineTo(W-pad,cy);ctx.stroke();
-  cy+=isStory?60:44;
+  cy+=isStory?28:20;
 
-  // ── CITY NAME ──
-  var citySize=isStory?120:96;
+  // ── ZONE 2: CITY ──
+  var citySize=isStory?110:88;
   ctx.font='900 '+citySize+'px system-ui,sans-serif';
   ctx.fillStyle='#e5e0d5';
-  // Scale down if too long
   var cityText=d.city.toUpperCase();
-  var maxW=W-pad*2-20;
+  var maxW=W-pad*2;
   while(ctx.measureText(cityText).width>maxW&&citySize>40){citySize-=4;ctx.font='900 '+citySize+'px system-ui,sans-serif';}
   ctx.fillText(cityText,pad,cy);
-  cy+=isStory?24:18;
+  cy+=isStory?28:20;
 
   // Province + population
-  ctx.font=(isStory?30:24)+'px ui-monospace,monospace';
+  ctx.font=(isStory?26:20)+'px ui-monospace,monospace';
   ctx.fillStyle='#5e7585';
-  var metaText='Prov. '+d.prov+' · '+(d.pop>=1000?Math.round(d.pop/1000)+'k':d.pop)+' '+(lang?'ab.':'pop.')+' · '+(d.trend>0?'+':'')+d.trend+'% trend';
+  var metaText='Prov. '+d.prov+'  ·  '+(d.pop>=1000?Math.round(d.pop/1000)+'k':d.pop)+' '+(lang?'ab.':'pop.')+'  ·  '+(d.trend>0?'+':'')+d.trend+'% trend';
   ctx.fillText(metaText,pad,cy);
-  cy+=isStory?90:64;
+  cy+=isStory?40:30;
 
-  // ── LAMBDA (smaller) + ENTROPY + NUP (bigger, separate lines) ──
-  var lamBg=ctx.createLinearGradient(pad,cy-80,pad+400,cy+20);
-  lamBg.addColorStop(0,'rgba(201,165,90,0.08)');
-  lamBg.addColorStop(1,'rgba(0,0,0,0)');
-  ctx.fillStyle=lamBg;
-  ctx.fillRect(pad-16,cy-(isStory?60:48),isStory?380:320,isStory?80:64);
+  // Thin separator
+  ctx.strokeStyle='rgba(26,39,56,0.9)';
+  ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(pad,cy);ctx.lineTo(W-pad,cy);ctx.stroke();
+  cy+=isStory?28:20;
 
-  // λ score — smaller, muted label style
-  ctx.font='700 '+(isStory?48:38)+'px ui-monospace,monospace';
+  // ── ZONE 3: λ LEFT + ENTROPY RIGHT (same row) ──
+  ctx.font='700 '+(isStory?44:34)+'px ui-monospace,monospace';
   ctx.fillStyle='#c9a55a';
   ctx.fillText('λ = '+d.lam.toFixed(3),pad,cy);
-  cy+=isStory?56:42;
 
-  // Entropy — big
-  ctx.font='900 '+(isStory?72:58)+'px system-ui,sans-serif';
+  var entText=(lang?'Entropia ':'Entropy ')+d.ent+'%';
+  var entSize=isStory?56:46;
+  ctx.font='900 '+entSize+'px system-ui,sans-serif';
+  var entW=ctx.measureText(entText).width;
   ctx.fillStyle='#e5e0d5';
-  ctx.fillText((lang?'Entropia ':'Entropy ')+d.ent+'%',pad,cy);
-  cy+=isStory?20:16;
+  ctx.fillText(entText,W-pad-entW,cy);
+  cy+=isStory?72:56;
 
-  // Entropy label
-  ctx.font=(isStory?24:18)+'px ui-monospace,monospace';
+  // Entropy sublabel — full width, small
+  ctx.font=(isStory?22:16)+'px ui-monospace,monospace';
   ctx.fillStyle='#5e7585';
   ctx.fillText(lang?'quota di valore ancora inespresso':'share of value still unexpressed',pad,cy);
-  cy+=isStory?90:68; // more breathing room before NUP
+  cy+=isStory?44:34;
 
-  // NUP value — very big, spelled out
+  // Thin separator
+  ctx.strokeStyle='rgba(201,165,90,0.2)';
+  ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(pad,cy);ctx.lineTo(W-pad,cy);ctx.stroke();
+  cy+=isStory?28:20;
+
+  // ── ZONE 4: VALORE INESPRESSO ──
+  ctx.font='700 '+(isStory?22:16)+'px ui-monospace,monospace';
+  ctx.fillStyle='#5e7585';
+  ctx.fillText(lang?'Valore inespresso':'Unexpressed value',pad,cy);
+  cy+=isStory?38:28;
+
   var nupVal=d.net>=1000
     ?'€'+(d.net/1000).toFixed(2)+(lang?' miliardi':' billion')
     :'€'+d.net.toFixed(1)+(lang?' milioni':' million');
-  var nupSize=isStory?96:76;
+  var nupSize=isStory?90:72;
   ctx.font='900 '+nupSize+'px system-ui,sans-serif';
   while(ctx.measureText(nupVal).width>maxW&&nupSize>40){nupSize-=4;ctx.font='900 '+nupSize+'px system-ui,sans-serif';}
   ctx.fillStyle='#c9a55a';
   ctx.fillText(nupVal,pad,cy);
-  cy+=isStory?20:16;
+  cy+=isStory?30:24;
 
-  // NUP label
-  ctx.font='700 '+(isStory?32:26)+'px ui-monospace,monospace';
-  ctx.fillStyle='#c9a55a';
-  ctx.globalAlpha=0.75;
+  ctx.font='700 '+(isStory?24:18)+'px ui-monospace,monospace';
+  ctx.fillStyle='rgba(201,165,90,0.65)';
   ctx.fillText(lang?'Potenziale Netto Inespresso λ':'λ Net Unexpressed Potential',pad,cy);
-  ctx.globalAlpha=1.0;
-  cy+=isStory?90:68;
+  cy+=isStory?64:50;
 
   // ── PILLAR BARS ──
   var barW=W-pad*2;
@@ -4246,10 +4254,10 @@ function generateShareCard(fmt){
   ctx.beginPath();ctx.moveTo(pad,cy);ctx.lineTo(W-pad,cy);ctx.stroke();
   cy+=isStory?52:38;
 
-  // Line 1: 1love.works — big, green
+  // Line 1: meter name — big, green
   ctx.font='900 '+(isStory?48:38)+'px system-ui,sans-serif';
   ctx.fillStyle='#3dbf9a';
-  ctx.fillText('1love.works',pad,cy);
+  ctx.fillText(lang?'Il Metro dei Sistemi Legali':"The Legal Systems' Meter",pad,cy);
   cy+=isStory?52:40;
 
   // Line 2: discover tagline
