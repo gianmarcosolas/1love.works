@@ -27,7 +27,7 @@
     .lang-btn.active { background: var(--ink); color: var(--parchment); }
     .lang-btn:hover:not(.active) { background: var(--cream); }
     .hero { max-width: 760px; margin: 0 auto; padding: 80px 48px 60px; border-bottom: 1px solid var(--rule); }
-    .hero-overline { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; }
+    .hero-overline { font-family: var(--mono); font-size: 18px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; }
     .hero h1 { font-size: clamp(42px, 6vw, 72px); font-weight: 400; line-height: 1.1; margin-bottom: 28px; }
     .hero h1 em { font-style: italic; color: var(--gold); }
     .hero-equation { font-family: var(--mono); font-size: 16px; color: var(--gold); letter-spacing: 0.08em; padding: 16px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 28px; }
@@ -166,15 +166,15 @@
 
 <!-- Hero -->
 <div class="hero">
-  <p class="hero-overline" data-i18n="overline">The Problem</p>
-  <h1 data-i18n="h1">The problem<br/><em>everyone feels</em></h1>
+  <p class="hero-overline" data-i18n="overline">THE PROBLEM</p>
+  <h1 data-i18n="h1">None in the world measures human law and legal systems.</h1>
   <p class="hero-intro" data-i18n="hero_intro">Bureaucracy. Legal weight. Entropy. The invisible tax on everything.</p>
 </div>
 
 <!-- Opening text -->
 <div class="section">
   <p data-i18n="body1">Every regulation that produces no value. Every permit that takes two years. Every housing project blocked by overlapping jurisdictions. Every renewable energy installation waiting for grid connection. Every local producer crushed by administrative weight designed for industrial scale. This is not inefficiency. It is entropy - energy that could be life, trapped in legal weight.</p>
-  <p style="font-family: var(--mono); font-size: 13px; color: var(--gold); margin-top: 24px;" data-i18n="stat">Conservative estimate of unexpressed value trapped in EU-27 legal systems: <strong>€5.2 trillion</strong> <span style="opacity:0.6;">(JLMI 2/25)</span></p>
+  <p style="font-family: var(--mono); font-size: 16px; color: var(--gold); margin-top: 24px;" data-i18n="stat">Conservative estimate of unexpressed value trapped in EU-27 legal systems: <strong>€5.2 trillion</strong> <span style="opacity:0.6;">(JLMI 2/25)</span> The cost of ignorance (big)</p>
 </div>
 
 <!-- Nature section -->
@@ -266,11 +266,11 @@ const T = {
     nav_pnc: '(my) PNC',
     nav_methodology: 'About &amp; Methodology',
     nav_participate: 'Participate',
-    overline: 'The Problem',
-    h1: 'The problem<br/><em>everyone feels</em>',
+    overline: 'THE PROBLEM',
+    h1: 'None in the world measures human law and legal systems.',
     hero_intro: 'Bureaucracy. Legal weight. Entropy. The invisible tax on everything.',
     body1: 'Every regulation that produces no value. Every permit that takes two years. Every housing project blocked by overlapping jurisdictions. Every renewable energy installation waiting for grid connection. Every local producer crushed by administrative weight designed for industrial scale. This is not inefficiency. It is entropy - energy that could be life, trapped in legal weight.',
-    stat: 'Conservative estimate of unexpressed value trapped in EU-27 legal systems: <strong>€5.2 trillion</strong> <span style="opacity:0.6;">(JLMI 2/25)</span>',
+    stat: 'Conservative estimate of unexpressed value trapped in EU-27 legal systems: <strong>€5.2 trillion</strong> <span style="opacity:0.6;">(JLMI 2/25)</span> <span style=\'font-size:20px;font-weight:600;\'>The cost of ignorance</span>',
     s2_label: 'People hate bureaucracy. People love nature.',
     s2_p1: "Nobody wakes up wanting to fill in forms. Nature doesn't work like this. A forest doesn't accumulate dead wood indefinitely - it converts it. A river doesn't stop - it finds the path of least resistance. An ecosystem doesn't produce waste - it cycles everything back into energy. Nature tends toward optimum - because it was designed to.",
     s2_p2: "Human law is also a law of nature. It has always been present in the equations of thermodynamics, general relativity, and quantum mechanics - we simply never measured it as one. The legal-physics framework is the first instrument that does.",
@@ -300,11 +300,11 @@ const T = {
     nav_pnc: '(my) PNC',
     nav_methodology: 'Informazioni &amp; Metodologia',
     nav_participate: 'Partecipa',
-    overline: 'Il Problema',
-    h1: 'Il problema<br/><em>che tutti sentono</em>',
+    overline: 'IL PROBLEMA',
+    h1: 'Nessuno al mondo misura il diritto umano e i sistemi giuridici.',
     hero_intro: 'Burocrazia. Peso normativo. Entropia. La tassa invisibile su tutto.',
     body1: "Ogni norma che non produce valore. Ogni permesso che richiede due anni. Ogni progetto abitativo bloccato da giurisdizioni sovrapposte. Ogni impianto di energia rinnovabile in attesa di connessione alla rete. Ogni produttore locale schiacciato da un peso amministrativo pensato per la scala industriale. Non \u00e8 inefficienza. \u00c8 entropia - energia che potrebbe essere vita, intrappolata nel peso giuridico.",
-    stat: 'Stima conservativa del valore non espresso nei sistemi giuridici UE-27: <strong>5,2 trilioni di \u20ac</strong> <span style="opacity:0.6;">(JLMI 2/25)</span>',
+    stat: 'Stima conservativa del valore non espresso nei sistemi giuridici UE-27: <strong>5,2 trilioni di \u20ac</strong> <span style="opacity:0.6;">(JLMI 2/25)</span> <span style=\'font-size:20px;font-weight:600;\'>Il costo dell\u2019ignoranza</span>',
     s2_label: 'Le persone odiano la burocrazia. Le persone amano la natura.',
     s2_p1: "Nessuno si sveglia con il desiderio di compilare moduli. La natura non funziona cos\u00ec. Una foresta non accumula legno morto indefinitamente - lo converte. Un fiume non si ferma - trova il percorso di minor resistenza. Un ecosistema non produce rifiuti - ricicla tutto in energia. La natura tende verso l\u2019ottimo - perch\u00e9 \u00e8 stata progettata per farlo.",
     s2_p2: "Il diritto umano \u00e8 anch\u2019esso una legge della natura. \u00c8 sempre stato presente nelle equazioni della termodinamica, della relativit\u00e0 generale e della meccanica quantistica - semplicemente non lo abbiamo mai misurato come tale. Il framework legale-fisico \u00e8 il primo strumento che lo fa.",
@@ -334,11 +334,11 @@ const T = {
     nav_pnc: '(my) PNC',
     nav_methodology: '\u00c0 Propos &amp; M\u00e9thodologie',
     nav_participate: 'Participer',
-    overline: 'Le Probl\u00e8me',
-    h1: 'Le probl\u00e8me<br/><em>que tout le monde ressent</em>',
+    overline: 'LE PROBL\u00c8ME',
+    h1: 'Personne au monde ne mesure le droit humain et les syst\u00e8mes juridiques.',
     hero_intro: 'Bureaucratie. Poids juridique. Entropie. La taxe invisible sur tout.',
     body1: "Chaque r\u00e9glementation qui ne produit aucune valeur. Chaque permis qui prend deux ans. Chaque projet de logement bloqu\u00e9 par des juridictions superpos\u00e9es. Chaque installation d\u2019\u00e9nergie renouvelable en attente de connexion au r\u00e9seau. Ce n\u2019est pas de l\u2019inefficacit\u00e9. C\u2019est de l\u2019entropie.",
-    stat: "Estimation conservative de la valeur non exprim\u00e9e dans les syst\u00e8mes juridiques UE-27\u00a0: <strong>5,2 billions d\u2019\u20ac</strong> <span style=\"opacity:0.6;\">(JLMI 2/25)</span>",
+    stat: "Estimation conservative de la valeur non exprim\u00e9e dans les syst\u00e8mes juridiques UE-27\u00a0: <strong>5,2 billions d\u2019\u20ac</strong> <span style=\"opacity:0.6;\">(JLMI 2/25)</span> <span style=\"font-size:20px;font-weight:600;\">Le co\u00fbt de l\u2019ignorance</span>",
     s2_label: "Les gens d\u00e9testent la bureaucratie. Les gens aiment la nature.",
     s2_p1: "Personne ne se r\u00e9veille en voulant remplir des formulaires. La nature ne fonctionne pas ainsi. Une for\u00eat n\u2019accumule pas ind\u00e9finiment du bois mort - elle le convertit. Une rivi\u00e8re ne s\u2019arr\u00eate pas - elle trouve le chemin de moindre r\u00e9sistance.",
     s2_p2: "Le droit humain est aussi une loi de la nature. Il a toujours \u00e9t\u00e9 pr\u00e9sent dans les \u00e9quations de la thermodynamique, de la relativit\u00e9 g\u00e9n\u00e9rale et de la m\u00e9canique quantique - nous ne l\u2019avons simplement jamais mesur\u00e9 en tant que tel.",
@@ -368,11 +368,11 @@ const T = {
     nav_pnc: '(my) PNC',
     nav_methodology: 'Acerca &amp; Metodolog\u00eda',
     nav_participate: 'Participar',
-    overline: 'El Problema',
-    h1: 'El problema<br/><em>que todos sienten</em>',
+    overline: 'EL PROBLEMA',
+    h1: 'Nadie en el mundo mide el derecho humano y los sistemas jurídicos.',
     hero_intro: 'Burocracia. Peso jur\u00eddico. Entrop\u00eda. El impuesto invisible sobre todo.',
     body1: "Cada regulaci\u00f3n que no produce valor. Cada permiso que tarda dos a\u00f1os. Cada proyecto de vivienda bloqueado por jurisdicciones superpuestas. Cada instalaci\u00f3n de energ\u00eda renovable esperando conexi\u00f3n a la red. Esto no es ineficiencia. Es entrop\u00eda.",
-    stat: 'Estimaci\u00f3n conservadora del valor no expresado en los sistemas jur\u00eddicos UE-27: <strong>5,2 billones de \u20ac</strong> <span style="opacity:0.6;">(JLMI 2/25)</span>',
+    stat: 'Estimaci\u00f3n conservadora del valor no expresado en los sistemas jur\u00eddicos UE-27: <strong>5,2 billones de \u20ac</strong> <span style="opacity:0.6;">(JLMI 2/25)</span> <span style=\'font-size:20px;font-weight:600;\'>El coste de la ignorancia</span>',
     s2_label: 'La gente odia la burocracia. La gente ama la naturaleza.',
     s2_p1: "Nadie se despierta queriendo rellenar formularios. La naturaleza no funciona as\u00ed. Un bosque no acumula madera muerta indefinidamente - la convierte. Un r\u00edo no se detiene - encuentra el camino de menor resistencia.",
     s2_p2: "El derecho humano tambi\u00e9n es una ley de la naturaleza. Siempre ha estado presente en las ecuaciones de la termodin\u00e1mica, la relatividad general y la mec\u00e1nica cu\u00e1ntica - simplemente nunca lo hemos medido como tal.",
