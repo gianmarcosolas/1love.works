@@ -682,7 +682,7 @@ h1{font-family:var(--fd);font-size:clamp(1.8rem,4vw,3.2rem);font-weight:800;colo
   <button class="tab" data-tab="eu27">🇪🇺 <span data-short="EU-27">EU-27</span></button>
   <button class="tab" data-tab="world">🌍 <span id="tab-world-lbl" data-short="City">Any City</span></button>
   <button class="tab" data-tab="how">⚙ <span id="tab-how-lbl" data-short="How">How it Works</span></button>
-  <button class="tab" data-tab="cm">🏘 <span id="tab-cm-lbl" data-short="CM">CM Platform</span></button>
+  <button class="tab" data-tab="cm" style="display:none;">🏘 <span id="tab-cm-lbl" data-short="CM">CM Platform</span></button>
   <button class="tab" data-tab="privacy">🔒 <span id="tab-privacy-lbl" data-short="Privacy">Privacy</span></button>
 </div>
 
@@ -2385,7 +2385,7 @@ document.addEventListener('DOMContentLoaded',function(){wldCompute();});
 
 <!-- CM PLATFORM PANEL -->
 
-<div class="panel" id="panel-cm">
+<div class="panel" id="panel-cm" style="display:none;">
 <div class="wrap" style="max-width:900px;margin:0 auto">
 
   <!-- LOCKED HEADER -->
