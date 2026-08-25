@@ -107,6 +107,9 @@
       .hero-intro { font-size: 16px; }
       footer { flex-direction: column; padding: 24px 20px; gap: 12px; }
       .footer-right { flex-wrap: wrap; gap: 16px; }
+      .metrics { grid-template-columns: 1fr !important; }
+      [style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+      [style*="grid-template-columns: repeat(2,1fr)"] { grid-template-columns: 1fr !important; }
     }
   </style>
   <meta property="og:title" content="PNC - Perpetual Node Certificate · 1love.works" />
