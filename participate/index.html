@@ -67,7 +67,7 @@
     /* ── participate section ── */
     .honest-note { font-family: var(--mono); font-size: 11px; color: var(--muted); line-height: 1.7; margin-bottom: 36px; padding: 14px 18px; border-left: 3px solid rgba(184,134,11,0.3); background: rgba(184,134,11,0.03); }
     .offer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 48px; }
-    @media (max-width: 760px) { .offer-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 760px) { .offer-grid { grid-template-columns: 1fr; } .form-grid { grid-template-columns: 1fr; } .check-grid { grid-template-columns: 1fr; } }
     .offer-card { border: 1px solid rgba(184,134,11,0.3); background: rgba(184,134,11,0.04); padding: 32px; }
     .offer-card.primary { border-color: var(--gold); }
     .offer-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 16px; }
@@ -121,6 +121,9 @@
       .hero-intro { font-size: 16px; }
       footer { flex-direction: column; padding: 24px 20px; gap: 12px; }
       .footer-right { flex-wrap: wrap; gap: 16px; }
+      .nav-links a { display: block !important; padding: 12px 0 !important; font-size: 13px !important; }
+      .nav-links li { border-bottom: 1px solid rgba(13,31,56,0.08); }
+      .nav-links li:last-child { border-bottom: none; }
     }
   </style>
   <meta property="og:title" content="Participate - 1love.works" />
@@ -188,7 +191,7 @@
         <li data-i18n="offer_li1">Ownership of the technology and personal data</li>
         <li data-i18n="offer_li3">5 legal document optimization per month at <a href="https://www.eulawscanner.eu" target="_blank" style="color:var(--gold);">www.eulawscanner.eu</a></li>
         <li data-i18n="offer_li2">1 PNC - Phenocurrency Certificate (founding)</li>
-        <li data-i18n="offer_li5"><em>De Lege et Amore</em> - full book, upon successful completion of the first phase of experimentation and validation</li>
+        <li data-i18n="offer_li5"><em>De Lege et Amore</em> - full book, upon successful completion of the first phase of experimentation and validation (draft PDF already available upon request at info@1love.works)</li>
         <li data-i18n="offer_li6">Free preliminary calculation of your BigTech claim at <a href="https://www.bigtechclaim.eu" target="_blank" style="color:var(--gold);">www.bigtechclaim.eu</a></li>
         <li data-i18n="offer_li7">Free demo of corporate measurements at <a href="https://www.corporate-scanner.com" target="_blank" style="color:var(--gold);">www.corporate-scanner.com</a></li>
       </ul>
@@ -492,7 +495,7 @@ const T = {
     "offer_li1": "Ownership of the technology and personal data",
     "offer_li3": "5 legal document optimization per month at <a href=\"https://www.eulawscanner.eu\" target=\"_blank\" style=\"color:var(--gold);\">www.eulawscanner.eu</a>",
     "offer_li4": "Free scans - Corporate Meter (upon successful calibration of <a href=\"https://corporate-scanner.com\" target=\"_blank\" style=\"color:var(--gold);\">corporate-scanner.com</a>)",
-    "offer_li5": "<em>De Lege et Amore</em> - full book, upon successful completion of the first phase of experimentation and validation",
+    "offer_li5": "<em>De Lege et Amore</em> - full book, upon successful completion of the first phase of experimentation and validation (draft PDF already available upon request at info@1love.works)",
     "offer_li6": "Free preliminary calculation of your BigTech claim at <a href=\"https://www.bigtechclaim.eu\" target=\"_blank\" style=\"color:var(--gold);\">www.bigtechclaim.eu</a>",
     "offer_li7": "Free demo of corporate measurements at <a href=\"https://www.corporate-scanner.com\" target=\"_blank\" style=\"color:var(--gold);\">www.corporate-scanner.com</a>",
     "offer_caveat": "PNC is not a financial instrument. It is a mathematical certificate of entropy reduction in defined legal acts or legal systems that can be used to pay for work.",
@@ -626,7 +629,7 @@ const T = {
     "offer_li1": "Proprietà della tecnologia e dei dati personali",
     "offer_li3": "5 ottimizzazioni al mese di documenti giuridici su <a href=\"https://www.eulawscanner.eu\" target=\"_blank\" style=\"color:var(--gold);\">www.eulawscanner.eu</a>",
     "offer_li4": "Scansioni gratuite - Corporate Meter (al completamento della calibrazione di <a href=\"https://corporate-scanner.com\" target=\"_blank\" style=\"color:var(--gold);\">corporate-scanner.com</a>)",
-    "offer_li5": "<em>De Lege et Amore</em> - libro completo, al successo della prima fase di sperimentazione e validazione",
+    "offer_li5": "<em>De Lege et Amore</em> - libro completo, al successo della prima fase di sperimentazione e validazione (bozza PDF già disponibile su richiesta a info@1love.works)",
     "offer_li6": "Calcolo preliminare gratuito della tua richiesta BigTech su <a href=\"https://www.bigtechclaim.eu\" target=\"_blank\" style=\"color:var(--gold);\">www.bigtechclaim.eu</a>",
     "offer_li7": "Demo gratuita delle misurazioni aziendali su <a href=\"https://www.corporate-scanner.com\" target=\"_blank\" style=\"color:var(--gold);\">www.corporate-scanner.com</a>",
     "offer_caveat": "Il PNC non è uno strumento finanziario. È un certificato matematico di riduzione dell’entropia in atti giuridici o sistemi legali definiti, utilizzabile per pagare il lavoro.",
@@ -760,7 +763,7 @@ const T = {
     "offer_li1": "Propriété de la technologie et des données personnelles",
     "offer_li3": "5 optimisations de documents juridiques par mois sur <a href=\"https://www.eulawscanner.eu\" target=\"_blank\" style=\"color:var(--gold);\">www.eulawscanner.eu</a>",
     "offer_li4": "Analyses gratuites - Corporate Meter (après calibration réussie de <a href=\"https://corporate-scanner.com\" target=\"_blank\" style=\"color:var(--gold);\">corporate-scanner.com</a>)",
-    "offer_li5": "<em>De Lege et Amore</em> - livre complet, après succès de la première phase d'expérimentation et de validation",
+    "offer_li5": "<em>De Lege et Amore</em> - livre complet, après succès de la première phase d'expérimentation et de validation (brouillon PDF déjà disponible sur demande à info@1love.works)",
     "offer_li6": "Calcul préliminaire gratuit de votre réclamation BigTech sur <a href=\"https://www.bigtechclaim.eu\" target=\"_blank\" style=\"color:var(--gold);\">www.bigtechclaim.eu</a>",
     "offer_li7": "Démo gratuite des mesures d'entreprise sur <a href=\"https://www.corporate-scanner.com\" target=\"_blank\" style=\"color:var(--gold);\">www.corporate-scanner.com</a>",
     "offer_caveat": "Le PNC n'est pas un instrument financier. C'est un certificat mathématique de réduction de l'entropie dans des actes juridiques ou systèmes juridiques définis, utilisable pour payer le travail.",
@@ -894,7 +897,7 @@ const T = {
     "offer_li1": "Propiedad de la tecnología y los datos personales",
     "offer_li3": "5 optimizaciones de documentos jurídicos al mes en <a href=\"https://www.eulawscanner.eu\" target=\"_blank\" style=\"color:var(--gold);\">www.eulawscanner.eu</a>",
     "offer_li4": "Análisis gratuitos - Corporate Meter (tras calibración exitosa de <a href=\"https://corporate-scanner.com\" target=\"_blank\" style=\"color:var(--gold);\">corporate-scanner.com</a>)",
-    "offer_li5": "<em>De Lege et Amore</em> - libro completo, tras el éxito de la primera fase de experimentación y validación",
+    "offer_li5": "<em>De Lege et Amore</em> - libro completo, tras el éxito de la primera fase de experimentación y validación (borrador PDF ya disponible bajo solicitud a info@1love.works)",
     "offer_li6": "Cálculo preliminar gratuito de su reclamación BigTech en <a href=\"https://www.bigtechclaim.eu\" target=\"_blank\" style=\"color:var(--gold);\">www.bigtechclaim.eu</a>",
     "offer_li7": "Demo gratuita de las mediciones corporativas en <a href=\"https://www.corporate-scanner.com\" target=\"_blank\" style=\"color:var(--gold);\">www.corporate-scanner.com</a>",
     "offer_caveat": "El PNC no es un instrumento financiero. Es un certificado matemático de reducción de entropía en actos jurídicos o sistemas jurídicos definidos, utilizable para pagar el trabajo.",
@@ -1063,14 +1066,17 @@ document.getElementById('freeForm').addEventListener('submit',async function(e){
     var links = document.querySelector('.nav-links');
     if (!toggle || !links) return;
     var isOpen = false;
+    var items = links.querySelectorAll('.hide-mobile');
     toggle.addEventListener('click', function(e) {
       e.stopPropagation();
       isOpen = !isOpen;
       if (isOpen) {
         links.style.cssText = 'display:flex!important;flex-direction:column;position:fixed;top:52px;left:0;right:0;background:rgba(238,244,251,0.99);padding:16px 20px 24px;border-bottom:1px solid rgba(13,31,56,0.12);z-index:9999;gap:0;';
+        items.forEach(function(item) { item.style.display = 'block'; });
         toggle.textContent = '✕';
       } else {
         links.style.cssText = '';
+        items.forEach(function(item) { item.style.display = ''; });
         toggle.textContent = '☰';
       }
     });
@@ -1078,6 +1084,7 @@ document.getElementById('freeForm').addEventListener('submit',async function(e){
       if (isOpen) {
         isOpen = false;
         links.style.cssText = '';
+        items.forEach(function(item) { item.style.display = ''; });
         toggle.textContent = '☰';
       }
     });
