@@ -100,6 +100,7 @@
       #nav-toggle { display: block !important; }
       nav { padding: 12px 20px; }
       .hide-mobile { display: none; }
+      .nav-links.open .hide-mobile { display: block !important; }
       .hero, .section, .cta-section { padding-left: 24px; padding-right: 24px; }
       .metrics { grid-template-columns: 1fr 1fr; }
       .metrics-bottom { grid-template-columns: 1fr; }
@@ -130,6 +131,9 @@
       .step-arrow { margin-left: 0; }
       .section-num[style*="font-size: 18px"] { font-size: 15px !important; }
       footer { flex-direction: column; padding: 24px 20px; }
+      .nav-links a { display: block !important; padding: 12px 0 !important; font-size: 13px !important; }
+      .nav-links li { border-bottom: 1px solid rgba(13,31,56,0.08); }
+      .nav-links li:last-child { border-bottom: none; }
     }
   </style>
   <meta property="og:title" content="The Problem - 1love.works" />
