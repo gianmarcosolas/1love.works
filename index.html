@@ -179,6 +179,165 @@
   <button id="nav-toggle" style="display:none; font-size:18px; background:none; border:none; cursor:pointer; color:var(--ink); padding:4px;" aria-label="Menu">☰</button>
 </nav>
 
+<!-- DISCOVER YOUR LEGAL POTENTIAL -->
+<div id="discover-bar" style="background: var(--ink); border-bottom: 2px solid var(--gold);">
+  <div style="max-width: 900px; margin: 0 auto; padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
+    <div>
+      <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,242,234,0.4); margin-bottom: 8px;" data-i18n="discover_overline">⬡ Sustainable Legal Systems Meter©</div>
+      <div style="font-family: var(--serif); font-size: clamp(20px, 2.5vw, 30px); font-weight: 400; color: var(--parchment); line-height: 1.2;" data-i18n="discover_title">Discover your legal potential.</div>
+    </div>
+    <button onclick="openDiscover()" id="discover-btn" style="font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; padding: 14px 32px; background: var(--gold); color: var(--ink); border: none; cursor: pointer; white-space: nowrap; font-weight: 500; flex-shrink: 0;" data-i18n="discover_btn">Start here →</button>
+  </div>
+
+  <!-- AI Conversation — hidden until opened -->
+  <div id="discover-chat" style="display: none; border-top: 1px solid rgba(245,242,234,0.1); max-width: 900px; margin: 0 auto; padding: 0 48px 36px;">
+
+    <!-- Messages -->
+    <div id="chat-messages" style="padding: 24px 0 16px; display: flex; flex-direction: column; gap: 16px; max-height: 480px; overflow-y: auto;"></div>
+
+    <!-- Input -->
+    <div style="display: flex; gap: 0; border-top: 1px solid rgba(245,242,234,0.1); padding-top: 16px;">
+      <input id="chat-input" type="text" placeholder="Type your answer..." style="flex: 1; font-family: var(--serif); font-size: 15px; padding: 14px 20px; background: rgba(245,242,234,0.06); border: 1px solid rgba(245,242,234,0.15); border-right: none; color: var(--parchment); outline: none;" data-i18n-placeholder="chat_placeholder" onkeydown="if(event.key==='Enter') sendMessage()" />
+      <button onclick="sendMessage()" id="chat-send" style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; padding: 0 24px; background: var(--gold); color: var(--ink); border: none; cursor: pointer; font-weight: 500;">→</button>
+    </div>
+    <div style="font-family: var(--mono); font-size: 10px; color: rgba(245,242,234,0.2); margin-top: 10px; line-height: 1.6;" data-i18n="chat_note">The Meter guides you to the right instrument. No personal data stored. · De Lege et Amore</div>
+  </div>
+</div>
+
+<script>
+const SYSTEM_PROMPT = `You are the Sustainable Legal Systems Meter©, a legal-physics instrument based on the framework λX = EX/MX — the first scientific instrument in history to measure human laws like laws of nature. Published: JLMI 2/25 (Scopus), Law is Love (SSRN 5694423), Cambridge UP 2019.
+
+Your mission: guide the person to discover their legal potential and lead them to the right instrument. You are warm, precise, and scientific — like a trusted advisor who sees legal reality clearly.
+
+The instruments you can route to:
+1. EU Law Meter (eulawscanner.eu) — for EU regulations, public law, administrative acts, public entities, municipalities, anything involving EU legal weight
+2. Corporate Meter (corporate-scanner.com) — for contracts, corporate documents, business legal weight, company compliance
+3. Codification (1love.works/codification) — for territory mapping: abandoned buildings, land, energy sources, dormant local value chains, municipalities wanting to unlock territory value
+4. Legal claims — for individuals or entities with viable claims against big tech (GDPR violations, data abuse, anti-competitive behaviour), or other legal claims where legal entropy has caused measurable damage
+5. General methodology — if they want to understand the framework first (1love.works/methodology)
+
+Rules:
+- Start by warmly welcoming them and asking one simple open question: what is their legal reality? What situation brings them here?
+- Listen carefully. Ask follow-up questions if needed — maximum 2-3 exchanges before routing.
+- When you have enough to route, explain briefly what entropy you detect in their situation, what potential is being suppressed, and which instrument is right for them. Give the URL.
+- Never ask more than one question at a time.
+- Keep responses under 120 words.
+- Speak as the Meter itself — "I measure", "I detect", "I can help you identify".
+- When routing, always give the specific URL as plain text (not markdown).
+- End every routing message with: "De Lege et Amore."`;
+
+let chatHistory = [];
+let chatOpen = false;
+
+function openDiscover() {
+  if (chatOpen) return;
+  chatOpen = true;
+  document.getElementById('discover-chat').style.display = 'block';
+  document.getElementById('discover-btn').style.display = 'none';
+  // Start the conversation
+  startChat();
+}
+
+async function startChat() {
+  const welcomeMsg = await callMeter([]);
+  addMessage('meter', welcomeMsg);
+}
+
+function addMessage(role, text) {
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.style.cssText = role === 'meter'
+    ? 'display:flex; gap:12px; align-items:flex-start;'
+    : 'display:flex; gap:12px; align-items:flex-start; justify-content:flex-end;';
+
+  const bubble = document.createElement('div');
+  bubble.style.cssText = role === 'meter'
+    ? 'background: rgba(245,242,234,0.06); border: 1px solid rgba(245,242,234,0.12); padding: 14px 18px; max-width: 80%; font-family: var(--serif); font-size: 15px; color: rgba(245,242,234,0.85); line-height: 1.75;'
+    : 'background: rgba(184,134,11,0.12); border: 1px solid rgba(184,134,11,0.2); padding: 14px 18px; max-width: 80%; font-family: var(--serif); font-size: 15px; color: rgba(245,242,234,0.85); line-height: 1.75;';
+
+  if (role === 'meter') {
+    // Parse URLs and make them clickable
+    const urlRegex = /(https?:\/\/[^\s]+|1love\.works\/[^\s]+|eulawscanner\.eu|corporate-scanner\.com)/g;
+    bubble.innerHTML = text.replace(urlRegex, url => {
+      const href = url.startsWith('http') ? url : 'https://' + url;
+      return `<a href="${href}" target="_blank" style="color: var(--gold); text-decoration: none; font-family: var(--mono); font-size: 13px;">${url} →</a>`;
+    });
+    // Add meter icon
+    const icon = document.createElement('div');
+    icon.style.cssText = 'font-family: var(--mono); font-size: 10px; color: var(--gold); padding-top: 4px; flex-shrink: 0;';
+    icon.textContent = '⬡';
+    div.appendChild(icon);
+  } else {
+    bubble.textContent = text;
+  }
+
+  div.appendChild(bubble);
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function addLoadingIndicator() {
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.id = 'chat-loading';
+  div.style.cssText = 'display:flex; gap:12px; align-items:flex-start;';
+  div.innerHTML = '<div style="font-family: var(--mono); font-size: 10px; color: var(--gold); padding-top: 4px;">⬡</div><div style="font-family: var(--mono); font-size: 11px; color: rgba(245,242,234,0.3); padding: 14px 18px; letter-spacing: 0.06em;">Measuring...</div>';
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function removeLoadingIndicator() {
+  const el = document.getElementById('chat-loading');
+  if (el) el.remove();
+}
+
+async function sendMessage() {
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  input.disabled = true;
+  document.getElementById('chat-send').disabled = true;
+
+  addMessage('user', text);
+  chatHistory.push({ role: 'user', content: text });
+  addLoadingIndicator();
+
+  const reply = await callMeter(chatHistory);
+  removeLoadingIndicator();
+  addMessage('meter', reply);
+  chatHistory.push({ role: 'assistant', content: reply });
+
+  input.disabled = false;
+  document.getElementById('chat-send').disabled = false;
+  input.focus();
+}
+
+async function callMeter(history) {
+  try {
+    const messages = history.length === 0
+      ? [{ role: 'user', content: 'START' }]
+      : history;
+
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1000,
+        system: SYSTEM_PROMPT,
+        messages: messages
+      })
+    });
+    const data = await res.json();
+    return data.content?.[0]?.text || 'I am temporarily unavailable. Please try again shortly.';
+  } catch(e) {
+    return 'I am temporarily unavailable. Please try again shortly.';
+  }
+}
+</script>
+
+
 <!-- EUROPEAN LEGAL SYSTEMS VALUE header -->
 <div style="border-bottom: 1px solid var(--rule); padding: 18px 24px; text-align: center;">
   <div style="font-family: var(--mono); font-size: clamp(18px, 2.2vw, 28px); letter-spacing: 0.12em; color: var(--gold); margin-bottom: 5px;" data-i18n="meter_subtitle">The Sustainable Legal Systems Meter&#169; - In calibration</div>
@@ -356,6 +515,11 @@
 <script>
 const T = {
   en: {
+    discover_overline: '⬡ Sustainable Legal Systems Meter©',
+    discover_title: 'Discover your legal potential.',
+    discover_btn: 'Start here →',
+    chat_placeholder: 'Type your answer...',
+    chat_note: 'The Meter guides you to the right instrument. No personal data stored. · De Lege et Amore',
     meter_subtitle: 'The Sustainable Legal Systems Meter&#169; - In calibration',
     tradition_tag: '‘It is mathematically impossible to build a just world without measuring and representing human laws like the other laws of nature’', main_thesis: 'Main thesis: <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank" style="color: inherit; text-decoration: underline;">Law is Love</a>.',
     nav_problem: 'The Problem', nav_solutions: 'The Proposed Solutions', nav_pnc: 'PNC', nav_methodology: 'About &amp; Methodology', nav_participate: 'Participate',
@@ -407,6 +571,11 @@ const T = {
     metric_pnc_avail_label: 'still available for phase 1',
   },
   it: {
+    discover_overline: '⬡ Misuratore dei Sistemi Giuridici Sostenibili©',
+    discover_title: 'Scopri il tuo potenziale giuridico.',
+    discover_btn: 'Inizia qui →',
+    chat_placeholder: 'Scrivi la tua risposta...',
+    chat_note: 'Il Misuratore ti guida allo strumento giusto. Nessun dato personale conservato. · De Lege et Amore',
     meter_subtitle: 'Il Metro dei Sistemi Legali Sostenibili&#169; - In calibrazione',
     tradition_tag: '‘È matematicamente impossibile costruire un mondo giusto senza misurare e rappresentare le leggi umane come le altre leggi della natura’', main_thesis: 'Tesi principale: <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank" style="color: inherit; text-decoration: underline;">Law is Love</a>.',
     nav_problem: 'Il Problema', nav_solutions: 'Le Soluzioni Proposte', nav_pnc: 'PNC', nav_methodology: 'Informazioni &amp; Metodologia', nav_participate: 'Partecipa',
@@ -458,6 +627,11 @@ const T = {
     metric_pnc_avail_label: 'ancora disponibili per la fase 1',
   },
   fr: {
+    discover_overline: '⬡ Mètre des Systèmes Juridiques Durables©',
+    discover_title: 'Découvrez votre potentiel juridique.',
+    discover_btn: 'Commencer →',
+    chat_placeholder: 'Tapez votre réponse...',
+    chat_note: 'Le Mètre vous guide vers le bon instrument. Aucune donnée personnelle stockée. · De Lege et Amore',
     meter_subtitle: 'Le Metre des Systemes Juridiques Durables&#169; - En calibration',
     tradition_tag: '‘Il est mathématiquement impossible de construire un monde juste sans mesurer et représenter les lois humaines comme les autres lois de la nature’', main_thesis: 'Thèse principale : <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank" style="color: inherit; text-decoration: underline;">Law is Love</a>.',
     nav_problem: 'Le Problème', nav_solutions: 'Les Solutions Proposées', nav_pnc: 'PNC', nav_methodology: 'À Propos &amp; Méthodologie', nav_participate: 'Participer',
@@ -509,6 +683,11 @@ const T = {
     metric_pnc_avail_label: 'encore disponibles pour la phase 1',
   },
   es: {
+    discover_overline: '⬡ Medidor de Sistemas Jurídicos Sostenibles©',
+    discover_title: 'Descubre tu potencial jurídico.',
+    discover_btn: 'Empieza aquí →',
+    chat_placeholder: 'Escribe tu respuesta...',
+    chat_note: 'El Medidor te guida al instrumento adecuado. Sin datos personales almacenados. · De Lege et Amore',
     meter_subtitle: 'El Metro de los Sistemas Juridicos Sostenibles&#169; - En calibracion',
     tradition_tag: '‘Es matemáticamente imposible construir un mundo justo sin medir y representar las leyes humanas como las demás leyes de la naturaleza’', main_thesis: 'Tesis principal: <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5694423" target="_blank" style="color: inherit; text-decoration: underline;">Law is Love</a>.',
     nav_problem: 'El Problema', nav_solutions: 'Las Soluciones Propuestas', nav_pnc: 'PNC', nav_methodology: 'Acerca &amp; Metodología', nav_participate: 'Participar',
