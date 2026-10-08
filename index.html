@@ -319,18 +319,13 @@ async function callMeter(history) {
       ? [{ role: 'user', content: 'START' }]
       : history;
 
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const res = await fetch('/api/meter', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 1000,
-        system: SYSTEM_PROMPT,
-        messages: messages
-      })
+      body: JSON.stringify({ messages })
     });
     const data = await res.json();
-    return data.content?.[0]?.text || 'I am temporarily unavailable. Please try again shortly.';
+    return data.text || 'I am temporarily unavailable. Please try again shortly.';
   } catch(e) {
     return 'I am temporarily unavailable. Please try again shortly.';
   }
