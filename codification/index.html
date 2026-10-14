@@ -3822,10 +3822,15 @@ function loadDataset(code){
 
 // Data ships as small <script> files so it also works when index.html is opened straight from disk (file://),
 // where browsers block fetch() of local JSON.
+// Folder of this page, so data/ is found whether the address is /codification, /codification/ or /codification/index.html
+function dsBase(){
+  try{var p=location.pathname;if(location.protocol==="file:"||/\/$/.test(p)||/\.html?$/i.test(p))return "";
+    return p.split("/").pop()+"/";}catch(e){return "";}
+}
 function dsLoadScript(src,getter){
   var have=getter();if(have)return Promise.resolve(have);
   return new Promise(function(res,rej){
-    var el=document.createElement("script");el.src=src;el.async=true;
+    var el=document.createElement("script");el.src=dsBase()+src;el.async=true;
     el.onload=function(){var v=getter();v?res(v):rej(new Error("empty "+src));};
     el.onerror=function(){el.remove();rej(new Error("missing "+src));};
     document.head.appendChild(el);
