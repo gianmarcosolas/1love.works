@@ -1,0 +1,9 @@
+# Never commit secret key files (added 9 Nov 2026, critical issue 3).
+# Example/template files without real values may still be committed.
+.env
+.env.*
+!.env.example
+
+# Local tooling
+.vercel/
+.DS_Store
