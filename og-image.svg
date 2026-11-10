@@ -50,20 +50,9 @@
   <!-- Divider -->
   <line x1="440" y1="278" x2="1150" y2="278" stroke="rgba(13,31,56,0.12)" stroke-width="1"/>
 
-  <!-- Stats row -->
-  <!-- Entropy -->
-  <text x="440" y="302" font-family="monospace" font-size="10" letter-spacing="1" fill="#5a7490">TOTAL ENTROPY (ΣS)</text>
-  <text x="440" y="328" font-family="Georgia, serif" font-size="26" font-weight="500" fill="#8b0000">1,557</text>
-
-  <!-- PNC circulation -->
-  <text x="680" y="302" font-family="monospace" font-size="10" letter-spacing="1" fill="#5a7490">⬡ PNC IN CIRCULATION</text>
-  <text x="680" y="328" font-family="Georgia, serif" font-size="26" font-weight="500" fill="#0d1f38">10,101</text>
-
-  <!-- PNC value -->
-  <rect x="920" y="278" width="230" height="70" fill="#ddeaf8"/>
-  <line x1="920" y1="278" x2="920" y2="348" stroke="#b8860b" stroke-width="2"/>
-  <text x="934" y="302" font-family="monospace" font-size="10" letter-spacing="1" fill="#5a7490">⬡ PNC VALUE</text>
-  <text x="934" y="328" font-family="Georgia, serif" font-size="26" font-weight="500" fill="#b8860b">€253</text>
+  <!-- Stats row: live figures are no longer frozen into the image (10 Nov 2026, issue 9) -->
+  <text x="440" y="312" font-family="monospace" font-size="11" letter-spacing="1" fill="#5a7490">LIVE: TOTAL ENTROPY (ΣS) · PNC IN CIRCULATION · PNC VALUE</text>
+  <text x="440" y="338" font-family="Georgia, serif" font-size="22" font-weight="500" fill="#0d1f38">1love.works/dashboard</text>
 
   <!-- Bottom divider -->
   <line x1="440" y1="368" x2="1150" y2="368" stroke="rgba(13,31,56,0.08)" stroke-width="1"/>
