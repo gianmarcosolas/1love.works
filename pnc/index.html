@@ -364,21 +364,22 @@
     <!-- Lookup form -->
     <div id="pnc-lookup-wrap">
       <h2 data-i18n="lookup_title" style="font-size: clamp(28px, 4vw, 42px); font-weight: 400; line-height: 1.15; margin-bottom: 12px; color: var(--parchment);">Your node. <em style="font-style:italic; color:var(--gold);">Your stake.</em></h2>
-      <p data-i18n="lookup_sub" style="font-size: 16px; color: rgba(245,242,234,0.55); line-height: 1.75; margin-bottom: 32px; max-width: 520px;">Enter your email and PNC code from your confirmation to see your personal dashboard.</p>
+      <p data-i18n="lookup_sub" style="font-size: 16px; color: rgba(245,242,234,0.55); line-height: 1.75; margin-bottom: 32px; max-width: 520px;">Enter the email you used for your PNC. We will send you a one-time login code.</p>
       <div style="display: flex; flex-direction: column; gap: 14px; max-width: 440px;">
         <div style="display: flex; flex-direction: column; gap: 6px;">
           <label style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.11em; color: rgba(245,242,234,0.4);" data-i18n="label_email">Email</label>
           <input id="pnc-email" type="email" placeholder="your@email.com"
             style="font-family: var(--serif); font-size: 16px; color: var(--ink); background: var(--parchment); border: 1px solid rgba(245,242,234,0.2); padding: 11px 14px; outline: none; width: 100%;" />
         </div>
-        <div style="display: flex; flex-direction: column; gap: 6px;">
-          <label style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.11em; color: rgba(245,242,234,0.4);" data-i18n="label_code">PNC Code</label>
-          <input id="pnc-code" type="text" placeholder="PNC-00001"
+        <p id="pnc-code-sent" data-i18n="code_sent" style="display: none; font-size: 14px; color: rgba(245,242,234,0.7); line-height: 1.6;">If this email holds PNC, we have sent it a 6-digit code (valid 10 minutes).</p>
+        <div id="pnc-code-field" style="display: none; flex-direction: column; gap: 6px;">
+          <label style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.11em; color: rgba(245,242,234,0.4);" data-i18n="label_code">Code from the email</label>
+          <input id="pnc-code" type="text" inputmode="numeric" autocomplete="one-time-code" placeholder="123456"
             style="font-family: var(--mono); font-size: 16px; letter-spacing: 0.08em; color: var(--ink); background: var(--parchment); border: 1px solid rgba(245,242,234,0.2); padding: 11px 14px; outline: none; width: 100%;" />
         </div>
         <button id="pnc-login-btn" onclick="pncLogin()"
           style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 28px; background: var(--gold); color: white; border: none; cursor: pointer; margin-top: 4px; transition: opacity 0.2s; text-align: center;"
-          data-i18n="btn_access">Access my PNC →</button>
+          data-i18n="btn_send">Email me a login code →</button>
         <p id="pnc-login-error" style="font-family: var(--mono); font-size: 10px; color: #f87171; display: none; margin-top: 4px;"></p>
       </div>
       <p style="font-family: var(--mono); font-size: 10px; color: rgba(245,242,234,0.3); margin-top: 20px; line-height: 1.7;">
@@ -547,9 +548,10 @@ const T = {
     go_mypnc: 'Go to my PNC →', s8_num: 'V · Useful work for the system',
     fig1: 'Entropic legal system - the state before measurement', fig2: 'Quantization of legal systems', fig3: 'Ideal relativistic equilibrium (E)', fig4: 'Optimum - the measured legal system', fig5: 'Legal Systems\' Meter',
     lookup_title: 'Your node. <em style="font-style:italic;color:var(--gold);">Your stake.</em>',
-    lookup_sub: 'Enter your email and PNC code from your confirmation to see your personal dashboard.',
-    label_email: 'Email', label_code: 'PNC Code',
+    lookup_sub: 'Enter the email you used for your PNC. We will send you a one-time login code.',
+    label_email: 'Email', label_code: 'Code from the email',
     btn_access: 'Access my PNC →',
+    btn_send: 'Email me a login code →', code_sent: 'If this email holds PNC, we have sent it a 6-digit code (valid 10 minutes).', err_code: 'Invalid or expired code. Request a new one if needed.', err_send: 'Could not send the code. Please try again later.',
     city_lookup_title: 'Or look up a territory',
     city_lookup_ph: 'City or comune name',
     city_lookup_btn: 'Look up →',
@@ -655,9 +657,10 @@ const T = {
     go_mypnc: 'Vai al mio PNC →', s8_num: 'V · Lavoro utile per il sistema',
     fig1: 'Sistema giuridico entropico - lo stato prima della misurazione', fig2: 'Quantizzazione dei sistemi giuridici', fig3: 'Equilibrio relativistico ideale (E)', fig4: 'Ottimo - il sistema giuridico misurato', fig5: 'Misuratore dei sistemi giuridici',
     lookup_title: 'Il tuo nodo. <em style="font-style:italic;color:var(--gold);">La tua quota.</em>',
-    lookup_sub: 'Inserisci la tua email e il codice PNC dalla conferma per accedere al tuo pannello personale.',
-    label_email: 'Email', label_code: 'Codice PNC',
+    lookup_sub: "Inserisci l'email usata per il tuo PNC. Ti invieremo un codice di accesso monouso.",
+    label_email: 'Email', label_code: "Codice dall'email",
     btn_access: 'Accedi al mio PNC →',
+    btn_send: 'Inviami un codice di accesso →', code_sent: 'Se questa email possiede PNC, le abbiamo inviato un codice di 6 cifre (valido 10 minuti).', err_code: 'Codice non valido o scaduto. Richiedine uno nuovo se serve.', err_send: 'Impossibile inviare il codice. Riprova più tardi.',
     city_lookup_title: 'Oppure cerca un territorio',
     city_lookup_ph: 'Nome della città o del comune',
     city_lookup_btn: 'Cerca →',
@@ -762,9 +765,10 @@ const T = {
     go_mypnc: 'Accéder à mon PNC →', s8_num: 'V · Travail utile pour le système',
     fig1: 'Système juridique entropique - l\'état avant mesure', fig2: 'Quantification des systèmes juridiques', fig3: 'Équilibre relativiste idéal (E)', fig4: 'Optimum - le système juridique mesuré', fig5: 'Compteur des systèmes juridiques',
     lookup_title: 'Votre nœud. <em style="font-style:italic;color:var(--gold);">Votre participation.</em>',
-    lookup_sub: 'Entrez votre email et votre code PNC de la confirmation pour accéder à votre tableau de bord.',
-    label_email: 'Email', label_code: 'Code PNC',
+    lookup_sub: "Entrez l'email utilisé pour vos PNC. Nous vous enverrons un code de connexion à usage unique.",
+    label_email: 'Email', label_code: 'Code reçu par email',
     btn_access: 'Accéder à mon PNC →',
+    btn_send: 'Recevoir un code par email →', code_sent: 'Si cet email détient des PNC, nous lui avons envoyé un code à 6 chiffres (valable 10 minutes).', err_code: 'Code invalide ou expiré. Demandez-en un nouveau si besoin.', err_send: "Impossible d'envoyer le code. Réessayez plus tard.",
     city_lookup_title: 'Ou recherchez un territoire',
     city_lookup_ph: 'Nom de la ville ou commune',
     city_lookup_btn: 'Rechercher →',
@@ -869,9 +873,10 @@ const T = {
     go_mypnc: 'Ir a mi PNC →', s8_num: 'V · Trabajo útil para el sistema',
     fig1: 'Sistema jurídico entrópico - el estado antes de la medición', fig2: 'Cuantización de los sistemas jurídicos', fig3: 'Equilibrio relativista ideal (E)', fig4: 'Óptimo - el sistema jurídico medido', fig5: 'Medidor de sistemas jurídicos',
     lookup_title: 'Tu nodo. <em style="font-style:italic;color:var(--gold);">Tu participación.</em>',
-    lookup_sub: 'Introduce tu email y código PNC de la confirmación para acceder a tu panel personal.',
-    label_email: 'Email', label_code: 'Código PNC',
+    lookup_sub: 'Introduce el email que usaste para tu PNC. Te enviaremos un código de acceso de un solo uso.',
+    label_email: 'Email', label_code: 'Código del email',
     btn_access: 'Acceder a mi PNC →',
+    btn_send: 'Envíame un código de acceso →', code_sent: 'Si este email tiene PNC, le hemos enviado un código de 6 dígitos (válido 10 minutos).', err_code: 'Código no válido o caducado. Solicita uno nuevo si hace falta.', err_send: 'No se pudo enviar el código. Inténtalo más tarde.',
     city_lookup_title: 'O busca un territorio',
     city_lookup_ph: 'Nombre de la ciudad o municipio',
     city_lookup_btn: 'Buscar →',
@@ -1023,38 +1028,47 @@ function pncFraction(a) {
   return Number.isInteger(1/a) ? '1/'+d+' of a node' : a+' of a node';
 }
 
+// Email-code login (10 Nov 2026): step 1 emails a one-time code (only if the
+// email holds PNC; same answer either way); step 2 verifies it.
+var pncCodeSent = false;
 async function pncLogin() {
   const email = document.getElementById('pnc-email').value.trim().toLowerCase();
-  const code  = document.getElementById('pnc-code').value.trim().toUpperCase();
+  const code  = document.getElementById('pnc-code').value.replace(/\D/g, '');
   const err   = document.getElementById('pnc-login-error');
   const btn   = document.getElementById('pnc-login-btn');
-  if (!email || !code) return;
-  btn.disabled = true; btn.textContent = '…';
+  const t     = T[currentLang] || T.en;
+  if (!email) return;
+  if (pncCodeSent && code.length !== 6) return;
+  btn.disabled = true;
   err.style.display = 'none';
   try {
-    // Server-side lookup (pnc_holders is no longer readable from the browser).
-    const res = await fetch(PNC_API + '/api/pnc/lookup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, pnc_code: code })
-    });
-    const out = await res.json();
-    const data = (out && out.found && out.holder) ? [out.holder] : [];
-    if (!data.length) {
-      err.textContent = currentLang === 'it' ? 'Nessun PNC trovato. Controlla email e codice.' :
-                        currentLang === 'fr' ? 'Aucun PNC trouvé. Vérifiez email et code.' :
-                        currentLang === 'es' ? 'No se encontró PNC. Comprueba email y código.' :
-                        'No PNC found. Check your email and code.';
-      err.style.display = 'block';
-      btn.disabled = false; btn.textContent = document.getElementById('pnc-login-btn').getAttribute('data-orig') || 'Access my PNC →';
-      return;
+    if (!pncCodeSent) {
+      const res = await fetch(PNC_API + '/api/pnc/login/start', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, lang: currentLang })
+      });
+      const out = await res.json();
+      if (!out || !out.sent) throw new Error(t.err_send || 'Could not send the code.');
+      pncCodeSent = true;
+      document.getElementById('pnc-code-sent').style.display = 'block';
+      document.getElementById('pnc-code-field').style.display = 'flex';
+      btn.setAttribute('data-i18n', 'btn_access');
+      btn.innerHTML = t.btn_access;
+      document.getElementById('pnc-code').focus();
+    } else {
+      const res = await fetch(PNC_API + '/api/pnc/login/verify', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, code: code })
+      });
+      const out = await res.json();
+      if (!out || !out.ok || !out.holdings || !out.holdings.length) throw new Error(t.err_code || 'Invalid or expired code.');
+      renderPNCDashboard(out.holdings[0]);
     }
-    renderPNCDashboard(data[0]);
   } catch(e) {
-    err.textContent = 'Connection error. Please try again.';
+    err.textContent = (e && e.message) || 'Connection error. Please try again.';
     err.style.display = 'block';
-    btn.disabled = false;
   }
+  btn.disabled = false;
 }
 
 async function renderPNCDashboard(holder) {
