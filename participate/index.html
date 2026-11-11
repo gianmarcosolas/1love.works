@@ -196,7 +196,7 @@
         <li data-i18n="offer_li7">Free demo of corporate measurements at <a href="https://www.corporate-scanner.com" target="_blank" style="color:var(--gold);">www.corporate-scanner.com</a></li>
       </ul>
       <div class="offer-caveat" data-i18n="offer_caveat">PNC is not a financial instrument. It is a mathematical certificate of entropy reduction in defined legal acts or legal systems that can be used to pay for work.</div>
-      <a href="https://eulawscanner.eu/pricing" class="btn btn-gold" data-i18n="offer_btn">Pre-order - €99 →</a>
+      <a href="https://eulawscanner.eu/pricing" class="btn btn-gold" data-i18n="offer_btn">Get the €99 licence →</a>
     </div>
 
     <!-- 2) MEASURE AND FIX YOUR SYSTEM -->
@@ -499,7 +499,7 @@ const T = {
     "offer_li6": "Free preliminary calculation of your BigTech claim at <a href=\"https://www.bigtechclaim.eu\" target=\"_blank\" style=\"color:var(--gold);\">www.bigtechclaim.eu</a>",
     "offer_li7": "Free demo of corporate measurements at <a href=\"https://www.corporate-scanner.com\" target=\"_blank\" style=\"color:var(--gold);\">www.corporate-scanner.com</a>",
     "offer_caveat": "PNC is not a financial instrument. It is a mathematical certificate of entropy reduction in defined legal acts or legal systems that can be used to pay for work.",
-    "offer_btn": "Pre-order - €99 →",
+    "offer_btn": "Get the €99 licence →",
     "offer2_label": "2) Measure and fix your system",
     "offer2_sub_label": "Includes (1) - one combined payment",
     "offer2_price_note": "one payment · includes (1)",
@@ -633,7 +633,7 @@ const T = {
     "offer_li6": "Calcolo preliminare gratuito della tua richiesta BigTech su <a href=\"https://www.bigtechclaim.eu\" target=\"_blank\" style=\"color:var(--gold);\">www.bigtechclaim.eu</a>",
     "offer_li7": "Demo gratuita delle misurazioni aziendali su <a href=\"https://www.corporate-scanner.com\" target=\"_blank\" style=\"color:var(--gold);\">www.corporate-scanner.com</a>",
     "offer_caveat": "Il PNC non è uno strumento finanziario. È un certificato matematico di riduzione dell’entropia in atti giuridici o sistemi legali definiti, utilizzabile per pagare il lavoro.",
-    "offer_btn": "Pre-ordina - €99 →",
+    "offer_btn": "Prendi la licenza da €99 →",
     "offer2_label": "2) Misura e aggiusta il tuo sistema",
     "offer2_sub_label": "Include (1) - un unico pagamento",
     "offer2_price_note": "un pagamento · include (1)",
@@ -767,7 +767,7 @@ const T = {
     "offer_li6": "Calcul préliminaire gratuit de votre réclamation BigTech sur <a href=\"https://www.bigtechclaim.eu\" target=\"_blank\" style=\"color:var(--gold);\">www.bigtechclaim.eu</a>",
     "offer_li7": "Démo gratuite des mesures d'entreprise sur <a href=\"https://www.corporate-scanner.com\" target=\"_blank\" style=\"color:var(--gold);\">www.corporate-scanner.com</a>",
     "offer_caveat": "Le PNC n'est pas un instrument financier. C'est un certificat mathématique de réduction de l'entropie dans des actes juridiques ou systèmes juridiques définis, utilisable pour payer le travail.",
-    "offer_btn": "Pré-commander - €99 →",
+    "offer_btn": "Obtenir la licence à 99 € →",
     "offer2_label": "2) Mesurer et réparer votre système",
     "offer2_sub_label": "Inclut (1) - un seul paiement",
     "offer2_price_note": "un paiement · inclut (1)",
@@ -901,7 +901,7 @@ const T = {
     "offer_li6": "Cálculo preliminar gratuito de su reclamación BigTech en <a href=\"https://www.bigtechclaim.eu\" target=\"_blank\" style=\"color:var(--gold);\">www.bigtechclaim.eu</a>",
     "offer_li7": "Demo gratuita de las mediciones corporativas en <a href=\"https://www.corporate-scanner.com\" target=\"_blank\" style=\"color:var(--gold);\">www.corporate-scanner.com</a>",
     "offer_caveat": "El PNC no es un instrumento financiero. Es un certificado matemático de reducción de entropía en actos jurídicos o sistemas jurídicos definidos, utilizable para pagar el trabajo.",
-    "offer_btn": "Pre-pedir - €99 →",
+    "offer_btn": "Obtener la licencia de 99 € →",
     "offer2_label": "2) Medir y arreglar tu sistema",
     "offer2_sub_label": "Incluye (1) - un solo pago",
     "offer2_price_note": "un pago · incluye (1)",
@@ -1130,7 +1130,7 @@ async function loadStats() {
       // Update Stripe button text if price changed
       if (d.current_price !== d.founding_price) {
         document.querySelectorAll('[data-i18n="offer_btn"]').forEach(btn => {
-          btn.textContent = 'Pre-order - ' + cp + ' →';
+          btn.textContent = 'Get the licence - ' + cp + ' →';
         });
       }
     }
