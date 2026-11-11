@@ -216,7 +216,7 @@ Your tone:
 Calm. Scientific. Warm but precise. You speak like the instrument itself — not like a consultant, not like a chatbot. Short sentences. Never more than 100 words per response. Never bullet points. Never more than one question at a time. You already know that entropy exists — you are helping the person find theirs.
 
 What you know:
-- PNC (Perpetual Node Certificate): issued to people who do useful work for the system — scanning, identifying entropic assets, filing claims. Phase 1: €99, hard cap €10M. Not tradeable. Collateral is the applicable law itself, measured through the instruments. Every scan increases implied PNC value.
+- PNC (Perpetual Node Certificate): issued to people who do useful work for the system — scanning, identifying entropic assets, filing claims. Not sold: one PNC is included with each €99 EU Law Meter licence and the book. Phase 1 ends when 101,010 PNC have been issued. Not tradeable. Collateral is the applicable law itself, measured through the instruments. Every scan increases ΣS, the indicative measure behind each PNC (a measurement, not a promise of value).
 - Legal entropy: frozen potential in legal systems — redundant regulations, unresolved disputes, abandoned buildings, frozen land, unused energy, dormant value chains.
 - EU-27 unexpressed value: €5.2 trillion, conservative, published.
 - Useful work: scanning a document, mapping a territory, filing a claim that reduces entropy.
@@ -451,10 +451,10 @@ async function callMeter(history) {
         <div style="font-family: var(--mono); font-size: 26px; font-weight: 500; color: #8b0000;" id="lp-entropy">-</div>
       </div>
       <div style="background: var(--parchment); padding: 16px 20px;">
-        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 6px;" data-i18n="metric_pnc">⬡ PNC available in Phase 1 at fixed price of €99</div>
+        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 6px;" data-i18n="metric_pnc">⬡ PNC still to be issued in Phase 1 — one included with every €99 EU Law Meter licence</div>
         <div style="font-family: var(--mono); font-size: 26px; font-weight: 500; color: var(--ink);" id="lp-pnc">-</div>
         <div style="font-family: var(--mono); font-size: 26px; font-weight: 500; color: var(--gold); margin-top: 4px;" id="lp-pnc-available"></div>
-        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-top: 4px;" id="lp-pnc-available-label" data-i18n="metric_pnc_avail_label">still available for phase 1</div>
+        <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-top: 4px;" id="lp-pnc-available-label" data-i18n="metric_pnc_avail_label">still to be issued in Phase 1</div>
       </div>
       <div style="background: var(--cream); padding: 16px 20px; border: 1px solid rgba(184,134,11,0.2);">
         <div style="font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 10px;" data-i18n="metric_value">⬡ PNC Value</div>
@@ -543,14 +543,14 @@ const T = {
     sub: 'The first and only technological framework in legal history to measure, engineer and optimise human laws and legal systems, and to unify them with natural laws. Like natural laws and systems, once human laws and legal systems are measured, they can be optimised - collectively, by anyone who contributes - toward real justice and equilibrium. That is the reason this instrument exists: to make the measurement possible, and make it proprietary of everyone.',
     metric_scans: 'Documents scanned',
     metric_entropy: 'Total legal weight - entropy (ΣS)',
-    metric_pnc: '⬡ PNC available in Phase 1 at fixed price of €99',
+    metric_pnc: '⬡ PNC still to be issued in Phase 1 — one included with every €99 EU Law Meter licence',
     metric_pnc_bought: 'of which bought: ',
     metric_founding: 'Founding',
     metric_current: 'Current',
-    metric_value: '⬡ PNC Value',
+    metric_value: '⬡ PNC indicative measure',
     chart_label: 'Entropy - Legal Weight Identified (ΣS) vs PNC Value',
     chart_sub: 'EU Legal Systems\' Value',
-    legend_pnc: 'PNC Value',
+    legend_pnc: 'PNC indicative measure',
     legend_entropy: 'Entropy (ΣS)',
     legend_projected: 'Projected',
     problem_title: 'The problem',
@@ -575,7 +575,7 @@ const T = {
     panel3_label: 'The Solution',
     panel3_title: 'We are <em style="font-style:italic;color:var(--gold);">&quot;reordering&quot;</em> it',
     panel3_body: 'We measure human law and legal systems (legal weight, entropy etc.) with the aim to engineer sustainable legal systems to unlock and distribute this value to anyone that contributes to the Project: <a href="/participate" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(184,134,11,0.4);">participate</a>.',
-    metric_pnc_avail_label: 'still available for phase 1',
+    metric_pnc_avail_label: 'still to be issued in Phase 1',
   },
   it: {
     discover_overline: '⬡ Misuratore dei Sistemi Giuridici Sostenibili©',
@@ -599,14 +599,14 @@ const T = {
     sub: 'Il primo e unico framework tecnologico nella storia del diritto per misurare, ingegnerizzare e ottimizzare le leggi umane e i sistemi legali, e per unificarli con le leggi naturali. Come le leggi e i sistemi naturali, una volta misurate, le leggi e i sistemi giuridici umani possono essere ottimizzati - collettivamente, da chiunque contribuisca - verso una giustizia reale e un equilibrio. Questa è la ragione per cui questo strumento esiste: rendere possibile la misurazione e rendere tutti proprietari di essa.',
     metric_scans: 'Documenti analizzati',
     metric_entropy: 'Peso normativo - entropia totale (ΣS)',
-    metric_pnc: '⬡ PNC disponibili per la prima fase di calibrazione a prezzo fisso di €99',
+    metric_pnc: '⬡ PNC ancora da emettere nella Fase 1 — uno incluso in ogni licenza EU Law Meter da €99',
     metric_pnc_bought: 'di cui acquistati: ',
     metric_founding: 'Fondazione',
     metric_current: 'Attuale',
-    metric_value: '⬡ Valore implicito PNC',
+    metric_value: '⬡ Misura indicativa PNC',
     chart_label: 'Entropia - Peso Normativo Identificato (ΣS) vs Valore PNC',
     chart_sub: 'Valore dei Sistemi Giuridici UE',
-    legend_pnc: 'Valore implicito PNC',
+    legend_pnc: 'Misura indicativa PNC',
     legend_entropy: 'Entropia (ΣS)',
     legend_projected: 'Proiettato',
     problem_title: 'Il problema',
@@ -631,7 +631,7 @@ const T = {
     panel3_label: 'La Soluzione',
     panel3_title: 'La stiamo <em style="font-style:italic;color:var(--gold);">&quot;riordinando&quot;</em>',
     panel3_body: 'Misuriamo il diritto e i sistemi giuridici umani (peso normativo, entropia, ecc.) con l\u2019obiettivo di progettare sistemi giuridici sostenibili per sbloccare e distribuire questo valore a chiunque contribuisca al Progetto: <a href="/participate" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(184,134,11,0.4);">partecipa</a>.',
-    metric_pnc_avail_label: 'ancora disponibili per la fase 1',
+    metric_pnc_avail_label: 'ancora da emettere nella Fase 1',
   },
   fr: {
     discover_overline: '⬡ Mètre des Systèmes Juridiques Durables©',
@@ -655,14 +655,14 @@ const T = {
     sub: 'Le premier et unique cadre technologique de l\'histoire du droit pour mesurer, concevoir et optimiser les lois humaines et les systèmes juridiques, et pour les unifier avec les lois naturelles. Comme les lois et les systèmes naturels, une fois mesurées, les lois et les systèmes juridiques humains peuvent être optimisés - collectivement, par quiconque y contribue - vers une justice réelle et un équilibre. C’est la raison d’être de cet instrument : rendre la mesure possible et en faire la propriété de tous.',
     metric_scans: 'Documents analysés',
     metric_entropy: 'Poids juridique - entropie totale (ΣS)',
-    metric_pnc: '⬡ PNC disponibles en Phase 1 au prix fixe de 99 €',
+    metric_pnc: '⬡ PNC encore à émettre en Phase 1 — un inclus avec chaque licence EU Law Meter à 99 €',
     metric_pnc_bought: 'dont achetés : ',
     metric_founding: 'Fondation',
     metric_current: 'Actuel',
-    metric_value: '⬡ Valeur implicite PNC',
+    metric_value: '⬡ Mesure indicative PNC',
     chart_label: 'Entropie - Poids Juridique Identifié (ΣS) vs Valeur PNC',
     chart_sub: 'Valeur des systèmes juridiques UE',
-    legend_pnc: 'Valeur implicite PNC',
+    legend_pnc: 'Mesure indicative PNC',
     legend_entropy: 'Entropie (ΣS)',
     legend_projected: 'Projeté',
     problem_title: 'Le problème',
@@ -687,7 +687,7 @@ const T = {
     panel3_label: 'La Solution',
     panel3_title: 'Nous la <em style="font-style:italic;color:var(--gold);">&quot;réordonnons&quot;</em>',
     panel3_body: 'Nous mesurons le droit et les syst\u00e8mes juridiques humains (poids juridique, entropie, etc.) dans le but de concevoir des syst\u00e8mes juridiques durables pour lib\u00e9rer et distribuer cette valeur \u00e0 quiconque contribue au Projet : <a href="/participate" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(184,134,11,0.4);">participez</a>.',
-    metric_pnc_avail_label: 'encore disponibles pour la phase 1',
+    metric_pnc_avail_label: 'encore à émettre en Phase 1',
   },
   es: {
     discover_overline: '⬡ Medidor de Sistemas Jurídicos Sostenibles©',
@@ -711,13 +711,13 @@ const T = {
     sub: 'El primer y único marco tecnológico en la historia del derecho para medir, diseñar y optimizar las leyes humanas y los sistemas jurídicos, y para unificarlos con las leyes naturales. Al igual que las leyes y los sistemas naturales, una vez medidas, las leyes y los sistemas jurídicos humanos pueden optimizarse - colectivamente, por cualquiera que contribuya - hacia una justicia real y un equilibrio. Esa es la razón de ser de este instrumento: hacer posible la medición y hacer que sea propiedad de todos.',
     metric_scans: 'Documentos analizados',
     metric_entropy: 'Peso jurídico - entropía total (ΣS)',
-    metric_pnc: '⬡ PNC disponibles en Fase 1 a precio fijo de €99',
+    metric_pnc: '⬡ PNC aún por emitir en la Fase 1 — uno incluido con cada licencia EU Law Meter de 99 €',
     metric_founding: 'Fundación',
     metric_current: 'Actual',
-    metric_value: '⬡ Valor implícito PNC',
+    metric_value: '⬡ Medida indicativa PNC',
     chart_label: 'Entropía - Peso Jurídico Identificado (ΣS) vs Valor PNC',
     chart_sub: 'Valor de los sistemas jurídicos UE',
-    legend_pnc: 'Valor implícito PNC',
+    legend_pnc: 'Medida indicativa PNC',
     legend_entropy: 'Entropía (ΣS)',
     legend_projected: 'Proyectado',
     problem_title: 'El problema',
@@ -743,7 +743,7 @@ const T = {
     panel3_title: 'La estamos <em style="font-style:italic;color:var(--gold);">&quot;reordenando&quot;</em>',
     panel3_body: 'Medimos el derecho y los sistemas jur\u00eddicos humanos (peso jur\u00eddico, entrop\u00eda, etc.) con el objetivo de dise\u00f1ar sistemas jur\u00eddicos sostenibles para liberar y distribuir este valor a quienes contribuyan al Proyecto: <a href="/participate" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(184,134,11,0.4);">participa</a>.',
     metric_pnc_bought: 'de los cuales comprados: ',
-    metric_pnc_avail_label: 'aún disponibles para la fase 1',
+    metric_pnc_avail_label: 'aún por emitir en la Fase 1',
   }
 };
 
