@@ -45,9 +45,18 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { messages } = req.body;
+  const { messages: raw } = req.body || {};
 
-  if (!messages || !Array.isArray(messages)) {
+  if (!raw || !Array.isArray(raw)) {
+    return res.status(400).json({ error: 'Invalid request' });
+  }
+  // Size limits (11 Nov 2026): only the last 20 turns, text only, 2,000
+  // characters each, so a visitor cannot send unlimited input at our cost.
+  const messages = raw.slice(-20)
+    .filter(m => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string' && m.content.trim())
+    .map(m => ({ role: m.role, content: m.content.slice(0, 2000) }));
+  while (messages.length && messages[0].role !== 'user') messages.shift(); // must start with the visitor
+  if (!messages.length) {
     return res.status(400).json({ error: 'Invalid request' });
   }
 
