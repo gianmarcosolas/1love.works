@@ -87,7 +87,9 @@ export default async function handler(req, res) {
       return res.status(response.status).json({ error: data.error?.message || 'API error' });
     }
 
-    const text = data.content?.[0]?.text || '';
+    // Join every text block: newer models can return a thinking block first,
+    // so reading only the first block would give an empty answer.
+    const text = (data.content || []).filter(b => b && b.type === 'text').map(b => b.text).join('').trim();
     return res.status(200).json({ text });
 
   } catch (e) {
