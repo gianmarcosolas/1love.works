@@ -84,7 +84,8 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     if (!response.ok) {
-      return res.status(response.status).json({ error: data.error?.message || 'API error' });
+      console.error('meter: Anthropic error', response.status, data.error?.type || '');
+      return res.status(response.status >= 500 ? 502 : response.status).json({ error: 'The Meter is unavailable right now. Please try again.' });
     }
 
     // Join every text block: newer models can return a thinking block first,
@@ -93,6 +94,7 @@ export default async function handler(req, res) {
     return res.status(200).json({ text });
 
   } catch (e) {
-    return res.status(500).json({ error: e.message });
+    console.error('meter: error', e?.message);
+    return res.status(500).json({ error: 'Internal error' });
   }
 }
