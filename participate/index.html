@@ -1010,11 +1010,11 @@ setNodeType('pro');
 
 <script>
 const SUPABASE_URL='https://pwrcqepqhtuesoximmoj.supabase.co';
-const SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB3cmNxZXBxaHR1ZXNveGltbW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwNjg2MTMsImV4cCI6MjA5MTY0NDYxM30.tO5SFloOfMZULDHtFII2dilE10fUk8SLCpmyHiCNidE';
+const SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB3cmNxZXBxaHR1ZXNveGltbW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwNjg2MTMsImV4cCI6MjA5MTY0NDYxM30.tO5SFloOfMZULDHtFII2dilE10fUk8SLCpmyHiCNidE'; function sbHeaders(k){return k.indexOf('eyJ')===0?{apikey:k,Authorization:'Bearer '+k}:{apikey:k};}
 
 async function submitToSupabase(payload) {
   const res=await fetch(`${SUPABASE_URL}/rest/v1/love_submissions`,{
-    method:'POST', headers:{'Content-Type':'application/json','apikey':SUPABASE_ANON_KEY,'Authorization':`Bearer ${SUPABASE_ANON_KEY}`,'Prefer':'return=minimal'},
+    method:'POST', headers:Object.assign({'Content-Type':'application/json','Prefer':'return=minimal'},sbHeaders(SUPABASE_ANON_KEY)),
     body:JSON.stringify(payload)
   });
   if(!res.ok&&res.status!==201) throw new Error(res.status);
