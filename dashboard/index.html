@@ -364,7 +364,7 @@ function draw() {
     ctx.setLineDash([]);
     realData.forEach((d, i) => {
       const x = PAD.left + (i / (realData.length - 1)) * cW * 0.15;
-      const y = PAD.top + cH - (d.implied_pnc_value / maxVal) * cH;
+      const y = PAD.top + cH - ((d.implied_value ?? d.implied_pnc_value) / maxVal) * cH;
       if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
     });
     ctx.stroke();
@@ -454,7 +454,8 @@ function animateCounters() {
     animateNumber('m-systems', stats.total_scans, '', 1200);
     animateNumber('m-entropy', stats.total_entropy, '', 1400);
     animateNumber('m-pnc', stats.pnc_in_circulation, '', 1000);
-    animateNumber('m-value', stats.implied_pnc_value, '€', 1600);
+    // /api/stats sends implied_value (shown as the indicative measure); implied_pnc_value was never sent (showed €NaN).
+    animateNumber('m-value', stats.implied_value ?? stats.implied_pnc_value, '€', 1600);
     if (stats.time_series && stats.time_series.length > 1) {
       updateChartWithRealData(stats);
     }
@@ -478,7 +479,7 @@ function animateNumber(id, target, prefix, duration) {
 
 function updateChartWithRealData(stats) {
   window.realTimeSeries = stats.time_series;
-  window.realImpliedPNC = stats.implied_pnc_value;
+  window.realImpliedPNC = stats.implied_value ?? stats.implied_pnc_value;
   draw();
 }
 
