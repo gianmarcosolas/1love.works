@@ -418,7 +418,7 @@ function fEur(v){
 function fPop(p){return p.toLocaleString('de-DE');}
 
 var SUPABASE_URL='https://pwrcqepqhtuesoximmoj.supabase.co';
-var SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB3cmNxZXBxaHR1ZXNveGltbW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwNjg2MTMsImV4cCI6MjA5MTY0NDYxM30.tO5SFloOfMZULDHtFII2dilE10fUk8SLCpmyHiCNidE';
+var SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB3cmNxZXBxaHR1ZXNveGltbW9qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwNjg2MTMsImV4cCI6MjA5MTY0NDYxM30.tO5SFloOfMZULDHtFII2dilE10fUk8SLCpmyHiCNidE'; function sbHeaders(k){return k.indexOf('eyJ')===0?{apikey:k,Authorization:'Bearer '+k}:{apikey:k};}
 
 var params = new URLSearchParams(location.search);
 var slug = (params.get('c') || '').toLowerCase();
@@ -494,7 +494,7 @@ function renderComune(){
 function loadClaimStatus(){
   if (!comune) return;
   fetch(SUPABASE_URL+'/rest/v1/pnc_holders?select=territory_code&territory_code=eq.'+encodeURIComponent(comune.code),
-    {headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY}})
+    {headers:sbHeaders(SUPABASE_KEY)})
     .then(function(r){return r.json();})
     .then(function(data){
       claimedState = (Array.isArray(data) && data.length > 0) ? 'claimed' : 'open';
