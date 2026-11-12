@@ -24,7 +24,7 @@ The Codification subscription is a Stripe Payment Link (business "1love.works"),
 
 ## Server function
 `api/meter.js` — the conversational Meter. Fixed system prompt, model `claude-haiku-4-5-20251001`, 300 output tokens;
-needs `ANTHROPIC_API_KEY` (Vercel, Sensitive). It reads only the first block of the AI's answer, which must be
+needs `ANTHROPIC_API_KEY` (Vercel, Sensitive; this site's own Claude Console key `1loveworks-meter-prod-2026-11`, renewed 12 Nov 2026). It reads only the first block of the AI's answer, which must be
 adapted before switching to a newer model (task 11).
 
 ## Change and check
