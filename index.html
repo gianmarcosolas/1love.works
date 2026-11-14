@@ -489,7 +489,7 @@ async function callMeter(history) {
         <div style="display: flex; gap: 16px;">
           <div style="display: flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 9px; color: rgba(245,242,234,0.35);"><div style="width:16px;height:2px;background:#b8860b;"></div><span data-i18n="legend_pnc">PNC Value</span></div>
           <div style="display: flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 9px; color: rgba(245,242,234,0.35);"><div style="width:16px;height:2px;background:rgba(74,222,128,0.6);"></div><span data-i18n="legend_entropy">Entropy (ΣS)</span></div>
-          <div style="display: flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 9px; color: rgba(245,242,234,0.35);"><div style="width:16px;height:1px;border-top:1px dashed rgba(184,134,11,0.3);"></div><span data-i18n="legend_projected">Projected</span></div>
+          <div style="display: flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 9px; color: rgba(245,242,234,0.35);"><div style="width:16px;height:1px;border-top:1px dashed rgba(184,134,11,0.3);"></div><span data-i18n="legend_projected">Projected (illustration, not a forecast)</span></div>
         </div>
       </div>
       <canvas id="lp-chart" style="display:block;width:100%;height:280px;max-width:100%;"></canvas>
@@ -552,7 +552,7 @@ const T = {
     chart_sub: 'EU Legal Systems\' Value',
     legend_pnc: 'PNC indicative measure',
     legend_entropy: 'Entropy (ΣS)',
-    legend_projected: 'Projected',
+    legend_projected: 'Projected (illustration, not a forecast)',
     problem_title: 'The problem',
     problem_h: 'Bureaucracy. Legal weight. Entropy. The invisible tax on everything.',
     problem_body: 'Every regulation that produces no value. Every permit that takes two years. Every housing project blocked by overlapping jurisdictions. Every renewable energy installation waiting for grid connection. Every local producer crushed by administrative weight designed for industrial scale. This is not inefficiency. It is entropy - energy that could be life, trapped in legal weight.',
@@ -608,7 +608,7 @@ const T = {
     chart_sub: 'Valore dei Sistemi Giuridici UE',
     legend_pnc: 'Misura indicativa PNC',
     legend_entropy: 'Entropia (ΣS)',
-    legend_projected: 'Proiettato',
+    legend_projected: 'Proiettato (illustrazione, non una previsione)',
     problem_title: 'Il problema',
     problem_h: 'Burocrazia. Peso normativo. Entropia. La tassa invisibile su tutto.',
     problem_body: 'Ogni norma che non produce valore. Ogni permesso che richiede due anni. Ogni progetto abitativo bloccato da giurisdizioni sovrapposte. Ogni impianto di energia rinnovabile in attesa di connessione alla rete. Ogni produttore locale schiacciato da un peso amministrativo pensato per la scala industriale. Non è inefficienza. È entropia - energia che potrebbe essere vita, intrappolata nel peso giuridico.',
@@ -664,7 +664,7 @@ const T = {
     chart_sub: 'Valeur des systèmes juridiques UE',
     legend_pnc: 'Mesure indicative PNC',
     legend_entropy: 'Entropie (ΣS)',
-    legend_projected: 'Projeté',
+    legend_projected: 'Projeté (illustration, pas une prévision)',
     problem_title: 'Le problème',
     problem_h: 'Bureaucratie. Poids juridique. Entropie. La taxe invisible sur tout.',
     problem_body: 'Chaque réglementation qui ne produit aucune valeur. Chaque permis qui prend deux ans. Chaque projet de logement bloqué par des juridictions qui se chevauchent. Chaque installation d\'énergie renouvelable en attente de connexion au réseau. Chaque producteur local écrasé par un poids administratif conçu pour l\'échelle industrielle. Ce n\'est pas de l\'inefficacité. C\'est de l\'entropie.',
@@ -719,7 +719,7 @@ const T = {
     chart_sub: 'Valor de los sistemas jurídicos UE',
     legend_pnc: 'Medida indicativa PNC',
     legend_entropy: 'Entropía (ΣS)',
-    legend_projected: 'Proyectado',
+    legend_projected: 'Proyectado (ilustración, no una previsión)',
     problem_title: 'El problema',
     problem_h: 'Burocracia. Peso jurídico. Entropía. El impuesto invisible sobre todo.',
     problem_body: 'Cada regulación que no produce valor. Cada permiso que tarda dos años. Cada proyecto de vivienda bloqueado por jurisdicciones superpuestas. Cada instalación de energía renovable esperando conexión a la red. Cada productor local aplastado por un peso administrativo diseñado para la escala industrial. Esto no es ineficiencia. Es entropía.',
@@ -780,9 +780,10 @@ function generateProjection(points) {
     const sigmoid = 1 / (1 + Math.exp(-8 * (t - 0.35)));
     const fibFactor = Math.log(fibonacci(Math.floor(t * 15) + 2) + 1) / Math.log(fibonacci(17));
     const entropyPct = sigmoid * fibFactor * 0.85;
-    const unlockedValue = entropyPct * TOTAL_EU_ENTROPY * 1000;
-    const pncInCirculation = Math.max(1, Math.floor(t * 50000));
-    const impliedValue = Math.max(FOUNDING_PRICE, unlockedValue / pncInCirculation);
+    // Same formula as /api/stats (implied_value): €99 × (1 + ΣS / 1,000).
+    // Illustration only: this ΣS is imagined, not a forecast from data.
+    const projectedSigmaS = entropyPct * TOTAL_EU_ENTROPY;
+    const impliedValue = FOUNDING_PRICE * (1 + projectedSigmaS / 1000);
     data.push({ t, entropy: entropyPct * TOTAL_EU_ENTROPY, impliedValue: Math.min(impliedValue, 150000) });
   }
   return data;
