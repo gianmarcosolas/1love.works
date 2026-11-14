@@ -119,8 +119,8 @@ footer { max-width: 900px; margin: 0 auto; padding: 32px 48px 56px; font-family:
     <div class="dashboard-title" id="tc-dash-title">λ model — single comune</div>
     <div class="d-kpis">
       <div class="d-kpi"><div class="l" id="tc-l-pop">Population</div><div class="v" id="tc-v-pop">—</div></div>
-      <div class="d-kpi"><div class="l" id="tc-l-gross">λ Potential (gross)</div><div class="v" id="tc-v-gross">—</div></div>
-      <div class="d-kpi"><div class="l" id="tc-l-net">λ Potential (net)</div><div class="v" id="tc-v-net">—</div></div>
+      <div class="d-kpi"><div class="l" id="tc-l-gross">Unexpressed value, gross (V_u)</div><div class="v" id="tc-v-gross">—</div></div>
+      <div class="d-kpi"><div class="l" id="tc-l-net">Unexpressed value, net (V_u × 0.77)</div><div class="v" id="tc-v-net">—</div></div>
       <div class="d-kpi"><div class="l" id="tc-l-status">Status</div><div class="v" id="tc-v-status">—</div></div>
     </div>
     <div class="dashboard-note" id="tc-dash-note"></div>
@@ -171,7 +171,7 @@ var T = {
     back_link: `← Back to the live map`,
     overline: `Sardinia · λ model`,
     dash_title: `λ model — single comune`,
-    kpi_pop: `Population`, kpi_gross: `λ Potential (gross)`, kpi_net: `λ Potential (net)`, kpi_status: `Status`,
+    kpi_pop: `Population`, kpi_gross: `Unexpressed value, gross (V_u)`, kpi_net: `Unexpressed value, net (V_u × 0.77)`, kpi_status: `Status`,
     status_claimed: `✓ claimed`, status_open: `open`, status_checking: `checking…`,
     dash_note: `λ model estimate — predictive, not official cadastral data. Methodology on the simulation page.`,
     notice_masullas_title: `The first comune in active codification`,
@@ -196,7 +196,7 @@ var T = {
     back_link: `← Torna alla mappa live`,
     overline: `Sardegna · modello λ`,
     dash_title: `Modello λ — singolo comune`,
-    kpi_pop: `Popolazione`, kpi_gross: `Potenziale λ (gross)`, kpi_net: `Potenziale λ (net)`, kpi_status: `Stato`,
+    kpi_pop: `Popolazione`, kpi_gross: `Valore inespresso, lordo (V_u)`, kpi_net: `Valore inespresso, netto (V_u × 0.77)`, kpi_status: `Stato`,
     status_claimed: `✓ rivendicato`, status_open: `aperto`, status_checking: `verifica…`,
     dash_note: `Stima del modello λ — dati predittivi, non output catastali ufficiali. Metodologia nella pagina di simulazione.`,
     notice_masullas_title: `Il primo comune in codificazione attiva`,
@@ -221,7 +221,7 @@ var T = {
     back_link: `← Retour à la carte en direct`,
     overline: `Sardaigne · modèle λ`,
     dash_title: `Modèle λ — commune unique`,
-    kpi_pop: `Population`, kpi_gross: `Potentiel λ (brut)`, kpi_net: `Potentiel λ (net)`, kpi_status: `Statut`,
+    kpi_pop: `Population`, kpi_gross: `Valeur non exprimée, brute (V_u)`, kpi_net: `Valeur non exprimée, nette (V_u × 0.77)`, kpi_status: `Statut`,
     status_claimed: `✓ revendiqué`, status_open: `ouvert`, status_checking: `vérification…`,
     dash_note: `Estimation du modèle λ — données prédictives, non issues du cadastre officiel. Méthodologie sur la page de simulation.`,
     notice_masullas_title: `La première commune en codification active`,
@@ -246,7 +246,7 @@ var T = {
     back_link: `← Volver al mapa en vivo`,
     overline: `Cerdeña · modelo λ`,
     dash_title: `Modelo λ — municipio único`,
-    kpi_pop: `Población`, kpi_gross: `Potencial λ (bruto)`, kpi_net: `Potencial λ (neto)`, kpi_status: `Estado`,
+    kpi_pop: `Población`, kpi_gross: `Valor no expresado, bruto (V_u)`, kpi_net: `Valor no expresado, neto (V_u × 0.77)`, kpi_status: `Estado`,
     status_claimed: `✓ reclamado`, status_open: `abierto`, status_checking: `comprobando…`,
     dash_note: `Estimación del modelo λ — datos predictivos, no datos catastrales oficiales. Metodología en la página de simulación.`,
     notice_masullas_title: `El primer municipio en codificación activa`,

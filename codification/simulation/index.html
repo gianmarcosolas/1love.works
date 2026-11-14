@@ -330,7 +330,7 @@ h1{font-family:var(--fd);font-size:clamp(1.8rem,4vw,3.2rem);font-weight:800;colo
       <div class="chart-legend" id="chart-legend"><span style="color:#3dbf9a;display:inline-flex;align-items:center;gap:.3rem"><svg width="16" height="8"><line x1="0" y1="4" x2="16" y2="4" stroke="#3dbf9a" stroke-width="2.5"></line></svg>Optimistic</span><span style="color:#c9a55a;display:inline-flex;align-items:center;gap:.3rem"><svg width="16" height="8"><line x1="0" y1="4" x2="16" y2="4" stroke="#c9a55a" stroke-width="2.5"></line></svg>Base</span><span style="color:#5e7585;display:inline-flex;align-items:center;gap:.3rem"><svg width="16" height="8"><line x1="0" y1="4" x2="16" y2="4" stroke="#5e7585" stroke-width="1.5" stroke-dasharray="4,3"></line></svg>Conservative</span></div>
     </div>
     <div class="kpis">
-      <div class="kpi"><div class="kpi-l" id="kpi-cap-lbl">λ Net Unexpressed Potential</div><div class="kpi-v" id="r-cap" style="color:var(--rd)">€20.2M</div></div>
+      <div class="kpi"><div class="kpi-l" id="kpi-cap-lbl">Unexpressed value, net (V_u × 0.77)</div><div class="kpi-v" id="r-cap" style="color:var(--rd)">€20.2M</div></div>
       <div class="kpi"><div class="kpi-l" id="kpi-tok-lbl">Tokens</div><div class="kpi-v" id="r-toks" style="color:var(--ac)">201,700 @ €100</div></div>
       <div class="kpi"><div class="kpi-l" id="kpi-ent-lbl">Entropy</div><div class="kpi-v" id="r-ent" style="color:var(--am)">69%</div></div>
       <div class="kpi"><div class="kpi-l" id="kpi-yld-lbl">Yield / token</div><div class="kpi-v" id="r-yld" style="color:var(--gn)">€11/yr (10.8%)</div></div>
@@ -343,7 +343,7 @@ h1{font-family:var(--fd);font-size:clamp(1.8rem,4vw,3.2rem);font-weight:800;colo
     <div class="tok-grid">
       <div class="tok-box">
         <div class="tok-title" id="sys-tok-lbl">System Token</div>
-        <div class="tok-row"><span class="tok-h" id="t-cap-lbl">λ Net Unexpressed Potential</span><span class="tok-v" id="t-cap">€20.2M</span></div>
+        <div class="tok-row"><span class="tok-h" id="t-cap-lbl">Unexpressed value, net (V_u × 0.77)</span><span class="tok-v" id="t-cap">€20.2M</span></div>
         <div class="tok-row"><span class="tok-h" id="t-price-lbl">Price</span><span class="tok-v" id="t-price">€100</span></div>
         <div class="tok-row"><span class="tok-h" id="t-issued-lbl">Issued</span><span class="tok-v" id="t-issued">201,700</span></div>
         <div class="tok-row"><span class="tok-h">SDGs</span><span class="tok-v" style="color:var(--gn)">SDG 1+7+8+11+16</span></div>
@@ -538,11 +538,11 @@ h1{font-family:var(--fd);font-size:clamp(1.8rem,4vw,3.2rem);font-weight:800;colo
         <div style="background:rgba(201,165,90,.12);border:1px solid rgba(201,165,90,.3);color:var(--ac);padding:.25rem .7rem;font-size:.48rem;letter-spacing:.1em;text-transform:uppercase" id="st-live-el">Live sum</div>
       </div>
       <div style="text-align:center;padding:1rem 0 .8rem;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);margin-bottom:1rem">
-        <div style="font-size:.44rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mu);margin-bottom:.4rem" id="st-biglbl-el">λ Net Unexpressed Potential</div>
+        <div style="font-size:.44rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mu);margin-bottom:.4rem" id="st-biglbl-el">Unexpressed value, net (V_u × 0.77)</div>
         <div id="st-big" style="font-family:var(--fd);font-size:clamp(1.8rem,4vw,3rem);font-weight:900;color:var(--ac);letter-spacing:-.02em">€23.31B</div>
         <div style="font-size:.55rem;color:var(--mu);margin-top:.3rem">
-          <span id="st-gross-lbl-en">gross λ: <strong id="st-gross" style="color:var(--tx)">€30.28B</strong> &nbsp;·&nbsp; λ NUP (×0.77): <strong id="st-net" style="color:var(--ac)">€23.31B</strong></span>
-          <span id="st-gross-lbl-it" style="display:none">λ lordo: <strong id="st-gross-it" style="color:var(--tx)">€30.28B</strong> &nbsp;·&nbsp; Potenziale Netto Inespresso λ (×0.77): <strong id="st-net-it" style="color:var(--ac)">€23.31B</strong></span>
+          <span id="st-gross-lbl-en">Unexpressed value, gross (V_u): <strong id="st-gross" style="color:var(--tx)">€30.28B</strong> &nbsp;·&nbsp; net (V_u × 0.77): <strong id="st-net" style="color:var(--ac)">€23.31B</strong></span>
+          <span id="st-gross-lbl-it" style="display:none">Valore inespresso, lordo (V_u): <strong id="st-gross-it" style="color:var(--tx)">€30.28B</strong> &nbsp;·&nbsp; netto (V_u × 0.77): <strong id="st-net-it" style="color:var(--ac)">€23.31B</strong></span>
         </div>
       </div>
       <div style="margin-bottom:1rem">
@@ -556,7 +556,7 @@ h1{font-family:var(--fd);font-size:clamp(1.8rem,4vw,3.2rem);font-weight:800;colo
         <div class="kpi"><div class="kpi-l" id="st-red-lbl">🔴 High</div><div class="kpi-v" style="color:var(--rd)" id="st-red">125 comuni</div></div>
         <div class="kpi"><div class="kpi-l" id="st-grn-lbl">🟢 Low</div><div class="kpi-v" style="color:var(--gn)" id="st-grn">67 comuni</div></div>
       </div>
-      <div style="background:var(--bg);border:1px solid var(--bd);border-left:3px solid var(--ac);padding:.8rem 1rem;font-size:.6rem;color:var(--mu);line-height:1.75;font-style:italic" id="st-note">λ model estimate across 377 Sardinian comuni. 125 high-entropy comuni. λ Net Unexpressed Potential €23.31B simulated base for territorial IPO. Predictive estimates — not official cadastral data.</div>
+      <div style="background:var(--bg);border:1px solid var(--bd);border-left:3px solid var(--ac);padding:.8rem 1rem;font-size:.6rem;color:var(--mu);line-height:1.75;font-style:italic" id="st-note">λ model estimate across 377 Sardinian comuni. 125 high-entropy comuni. Net unexpressed value (V_u × 0.77) €23.31B simulated base for territorial IPO. Predictive estimates — not official cadastral data.</div>
       <button onclick="document.querySelector(&#39;[data-tab=\&#39;browse\&#39;]&#39;).click();window.scrollTo({top:0})" style="width:100%;margin-top:.7rem;background:rgba(201,165,90,.1);border:1px solid rgba(201,165,90,.35);color:var(--ac);padding:.55rem;font-family:var(--fd);font-size:.6rem;font-weight:800;cursor:pointer;letter-spacing:.08em;text-transform:uppercase" id="st-browse-btn-en">🌕 Browse all 377 Comuni →</button>
       <button onclick="document.querySelector(&#39;[data-tab=\&#39;browse\&#39;]&#39;).click();window.scrollTo({top:0})" style="width:100%;margin-top:.7rem;background:rgba(201,165,90,.1);border:1px solid rgba(201,165,90,.35);color:var(--ac);padding:.55rem;font-family:var(--fd);font-size:.6rem;font-weight:800;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;display:none" id="st-browse-btn-it">🌕 Esplora tutti i 377 Comuni →</button>
     </div>
@@ -570,11 +570,11 @@ h1{font-family:var(--fd);font-size:clamp(1.8rem,4vw,3.2rem);font-weight:800;colo
         <div style="background:rgba(61,142,245,.12);border:1px solid rgba(61,142,245,.3);color:var(--b1);padding:.25rem .7rem;font-size:.48rem;letter-spacing:.1em;text-transform:uppercase" id="eu-tot-badge">Aggregated</div>
       </div>
       <div style="text-align:center;padding:1rem 0 .8rem;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);margin-bottom:1rem">
-        <div style="font-size:.44rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mu);margin-bottom:.4rem" id="eu-biglbl">λ Net Unexpressed Potential</div>
+        <div style="font-size:.44rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mu);margin-bottom:.4rem" id="eu-biglbl">Unexpressed value, net (V_u × 0.77)</div>
         <div style="font-family:var(--fd);font-size:clamp(1.8rem,4vw,3rem);font-weight:900;color:var(--b1);letter-spacing:-.02em">€5.2T</div>
         <div style="font-size:.55rem;color:var(--mu);margin-top:.3rem" id="eu-gross-lbl">
-          <span id="eu-gross-en">gross λ: <strong style="color:var(--tx)">€6.8T</strong> &nbsp;·&nbsp; λ NUP (×0.77): <strong style="color:var(--b1)">€5.2T</strong></span>
-          <span id="eu-gross-it" style="display:none">λ lordo: <strong style="color:var(--tx)">€6.8T</strong> &nbsp;·&nbsp; Potenziale Netto Inespresso λ (×0.77): <strong style="color:var(--b1)">€5.2T</strong></span>
+          <span id="eu-gross-en">Unexpressed value, gross (V_u): <strong style="color:var(--tx)">€6.8T</strong> &nbsp;·&nbsp; net (V_u × 0.77): <strong style="color:var(--b1)">€5.2T</strong></span>
+          <span id="eu-gross-it" style="display:none">Valore inespresso, lordo (V_u): <strong style="color:var(--tx)">€6.8T</strong> &nbsp;·&nbsp; netto (V_u × 0.77): <strong style="color:var(--b1)">€5.2T</strong></span>
         </div>
       </div>
       <div style="margin-bottom:1rem">
@@ -615,14 +615,14 @@ h1{font-family:var(--fd);font-size:clamp(1.8rem,4vw,3.2rem);font-weight:800;colo
     <button class="tfb" id="eu-f-yel">🟨</button>
     <button class="tfb" id="eu-f-grn">🟢</button>
     <select class="tfi" id="eu-srt">
-      <option value="tot">Total λ desc</option>
+      <option value="tot">Total V_u desc</option>
       <option value="p1">P1 desc</option><option value="p2">P2 desc</option><option value="p3">P3 desc</option>
     </select>
     <span style="font-size:.55rem;color:var(--mu)">count: <strong id="eu-cnt">27</strong></span>
   </div>
   <div class="twrap">
     <div class="thead eu-cols">
-      <div>#</div><div id="eu-th-country">Country</div><div style="text-align:right">Total λ</div>
+      <div>#</div><div id="eu-th-country">Country</div><div style="text-align:right">Total V_u</div>
       <div style="text-align:right;color:var(--b1)">P1</div><div style="text-align:right;color:var(--b2)">P2</div>
       <div style="text-align:right;color:var(--b3)">P3</div><div></div>
       <div style="text-align:center" id="eu-th-sig">Sig</div><div style="text-align:center" id="eu-th-stars">Stars</div>
@@ -647,7 +647,7 @@ h1{font-family:var(--fd);font-size:clamp(1.8rem,4vw,3.2rem);font-weight:800;colo
       <option>CA</option><option>SS</option><option>NU</option><option>OR</option><option>SU</option>
     </select>
     <select class="tfi" id="br-srt">
-      <option value="lam">λ desc</option><option value="name">A-Z</option><option value="pop">Pop desc</option>
+      <option value="lam">V_u desc</option><option value="name">A-Z</option><option value="pop">Pop desc</option>
     </select>
     <span style="font-size:.55rem;color:var(--mu)">count: <strong id="br-cnt">379</strong></span>
     <span style="font-size:.55rem;color:var(--b2);display:none" id="br-world-count-wrap">🌍 <strong id="br-world-cnt">0</strong> world</span>
@@ -657,7 +657,7 @@ h1{font-family:var(--fd);font-size:clamp(1.8rem,4vw,3.2rem);font-weight:800;colo
     <div class="thead" style="grid-template-columns:28px 1fr 45px 70px 60px 75px 65px 65px 65px 45px 50px">
       <div>#</div><div id="br-th-comune">Comune</div><div id="br-th-prov">Prov</div>
       <div style="text-align:right" id="br-th-pop">Pop</div><div style="text-align:right" id="br-th-trend">Trend</div>
-      <div style="text-align:right;color:var(--ac)">λ M</div>
+      <div style="text-align:right;color:var(--ac)">V_u €M</div>
       <div style="text-align:right;color:var(--b1)">P1</div><div style="text-align:right;color:var(--b2)">P2</div>
       <div style="text-align:right;color:var(--b3)">P3</div>
       <div style="text-align:center" id="br-th-ent">Ent</div><div style="text-align:center" id="br-th-stars">Stars</div>
@@ -679,7 +679,7 @@ h1{font-family:var(--fd);font-size:clamp(1.8rem,4vw,3.2rem);font-weight:800;colo
 <details class="m-item"><summary><span class="m-n">3</span><span class="m-t">Risk class 🔴🟡🟢</span><span class="m-chip" style="color:#c9a55a;border-color:#c9a55a55;background:#c9a55a14">MODEL RULE</span><span class="m-f">🔴 T ≤ −17% · 🟡 T ≤ −5% · 🟢 otherwise</span></summary><div class="m-b">🔴 if the population falls 17% or more in 10 years (12% or more under 2,000 people). 🟡 if it falls 5% or more, or falls at all under 5,000 people. 🟢 otherwise. Why: at −17% per 10 years a town halves in about 40 years; small towns lose schools, shops and services first; and the thresholds give Sardinia, from official data, the share of 🔴 comuni closest to the original pilot (35% vs 33%).</div></details>
 <details class="m-item"><summary><span class="m-n">4</span><span class="m-t">Entropy</span><span class="m-chip" style="color:#c9a55a;border-color:#c9a55a55;background:#c9a55a14">MODEL RULE</span><span class="m-f">🔴 60–84% · 🟡 35–59% · 🟢 10–29%</span></summary><div class="m-b">A proxy for S = k · log W(λ): until a Community Manager counts the unresolved legal states W on the ground, population decline stands in for them. Within each class, entropy rises steadily as the decline gets worse.</div></details>
 <details class="m-item"><summary><span class="m-n">5</span><span class="m-t">Gross unexpressed value</span><span class="m-chip" style="color:#c9a55a;border-color:#c9a55a55;background:#c9a55a14">MODEL · CALIBRATED</span><span class="m-f">V = P × rate × price level × c</span></summary><div class="m-b">Rate per inhabitant: €16,000 🟢 · €22,000 🟡 · €28,000 🔴. Price level: Eurostat price level index (GDP, 2025, EU = 100). c = 0.877, one EU-wide factor chosen so that all municipalities add up to the published EU total of €6.8T gross. Two municipalities with the same population, trend and country get the same value: there is no random element.</div></details>
-<details class="m-item"><summary><span class="m-n">6</span><span class="m-t">Net unexpressed value (headline)</span><span class="m-chip" style="color:#c9a55a;border-color:#c9a55a55;background:#c9a55a14">MODEL · CALIBRATED</span><span class="m-f">Net = V × 0.77</span></summary><div class="m-b">The net factor of the published EU estimate. Summed over the EU: €5.2T. This is the figure shown as “λ Net Unexpressed Potential”, and the base for every number below.</div></details>
+<details class="m-item"><summary><span class="m-n">6</span><span class="m-t">Net unexpressed value (headline)</span><span class="m-chip" style="color:#c9a55a;border-color:#c9a55a55;background:#c9a55a14">MODEL · CALIBRATED</span><span class="m-f">Net = V × 0.77</span></summary><div class="m-b">The net factor of the published EU estimate. Summed over the EU: €5.2T. This is the figure shown as “Unexpressed value, net (V_u × 0.77)”, and the base for every number below.</div></details>
 <details class="m-item"><summary><span class="m-n">7</span><span class="m-t">Three pillars</span><span class="m-chip" style="color:#c9a55a;border-color:#c9a55a55;background:#c9a55a14">MODEL · CALIBRATED</span><span class="m-f">P1 53% · P2 28% · P3 19%</span></summary><div class="m-b">The split of the published EU estimate: P1 Real Estate — BPIE/Eurostat building stock (€29.9T, ~15% underused); P2 Renewable Energy — IEA/I4CE investment gap (€344B/yr, 10-year NPV); P3 Local Value Chain — EC JRC/Eurostat rural production, GI/DOP gap. Every municipality gets the same split until local data exist.</div></details>
 <details class="m-item"><summary><span class="m-n">8</span><span class="m-t">λ = E / M</span><span class="m-chip" style="color:#c9a55a;border-color:#c9a55a55;background:#c9a55a14">MODEL RULE</span><span class="m-f">E = 0.7·P1 + 0.9·P2 + 0.8·P3 · M = 1.5·S·P1 + 0.4·P2 + 0.5·P3</span></summary><div class="m-b">Expressed value E over total mass M including the entropic component (S = entropy). The weights are model version 0; E and M will be replaced by values measured on the ground. The label follows the risk class: 🔴 Prime IPO candidate · 🟡 IPO candidate · 🟢 Optimizable system.</div></details>
 <details class="m-item"><summary><span class="m-n">9</span><span class="m-t">Tokens</span><span class="m-chip" style="color:#c9a55a;border-color:#c9a55a55;background:#c9a55a14">MODEL RULE</span><span class="m-f">Tokens = Net ÷ €100</span></summary><div class="m-b">The token price is fixed at €100 for simulation purposes.</div></details>
@@ -706,7 +706,7 @@ h1{font-family:var(--fd);font-size:clamp(1.8rem,4vw,3.2rem);font-weight:800;colo
 <details class="m-item"><summary><span class="m-n">3</span><span class="m-t">Classe di rischio 🔴🟡🟢</span><span class="m-chip" style="color:#c9a55a;border-color:#c9a55a55;background:#c9a55a14">REGOLA DEL MODELLO</span><span class="m-f">🔴 T ≤ −17% · 🟡 T ≤ −5% · 🟢 altrimenti</span></summary><div class="m-b">🔴 se la popolazione cala del 17% o più in 10 anni (12% o più sotto i 2.000 abitanti). 🟡 se cala del 5% o più, o cala comunque sotto i 5.000 abitanti. 🟢 altrimenti. Perché: a −17% ogni 10 anni un comune si dimezza in circa 40 anni; i piccoli comuni perdono per primi scuole, negozi e servizi; e le soglie danno alla Sardegna, da dati ufficiali, la quota di comuni 🔴 più vicina al pilota originale (35% vs 33%).</div></details>
 <details class="m-item"><summary><span class="m-n">4</span><span class="m-t">Entropia</span><span class="m-chip" style="color:#c9a55a;border-color:#c9a55a55;background:#c9a55a14">REGOLA DEL MODELLO</span><span class="m-f">🔴 60–84% · 🟡 35–59% · 🟢 10–29%</span></summary><div class="m-b">Un'approssimazione di S = k · log W(λ): finché un Community Manager non conta sul posto gli stati giuridici irrisolti W, il calo demografico ne fa le veci. All'interno di ogni classe, l'entropia cresce in modo continuo con il calo.</div></details>
 <details class="m-item"><summary><span class="m-n">5</span><span class="m-t">Valore inespresso lordo</span><span class="m-chip" style="color:#c9a55a;border-color:#c9a55a55;background:#c9a55a14">MODELLO · CALIBRATO</span><span class="m-f">V = P × tasso × livello prezzi × c</span></summary><div class="m-b">Tasso per abitante: €16.000 🟢 · €22.000 🟡 · €28.000 🔴. Livello dei prezzi: indice Eurostat (PIL, 2025, UE = 100). c = 0,877, un unico fattore UE scelto perché tutti i comuni sommino al totale UE pubblicato di €6,8T lordi. Due comuni con stessa popolazione, trend e paese hanno lo stesso valore: non c'è alcun elemento casuale.</div></details>
-<details class="m-item"><summary><span class="m-n">6</span><span class="m-t">Valore inespresso netto (cifra principale)</span><span class="m-chip" style="color:#c9a55a;border-color:#c9a55a55;background:#c9a55a14">MODELLO · CALIBRATO</span><span class="m-f">Netto = V × 0,77</span></summary><div class="m-b">Il fattore netto della stima UE pubblicata. Sommato sull'UE: €5,2T. È la cifra mostrata come “Potenziale Netto Inespresso λ” e la base di tutti i numeri seguenti.</div></details>
+<details class="m-item"><summary><span class="m-n">6</span><span class="m-t">Valore inespresso netto (cifra principale)</span><span class="m-chip" style="color:#c9a55a;border-color:#c9a55a55;background:#c9a55a14">MODELLO · CALIBRATO</span><span class="m-f">Netto = V × 0,77</span></summary><div class="m-b">Il fattore netto della stima UE pubblicata. Sommato sull'UE: €5,2T. È la cifra mostrata come “Valore inespresso, netto (V_u × 0.77)” e la base di tutti i numeri seguenti.</div></details>
 <details class="m-item"><summary><span class="m-n">7</span><span class="m-t">Tre pilastri</span><span class="m-chip" style="color:#c9a55a;border-color:#c9a55a55;background:#c9a55a14">MODELLO · CALIBRATO</span><span class="m-f">P1 53% · P2 28% · P3 19%</span></summary><div class="m-b">La ripartizione della stima UE pubblicata: P1 Immobiliare — patrimonio edilizio BPIE/Eurostat (€29,9T, ~15% sottoutilizzato); P2 Energia rinnovabile — gap di investimento IEA/I4CE (€344 mld/anno, VAN a 10 anni); P3 Filiera locale — produzione rurale EC JRC/Eurostat, gap DOP/IGP. Ogni comune ha la stessa ripartizione finché non ci sono dati locali.</div></details>
 <details class="m-item"><summary><span class="m-n">8</span><span class="m-t">λ = E / M</span><span class="m-chip" style="color:#c9a55a;border-color:#c9a55a55;background:#c9a55a14">REGOLA DEL MODELLO</span><span class="m-f">E = 0,7·P1 + 0,9·P2 + 0,8·P3 · M = 1,5·S·P1 + 0,4·P2 + 0,5·P3</span></summary><div class="m-b">Valore espresso E su massa totale M, inclusa la componente entropica (S = entropia). I pesi sono la versione 0 del modello; E e M saranno sostituiti da valori misurati sul territorio. L'etichetta segue la classe di rischio: 🔴 Candidato IPO primario · 🟡 Candidato IPO · 🟢 Sistema ottimizzabile.</div></details>
 <details class="m-item"><summary><span class="m-n">9</span><span class="m-t">Token</span><span class="m-chip" style="color:#c9a55a;border-color:#c9a55a55;background:#c9a55a14">REGOLA DEL MODELLO</span><span class="m-f">Token = Netto ÷ €100</span></summary><div class="m-b">Il prezzo del token è fissato a €100 a fini simulativi.</div></details>
@@ -2277,8 +2277,8 @@ h1{font-family:var(--fd);font-size:clamp(1.8rem,4vw,3.2rem);font-weight:800;colo
             <div class="kpi-v" id="wld-r-ent" style="color: var(--am);">50%</div>
           </div>
           <div class="kpi">
-            <div class="kpi-l" id="wld-r-nup-lbl-en">λ Net Unexpressed Potential</div>
-            <div class="kpi-l" style="display:none" id="wld-r-nup-lbl-it">Potenziale Netto Inespresso λ</div>
+            <div class="kpi-l" id="wld-r-nup-lbl-en">Unexpressed value, net (V_u × 0.77)</div>
+            <div class="kpi-l" style="display:none" id="wld-r-nup-lbl-it">Valore inespresso, netto (V_u × 0.77)</div>
             <div class="kpi-v" id="wld-r-nup" style="color:var(--ac)">€1.1B</div>
           </div>
           <div class="kpi">
@@ -2547,8 +2547,8 @@ document.addEventListener('DOMContentLoaded',function(){wldCompute();});
       <div style="font-size:1.4rem;margin-bottom:.6rem">📊</div>
       <div style="font-family:var(--fd);font-size:.78rem;font-weight:800;color:var(--ac);margin-bottom:.5rem" id="cm-w1-title-en">λ Valuation Report</div>
       <div style="font-family:var(--fd);font-size:.78rem;font-weight:800;color:var(--ac);margin-bottom:.5rem;display:none" id="cm-w1-title-it">Report di Valutazione λ</div>
-      <div style="font-size:.6rem;color:var(--mu);line-height:1.7" id="cm-w1-body-en">Your territory's entropy score, λ Net Unexpressed Potential, pillar breakdown and 10-year projection. The measurement that makes the invisible visible.</div>
-      <div style="font-size:.6rem;color:var(--mu);line-height:1.7;display:none" id="cm-w1-body-it">Il punteggio di entropia del tuo territorio, il Potenziale Netto Inespresso λ, la ripartizione per pilastri e la proiezione decennale. La misurazione che rende visibile l'invisibile.</div>
+      <div style="font-size:.6rem;color:var(--mu);line-height:1.7" id="cm-w1-body-en">Your territory's entropy score, net unexpressed value (V_u × 0.77), pillar breakdown and 10-year projection. The measurement that makes the invisible visible.</div>
+      <div style="font-size:.6rem;color:var(--mu);line-height:1.7;display:none" id="cm-w1-body-it">Il punteggio di entropia del tuo territorio, il valore inespresso netto (V_u × 0.77), la ripartizione per pilastri e la proiezione decennale. La misurazione che rende visibile l'invisibile.</div>
     </div>
 
     <div style="background:linear-gradient(135deg,#07111e,#0a1828);border:1px solid rgba(61,191,154,.3);padding:1.2rem">
@@ -2580,7 +2580,7 @@ document.addEventListener('DOMContentLoaded',function(){wldCompute();});
         <div class="kpi"><div class="kpi-l">Territory</div><div class="kpi-v" style="color:var(--ac)" id="kpi-territory"></div></div>
         <div class="kpi"><div class="kpi-l">Province</div><div class="kpi-v" style="color:var(--mu)">OR</div></div>
         <div class="kpi"><div class="kpi-l">λ Entropy</div><div class="kpi-v" style="color:var(--b2)">69%</div></div>
-        <div class="kpi"><div class="kpi-l">λ NUP</div><div class="kpi-v" style="color:var(--ac)">€20.2M</div></div>
+        <div class="kpi"><div class="kpi-l">V_u × 0.77</div><div class="kpi-v" style="color:var(--ac)">€20.2M</div></div>
         <div class="kpi"><div class="kpi-l">Population</div><div class="kpi-v">980</div></div>
         <div class="kpi"><div class="kpi-l">Risk</div><div class="kpi-v" style="color:var(--rd)">🔴</div></div>
       </div>
@@ -3254,9 +3254,9 @@ var T={
     "tok-lbl":"Token price (fixed for simulation purposes)","tok-per":"per token","calc":"⚡ Calculate",
     "badge-hi":"High Entropy","badge-mid":"Medium","badge-lo":"Low Entropy",
     "lam-prime":"Prime IPO candidate","lam-ipo":"IPO candidate","lam-opt":"Optimizable system",
-    "kpi-cap":"λ Net Unexpressed Potential","kpi-tok":"Tokens","kpi-ent":"Entropy","kpi-yld":"Yield / token (illustrative)",
+    "kpi-cap":"Unexpressed value, net (V_u × 0.77)","kpi-tok":"Tokens","kpi-ent":"Entropy","kpi-yld":"Yield / token (illustrative)",
     "p1":"P1 Real Estate","p2":"P2 Energy","p3":"P3 Value Chain",
-    "sys-tok":"System Token","t-cap":"λ Net Unexpressed Potential","t-price":"Price","t-issued":"Issued","t-mode":"Mode",
+    "sys-tok":"System Token","t-cap":"Unexpressed value, net (V_u × 0.77)","t-price":"Price","t-issued":"Issued","t-mode":"Mode",
     "gov":"Governance","gov-priv":"Individuals","gov-state":"State","gov-fin":"Financial inst.","gov-mun":"Municipality",
     "ext-title":"🌍 Positive Externalities & Job Creation",
     "jobs-direct":"Direct Jobs","jobs-induced":"Induced Jobs","jobs-struct":"Structural Jobs","jobs-total":"Total Jobs / 10yr",
@@ -3266,10 +3266,10 @@ var T={
     "btn-invest":"🎉 Support a real territory —","btn-invest-sub":"or another EU system",
     "btn-cm":"🏘 I am interested to be a community manager in","btn-cm-and":"and receive investment","btn-cm-sub":"or in another EU system",
     "st-title":"🏭 Sardinia — Total Unexpressed Value","st-sub":"377 municipalities · λ model aggregate · pilot dataset",
-    "st-live":"Live sum","st-biglbl":"λ Net Unexpressed Potential","st-pillarlbl":"Breakdown by pillar",
+    "st-live":"Live sum","st-biglbl":"Unexpressed value, net (V_u × 0.77)","st-pillarlbl":"Breakdown by pillar",
     "st-count":"Comuni","st-pop":"Population","st-jobs":"Jobs/10yr","st-red":"🔴 High","st-grn":"🟢 Low",
     "eu-title":"🇪🇺 EU-27 — Total Unexpressed Value","eu-sub":"27 member states · λ model · Eurostat/BPIE/IEA/IRENA",
-    "eu-badge":"Aggregated","eu-biglbl":"λ Net Unexpressed Potential","eu-pillar-lbl":"Breakdown by pillar",
+    "eu-badge":"Aggregated","eu-biglbl":"Unexpressed value, net (V_u × 0.77)","eu-pillar-lbl":"Breakdown by pillar",
     "eu-p1":"P1 Real Estate","eu-p2":"P2 Renewable Energy","eu-p3":"P3 Local Value Chain",
     "eu-p1src":"BPIE/Eurostat BSO · €29.9T total stock · ~15% underused",
     "eu-p2src":"IEA/I4CE · €344B/yr gap · 10yr NPV untapped capacity",
@@ -3305,9 +3305,9 @@ var T={
     "tok-lbl":"Prezzo token (fisso a fini simulativi)","tok-per":"per token","calc":"⚡ Calcola",
     "badge-hi":"Alta Entropia","badge-mid":"Media","badge-lo":"Bassa Entropia",
     "lam-prime":"Candidato IPO primario","lam-ipo":"Candidato IPO","lam-opt":"Sistema ottimizzabile",
-    "kpi-cap":"Potenziale Netto Inespresso λ","kpi-tok":"Token","kpi-ent":"Entropia","kpi-yld":"Rendimento / token (illustrativo)",
+    "kpi-cap":"Valore inespresso, netto (V_u × 0.77)","kpi-tok":"Token","kpi-ent":"Entropia","kpi-yld":"Rendimento / token (illustrativo)",
     "p1":"P1 Immobiliare","p2":"P2 Energia","p3":"P3 Filiera",
-    "sys-tok":"System Token","t-cap":"Potenziale Netto Inespresso λ","t-price":"Prezzo","t-issued":"Emessi","t-mode":"Modalità",
+    "sys-tok":"System Token","t-cap":"Valore inespresso, netto (V_u × 0.77)","t-price":"Prezzo","t-issued":"Emessi","t-mode":"Modalità",
     "gov":"Governance","gov-priv":"Privati","gov-state":"Stato","gov-fin":"Istituti finanziari","gov-mun":"Comune",
     "ext-title":"🌍 Esternalità Positive & Creazione di Lavoro",
     "jobs-direct":"Lavori Diretti","jobs-induced":"Lavori Indotti","jobs-struct":"Lavori Strutturali","jobs-total":"Totale Lavori / 10 anni",
@@ -3317,10 +3317,10 @@ var T={
     "btn-invest":"🎉 Sostieni un territorio reale —","btn-invest-sub":"o un altro sistema UE",
     "btn-cm":"🏘 Sono interessato a diventare community manager di","btn-cm-and":"e ricevere investimenti","btn-cm-sub":"o in un altro sistema UE",
     "st-title":"🏭 Sardegna — Valore Inespresso Totale","st-sub":"377 comuni · aggregato modello λ · dataset pilota",
-    "st-live":"Somma live","st-biglbl":"Potenziale Netto Inespresso λ Totale (λ inespresso)","st-pillarlbl":"Ripartizione per pilastro",
+    "st-live":"Somma live","st-biglbl":"Valore inespresso, netto (V_u × 0.77)","st-pillarlbl":"Ripartizione per pilastro",
     "st-count":"Comuni","st-pop":"Popolazione","st-jobs":"Lavori/10 anni","st-red":"🔴 Alta","st-grn":"🟢 Bassa",
     "eu-title":"🇪🇺 UE-27 — Valore Inespresso Totale","eu-sub":"27 stati membri · modello λ · Eurostat/BPIE/IEA/IRENA",
-    "eu-badge":"Aggregato","eu-biglbl":"Potenziale Netto Inespresso λ Totale (λ inespresso)","eu-pillar-lbl":"Ripartizione per pilastro",
+    "eu-badge":"Aggregato","eu-biglbl":"Valore inespresso, netto (V_u × 0.77)","eu-pillar-lbl":"Ripartizione per pilastro",
     "eu-p1":"P1 Immobiliare","eu-p2":"P2 Energia Rinnovabile","eu-p3":"P3 Filiera Locale",
     "eu-p1src":"BPIE/Eurostat BSO · €29,9T stock totale · ~15% inutilizzato",
     "eu-p2src":"IEA/I4CE · gap €344 mld/anno · VAN 10 anni capacità non sfruttata",
@@ -3497,7 +3497,7 @@ function applyLang(){
   ].forEach(function(id){var el=g(id);if(el)el.style.display=currentLang==="it"?"":"none";});
   // CM KPI cap label
   var capLbl=g("cm-kpi-cap-lbl");
-  if(capLbl)capLbl.textContent=currentLang==="it"?"Potenziale Netto Inespresso λ":"λ Net Unexpressed Potential";
+  if(capLbl)capLbl.textContent=currentLang==="it"?"Valore inespresso, netto (V_u × 0.77)":"Unexpressed value, net (V_u × 0.77)";
   renderSardTotal();
   if(_last)renderImpact(_last.city,_last.prov,_last.pop,_last.trend||0,_last.sem,_last.ent,_last.p1*0.77,_last.p2*0.77,_last.p3*0.77,_last.net,_last.lam);
   renderNote();
@@ -3979,8 +3979,8 @@ function renderSardTotal(){
   }
   g("st-pillar-bars").innerHTML=pBar(tr("p1"),t.p1,"#3d8ef5")+pBar(tr("p2"),t.p2,"#3dbf9a")+pBar(tr("p3"),t.p3,"#c9a55a");
   g("st-note").textContent=currentLang==="it"
-    ?"Stima modello λ su "+SARD.length.toLocaleString()+" comuni — "+dsLabel()+". "+t.red.toLocaleString()+" comuni ad alta entropia. Potenziale Netto Inespresso λ "+fBig(t.net)+" base simulata per IPO territoriale. Calcolata solo da popolazione e trend: indicativa, da affinare e confermare empiricamente."
-    :"λ model estimate across "+SARD.length.toLocaleString()+" municipalities — "+dsLabel()+". "+t.red.toLocaleString()+" high-entropy municipalities. λ Net Unexpressed Potential "+fBig(t.net)+" simulated base for territorial IPO. Computed from population and trend only: indicative, to be refined and confirmed empirically.";
+    ?"Stima modello λ su "+SARD.length.toLocaleString()+" comuni — "+dsLabel()+". "+t.red.toLocaleString()+" comuni ad alta entropia. Valore inespresso netto (V_u × 0.77) "+fBig(t.net)+" base simulata per IPO territoriale. Calcolata solo da popolazione e trend: indicativa, da affinare e confermare empiricamente."
+    :"λ model estimate across "+SARD.length.toLocaleString()+" municipalities — "+dsLabel()+". "+t.red.toLocaleString()+" high-entropy municipalities. Net unexpressed value (V_u × 0.77) "+fBig(t.net)+" simulated base for territorial IPO. Computed from population and trend only: indicative, to be refined and confirmed empirically.";
 }
 
 // Search — EU-wide by default, or inside the country picked in the selector
@@ -4635,7 +4635,7 @@ async function generateShareCard(fmt){
     line(nupVal,'900 '+nupSize+'px system-ui,sans-serif','#c9a55a',sy(6));
 
     // ── ROW 9: NUP SUBLABEL ──
-    line(lang?'Potenziale Netto Inespresso λ':'λ Net Unexpressed Potential',sy(14)+'px ui-monospace,monospace','rgba(201,165,90,0.6)',sy(10));
+    line(lang?'Valore inespresso, netto (V_u × 0.77)':'Unexpressed value, net (V_u × 0.77)',sy(14)+'px ui-monospace,monospace','rgba(201,165,90,0.6)',sy(10));
     sep(sy(20),sy(26),false);
 
     // ── ROWS 10-12: PILLAR BARS ──
