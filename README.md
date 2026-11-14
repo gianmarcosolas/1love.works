@@ -14,7 +14,7 @@ redirects to www). `vercel.json`: `cleanUrls` (pages are served without `.html`)
 | `/dashboard` | ΣS and PNC implied value over time | `eulawscanner.eu/api/stats` |
 | `/pnc` | PNC holder page, email-code login | `eulawscanner.eu/api/pnc/*`, `/api/stats` |
 | `/participate` | Participation form | inserts unpaid rows into `love_submissions` (the only public write in the database) |
-| `/codification` (+ `/codification/simulation`, `/codification/comune`) | Codification of territories: λ values for 377 Sardinian comuni and EU-27 country data | Data in `codification/data/*.js` and inline; computed in the page (fixed rule, issue 8) |
+| `/codification` (+ `/codification/simulation`, `/codification/comune`) | Codification of territories: unexpressed value (V_u) estimates for 377 Sardinian comuni and EU-27 country data | Data in `codification/data/*.js` and inline; computed in the page (fixed rule, issue 8) |
 | `/codification/masullas` | The Masullas internal market | static |
 | `/codification/start-a-market` | Start a market | static; where to link it is parked by the founder |
 | `/methodology`, `/criticisms`, `/problem`, `/solutions`, `/privacy` | Texts | static (EN/IT/FR/ES on some pages) |
@@ -30,3 +30,10 @@ adapted before switching to a newer model (task 11).
 ## Change and check
 No build step and no tests: edit, push to a branch, check the Vercel preview, then merge. Figures quoted in texts
 must match what the pages compute (issues 8, 19).
+
+## Terms and symbols
+
+[`GLOSSARY.md`](GLOSSARY.md) is the reference for every symbol and label (λ = E/M only; the € estimate is the
+unexpressed value V_u, gross and net). Check every new term, symbol or label against it; if something conflicts,
+record it in `EUlawscanner/docs/APPROVALS.md` and ask the founder. Published articles (JLMI 2/2025; GCLR 1/25, 1/26,
+4/26) prevail over site text unless the founder decides otherwise.
